@@ -28,11 +28,12 @@ const TestData = () => {
     setLoading(false);
   };
 
-  const handleCloseButtonClick = () => {
+  const sendEvent = ({ action, parameter }: any) => {
     // IOS
     if (window.webkit?.messageHandlers?.hbReport?.postMessage) {
       window.webkit.messageHandlers.hbReport.postMessage({
-        action: 'closeButtonClick',
+        action,
+        ...(parameter && { parameter }),
       });
     }
 
@@ -40,7 +41,8 @@ const TestData = () => {
     if (window.parent) {
       window.parent.postMessage(
         {
-          action: 'closeButtonClick',
+          action,
+          ...(parameter && { parameter }),
         },
         '*',
       );
@@ -50,7 +52,8 @@ const TestData = () => {
     if (window.androidHellobotWebViewApi?.hbReport) {
       window.androidHellobotWebViewApi.hbReport(
         JSON.stringify({
-          action: 'closeButtonClick',
+          action,
+          ...(parameter && { parameter }),
         }),
       );
     }
@@ -76,17 +79,79 @@ const TestData = () => {
       <br />
       <strong>- API 요청 테스트</strong>
       <br />
+      전달해주신 토큰으로 요청 보내볼게여
+      <br />
       <button onClick={requestAPI}>API 요청 보내기 버튼</button>
       <br />
       요청 결과(일부만 보여집니다):
       {loading ? '로딩중...' : JSON.stringify(data)?.slice(0, 500)}
       <br />
       <br />
+      <strong>- 공유 버튼 테스트</strong>
+      <br />
+      <button onClick={() => sendEvent({ action: 'shareButtonClick' })}>
+        공유 버튼
+      </button>
+      <br />
+      - action: shareButtonClick
+      <br />
+      <br />
       <strong>- 닫기 버튼 테스트</strong>
       <br />
-      <button onClick={handleCloseButtonClick}>닫기 버튼</button>
+      <button onClick={() => sendEvent({ action: 'closeButtonClick' })}>
+        닫기 버튼
+      </button>
       <br />
-      닫기버튼을 누르면 closeButtonClick이라는 액션이 전달됩니다.
+      - action: closeButtonClick
+      <br />
+      <br />
+      <strong>- 카카오톡 전송 버튼 테스트</strong>
+      <br />
+      <button onClick={() => sendEvent({ action: 'kakaoTalkButtonClick' })}>
+        카카오톡 전송 버튼
+      </button>
+      <br />
+      - action: kakaoTalkButtonClick
+      <br />
+      <br />
+      <strong>- 스킬 배너 테스트</strong>
+      <br />
+      <button
+        onClick={() =>
+          sendEvent({
+            action: 'skillBannerClick',
+            parameter: {
+              skillId: 2141,
+            },
+          })
+        }
+      >
+        스킬 배너
+      </button>
+      <br />
+      - action: skillBannerClick
+      <br />
+      {'- parameter: { skillId: 2141 }'}
+      <br />
+      <br />
+      <strong>- 챗봇 배너 테스트</strong>
+      <br />
+      <button
+        onClick={() =>
+          sendEvent({
+            action: 'chatBotBannerClick',
+            parameter: {
+              chatBotId: 'lamama-ko',
+            },
+          })
+        }
+      >
+        챗봇 배너
+      </button>
+      <br />
+      - action: chatBotBannerClick
+      <br />
+      {'- parameter: { chatBotId: lamama-ko}'}
       <br />
       <br />
       <strong>- 친구 추가 페이지로 이동 버튼 테스트</strong>
