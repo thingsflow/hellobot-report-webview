@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const HomePage = () => {
-  return;
+  return <>홈화면</>;
 };
 
 export default HomePage;
