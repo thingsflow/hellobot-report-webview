@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-interface IRelationReportHeaderProps {}
+interface IRelationGraph {}
 
-const RelationReportHeader = (props: IRelationReportHeaderProps) => {
-  return <header>헤더</header>;
+const RelationGraph = ({}: IRelationGraph) => {
+  return <div></div>;
 };
 
-export default RelationReportHeader;
+export default RelationGraph;

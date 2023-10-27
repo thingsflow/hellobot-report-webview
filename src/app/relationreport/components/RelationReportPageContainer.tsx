@@ -28,7 +28,7 @@ const RelationReportPageContainer = () => {
   const lang = searchParams.get('lang');
 
   return (
-    <div className="border border-black border-solid">
+    <div className="border border-black border-solid bg-gray-50">
       <RelationReportHeader />
       <RelationReportTitle title={'무의식 속 내 모습 [우리 모임] 관계도'} />
       <RelationGraph />
