@@ -1,13 +1,11 @@
 'use client';
 import * as React from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import {
-  RelationGraph,
+  RelationGraphContainer,
   RelationReportDetail,
   RelationReportFooter,
   RelationReportHeader,
-  RelationReportTitle,
   SkillBanner,
 } from '.';
 
@@ -28,10 +26,9 @@ const RelationReportPageContainer = () => {
   const lang = searchParams.get('lang');
 
   return (
-    <div className="border border-black border-solid">
-      <RelationReportHeader />
-      <RelationReportTitle title={'무의식 속 내 모습 [우리 모임] 관계도'} />
-      <RelationGraph />
+    <div className="bg-gray-50 relative">
+      {/* <Flow /> */}
+      <RelationGraphContainer />
       <SkillBanner />
       <RelationReportDetail />
       <RelationReportFooter />
