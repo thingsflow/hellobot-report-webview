@@ -1,40 +1,40 @@
 'use client';
 import { share } from '@/utils';
+import Webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
 
-const RelationReportHeader = () => {
-  const handleCloseButtonClick = () => {};
+interface IRelationReportHeader {
+  title: string;
+  shareLink: string;
+}
+
+const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
+  const handleCloseButtonClick = () => {
+    Webview.closeButtonClick();
+  };
 
   const dataToShare: ShareData = {
-    title: '2024 우리 모임 관계도',
-    text: '관계도 관련 설명 어쩌구 저ㄱ쩌구~~ 링크는 스플링크입니당',
-    url: `https://storyplay.com`,
+    title,
+    url: shareLink,
   };
 
   const handleShareIconClick = async () => {
-    console.log('handleShareIconClick');
-    const result = await share(dataToShare);
-    if (result === 'copiedToClipboard') {
-      alert('링크를 클립보드에 복사했습니다.');
-    } else if (result === 'failed') {
-      alert('공유하기가 지원되지 않는 환경입니다.');
+    const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
+
+    if (isAndroidWebView) {
+      Webview.shareButtonClick({
+        title,
+        url: shareLink,
+      });
+    } else {
+      const result = await share(dataToShare);
+      if (result === 'copiedToClipboard') {
+        alert('링크를 클립보드에 복사했습니다.');
+      } else if (result === 'failed') {
+        alert('공유하기가 지원되지 않는 환경입니다.');
+      }
     }
-    // if (androidWebView) {
-    //   nativeShare(
-    //     { url: `${BASE_URL}/result/shared/${drinkId}` },
-    //     function (result_cd: any, result_msg: any, extra: any) {
-    //       console.log(result_cd + result_msg + JSON.stringify(extra));
-    //     }
-    //   );
-    // } else {
-    //   const result = await share(dataToShare);
-    //   if (result === "copiedToClipboard") {
-    //     alert("링크를 클립보드에 복사했습니다.");
-    //   } else if (result === "failed") {
-    //     alert("공유하기가 지원되지 않는 환경입니다.");
-    //   }
-    // }
   };
 
   return (

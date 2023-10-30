@@ -28,14 +28,8 @@ export const isShareSupported = () => navigator.share ?? false;
 export const share = (data: ShareData) => {
   return new Promise<'shared' | 'copiedToClipboard' | 'failed'>(
     async (resolve) => {
-      if (typeof navigator.share !== 'undefined') {
-        alert('공유 기능을 지원하지않습니다');
-        return;
-      }
-
       await navigator.share(data);
       resolve('shared');
-      return 'shared';
 
       if (data.url) {
         const result = await copyToClipboard(data.url);
@@ -45,6 +39,7 @@ export const share = (data: ShareData) => {
           return 'copiedToClipboard';
         }
       }
+
       resolve('failed');
       return 'failed';
     },
