@@ -91,3 +91,22 @@
     margin: 0;
   }
 }
+
+.absolute-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ControlButton 요소 스타일 재정의 */
+
+.react-flow__controls {
+  box-shadow: none !important;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none;
+  width: 24px !important;
+  height: 24px !important;
+  border-bottom: none !important;
+}
