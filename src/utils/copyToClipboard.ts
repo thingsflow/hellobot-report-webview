@@ -29,11 +29,11 @@ export const copyToClipboard = (text: string) => {
   return new Promise<boolean>(async (resolve) => {
     const rootElement = document.body;
 
-    // if (isClipboardSupported()) {
-    //   await navigator.clipboard.writeText(text);
-    //   resolve(true);
-    //   return;
-    // }
+    if (isClipboardSupported()) {
+      await navigator.clipboard.writeText(text);
+      resolve(true);
+      return;
+    }
 
     if (isClipboardCommandSupported()) {
       const textarea = getDummyTextarea();
