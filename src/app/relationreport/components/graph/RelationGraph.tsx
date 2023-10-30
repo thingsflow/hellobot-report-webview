@@ -40,31 +40,34 @@ const EdgesFlow = () => {
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
 
   return (
-    <ReactFlow
-      ref={reactFlowRef}
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      edgeTypes={edgeTypes}
-      nodeTypes={nodeTypes}
-      fitView // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기
-      preventScrolling
-      zoomOnPinch // pinch(?)액션으로 줌인, 줌아웃 가능 여부
-      selectionOnDrag // 드래그 이벤트로 그래프 이동 가능 여부
-      zoomOnScroll={false}
-      panOnScroll={false} // 그래프 위에서 스크롤 작동하게하기
-      proOptions={{ hideAttribution: true }} // reactflow 프로 사용자만 감출 수 있는..
-      selectionMode={SelectionMode.Full}
-      // onNodeDrag={(event, node) => {
-      //   console.log('node drag', event.clientX, event.clientX);
-      // }}
-      // onMouseMove={(e) => {
-      //   console.log('onMouseMove', e.clientX, e.clientY);
-      // }}
-    >
-      <CustomControls />
-    </ReactFlow>
+    <>
+      <ReactFlow
+        ref={reactFlowRef}
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        edgeTypes={edgeTypes}
+        nodeTypes={nodeTypes}
+        fitView // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기
+        preventScrolling={false}
+        zoomOnPinch={true} // pinch(?)액션으로 줌인, 줌아웃 가능 여부
+        selectionOnDrag={false} // 드래그 이벤트로 그래프 이동 가능 여부
+        zoomOnScroll={true}
+        panOnScroll={false} // 그래프 위에서 스크롤 작동하게하기
+        panOnDrag={false}
+        proOptions={{ hideAttribution: true }} // reactflow 프로 사용자만 감출 수 있는..
+        selectionMode={SelectionMode.Partial}
+        // onNodeDrag={(event, node) => {
+        //   console.log('node drag', event.clientX, event.clientX);
+        // }}
+        // onMouseMove={(e) => {
+        //   console.log('onMouseMove', e.clientX, e.clientY);
+        // }}
+      >
+        <CustomControls />
+      </ReactFlow>
+    </>
   );
 };
 

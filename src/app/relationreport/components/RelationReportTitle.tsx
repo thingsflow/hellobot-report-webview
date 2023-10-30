@@ -6,6 +6,10 @@ interface IRelationReportTitle {
 }
 
 const RelationReportTitle = ({ title }: IRelationReportTitle) => {
+  const handleInviteFriendButtonClick = () => {};
+
+  const createNewMoimButtonClick = () => {};
+
   return (
     <div className="px-5 pt-6">
       <div className="flex mb-3">
@@ -18,7 +22,10 @@ const RelationReportTitle = ({ title }: IRelationReportTitle) => {
         />
       </div>
       <div className="flex gap-[6px]">
-        <div className="flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer">
+        <div
+          className="flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer"
+          onClick={handleInviteFriendButtonClick}
+        >
           <Image
             src="/images/icons-08-button-icon-btn-more.svg"
             alt="Invite Icon"
@@ -27,7 +34,10 @@ const RelationReportTitle = ({ title }: IRelationReportTitle) => {
           />
           <p className="pt-[1px]">친구 초대</p>
         </div>
-        <div className="flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer">
+        <div
+          className="flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer"
+          onClick={createNewMoimButtonClick}
+        >
           <Image
             src="/images/new.svg"
             alt="newboard Icon"

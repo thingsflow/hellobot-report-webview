@@ -36,7 +36,7 @@ const CommonNode: FC<NodeProps> = ({ data }) => {
         >
           {data.userName}
         </div>
-        <div className="flex absolute w-[70px] top-[70px] absolute-center">
+        <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
           <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
             {data.resultText}
           </div>
