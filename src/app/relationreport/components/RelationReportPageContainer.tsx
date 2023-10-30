@@ -27,7 +27,6 @@ const RelationReportPageContainer = () => {
 
   return (
     <div className="bg-gray-50 relative">
-      {/* <Flow /> */}
       <RelationGraphContainer />
       <SkillBanner />
       <RelationReportDetail />

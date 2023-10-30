@@ -30,15 +30,37 @@ const TestData = () => {
 
   const sendEvent = ({ action, parameter }: any) => {
     // IOS
+    console.log(
+      'IOS인가요?',
+      !!window.webkit?.messageHandlers?.hbReport?.postMessage,
+    );
     if (window.webkit?.messageHandlers?.hbReport?.postMessage) {
+      console.log(
+        'window.webkit.messageHandlers.hbReport.postMessage의 인자로',
+        {
+          action,
+          ...(parameter && { parameter }),
+        },
+        '을 넣어 호출하였습니다.',
+      );
       window.webkit.messageHandlers.hbReport.postMessage({
         action,
         ...(parameter && { parameter }),
       });
+      return;
     }
 
     // Web
+    console.log('웹인가요?', !!window.parent);
     if (window.parent) {
+      console.log(
+        'window.webkit.messageHandlers.hbReport.postMessage의 인자로',
+        {
+          action,
+          ...(parameter && { parameter }),
+        },
+        '을 넣어 호출하였습니다.',
+      );
       window.parent.postMessage(
         {
           action,
@@ -46,16 +68,27 @@ const TestData = () => {
         },
         '*',
       );
+      return;
     }
 
     // Android
+    console.log('안드인가요우?', !!window.androidHellobotWebViewApi?.hbReport);
     if (window.androidHellobotWebViewApi?.hbReport) {
+      console.log(
+        'window.androidHellobotWebViewApi.hbReport의 인자로',
+        {
+          action,
+          ...(parameter && { parameter }),
+        },
+        '을 넣어 호출하였습니다.',
+      );
       window.androidHellobotWebViewApi.hbReport(
         JSON.stringify({
           action,
           ...(parameter && { parameter }),
         }),
       );
+      return;
     }
   };
 

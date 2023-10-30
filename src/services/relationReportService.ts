@@ -49,7 +49,7 @@ const generateNodeData = (names: string[]) => {
   const nodeCount = names.length + 1;
   const centerX = 200;
   const centerY = 200;
-  const radius = 300;
+  const radius = 250;
   const angleIncrement = (2 * Math.PI) / nodeCount;
   const result = [];
 

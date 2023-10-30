@@ -8,7 +8,10 @@ const RelationGraphContainer = () => {
       <div className="absolute top-0 w-full h-[812px]">
         <RelationGraph />
       </div>
-      <RelationReportHeader />
+      <RelationReportHeader
+        title={'무의식 속 내 모습 [우리 모임] 관계도'}
+        shareLink="https://storyplay.com"
+      />
       <RelationReportTitle title={'무의식 속 내 모습 [우리 모임] 관계도'} />
     </div>
   );
