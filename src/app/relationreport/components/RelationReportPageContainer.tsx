@@ -8,6 +8,8 @@ import {
   RelationReportHeader,
   SkillBanner,
 } from '.';
+import CommonPopup from '@/components/CommonPopup';
+import InviteFriendsPopup from './InviteFriendsPopup';
 
 async function getData(token?: string | null) {
   const res = await fetch('https://dev-api.hellobot.co/v1/chatbots/27', {
@@ -31,6 +33,7 @@ const RelationReportPageContainer = () => {
       <SkillBanner />
       <RelationReportDetail />
       <RelationReportFooter />
+      <InviteFriendsPopup />
     </div>
   );
 };

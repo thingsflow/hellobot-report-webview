@@ -9,6 +9,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body>
         <div className="max-w-xl w-full">{children}</div>
+        <div id="portal"></div>
       </body>
     </html>
   );
