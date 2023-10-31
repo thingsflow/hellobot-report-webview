@@ -18,6 +18,7 @@ const TestData = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const lang = searchParams.get('lang');
+  const platform = searchParams.get('platform');
   const [data, setData] = React.useState();
   const [loading, setLoading] = React.useState(false);
 
@@ -99,7 +100,7 @@ const TestData = () => {
       <br />
       <br />
       {
-        'https://report.dev.hellobot.co/relationship?lang={현재_시스템_언어}&token={유저_토큰}'
+        'https://report.dev.hellobot.co/relationship?lang={현재_시스템_언어}&token={유저_토큰}&platform={플랫폼_정보}'
       }
       <br />
       형태의 url로 요청을 보내주세용
@@ -109,6 +110,7 @@ const TestData = () => {
       <br />
       token:{token} <br />
       lang: {lang} <br />
+      platform: {platform}
       <br />
       <strong>- API 요청 테스트</strong>
       <br />
@@ -122,11 +124,16 @@ const TestData = () => {
       <br />
       <strong>- 공유 버튼 테스트</strong>
       <br />
-      <button onClick={() => sendEvent({ action: 'shareButtonClick' })}>
+      <button onClick={() => sendEvent({ action: 'shareButtonClick', parameter: {
+        shareLink: "https://hellobot.co/skills/33556", 
+        shareTitle: "2024년 신년운세 보고서"
+      } })}>
         공유 버튼
       </button>
       <br />
       - action: shareButtonClick
+      <br />
+      {'- parameter: { shareLink: "https://hellobot.co/skills/33556", shareTitle: "2024년 신년운세 보고서"}'}
       <br />
       <br />
       <strong>- 닫기 버튼 테스트</strong>
@@ -136,15 +143,6 @@ const TestData = () => {
       </button>
       <br />
       - action: closeButtonClick
-      <br />
-      <br />
-      <strong>- 카카오톡 전송 버튼 테스트</strong>
-      <br />
-      <button onClick={() => sendEvent({ action: 'kakaoTalkButtonClick' })}>
-        카카오톡 전송 버튼
-      </button>
-      <br />
-      - action: kakaoTalkButtonClick
       <br />
       <br />
       <strong>- 스킬 배너 테스트</strong>
@@ -185,11 +183,6 @@ const TestData = () => {
       - action: chatBotBannerClick
       <br />
       {'- parameter: { chatBotId: lamama-ko}'}
-      <br />
-      <br />
-      <strong>- 친구 추가 페이지로 이동 버튼 테스트</strong>
-      <br />
-      <Link href="/addfriends">친구추가 페이지로 이동 버튼</Link>
     </div>
   );
 };
