@@ -85,6 +85,9 @@ const config: Config = {
       maxWidth: {
         xl: '600px',
       },
+      boxShadow: {
+        popup: '0px 8px 24px 0px rgba(0, 0, 0, 0.24)',
+      },
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],

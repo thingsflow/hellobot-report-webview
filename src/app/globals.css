@@ -97,6 +97,10 @@
   transform: translateX(-50%);
 }
 
+#portal {
+  @apply fixed max-w-xl w-full z-[100];
+}
+
 /* ControlButton 요소 스타일 재정의 */
 
 .react-flow__controls {
