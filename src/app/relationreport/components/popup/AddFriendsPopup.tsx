@@ -19,36 +19,36 @@ const data = [
   {
     id: 3,
     name: 'Daniel Lee',
-    result: '결과가 긴 결과아하하 이게 뭔말이야',
+    result: '결과가 긴 결과아하하 이게 뭔말이야 몰라나도 하하하',
     isAdded: false,
   },
   {
     id: 4,
-    name: '써네쨔응',
+    name: '써네쨩',
     result: '병오일주',
     isAdded: false,
   },
   {
     id: 5,
-    name: '써네쨔응',
+    name: '써네쨩',
     result: '병오일주',
     isAdded: false,
   },
   {
     id: 6,
-    name: '써네쨔응',
+    name: '써네쨩',
     result: '병오일주',
     isAdded: false,
   },
   {
     id: 7,
-    name: '써네쨔응',
+    name: '써네쨩',
     result: '병오일주',
     isAdded: false,
   },
   {
     id: 8,
-    name: '써네쨔응',
+    name: '써네쨩',
     result: '병오일주',
     isAdded: false,
   },
@@ -81,10 +81,10 @@ const AddFriendsPopup = ({
           <div className="flex flex-col h-[390px] w-full overflow-scroll">
             {mockData.map((item) => {
               return (
-                <div className="flex justify-between items-center py-3 border-b border-[#f5f5f5] border-solid">
+                <div className="flex justify-between items-center py-3 border-b border-[#f5f5f5] border-solid" key={item.id}>
                   <div className="flex flex-col">
                     <div className="text-gray-900 font-medium">{item.name}</div>
-                    <div className="text-gray-600 text-[13px]">
+                    <div className="text-gray-600 text-[13px] line-clamp-1">
                       {item.result}
                     </div>
                   </div>
