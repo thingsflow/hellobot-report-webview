@@ -28,8 +28,10 @@ export const isShareSupported = () => navigator.share ?? false;
 export const share = (data: ShareData) => {
   return new Promise<'shared' | 'copiedToClipboard' | 'failed'>(
     async (resolve) => {
-      await navigator.share(data);
-      resolve('shared');
+      if (!!window.navigator.share) {
+        await navigator.share(data);
+        resolve('shared');
+      }
 
       if (data.url) {
         const result = await copyToClipboard(data.url);

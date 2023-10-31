@@ -1,5 +1,7 @@
 import React from 'react';
 import './globals.css';
+import 'reactflow/dist/style.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
