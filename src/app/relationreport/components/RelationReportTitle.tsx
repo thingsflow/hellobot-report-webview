@@ -4,45 +4,13 @@ import { environment } from '../../../../environments/environment';
 
 interface IRelationReportTitle {
   title: string;
+  onKakaoTalkButtonClick: () => void;
 }
 
-const RelationReportTitle = ({ title }: IRelationReportTitle) => {
-  const handleInviteFriendButtonClick = () => {
-    if (window.Kakao) {
-      const kakao = window.Kakao;
-
-      if (!kakao.isInitialized()) {
-        kakao.init(environment.kakaoAppJsKey);
-      }
-
-      kakao.Share.createDefaultButton({
-        container: '#kakaotalk-sharing-btn',
-        objectType: 'feed',
-        content: {
-          title,
-          description: '관계도 설명~~~어쩌구 저쩌구',
-          imageUrl:
-            'https://github.com/thingsflow/hellobot-report-webview/assets/116791055/36d4b1cf-d3ef-45a9-b6d4-cd9bea0ca390',
-          imageWidth: 1200,
-          imageHeight: 1200,
-          link: {
-            mobileWebUrl: 'https://hellobot.co/',
-            webUrl: 'https://hellobot.co/',
-          },
-        },
-        buttons: [
-          {
-            title: '내 결과 보러가기',
-            link: {
-              mobileWebUrl: 'https://hellobot.co/',
-              webUrl: 'https://hellobot.co/',
-            },
-          },
-        ],
-      });
-    }
-  };
-
+const RelationReportTitle = ({
+  title,
+  onKakaoTalkButtonClick,
+}: IRelationReportTitle) => {
   const createNewMoimButtonClick = () => {};
 
   return (
@@ -60,7 +28,7 @@ const RelationReportTitle = ({ title }: IRelationReportTitle) => {
         <div
           id="kakaotalk-sharing-btn"
           className="z-50 flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer"
-          onClick={handleInviteFriendButtonClick}
+          onClick={onKakaoTalkButtonClick}
         >
           <Image
             src="/images/icons-08-button-icon-btn-more.svg"

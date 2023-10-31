@@ -12,7 +12,7 @@ import ReactFlow, {
 import CommonEdge from './Edge';
 import CommonNode from './Node';
 import DefaultNode from './DefaultNode';
-import 'reactflow/dist/style.css';
+
 import {
   NodeData,
   generateEdgeData,

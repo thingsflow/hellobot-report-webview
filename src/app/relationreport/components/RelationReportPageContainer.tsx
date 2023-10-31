@@ -33,7 +33,6 @@ const RelationReportPageContainer = () => {
       <SkillBanner />
       <RelationReportDetail />
       <RelationReportFooter />
-      <InviteFriendsPopup />
     </div>
   );
 };

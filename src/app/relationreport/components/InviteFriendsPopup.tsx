@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import CommonPopup from '@/components/CommonPopup';
+import shareWithKakao from '@/utils/shareWithKakao';
 
-const InviteFriendsPopup = () => {
+interface IInviteFriendsPopup {
+  onClose: () => void;
+  onCopyLinkClick: () => void;
+}
+
+const InviteFriendsPopup = ({
+  onClose,
+  onCopyLinkClick,
+}: IInviteFriendsPopup) => {
   // 토스트 띄우기
   const handleKakaoTalkButtonClick = () => {
-    // 카카오톡 공유
-  };
-  const handleCopyLinkButtonClick = () => {
-    // 링크 복사
+    shareWithKakao();
   };
   return (
-    <CommonPopup title={'친구 초대'} onClose={() => {}}>
+    <CommonPopup title={'친구 초대'} onClose={onClose}>
       <div className="flex flex-col">
         <p className="text-[#7E8185] text-[14px]">
           내가 공유한 링크로 친구가 결제하면 15프로 할인된 가격으로 스킬을
@@ -24,7 +30,7 @@ const InviteFriendsPopup = () => {
             </div>
             <div
               className="cursor-pointer bg-gray-200 font-semibold rounded-r-lg rounded-sm w-[91px] text-gray-900 h-12 flex items-center justify-center"
-              onClick={handleCopyLinkButtonClick}
+              onClick={onCopyLinkClick}
             >
               링크 복사
             </div>
