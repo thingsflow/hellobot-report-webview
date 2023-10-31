@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
+import { RelationReportModalContext } from '../../page';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -14,6 +15,14 @@ const targetHandleStyle: CSSProperties = {
 };
 
 const DefaultNode: FC<NodeProps> = () => {
+  const { setIsAddFriendsPopupOpen } = React.useContext(
+    RelationReportModalContext,
+  );
+
+  const handleNodeClick = () => {
+    setIsAddFriendsPopupOpen(true);
+  };
+
   return (
     <>
       <Handle
@@ -22,7 +31,10 @@ const DefaultNode: FC<NodeProps> = () => {
         style={sourceHandleStyle}
         isConnectableStart={false}
       />
-      <div className="relative flex flex-col justify-center">
+      <div
+        className="relative flex flex-col justify-center cursor-pointer"
+        onClick={handleNodeClick}
+      >
         <div className="flex items-center justify-center w-[70px] h-[70px] bg-yellow-400 rounded-full">
           <Image
             className="flex-shrink-0"

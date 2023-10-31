@@ -5,22 +5,8 @@ import {
   RelationGraphContainer,
   RelationReportDetail,
   RelationReportFooter,
-  RelationReportHeader,
   SkillBanner,
 } from '.';
-import CommonPopup from '@/components/CommonPopup';
-import InviteFriendsPopup from './InviteFriendsPopup';
-
-async function getData(token?: string | null) {
-  const res = await fetch('https://dev-api.hellobot.co/v1/chatbots/27', {
-    method: 'GET',
-    headers: {
-      Authorization: `user ${token}`,
-    },
-  });
-
-  return res.json();
-}
 
 const RelationReportPageContainer = () => {
   const searchParams = useSearchParams();
