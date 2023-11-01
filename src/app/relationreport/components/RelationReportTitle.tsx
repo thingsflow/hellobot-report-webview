@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import * as React from 'react';
 import { environment } from '../../../../environments/environment';
+import { RelationReportModalContext } from '../page';
 
 interface IRelationReportTitle {
   title: string;
@@ -12,12 +13,20 @@ const RelationReportTitle = ({
   onKakaoTalkButtonClick,
 }: IRelationReportTitle) => {
   const createNewMoimButtonClick = () => {};
+  const { setEditMoimPopupInfo } = React.useContext(
+    RelationReportModalContext,
+  );
 
   return (
     <div className="px-5 pt-6">
       <div className="flex mb-3">
         <h1 className="text-[22px] font-bold mr-1">{title}</h1>
         <Image
+          className="cursor-pointer z-50"
+          onClick={() => setEditMoimPopupInfo({
+            title: "기본 설정된 타이틀",
+            isPrivate: true,
+          })}
           src="/images/icon-modify-small.svg"
           alt="Modify Icon"
           width={20}
@@ -26,7 +35,6 @@ const RelationReportTitle = ({
       </div>
       <div className="flex gap-[6px]">
         <div
-          id="kakaotalk-sharing-btn"
           className="z-50 flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer"
           onClick={onKakaoTalkButtonClick}
         >

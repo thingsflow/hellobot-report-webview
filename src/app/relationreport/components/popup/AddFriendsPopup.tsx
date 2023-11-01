@@ -57,7 +57,7 @@ const emptyData: [] = [];
 
 const mockData: any[] | [] = data;
 
-interface AddFriendsPopup {
+interface IAddFriendsPopup {
   onClose: () => void;
   onConfirmButtonClick: () => void;
 }
@@ -65,7 +65,7 @@ interface AddFriendsPopup {
 const AddFriendsPopup = ({
   onClose,
   onConfirmButtonClick,
-}: AddFriendsPopup) => {
+}: IAddFriendsPopup) => {
   const { isAddFriendsPopupOpen } = React.useContext(
     RelationReportModalContext,
   );

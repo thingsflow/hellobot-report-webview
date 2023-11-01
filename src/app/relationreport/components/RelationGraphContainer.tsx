@@ -10,7 +10,7 @@ const RelationGraphContainer = () => {
 
   return (
     <div className="w-full h-[812px]">
-      <div className="absolute top-0 w-full h-[812px]">
+      <div className="absolute top-0 w-full h-[812px] ">
         <RelationGraph />
       </div>
       <RelationReportHeader

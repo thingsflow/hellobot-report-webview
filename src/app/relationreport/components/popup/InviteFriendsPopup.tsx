@@ -44,7 +44,10 @@ const InviteFriendsPopup = ({
               링크 복사
             </div>
           </div>
-          <div className="cursor-pointer basis-1/3 flex gap-2 w-full bg-[#FEE500] h-[45px] justify-center items-center rounded-lg">
+          <div           
+          id="kakaotalk-sharing-btn"
+          className="cursor-pointer basis-1/3 flex gap-2 w-full bg-[#FEE500] h-[45px] justify-center items-center rounded-lg"
+          onClick={shareWithKakao}>
             <div>
               <Image
                 src="/images/kakao.svg"

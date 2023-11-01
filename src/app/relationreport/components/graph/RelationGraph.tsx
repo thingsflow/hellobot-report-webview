@@ -54,8 +54,8 @@ const EdgesFlow = () => {
         zoomOnPinch={true} // pinch(?)액션으로 줌인, 줌아웃 가능 여부
         selectionOnDrag={false} // 드래그 이벤트로 그래프 이동 가능 여부
         zoomOnScroll={true}
-        panOnScroll={false} // 그래프 위에서 스크롤 작동하게하기
-        panOnDrag={false}
+        panOnScroll={true} // 그래프 위에서 스크롤 작동하게하기
+        panOnDrag={true}
         proOptions={{ hideAttribution: true }} // reactflow 프로 사용자만 감출 수 있는..
         selectionMode={SelectionMode.Partial}
         // onNodeDrag={(event, node) => {
