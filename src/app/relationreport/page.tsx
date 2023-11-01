@@ -4,6 +4,7 @@ import { copyToClipboard } from '@/utils';
 import { ToastContainer, toast } from 'react-toastify';
 import { InviteFriendsPopup, RelationReportPageContainer } from './components';
 import AddFriendsPopup from './components/popup/AddFriendsPopup';
+import EditMoimPopup from './components/popup/EditMoimPopup';
 
 export const RelationReportModalContext = React.createContext<any>(null); // TODO: 타입 정의
 
@@ -12,6 +13,11 @@ const RelationReportPage = () => {
     React.useState(false);
   const [isAddFriendsPopupOpen, setIsAddFriendsPopupOpen] =
     React.useState(false);
+    const [editMoimPopupInfo, setEditMoimPopupInfo] =
+    React.useState<{
+      title: string;
+      isPrivate: boolean
+    } | null>(null);
 
   return (
     <RelationReportModalContext.Provider
@@ -20,6 +26,8 @@ const RelationReportPage = () => {
         setInviteFriendsPopupOpen,
         isAddFriendsPopupOpen,
         setIsAddFriendsPopupOpen,
+        editMoimPopupInfo,
+        setEditMoimPopupInfo,
       }}
     >
       <RelationReportPageContainer />
@@ -45,6 +53,12 @@ const RelationReportPage = () => {
       <AddFriendsPopup
         onClose={() => setIsAddFriendsPopupOpen(false)}
         onConfirmButtonClick={() => {}}
+      />
+      <EditMoimPopup
+        onClose={() => setEditMoimPopupInfo(null)}
+        onConfirmButtonClick={() => {
+          setEditMoimPopupInfo(null)
+        }}
       />
     </RelationReportModalContext.Provider>
   );
