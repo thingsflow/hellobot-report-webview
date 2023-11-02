@@ -13,11 +13,10 @@ const RelationReportPage = () => {
     React.useState(false);
   const [isAddFriendsPopupOpen, setIsAddFriendsPopupOpen] =
     React.useState(false);
-    const [editMoimPopupInfo, setEditMoimPopupInfo] =
-    React.useState<{
-      title: string;
-      isPrivate: boolean
-    } | null>(null);
+  const [editMoimPopupInfo, setEditMoimPopupInfo] = React.useState<{
+    title: string;
+    isPrivate: boolean;
+  } | null>(null);
 
   return (
     <RelationReportModalContext.Provider
@@ -57,7 +56,7 @@ const RelationReportPage = () => {
       <EditMoimPopup
         onClose={() => setEditMoimPopupInfo(null)}
         onConfirmButtonClick={() => {
-          setEditMoimPopupInfo(null)
+          setEditMoimPopupInfo(null);
         }}
       />
     </RelationReportModalContext.Provider>

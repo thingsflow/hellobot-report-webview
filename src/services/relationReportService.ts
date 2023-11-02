@@ -45,11 +45,16 @@ export interface NodeData {
   resultText?: string;
 }
 
-const generateNodeData = (names: string[]) => {
+export const generateNodeData = (names: string[]) => {
+  if (typeof window === undefined) return [];
+
+  const deviceWidth = window.innerWidth > 600 ? 600 : window.innerWidth || 375;
+  const deviceHeight = window.innerHeight || 812;
+
   const nodeCount = names.length + 1;
-  const centerX = 200;
-  const centerY = 200;
-  const radius = 250;
+  const centerX = (deviceWidth / 2) * 0.75;
+  const centerY = (deviceHeight / 2) * 0.75;
+  const radius = (deviceWidth / 2) * 0.75;
   const angleIncrement = (2 * Math.PI) / nodeCount;
   const result = [];
 
@@ -110,10 +115,3 @@ export const generateEdgeData = (Nodes: Node<NodeData>[]) => {
 
   return result;
 };
-
-export const mockNodes = generateNodeData([
-  '김은아아아빈',
-  '수지',
-  '채현아',
-  '냐옹',
-]);
