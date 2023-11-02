@@ -3,7 +3,7 @@ import Webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
 
-const CreateRelationReportHeader = () => {
+const StartRelationReportHeader = () => {
   const handleBackButtonClick = () => {
     Webview.closeButtonClick();
   };
@@ -19,11 +19,9 @@ const CreateRelationReportHeader = () => {
         priority
         onClick={handleBackButtonClick}
       />
-      <h1 className="text-[#242526] text-[17px] font-bold">
-        새로운 모임 만들기
-      </h1>
+      <h1 className="text-[#242526] text-[17px] font-bold">시작 멤버 선택</h1>
     </header>
   );
 };
 
-export default CreateRelationReportHeader;
+export default StartRelationReportHeader;
