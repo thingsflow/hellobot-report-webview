@@ -16,7 +16,7 @@ import DefaultNode from './DefaultNode';
 import {
   NodeData,
   generateEdgeData,
-  mockNodes,
+  generateNodeData,
 } from '@/services/relationReportService';
 import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
@@ -30,7 +30,12 @@ const edgeTypes: EdgeTypes = {
   default: DefaultEdge,
 };
 
-const initialNodes: Node<NodeData>[] = [...mockNodes];
+const initialNodes: Node<NodeData>[] = generateNodeData([
+  '김은아아아빈',
+  '수지',
+  '채현아',
+  '냐옹',
+]);
 
 const initialEdges: Edge[] = generateEdgeData(initialNodes);
 
@@ -58,6 +63,8 @@ const EdgesFlow = () => {
         panOnDrag={true}
         proOptions={{ hideAttribution: true }} // reactflow 프로 사용자만 감출 수 있는..
         selectionMode={SelectionMode.Partial}
+        maxZoom={2}
+        minZoom={0.1}
         // onNodeDrag={(event, node) => {
         //   console.log('node drag', event.clientX, event.clientX);
         // }}

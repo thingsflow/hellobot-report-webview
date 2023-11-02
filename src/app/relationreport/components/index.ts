@@ -8,6 +8,7 @@ import RelationGraph from './graph/RelationGraph';
 import ChatBotBanner from './ChatBotBanner';
 import RelationGraphContainer from './RelationGraphContainer';
 import InviteFriendsPopup from './popup/InviteFriendsPopup';
+import RelationReportShare from './RelationReportShare';
 
 export {
   RelationReportPageContainer,
@@ -20,4 +21,5 @@ export {
   ChatBotBanner,
   RelationGraphContainer,
   InviteFriendsPopup,
+  RelationReportShare,
 };

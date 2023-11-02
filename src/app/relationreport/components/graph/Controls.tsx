@@ -7,7 +7,7 @@ const CustomControls = () => {
     'zoomIn',
   );
   const { fitView, setCenter } = useReactFlow();
-  const { x, y } = useViewport();
+  const { x, y, zoom } = useViewport();
 
   const onFitViewHandler = () => {
     setCurrentIcon('zoomIn');
@@ -18,7 +18,7 @@ const CustomControls = () => {
 
   const onZoomInHandler = () => {
     setCurrentIcon('fitView');
-    setCenter(x, y, { zoom: 1.5, duration: 500 });
+    setCenter(x, y, { zoom: zoom + 0.5, duration: 500 });
   };
 
   return (
