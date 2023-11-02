@@ -3,6 +3,7 @@ import BridgeGraphContainer from './BridgeGraphContainer';
 import Divider from '@/components/Divider';
 import BridgeGraphPreview from './BridgeGraphPreview';
 import StartButton from './StartButton';
+import FixedBottomButton from '@/components/FixedBottomButton';
 
 const BridgePageContainer = () => {
   return (
@@ -11,7 +12,7 @@ const BridgePageContainer = () => {
       <Divider />
       <div className="w-full h-[850px] bg-yellow-200"></div>
       <BridgeGraphPreview />
-      <StartButton />
+      <FixedBottomButton title="시작하기" />
     </div>
   );
 };
