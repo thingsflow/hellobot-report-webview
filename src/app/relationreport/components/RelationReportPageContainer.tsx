@@ -2,11 +2,14 @@
 import * as React from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
+  ChatBotBanner,
   RelationGraphContainer,
   RelationReportDetail,
   RelationReportFooter,
+  RelationReportShare,
   SkillBanner,
 } from '.';
+import Divider from '@/components/Divider';
 
 const RelationReportPageContainer = () => {
   const searchParams = useSearchParams();
@@ -18,6 +21,9 @@ const RelationReportPageContainer = () => {
       <RelationGraphContainer />
       <SkillBanner />
       <RelationReportDetail />
+      <ChatBotBanner />
+      <Divider />
+      <RelationReportShare />
       <RelationReportFooter />
     </div>
   );
