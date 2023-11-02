@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect } from 'react';
 import Portal from './Portal';
 import Image from 'next/image';

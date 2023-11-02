@@ -39,7 +39,7 @@ const initialNodes: Node<NodeData>[] = generateNodeData([
 
 const initialEdges: Edge[] = generateEdgeData(initialNodes);
 
-const EdgesFlow = () => {
+const RelationGraph = () => {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
@@ -78,4 +78,4 @@ const EdgesFlow = () => {
   );
 };
 
-export default EdgesFlow;
+export default RelationGraph;
