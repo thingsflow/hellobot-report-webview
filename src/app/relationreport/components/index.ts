@@ -5,7 +5,6 @@ import RelationReportPageContainer from './RelationReportPageContainer';
 import RelationReportTitle from './RelationReportTitle';
 import SkillBanner from './SkillBanner';
 import RelationGraph from './graph/RelationGraph';
-import ChatBotBanner from './ChatBotBanner';
 import RelationGraphContainer from './RelationGraphContainer';
 import InviteFriendsPopup from './popup/InviteFriendsPopup';
 import RelationReportShare from './RelationReportShare';
@@ -18,7 +17,6 @@ export {
   SkillBanner,
   RelationReportFooter,
   RelationGraph,
-  ChatBotBanner,
   RelationGraphContainer,
   InviteFriendsPopup,
   RelationReportShare,
