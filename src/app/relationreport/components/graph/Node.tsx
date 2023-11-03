@@ -14,9 +14,25 @@ const targetHandleStyle: CSSProperties = {
 
 const colorVariants = [
   'bg-[#20DB93]',
-  'bg-[#8F58D5]',
-  'bg-[#FBAF3E]',
-  'bg-[#09F]',
+  'bg-[#818CF8]',
+  'bg-[#38BDF8]',
+  'bg-[#FF5D7A]',
+  'bg-[#F59E0B]',
+  'bg-[#3B82F6]',
+  'bg-[#7C42FF]',
+  'bg-[#0DA4C9]',
+  'bg-[#FF90CA]',
+  'bg-[#0EA5E9]',
+  'bg-[#BE7AFE]',
+  'bg-[#E38A38]',
+  'bg-[#10B981]',
+  'bg-[#5B5FFF]',
+  'bg-[#DD3588]',
+  'bg-[#06C8D4]',
+  'bg-[#0E7490]',
+  'bg-[#EF4444]',
+  'bg-[#7AB6FF]',
+  'bg-[#3D41CD]',
 ];
 
 const CommonNode: FC<NodeProps> = ({ data }) => {
