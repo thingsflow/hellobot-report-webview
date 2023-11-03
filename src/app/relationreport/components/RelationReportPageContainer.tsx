@@ -21,7 +21,6 @@ const RelationReportPageContainer = () => {
       <RelationGraphContainer />
       <SkillBanner />
       <RelationReportDetail />
-      <ChatBotBanner />
       <Divider />
       <RelationReportShare />
       <RelationReportFooter />
