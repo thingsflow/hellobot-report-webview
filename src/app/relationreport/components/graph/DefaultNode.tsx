@@ -28,7 +28,7 @@ const DefaultNode: FC<NodeProps> = () => {
       <Handle
         type="target"
         position={Position.Left}
-        style={sourceHandleStyle}
+        style={targetHandleStyle}
         isConnectableStart={false}
       />
       <div
@@ -60,7 +60,7 @@ const DefaultNode: FC<NodeProps> = () => {
       <Handle
         type="source"
         position={Position.Right}
-        style={targetHandleStyle}
+        style={sourceHandleStyle}
         isConnectableStart={false}
       />
     </>

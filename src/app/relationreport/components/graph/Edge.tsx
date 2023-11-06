@@ -12,8 +12,6 @@ const Edge: FC<EdgeProps> = ({
   sourceY,
   targetX,
   targetY,
-  sourcePosition,
-  targetPosition,
   data,
 }) => {
   const [path, labelX, labelY] = getStraightPath({
@@ -51,17 +49,6 @@ const Edge: FC<EdgeProps> = ({
           {data.text}
         </div>
       </EdgeLabelRenderer>
-      {/* <EdgeText
-        x={labelX}
-        y={labelY}
-        label={data.text}
-        labelStyle={{ fill: 'white', strokeWidth: '20px', width: '100px' }}
-        labelShowBg
-        labelBgStyle={{ fill: 'red' }}
-        labelBgPadding={[2, 4]}
-        labelBgBorderRadius={2}
-        onClick={() => console.log(data)}
-      /> */}
     </>
   );
 };

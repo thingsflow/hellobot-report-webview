@@ -31,10 +31,26 @@ const edgeTypes: EdgeTypes = {
 };
 
 const initialNodes: Node<NodeData>[] = generateNodeData([
-  '김은아아아빈',
-  '수지',
-  '채현아',
-  '냐옹',
+  '1김은빈',
+  '2현아',
+  '3네글자야',
+  '4네글자야',
+  '5현아',
+  '6현아',
+  '7현아',
+  '8현아',
+  '9네글자야',
+  '10네글자야',
+  '11네글자야',
+  '12네글자야',
+  '13네글자야',
+  '14네글자야',
+  '15네글자야',
+  '16네글자야',
+  '17네글자야',
+  '18네글자야',
+  '19네글자야',
+  '20네글자야',
 ]);
 
 const initialEdges: Edge[] = generateEdgeData(initialNodes);
@@ -54,10 +70,10 @@ const RelationGraph = () => {
         onEdgesChange={onEdgesChange}
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
-        fitView // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기
+        fitView={true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기 2명이면 false
         preventScrolling={false}
         zoomOnPinch={true} // pinch(?)액션으로 줌인, 줌아웃 가능 여부
-        selectionOnDrag={false} // 드래그 이벤트로 그래프 이동 가능 여부
+        selectionOnDrag={true} // 드래그 이벤트로 그래프 이동 가능 여부
         zoomOnScroll={true}
         panOnScroll={true} // 그래프 위에서 스크롤 작동하게하기
         panOnDrag={true}
