@@ -2,6 +2,7 @@ import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
 import { RelationReportModalContext } from '../../page';
 import Image from 'next/image';
+import webview from '@/utils/webview';
 
 const data = [
   {
@@ -70,6 +71,10 @@ const AddFriendsPopup = ({
     RelationReportModalContext,
   );
 
+  const handleOtherRelationReportButtonClick = () => {
+    webview.goRelationReportListPage();
+  };
+
   if (!isAddFriendsPopupOpen) {
     return null;
   }
@@ -81,7 +86,10 @@ const AddFriendsPopup = ({
           <div className="flex flex-col h-[390px] w-full overflow-scroll">
             {mockData.map((item) => {
               return (
-                <div className="flex justify-between items-center py-3 border-b border-[#f5f5f5] border-solid" key={item.id}>
+                <div
+                  className="flex justify-between items-center py-3 border-b border-[#f5f5f5] border-solid"
+                  key={item.id}
+                >
                   <div className="flex flex-col">
                     <div className="text-gray-900 font-medium">{item.name}</div>
                     <div className="text-gray-600 text-[13px] line-clamp-1">
@@ -117,7 +125,10 @@ const AddFriendsPopup = ({
           새로운 결과 보러가기
         </div>
       </div>
-      <div className="cursor-pointer absolute text-white text-[14px] -bottom-8 right-1/2 translate-x-1/2">
+      <div
+        className="cursor-pointer absolute text-white text-[14px] -bottom-8 right-1/2 translate-x-1/2"
+        onClick={handleOtherRelationReportButtonClick}
+      >
         다른 관계도 보러가기
       </div>
     </CommonPopup>

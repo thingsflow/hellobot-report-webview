@@ -5,7 +5,7 @@ import * as React from 'react';
 
 const StartRelationReportHeader = () => {
   const handleBackButtonClick = () => {
-    Webview.closeButtonClick();
+    Webview.goBack();
   };
 
   return (

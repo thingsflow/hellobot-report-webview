@@ -1,7 +1,14 @@
-type WebviewActionTypes = 'shareButtonClick' | 'closeButtonClick';
+type WebviewActionTypes =
+  | 'doShare'
+  | 'goBack'
+  | 'goSkillDetailPage'
+  | 'goRelationReportListPage'
+  | 'goChatRoomPage';
 interface WebviewActionParameter {
   title?: string;
   url?: string;
+  skillId?: number;
+  chatRoomId?: number;
 }
 
 const sendEvent = ({
@@ -44,12 +51,25 @@ const sendEvent = ({
   }
 };
 
-const shareButtonClick = (parameter: WebviewActionParameter) => {
-  sendEvent({ action: 'shareButtonClick', parameter });
+const doShare = (parameter: WebviewActionParameter) => {
+  sendEvent({ action: 'doShare', parameter });
 };
 
-const closeButtonClick = () => {
-  sendEvent({ action: 'closeButtonClick' });
+const goBack = () => {
+  sendEvent({ action: 'goBack' });
 };
 
-export default { shareButtonClick, closeButtonClick };
+const goSkillDetailPage = (parameter: WebviewActionParameter) => {
+  sendEvent({ action: 'goSkillDetailPage', parameter });
+};
+
+const goRelationReportListPage = () => {
+  sendEvent({ action: 'goRelationReportListPage' });
+};
+
+export default {
+  doShare,
+  goBack,
+  goSkillDetailPage,
+  goRelationReportListPage,
+};

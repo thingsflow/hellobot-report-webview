@@ -11,7 +11,7 @@ interface IRelationReportHeader {
 
 const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
   const handleCloseButtonClick = () => {
-    Webview.closeButtonClick();
+    Webview.goBack();
   };
 
   const dataToShare: ShareData = {
@@ -23,7 +23,7 @@ const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
 
     if (isAndroidWebView) {
-      Webview.shareButtonClick({
+      Webview.doShare({
         title,
         url: shareLink,
       });

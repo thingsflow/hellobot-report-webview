@@ -1,11 +1,13 @@
 'use client';
-import Webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 
 const CreateRelationReportHeader = () => {
+  const router = useRouter();
+
   const handleBackButtonClick = () => {
-    Webview.closeButtonClick();
+    router.back();
   };
 
   return (

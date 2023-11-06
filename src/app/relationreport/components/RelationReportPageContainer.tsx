@@ -16,12 +16,13 @@ const RelationReportPageContainer = () => {
   const lang = searchParams.get('lang');
 
   return (
-    <div className="bg-gray-50 relative">
+    <div className=" relative">
       <RelationGraphContainer />
       <SkillBanner />
       <RelationReportDetail />
       <Divider />
       <RelationReportShare />
+      <Divider />
       <RelationReportFooter />
     </div>
   );
