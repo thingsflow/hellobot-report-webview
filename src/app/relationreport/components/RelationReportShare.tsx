@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import * as React from 'react';
 
 const RelationReportShare = () => {
@@ -12,8 +13,22 @@ const RelationReportShare = () => {
           {'지금 링크를 공유하고\n우리 모임의 관계도를 확인해 보세요.'}
         </p>
         <div className="flex gap-3 mt-6">
-          <div className="w-12 h-12 rounded-full bg-[#FFE812]"></div>
-          <div className="w-12 h-12 rounded-full border border-solid border-[#E2E3E6]"></div>
+          <div className="w-12 h-12 rounded-full bg-[#FFE812] flex items-center justify-center">
+            <Image
+              src="/images/kakao.svg"
+              width={24}
+              height={24}
+              alt="Kakao Icon"
+            />
+          </div>
+          <div className="w-12 h-12 rounded-full border border-solid border-[#E2E3E6] flex items-center justify-center">
+            <Image
+              src="/images/icons-08-button-icon-btn-more.svg"
+              width={24}
+              height={24}
+              alt="Copy Icon"
+            />
+          </div>
         </div>
       </div>
     </div>
