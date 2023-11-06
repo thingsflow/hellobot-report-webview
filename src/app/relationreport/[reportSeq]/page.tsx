@@ -2,9 +2,9 @@
 import * as React from 'react';
 import { copyToClipboard } from '@/utils';
 import { ToastContainer, toast } from 'react-toastify';
-import { InviteFriendsPopup, RelationReportPageContainer } from './components';
-import AddFriendsPopup from './components/popup/AddFriendsPopup';
-import EditMoimPopup from './components/popup/EditMoimPopup';
+import { InviteFriendsPopup, RelationReportPageContainer } from '../components';
+import AddFriendsPopup from '../components/popup/AddFriendsPopup';
+import EditMoimPopup from '../components/popup/EditMoimPopup';
 
 export const RelationReportModalContext = React.createContext<any>(null); // TODO: 타입 정의
 

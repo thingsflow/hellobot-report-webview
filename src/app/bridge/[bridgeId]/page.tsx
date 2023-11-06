@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BridgePageContainer from './components/BridgePageContainer';
+import BridgePageContainer from '../components/BridgePageContainer';
 
 const BridgePage = () => {
   return <BridgePageContainer />;
