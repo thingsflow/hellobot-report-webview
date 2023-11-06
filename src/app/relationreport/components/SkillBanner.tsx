@@ -1,3 +1,4 @@
+import webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
 
@@ -7,7 +8,9 @@ const SkillBanner = ({
   stars,
   views,
 }: any) => {
-  const handleBannerButtonClick = () => {};
+  const handleBannerButtonClick = () => {
+    webview.goSkillDetailPage({ skillId: 2141 });
+  };
 
   return (
     <div className="cursor-pointer h-[86px] flex bg-gray-500 items-center px-5 gap-4">

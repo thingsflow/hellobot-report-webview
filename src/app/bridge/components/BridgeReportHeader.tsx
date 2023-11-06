@@ -11,7 +11,7 @@ interface IBridgeReportHeader {
 
 const BridgeReportHeader = ({ shareTitle, shareLink }: IBridgeReportHeader) => {
   const handleCloseButtonClick = () => {
-    Webview.closeButtonClick();
+    Webview.goBack();
   };
 
   const dataToShare: ShareData = {
@@ -23,7 +23,7 @@ const BridgeReportHeader = ({ shareTitle, shareLink }: IBridgeReportHeader) => {
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
 
     if (isAndroidWebView) {
-      Webview.shareButtonClick({
+      Webview.doShare({
         title: shareTitle,
         url: shareLink,
       });
