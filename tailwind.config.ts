@@ -88,6 +88,9 @@ const config: Config = {
       boxShadow: {
         popup: '0px 8px 24px 0px rgba(0, 0, 0, 0.24)',
       },
+      screens: {
+        sm: '600px',
+      },
     },
   },
   plugins: [
