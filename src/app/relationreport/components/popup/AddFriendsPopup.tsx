@@ -1,6 +1,6 @@
 import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
-import { RelationReportModalContext } from '../../page';
+import { RelationReportModalContext } from '../../[reportSeq]/page';
 import Image from 'next/image';
 import webview from '@/utils/webview';
 

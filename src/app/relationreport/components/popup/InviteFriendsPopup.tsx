@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import CommonPopup from '@/components/CommonPopup';
 import shareWithKakao from '@/utils/shareWithKakao';
-import { RelationReportModalContext } from '../../page';
+import { RelationReportModalContext } from '../../[reportSeq]/page';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -44,10 +44,11 @@ const InviteFriendsPopup = ({
               링크 복사
             </div>
           </div>
-          <div           
-          id="kakaotalk-sharing-btn"
-          className="cursor-pointer basis-1/3 flex gap-2 w-full bg-[#FEE500] h-[45px] justify-center items-center rounded-lg"
-          onClick={shareWithKakao}>
+          <div
+            id="kakaotalk-sharing-btn"
+            className="cursor-pointer basis-1/3 flex gap-2 w-full bg-[#FEE500] h-[45px] justify-center items-center rounded-lg"
+            onClick={shareWithKakao}
+          >
             <div>
               <Image
                 src="/images/kakao.svg"
