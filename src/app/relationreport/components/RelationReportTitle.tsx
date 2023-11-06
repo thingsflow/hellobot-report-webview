@@ -22,7 +22,7 @@ const RelationReportTitle = ({
 
   return (
     <div className="px-5 pt-6">
-      <div className="flex mb-3">
+      <div className="flex mb-3 items-center">
         <h1 className="text-[22px] font-bold mr-1">{title}</h1>
         <Image
           className="cursor-pointer z-50"

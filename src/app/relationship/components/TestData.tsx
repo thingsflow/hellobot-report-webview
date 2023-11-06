@@ -17,7 +17,11 @@ const TestData = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const lang = searchParams.get('lang');
-  const platform = searchParams.get('platform') as 'ios' | 'web' | 'android' | null;
+  const platform = searchParams.get('platform') as
+    | 'ios'
+    | 'web'
+    | 'android'
+    | null;
   const [data, setData] = React.useState();
   const [loading, setLoading] = React.useState(false);
 
@@ -35,16 +39,22 @@ const TestData = () => {
       !!window.webkit?.messageHandlers?.hbReport?.postMessage,
     );
     if (platform === 'ios') {
-      if(window?.webkit?.messageHandlers?.hbReport?.postMessage) {
+      if (window?.webkit?.messageHandlers?.hbReport?.postMessage) {
         console.log(
           'window.webkit.messageHandlers.hbReport.postMessage의 인자로',
           {
             action,
             ...(parameter && { parameter }),
-            version: "1.1.0"
+            version: '1.1.0',
           },
           '을 넣어 호출하였습니다.',
         );
+
+        window.webkit.messageHandlers.hbReport.postMessage({
+          action,
+          ...(parameter && { parameter }),
+        });
+        return;
       }
     }
 
@@ -56,9 +66,11 @@ const TestData = () => {
         {
           action,
           ...(parameter && { parameter }),
+          version: '1.1.0',
         },
         '을 넣어 호출하였습니다.',
       );
+
       window.androidHellobotWebViewApi.hbReport(
         JSON.stringify({
           action,
@@ -71,15 +83,21 @@ const TestData = () => {
     // Web
     console.log('웹인가요?', !!window.parent);
     if (window.parent) {
-      console.log(
-        'window.webkit.messageHandlers.hbReport.postMessage의 인자로',
+      console.log('window.parent.postMessage의 인자로', {
+        action,
+        ...(parameter && { parameter }),
+        version: '1.1.0',
+      });
+
+      window.parent.postMessage(
         {
           action,
           ...(parameter && { parameter }),
-          version: "1.1.0"
-        });
-      }
-      return;
+        },
+        '*',
+      );
+    }
+    return;
   };
 
   return (
@@ -94,9 +112,8 @@ const TestData = () => {
       <br />
       형태의 url로 요청을 보내주세용
       <br />
-
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- 받은 데이터</strong>
       <br />
@@ -104,19 +121,24 @@ const TestData = () => {
       lang: {lang} <br />
       platform: {platform}
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- API 요청 테스트</strong>
       <br />
       전달해주신 토큰으로 요청 보내볼게여
       <br />
-      <button onClick={requestAPI} className="border border-black border-solid rounded-medium p-1">API 요청 보내기 버튼</button>
+      <button
+        onClick={requestAPI}
+        className="border border-black border-solid rounded-medium p-1"
+      >
+        API 요청 보내기 버튼
+      </button>
       <br />
       요청 결과(일부만 보여집니다):
       {loading ? '로딩중...' : JSON.stringify(data)?.slice(0, 500)}
       <br />
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- 공유 기능 테스트</strong>
       <br />
@@ -137,23 +159,26 @@ const TestData = () => {
       <br />
       - action: doShare
       <br />
-      {'- parameter: { shareLink: "https://hellobot.co/skills/33556", shareTitle: "2024년 신년운세 보고서"}'}
+      {
+        '- parameter: { shareLink: "https://hellobot.co/skills/33556", shareTitle: "2024년 신년운세 보고서"}'
+      }
       <br />
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- 닫기 기능 테스트</strong>
       <br />
-      <button 
-      className="border border-black border-solid rounded-medium p-1"
-      onClick={() => sendEvent({ action: 'goBack' })}>
+      <button
+        className="border border-black border-solid rounded-medium p-1"
+        onClick={() => sendEvent({ action: 'goBack' })}
+      >
         액션 보내기
       </button>
       <br />
       - action: goBack
       <br />
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- 스킬 상세페이지로 이동 테스트</strong>
       <br />
@@ -176,12 +201,12 @@ const TestData = () => {
       {'- parameter: { skillId: 2141 }'}
       <br />
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- 챗봇 상세페이지로 이동 테스트</strong>
       <br />
       <button
-      className="border border-black border-solid rounded-medium p-1"
+        className="border border-black border-solid rounded-medium p-1"
         onClick={() =>
           sendEvent({
             action: 'goChatBotDetailPage',
@@ -199,12 +224,12 @@ const TestData = () => {
       {'- parameter: { chatBotId: lamama-ko}'}
       <br />
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- 관계도 리스트로 이동 테스트</strong>
       <br />
       <button
-      className="border border-black border-solid rounded-medium p-1"
+        className="border border-black border-solid rounded-medium p-1"
         onClick={() =>
           sendEvent({
             action: 'goRelationReportListPage',
@@ -217,12 +242,12 @@ const TestData = () => {
       - action: goRelationReportListPage
       <br />
       <br />
-      <hr/>
+      <hr />
       <br />
       <strong>- 채팅방 페이지로 이동 테스트</strong>
       <br />
       <button
-      className="border border-black border-solid rounded-medium p-1"
+        className="border border-black border-solid rounded-medium p-1"
         onClick={() =>
           sendEvent({
             action: 'goChatRoomPage',
@@ -237,9 +262,7 @@ const TestData = () => {
       <br />
       - action: goChatRoomPage
       <br />
-      {
-        '- parameter: { chatRoomId: 52 }'
-      }
+      {'- parameter: { chatRoomId: 52 }'}
     </div>
   );
 };

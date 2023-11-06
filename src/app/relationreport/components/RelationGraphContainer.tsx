@@ -9,8 +9,8 @@ const RelationGraphContainer = () => {
   );
 
   return (
-    <div className="w-full h-[calc(100vh-86px)] bg-gray-50">
-      <div className="absolute top-0 w-full h-[calc(100vh-86px)]">
+    <div className="w-full h-[calc(100vh-86px)] sm:h-[800px] bg-gray-50">
+      <div className="absolute top-0 w-full h-[calc(100vh-86px)] sm:h-[800px]">
         <RelationGraph />
       </div>
       <RelationReportHeader
