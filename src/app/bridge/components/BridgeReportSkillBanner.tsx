@@ -1,3 +1,4 @@
+import webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
 
@@ -7,11 +8,16 @@ const BridgeReportSkillBanner = ({
   stars,
   views,
 }: any) => {
-  const handleBannerButtonClick = () => {};
+  const handleBannerButtonClick = () => {
+    webview.goSkillDetailPage({ skillId: 2141 });
+  };
 
   return (
-    <div className="w-full px-4">
-      <div className="cursor-pointer flex bg-white border border-gray-200 border-solid rounded-xl p-3">
+    <div
+      className="w-full px-4 cursor-pointer z-60 relative "
+      onClick={handleBannerButtonClick}
+    >
+      <div className="flex bg-white border border-gray-200 border-solid rounded-xl p-3">
         <div className="w-[98px] h-[73px] bg-gray-400 flex-shrink-0 rounded-lg mr-3"></div>
         <div className="flex flex-col">
           <div className="flex items-center">

@@ -75,6 +75,10 @@ const AddFriendsPopup = ({
     webview.goRelationReportListPage();
   };
 
+  const handleOtherResultButtonClick = () => {
+    webview.goChatRoomPage({ chatRoomId: 52 });
+  };
+
   if (!isAddFriendsPopupOpen) {
     return null;
   }
@@ -120,8 +124,10 @@ const AddFriendsPopup = ({
             <p className="text-gray-500 mt-8">저장된 결과가 없어요.</p>
           </div>
         )}
-
-        <div className="cursor-pointer bg-gray-900 w-full flex items-center justify-center font-bold text-white h-12 rounded-3xl">
+        <div
+          className="cursor-pointer bg-gray-900 w-full flex items-center justify-center font-bold text-white h-12 rounded-3xl"
+          onClick={handleOtherResultButtonClick}
+        >
           새로운 결과 보러가기
         </div>
       </div>

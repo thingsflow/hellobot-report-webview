@@ -35,22 +35,6 @@ const initialNodes: Node<NodeData>[] = generateNodeData([
   '현아',
   '네글자야',
   '수지',
-  // '5현아',
-  // '6현아',
-  // '7현아',
-  // '8현아',
-  // '9네글자야',
-  // '10네글자야',
-  // '11네글자야',
-  // '12네글자야',
-  // '13네글자야',
-  // '14네글자야',
-  // '15네글자야',
-  // '16네글자야',
-  // '17네글자야',
-  // '18네글자야',
-  // '19네글자야',
-  // '20네글자야',
 ]);
 
 const initialEdges: Edge[] = generateEdgeData(initialNodes);
@@ -81,12 +65,6 @@ const RelationGraph = () => {
         selectionMode={SelectionMode.Partial}
         maxZoom={2}
         minZoom={0.1}
-        // onNodeDrag={(event, node) => {
-        //   console.log('node drag', event.clientX, event.clientX);
-        // }}
-        // onMouseMove={(e) => {
-        //   console.log('onMouseMove', e.clientX, e.clientY);
-        // }}
       >
         <CustomControls />
       </ReactFlow>

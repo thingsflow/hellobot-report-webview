@@ -8,7 +8,11 @@ import EditMoimPopup from '../components/popup/EditMoimPopup';
 
 export const RelationReportModalContext = React.createContext<any>(null); // TODO: 타입 정의
 
-const RelationReportPage = () => {
+const RelationReportPage = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
   const [isInviteFriendsPopupOpen, setInviteFriendsPopupOpen] =
     React.useState(false);
   const [isAddFriendsPopupOpen, setIsAddFriendsPopupOpen] =
@@ -17,6 +21,13 @@ const RelationReportPage = () => {
     title: string;
     isPrivate: boolean;
   } | null>(null);
+
+  React.useEffect(() => {
+    const { platform } = searchParams;
+    if (platform) {
+      localStorage.setItem('platform', platform as string);
+    }
+  }, []);
 
   return (
     <RelationReportModalContext.Provider

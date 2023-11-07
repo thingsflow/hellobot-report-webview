@@ -3,6 +3,7 @@ import Image from 'next/image';
 import CommonPopup from '@/components/CommonPopup';
 import shareWithKakao from '@/utils/shareWithKakao';
 import { RelationReportModalContext } from '../../[reportSeq]/page';
+import { environment } from '../../../../../environments/environment';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -17,13 +18,17 @@ const InviteFriendsPopup = ({
     RelationReportModalContext,
   );
 
+  useEffect(() => {
+    if (window.Kakao) {
+      if (!window.Kakao.isInitialized()) {
+        window.Kakao.init(environment.kakaoAppJsKey);
+      }
+    }
+  }, []);
+
   if (!isInviteFriendsPopupOpen) {
     return null;
   }
-
-  const handleKakaoTalkButtonClick = () => {
-    shareWithKakao();
-  };
 
   return (
     <CommonPopup title={'친구 초대'} onClose={onClose}>
@@ -57,10 +62,7 @@ const InviteFriendsPopup = ({
                 alt="Kakao Icon"
               />
             </div>
-            <p
-              className="rounded-[6px] font-semibold text-[15px] text-black/[.85]"
-              onClick={handleKakaoTalkButtonClick}
-            >
+            <p className="rounded-[6px] font-semibold text-[15px] text-black/[.85]">
               카카오톡 전송
             </p>
           </div>

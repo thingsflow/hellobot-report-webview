@@ -1,25 +1,8 @@
 import { environment } from '../../environments/environment';
 
-const initializeKakao = () => {
-  if (window.Kakao) {
-    const kakao = window.Kakao;
-
-    if (!kakao.isInitialized()) {
-      kakao.init(environment.kakaoAppJsKey);
-      shareWithKakao()
-      return;
-    }
-  }
-}
-
 const shareWithKakao = () => {
   if (window.Kakao) {
     const kakao = window.Kakao;
-    if (!kakao.isInitialized()) {
-      kakao.init(environment.kakaoAppJsKey);
-      shareWithKakao()
-      return;
-    }
 
     kakao.Share.createDefaultButton({
       container: '#kakaotalk-sharing-btn',
