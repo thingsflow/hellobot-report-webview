@@ -1,6 +1,6 @@
 'use client';
-import Webview from '@/utils/webview';
-import Image from 'next/image';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import * as React from 'react';
 
 const data = [
@@ -112,17 +112,16 @@ const emptyData: [] = [];
 const mockData: any[] | [] = data;
 
 const CreateRelationReportMemberList = () => {
-  const handleBackButtonClick = () => {
-    Webview.closeButtonClick();
-  };
+  const params = useSearchParams();
 
   return (
     <div className="flex flex-col w-full">
-      {mockData.map((item) => {
+      {mockData.map((item, index) => {
         return (
-          <div
+          <Link
+            href={`/relationreport/123?${params}`}
             className="flex justify-between items-center py-3 border-b border-[#f5f5f5] border-solid px-5 "
-            key={item.id}
+            key={index}
           >
             <div className="flex flex-col">
               <div className="text-gray-900 font-medium">{item.name}</div>
@@ -133,7 +132,7 @@ const CreateRelationReportMemberList = () => {
             <div className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold">
               선택
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

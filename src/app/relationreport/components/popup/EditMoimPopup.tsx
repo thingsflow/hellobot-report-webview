@@ -2,7 +2,7 @@ import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
 import { RelationReportModalContext } from '../../[reportSeq]/page';
 import Image from 'next/image';
-import { Toggle } from '@/components/Toggle';
+import Toggle from '@/components/Toggle';
 
 interface IEditMoimPopup {
   onClose: () => void;

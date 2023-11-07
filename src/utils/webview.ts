@@ -19,36 +19,53 @@ const sendEvent = ({
   parameter?: WebviewActionParameter;
 }) => {
   // IOS
-  if (window.webkit?.messageHandlers?.hbReport?.postMessage) {
-    window.webkit.messageHandlers.hbReport.postMessage({
-      action,
-      ...(parameter && { parameter }),
-    });
-    return;
+  const platform = localStorage.getItem('platform');
+  console.log('platform: ', platform);
+
+  if (platform === 'ios') {
+    if (window?.webkit?.messageHandlers?.hbReport?.postMessage) {
+      window.webkit.messageHandlers.hbReport.postMessage({
+        action,
+        ...(parameter && { parameter }),
+      });
+      console.log('ios로 이벤트 전송');
+      console.log('action: ', action);
+      console.log('parameter: ', parameter);
+      return;
+    }
+  }
+
+  if (platform === 'android') {
+    if (window?.androidHellobotWebViewApi?.hbReport) {
+      window.androidHellobotWebViewApi.hbReport(
+        JSON.stringify({
+          action,
+          ...(parameter && { parameter }),
+        }),
+      );
+      console.log('android로 이벤트 전송');
+      console.log('action: ', action);
+      console.log('parameter: ', parameter);
+      return;
+    }
   }
 
   // Web
-  if (window.parent) {
-    window.parent.postMessage(
-      {
-        action,
-        ...(parameter && { parameter }),
-      },
-      '*',
-    );
-    return;
+  if (platform === 'web') {
+    if (window?.parent) {
+      window.parent.postMessage(
+        {
+          action,
+          ...(parameter && { parameter }),
+        },
+        '*',
+      );
+      console.log('web으로 이벤트 전송');
+      console.log('action: ', action);
+      console.log('parameter: ', parameter);
+    }
   }
-
-  // Android
-  if (window.androidHellobotWebViewApi?.hbReport) {
-    window.androidHellobotWebViewApi.hbReport(
-      JSON.stringify({
-        action,
-        ...(parameter && { parameter }),
-      }),
-    );
-    return;
-  }
+  return;
 };
 
 const doShare = (parameter: WebviewActionParameter) => {
@@ -67,9 +84,14 @@ const goRelationReportListPage = () => {
   sendEvent({ action: 'goRelationReportListPage' });
 };
 
+const goChatRoomPage = (parameter: WebviewActionParameter) => {
+  sendEvent({ action: 'goChatRoomPage', parameter });
+};
+
 export default {
   doShare,
   goBack,
   goSkillDetailPage,
   goRelationReportListPage,
+  goChatRoomPage,
 };

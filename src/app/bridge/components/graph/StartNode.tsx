@@ -1,3 +1,4 @@
+import webview from '@/utils/webview';
 import Image from 'next/image';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
@@ -14,7 +15,9 @@ const targetHandleStyle: CSSProperties = {
 };
 
 const StartNode: FC<NodeProps> = () => {
-  const handleNodeClick = () => {};
+  const handleNodeClick = () => {
+    webview.goChatRoomPage({ chatRoomId: 52 });
+  };
 
   return (
     <>

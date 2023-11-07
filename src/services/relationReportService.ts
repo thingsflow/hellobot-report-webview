@@ -240,6 +240,8 @@ export const generateNodeData = (names: string[]) => {
 };
 
 export const generateEdgeData = (nodes: Node<NodeData>[]) => {
+  if (nodes.length === 0) return [];
+
   const result = [];
 
   if (nodes.length <= 2) {
