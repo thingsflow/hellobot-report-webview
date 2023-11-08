@@ -24,8 +24,8 @@ const BridgeReportHeader = ({ shareTitle, shareLink }: IBridgeReportHeader) => {
 
     if (isAndroidWebView) {
       Webview.doShare({
-        title: shareTitle,
-        url: shareLink,
+        shareTitle,
+        shareLink,
       });
     } else {
       const result = await share(dataToShare);
@@ -38,7 +38,7 @@ const BridgeReportHeader = ({ shareTitle, shareLink }: IBridgeReportHeader) => {
   };
 
   return (
-    <header className="w-full flex justify-between px-4 pt-4">
+    <header className="flex justify-between w-full px-4 pt-4">
       <Image
         className="z-10 cursor-pointer"
         src="/images/modal-share-light.svg"

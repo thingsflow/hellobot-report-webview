@@ -5,8 +5,8 @@ type WebviewActionTypes =
   | 'goRelationReportListPage'
   | 'goChatRoomPage';
 interface WebviewActionParameter {
-  title?: string;
-  url?: string;
+  shareTitle?: string;
+  shareLink?: string;
   skillId?: number;
   chatRoomId?: number;
 }

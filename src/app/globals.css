@@ -120,6 +120,7 @@
   justify-content: center;
 
   .Toastify__toast {
+    bottom: 100px;
     border-radius: 8px;
     background: rgba(36, 37, 38, 0.8);
     color: var(--gray-scale-white, #fff);
