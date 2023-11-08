@@ -24,8 +24,8 @@ const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
 
     if (isAndroidWebView) {
       Webview.doShare({
-        title,
-        url: shareLink,
+        shareTitle: title,
+        shareLink,
       });
     } else {
       const result = await share(dataToShare);
@@ -38,7 +38,7 @@ const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
   };
 
   return (
-    <header className="w-full flex justify-between px-4 pt-4">
+    <header className="flex justify-between w-full px-4 pt-4">
       <Image
         className="z-10 cursor-pointer"
         src="/images/buttons-btn-modal-share.svg"
