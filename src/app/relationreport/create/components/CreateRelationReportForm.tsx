@@ -60,8 +60,8 @@ const CreateRelationReportForm = () => {
   return (
     <>
       <div className="pt-8 px-4 pb-[96px]">
-        <h5 className="text-gray-900 font-bold">시작 멤버 선택</h5>
-        <p className="whitespace-pre-wrap text-gray-500 text-xs">
+        <h5 className="font-bold text-gray-900">시작 멤버 선택</h5>
+        <p className="text-xs text-gray-500 whitespace-pre-wrap">
           {
             '선택한 유저를 기준으로 새로운 관계도가 만들어 집니다.\n관계도를 시작할 첫번째 멤버를 선택해 주세요'
           }
@@ -75,7 +75,7 @@ const CreateRelationReportForm = () => {
                   key={item.id}
                 >
                   <div className="flex flex-col">
-                    <div className="text-gray-900 font-medium">{item.name}</div>
+                    <div className="font-medium text-gray-900">{item.name}</div>
                     <div className="text-gray-600 text-[13px] line-clamp-1">
                       {item.result}
                     </div>
@@ -92,10 +92,10 @@ const CreateRelationReportForm = () => {
                 </div>
               ))}
               <div
-                className="w-full flex items-center justify-center my-2 h-10"
+                className="flex items-center justify-center w-full h-10 my-2"
                 onClick={handleLoadMoreMemberButtonClick}
               >
-                <p className="text-[#555759] text-[14px] flex items-center border border-solid px-6 py-[7px] rounded-full border-gray-300">
+                <p className="cursor-pointer text-[#555759] text-[14px] flex items-center border border-solid px-6 py-[7px] rounded-full border-gray-300">
                   <span className="font-bold pt-[1px]">멤버&nbsp;</span>
                   <span className="pt-[1px]">더보기</span>
                   <Image
@@ -116,7 +116,7 @@ const CreateRelationReportForm = () => {
                   key={item.id}
                 >
                   <div className="flex flex-col">
-                    <div className="text-gray-900 font-medium">{item.name}</div>
+                    <div className="font-medium text-gray-900">{item.name}</div>
                     <div className="text-gray-600 text-[13px] line-clamp-1">
                       {item.result}
                     </div>
@@ -136,7 +136,7 @@ const CreateRelationReportForm = () => {
           )}
         </div>
         <div className="pt-8">
-          <h5 className="text-gray-900 font-bold mb-4">모임 이름</h5>
+          <h5 className="mb-4 font-bold text-gray-900">모임 이름</h5>
           <div className="relative">
             <input
               type="text"
@@ -155,9 +155,9 @@ const CreateRelationReportForm = () => {
             />
           </div>
           <div className="flex flex-col pt-8">
-            <h5 className="text-gray-900 font-bold mb-4">공개 여부</h5>
+            <h5 className="mb-4 font-bold text-gray-900">공개 여부</h5>
             <div className="flex items-center justify-between">
-              <div className="h-12 flex items-center">
+              <div className="flex items-center h-12">
                 <Image
                   src="/images/coaching-lock.svg"
                   width={24}
