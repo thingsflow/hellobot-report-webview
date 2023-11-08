@@ -1,6 +1,6 @@
 interface IFixedBottomButton {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const FixedBottomButton = ({ title, onClick }: IFixedBottomButton) => {
