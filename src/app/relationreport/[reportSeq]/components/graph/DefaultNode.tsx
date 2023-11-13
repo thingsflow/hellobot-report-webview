@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
-import { RelationReportModalContext } from '../../[reportSeq]/page';
+import { RelationReportModalContext } from '../../page';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',

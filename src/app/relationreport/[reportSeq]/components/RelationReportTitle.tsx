@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import * as React from 'react';
-import { environment } from '../../../../environments/environment';
-import { RelationReportModalContext } from '../[reportSeq]/page';
+import { environment } from '../../../../../environments/environment';
+import { RelationReportModalContext } from '../page';
 import { useRouter } from 'next/navigation';
 
 interface IRelationReportTitle {
