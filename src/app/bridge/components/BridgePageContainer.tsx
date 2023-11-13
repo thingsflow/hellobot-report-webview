@@ -1,7 +1,7 @@
 import BridgeGraphContainer from './BridgeGraphContainer';
 import Divider from '@/components/Divider';
 import BridgeGraphPreview from './BridgeGraphPreview';
-import FixedBottomButton from '@/components/FixedBottomButton';
+import Button from '@/components/Button';
 import webview from '@/utils/webview';
 
 const BridgePageContainer = () => {
@@ -12,12 +12,12 @@ const BridgePageContainer = () => {
   };
 
   return (
-    <div className="bg-gray-50 relative ">
+    <div className="relative bg-gray-50 ">
       <BridgeGraphContainer />
       <Divider />
       <div className="w-full h-[850px] bg-yellow-200"></div>
       <BridgeGraphPreview />
-      <FixedBottomButton title="시작하기" onClick={handleStartButtonClick} />
+      <Button title="시작하기" onClick={handleStartButtonClick} />
     </div>
   );
 };
