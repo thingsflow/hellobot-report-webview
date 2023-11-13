@@ -2,9 +2,13 @@ import { fetcher } from '@/lib/fetcher';
 import { GetPlayDataType } from '@/types/relationreport';
 import useSWR from 'swr';
 
-export default function useGetPlayData() {
+export default function useGetPlayData({
+  fixedMenuSeq,
+}: {
+  fixedMenuSeq: string;
+}) {
   const { data, error, mutate } = useSWR<GetPlayDataType>(
-    '/v2/fixed-menus/34603/play-datas',
+    `/v2/fixed-menus/${fixedMenuSeq}/play-datas`,
     fetcher.get,
   );
 
@@ -20,7 +24,7 @@ export default function useGetPlayData() {
 
   return {
     loading: !data && !error,
-    data: { playDatas: playDatasWithIsAdded, skill: data?.data.skill },
+    data: { playDatas: playDatasWithIsAdded, skill: data?.data?.skill },
     mutate,
   };
 }

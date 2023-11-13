@@ -1,11 +1,15 @@
 'use client';
 import useGetPlayData from '@/apis/useGetPlayData';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import * as React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 const CreateRelationReportTitle = () => {
-  const { data } = useGetPlayData();
+  const params = useParams();
+  const { data } = useGetPlayData({
+    fixedMenuSeq: params.fixedMenuSeq as string,
+  });
 
   return (
     <div className="flex flex-col w-full px-4 py-8">

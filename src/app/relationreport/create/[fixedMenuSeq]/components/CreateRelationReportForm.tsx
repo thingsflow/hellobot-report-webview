@@ -12,22 +12,27 @@ import {
   PlayData,
 } from '@/types/relationreport';
 import useCreateRelationReport from '@/apis/useCreateRelationReport';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
 
 const CreateRelationReportForm = () => {
-  const { data, mutate } = useGetPlayData();
+  const params = useParams();
+  const { data, mutate } = useGetPlayData({
+    fixedMenuSeq: params.fixedMenuSeq as string,
+  });
   const { trigger, isMutating } = useCreateRelationReport();
   const router = useRouter();
   const [title, setTitle] = React.useState('');
   const [isPrivate, setIsPrivate] = React.useState(false);
   const [isSelectStartMemberPopupOpen, setIsSelectStartMemberPopupOpen] =
     React.useState(false);
-  console.log('isMutating?', isMutating);
   const handleLoadMoreMemberButtonClick = () => {
     setIsSelectStartMemberPopupOpen(true);
   };
 
   const handleSelectButtonClick = (targetData: PlayData) => {
+    if (data?.playDatas?.length === 1) return;
+
     mutate(
       {
         data: {
@@ -55,13 +60,12 @@ const CreateRelationReportForm = () => {
     const requestData: CreateRealtionReportInputType = {
       title: title,
       shareScope: isPrivate ? 'PRIVATE' : 'PUBLIC',
-      skillSeq: 34603,
+      skillSeq: Number(params.fixedMenuSeq as string),
       playDataSeq: selectedUser.seq!,
     };
 
     const response: CreateRealtionReportType = await trigger(requestData);
-
-    router.push(`/relationreport/${response.seq}`);
+    response?.data.link && router.push(response?.data.link);
   };
 
   return (
@@ -186,6 +190,7 @@ const CreateRelationReportForm = () => {
           onSelect={() => {}}
         />
       )}
+      {isMutating && <Loading />}
     </>
   );
 };

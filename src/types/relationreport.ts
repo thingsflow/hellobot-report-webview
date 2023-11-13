@@ -31,8 +31,11 @@ export interface CreateRealtionReportInputType {
 export type ShareScope = 'PUBLIC' | 'PRIVATE';
 
 export interface CreateRealtionReportType {
-  title?: string;
-  shareScope?: ShareScope;
-  skillSeq: number;
-  seq: number;
+  data: {
+    title?: string;
+    shareScope?: ShareScope;
+    skillSeq: number;
+    seq: number;
+    link?: string;
+  };
 }
