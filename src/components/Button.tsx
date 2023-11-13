@@ -1,9 +1,9 @@
-interface IFixedBottomButton {
+interface IButton {
   title: string;
   onClick: () => void;
 }
 
-const FixedBottomButton = ({ title, onClick }: IFixedBottomButton) => {
+const Button = ({ title, onClick }: IButton) => {
   return (
     <div
       className="fixed bottom-0 w-full max-w-xl p-4 bg-white cursor-pointer"
@@ -16,4 +16,4 @@ const FixedBottomButton = ({ title, onClick }: IFixedBottomButton) => {
   );
 };
 
-export default FixedBottomButton;
+export default Button;

@@ -17,7 +17,7 @@ import {
   NodeData,
   generateEdgeData,
   generateNodeData,
-} from '@/services/relationReportService';
+} from '@/utils/relationReportGraph';
 import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
 

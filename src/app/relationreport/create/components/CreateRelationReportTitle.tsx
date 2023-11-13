@@ -1,23 +1,38 @@
 'use client';
-import Webview from '@/utils/webview';
+import useGetPlayData from '@/apis/useGetPlayData';
 import Image from 'next/image';
 import * as React from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 const CreateRelationReportTitle = () => {
-  const handleBackButtonClick = () => {
-    Webview.closeButtonClick();
-  };
+  const { data } = useGetPlayData();
 
   return (
-    <div className="flex flex-col w-full py-8 px-4">
+    <div className="flex flex-col w-full px-4 py-8">
       <h2 className="text-[22px] font-bold text-gray-900 whitespace-pre-wrap">
         {'아래 스킬 결과로\n새로운 관계도 모임을 생성합니다.'}
       </h2>
-      <div className="flex">
-        <div className="rounded-l-lg w-[72px] h-[56px] bg-gray-300 flex-shrink-0"></div>
-        <div className="rounded-r-lg pl-4 bg-gray-100 w-full flex items-center font-medium ">
-          <h2 className="line-clamp-2">2024년 신년운세 보고서</h2>
-        </div>
+      <div className="flex mt-4">
+        {data?.skill ? (
+          <>
+            <div className="w-[72px] h-[56px] flex-shrink-0">
+              <Image
+                className="flex-shrink-0 object-contain rounded-l-lg h-[56px]"
+                src={data?.skill?.newSkillBannerImageUrl || ''}
+                width={72}
+                height={56}
+                alt="Skill Image"
+              />
+            </div>
+            <div className="flex items-center w-full pl-4 font-medium bg-gray-100 rounded-r-lg h-[56px] ">
+              <h2 className="line-clamp-2">{data?.skill?.name}</h2>
+            </div>
+          </>
+        ) : (
+          <div className="w-full">
+            <Skeleton width={'100%'} height={'56px'} duration={0.9} />
+          </div>
+        )}
       </div>
     </div>
   );
