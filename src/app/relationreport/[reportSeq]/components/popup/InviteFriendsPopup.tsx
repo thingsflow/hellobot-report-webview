@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import CommonPopup from '@/components/CommonPopup';
 import shareWithKakao from '@/utils/shareWithKakao';
-import { RelationReportModalContext } from '../../[reportSeq]/page';
-import { environment } from '../../../../../environments/environment';
+import { RelationReportModalContext } from '../../page';
+import { environment } from '../../../../../../environments/environment';
 
 interface IInviteFriendsPopup {
   onClose: () => void;

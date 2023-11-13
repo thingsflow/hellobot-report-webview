@@ -1,6 +1,6 @@
 import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
-import { RelationReportModalContext } from '../../[reportSeq]/page';
+import { RelationReportModalContext } from '../../page';
 import Image from 'next/image';
 import Toggle from '@/components/Toggle';
 

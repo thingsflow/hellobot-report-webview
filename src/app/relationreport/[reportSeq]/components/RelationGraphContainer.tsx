@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { RelationGraph, RelationReportHeader, RelationReportTitle } from '.';
-import { RelationReportModalContext } from '../[reportSeq]/page';
+import { RelationReportModalContext } from '../page';
 
 const RelationGraphContainer = () => {
   const { setInviteFriendsPopupOpen } = React.useContext(
