@@ -13,14 +13,10 @@ import * as React from 'react';
 const CreateRelationReportMemberList = () => {
   const router = useRouter();
   const params = useParams();
-  const { data } = useGetPlayData({
+  const { data, isLoading } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
   });
   const { trigger, isMutating } = useCreateRelationReport();
-
-  if (!data.playDatas || data.playDatas?.length === 0) {
-    console.log('플레이데이터 정보가 없습니다.');
-  }
 
   const handleUserItemClick = async (playData: PlayData) => {
     const requestData: CreateRealtionReportInputType = {
@@ -53,7 +49,7 @@ const CreateRelationReportMemberList = () => {
           </div>
         );
       })}
-      {isMutating && <Loading />}
+      {(isMutating || isLoading) && <Loading />}
     </div>
   );
 };

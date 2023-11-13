@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import AuthContainer from '@/components/AuthContainer';
+import LayoutWithClient from '@/components/LayoutWithClient';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -17,9 +18,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
       </head>
       <body>
-        <AuthContainer>
-          <div className="w-full max-w-xl">{children}</div>
-        </AuthContainer>
+        <LayoutWithClient>{children}</LayoutWithClient>
         <div id="portal"></div>
       </body>
     </html>
