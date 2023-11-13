@@ -16,16 +16,16 @@ const RelationReportTitle = ({
   const router = useRouter();
 
   const createNewMoimButtonClick = () => {
-    router.push('relationreport/create');
+    router.push('/relationreport/create');
   };
   const { setEditMoimPopupInfo } = React.useContext(RelationReportModalContext);
 
   return (
     <div className="px-5 pt-6">
-      <div className="flex mb-3 items-center">
+      <div className="flex items-center mb-3">
         <h1 className="text-[22px] font-bold mr-1">{title}</h1>
         <Image
-          className="cursor-pointer z-50"
+          className="z-50 cursor-pointer"
           onClick={() =>
             setEditMoimPopupInfo({
               title: '기본 설정된 타이틀',
@@ -40,7 +40,7 @@ const RelationReportTitle = ({
       </div>
       <div className="flex gap-[6px]">
         <div
-          className="z-50 flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer"
+          className="z-50 flex gap-1 px-4 py-2 text-xs text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
           onClick={onKakaoTalkButtonClick}
         >
           <Image
@@ -52,7 +52,7 @@ const RelationReportTitle = ({
           <p className="pt-[1px]">친구 초대</p>
         </div>
         <div
-          className="z-50 flex gap-1 text-gray-700 text-xs text-normal border border-gray-200 border-solid px-4 py-2 rounded-3xl bg-white cursor-pointer"
+          className="z-50 flex gap-1 px-4 py-2 text-xs text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
           onClick={createNewMoimButtonClick}
         >
           <Image

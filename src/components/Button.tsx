@@ -1,6 +1,6 @@
 interface IButton {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button = ({ title, onClick }: IButton) => {
