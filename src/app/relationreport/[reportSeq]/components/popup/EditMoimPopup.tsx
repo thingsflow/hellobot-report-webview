@@ -5,13 +5,15 @@ import Image from 'next/image';
 import Toggle from '@/components/Toggle';
 import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 import Loading from '@/components/Loading';
+import { useParams } from 'next/navigation';
 
 const EditMoimPopup = () => {
+  const params = useParams();
   const { editMoimPopupInfo, setEditMoimPopupInfo } = React.useContext(
     RelationReportModalContext,
   );
   const { trigger, loading } = useUpdateRelationReport({
-    relationReportSeq: '102',
+    reportSeq: params.reportSeq as string,
   });
 
   const [title, setTitle] = React.useState<string>(

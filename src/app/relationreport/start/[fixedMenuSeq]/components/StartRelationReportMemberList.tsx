@@ -19,7 +19,7 @@ const CreateRelationReportMemberList = () => {
   const { trigger, isMutating } = useCreateRelationReport();
 
   if (!data.playDatas || data.playDatas?.length === 0) {
-    console.log('플레이데이터 정보가 없습니다.');
+    console.error('플레이데이터 정보가 없습니다.');
   }
 
   const handleUserItemClick = async (playData: PlayData) => {

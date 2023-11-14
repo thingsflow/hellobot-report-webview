@@ -76,10 +76,7 @@ const RelationReportPage = () => {
         autoClose={3000}
         enableMultiContainer={false}
       />
-      <AddFriendsPopup
-        onClose={() => setIsAddFriendsPopupOpen(false)}
-        onConfirmButtonClick={() => {}}
-      />
+      <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
       {editMoimPopupInfo && <EditMoimPopup />}
     </RelationReportModalContext.Provider>
   );

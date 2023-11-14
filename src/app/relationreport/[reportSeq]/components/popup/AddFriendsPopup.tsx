@@ -7,22 +7,24 @@ import useGetPlayData from '@/apis/useGetPlayData';
 import Loading from '@/components/Loading';
 import { PlayData } from '@/types/relationreport';
 import { useParams } from 'next/navigation';
+import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 
 interface IAddFriendsPopup {
   onClose: () => void;
-  onConfirmButtonClick: () => void;
 }
 
-const AddFriendsPopup = ({
-  onClose,
-  onConfirmButtonClick,
-}: IAddFriendsPopup) => {
+const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
   const params = useParams();
   const { isAddFriendsPopupOpen } = React.useContext(
     RelationReportModalContext,
   );
+
   const { data, loading, mutate } = useGetPlayData({
     fixedMenuSeq: '34603', // TODO: 실제 스킬 시퀀스로 변경
+    reportSeq: params.reportSeq as string,
+  });
+
+  const { trigger } = useUpdateRelationReport({
     reportSeq: params.reportSeq as string,
   });
 
@@ -31,11 +33,15 @@ const AddFriendsPopup = ({
   };
 
   const handleOtherResultButtonClick = () => {
-    webview.goChatRoomPage({ chatRoomId: 52 });
+    webview.goChatRoomPage({ chatRoomId: data.skill?.seq });
   };
 
-  const handlePlayDataItemClick = (targetData: PlayData) => {
-    // TODO: 관계도에 플레이데이터 추가 API 연동
+  const handlePlayDataItemClick = async (targetData: PlayData) => {
+    if (!targetData.seq) {
+      console.error('플레이데이터 정보가 유효하지 않습니다.');
+      return;
+    }
+
     mutate({
       data: {
         skill: data.skill,
@@ -51,6 +57,12 @@ const AddFriendsPopup = ({
           }) || [],
       },
     });
+
+    await trigger({
+      playDataSeqs: [targetData.seq],
+    });
+
+    onClose();
   };
 
   if (!isAddFriendsPopupOpen) {

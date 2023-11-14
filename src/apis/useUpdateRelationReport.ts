@@ -6,16 +6,16 @@ import {
 import useSWRMutation from 'swr/mutation';
 
 export default function useUpdateRelationReport({
-  relationReportSeq,
+  reportSeq,
 }: {
-  relationReportSeq: string;
+  reportSeq: string;
 }) {
   const { data, trigger, isMutating } = useSWRMutation<
     UpdateRelationReportType,
     any,
     any,
     UpdateRelationReportInputType
-  >(`/api/relation-report/${relationReportSeq}`, fetcher.patch);
+  >(`/api/relation-report/${reportSeq}`, fetcher.patch);
 
   return { trigger, data, loading: isMutating };
 }
