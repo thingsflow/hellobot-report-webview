@@ -26,9 +26,17 @@ export default function useGetPlayData({
     };
   });
 
+  if (
+    !isLoading &&
+    (!data?.data?.playDatas || data?.data.playDatas.length === 0)
+  ) {
+    console.error('플레이데이터 정보가 없습니다.');
+  }
+
   return {
     loading: isLoading,
     data: { playDatas: playDatasWithIsAdded, skill: data?.data?.skill },
     mutate,
+    isLoading,
   };
 }

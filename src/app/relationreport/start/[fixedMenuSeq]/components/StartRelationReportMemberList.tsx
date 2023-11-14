@@ -13,7 +13,7 @@ import * as React from 'react';
 const CreateRelationReportMemberList = () => {
   const router = useRouter();
   const params = useParams();
-  const { data } = useGetPlayData({
+  const { data, isLoading } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
   });
   const { trigger, isMutating } = useCreateRelationReport();
@@ -42,7 +42,7 @@ const CreateRelationReportMemberList = () => {
             key={index}
           >
             <div className="flex flex-col">
-              <div className="text-gray-900 font-medium">{playData.name}</div>
+              <div className="font-medium text-gray-900">{playData.name}</div>
               <div className="text-gray-600 text-[13px] line-clamp-1">
                 {playData.resultName}
               </div>
@@ -53,7 +53,7 @@ const CreateRelationReportMemberList = () => {
           </div>
         );
       })}
-      {isMutating && <Loading />}
+      {(isMutating || isLoading) && <Loading />}
     </div>
   );
 };

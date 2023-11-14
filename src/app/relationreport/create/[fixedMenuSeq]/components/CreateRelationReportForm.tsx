@@ -53,7 +53,7 @@ const CreateRelationReportForm = () => {
   const handleCreateNewMoimButtonClick = async () => {
     const selectedUser = data?.playDatas?.find((item) => item.isAdded);
     if (!selectedUser) {
-      console.log('시작 멤버를 선택해주세요');
+      console.error('시작 멤버를 선택해주세요');
       return;
     }
 

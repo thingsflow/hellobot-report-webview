@@ -1,5 +1,16 @@
-export interface GetPlayDataType {
-  data: {
+export interface Error {
+  code?: string;
+  message?: string;
+  reason?: string;
+  error?: {
+    code?: string;
+    message?: string;
+    reason?: string;
+  };
+}
+
+export interface GetPlayDataType extends Error {
+  data?: {
     playDatas?: Array<PlayData>;
     skill?: Skill;
   };
@@ -68,3 +79,5 @@ export interface CreateRealtionReportType {
     link?: string;
   };
 }
+
+export type PlatForm = 'web' | 'android' | 'ios';
