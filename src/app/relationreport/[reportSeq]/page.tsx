@@ -57,13 +57,7 @@ const RelationReportPage = () => {
       }}
     >
       <RelationReportPageContainer />
-      <InviteFriendsPopup
-        onClose={() => setInviteFriendsPopupOpen(false)}
-        onCopyLinkClick={() => {
-          copyToClipboard('https://storyplay.com');
-          toast('클립보드에 링크가 복사되었습니다.');
-        }}
-      />
+      <InviteFriendsPopup onClose={() => setInviteFriendsPopupOpen(false)} />
       <ToastContainer
         position={toast.POSITION.BOTTOM_CENTER}
         icon={false}

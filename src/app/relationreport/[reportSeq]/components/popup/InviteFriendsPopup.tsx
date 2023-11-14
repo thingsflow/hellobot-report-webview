@@ -1,30 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import CommonPopup from '@/components/CommonPopup';
 import shareWithKakao from '@/utils/shareWithKakao';
 import { RelationReportModalContext } from '../../page';
-import { environment } from '../../../../../../environments/environment';
+import { copyToClipboard } from '@/utils';
+import { toast } from 'react-toastify';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
-  onCopyLinkClick: () => void;
 }
 
-const InviteFriendsPopup = ({
-  onClose,
-  onCopyLinkClick,
-}: IInviteFriendsPopup) => {
+const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   const { isInviteFriendsPopupOpen } = React.useContext(
     RelationReportModalContext,
   );
 
-  useEffect(() => {
-    if (window.Kakao) {
-      if (!window.Kakao.isInitialized()) {
-        window.Kakao.init(environment.kakaoAppJsKey);
-      }
-    }
-  }, []);
+  const handleCopyLinkButtonClick = () => {
+    copyToClipboard('https://storyplay.com');
+    toast('클립보드에 링크가 복사되었습니다.');
+  };
 
   if (!isInviteFriendsPopupOpen) {
     return null;
@@ -38,19 +32,18 @@ const InviteFriendsPopup = ({
           이용할 수 있어요.
         </p>
         <div>
-          <div className="flex mb-2 w-full">
-            <div className="bg-gray-50 rounded-l-lg basis-2/3 grow text-gray-600 h-12 flex items-center p-2">
+          <div className="flex w-full mb-2">
+            <div className="flex items-center h-12 p-2 text-gray-600 rounded-l-lg bg-gray-50 basis-2/3 grow">
               https://bit.ly/hello_bot
             </div>
             <div
               className="cursor-pointer bg-gray-200 font-semibold rounded-r-lg rounded-sm w-[91px] text-gray-900 h-12 flex items-center justify-center"
-              onClick={onCopyLinkClick}
+              onClick={handleCopyLinkButtonClick}
             >
               링크 복사
             </div>
           </div>
           <div
-            id="kakaotalk-sharing-btn"
             className="cursor-pointer basis-1/3 flex gap-2 w-full bg-[#FEE500] h-[45px] justify-center items-center rounded-lg"
             onClick={shareWithKakao}
           >

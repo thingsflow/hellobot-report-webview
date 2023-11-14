@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
+import { environment } from '../../environments/environment';
 
 const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
@@ -53,6 +54,18 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
       }
     }
   }, [langInParam, platformInParam, tokenInParam, currentToken]);
+
+  React.useEffect(() => {
+    // 카카오톡 sdk 초기화
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return <div className="w-full max-w-xl">{currentToken && children}</div>;
 };
