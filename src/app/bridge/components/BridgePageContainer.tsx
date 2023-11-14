@@ -19,7 +19,6 @@ const BridgePageContainer = () => {
     });
   };
 
-  console.log(!!data?.previewImageUrl, data);
   return (
     <div className="relative bg-gray-50 ">
       <BridgeGraphContainer />
