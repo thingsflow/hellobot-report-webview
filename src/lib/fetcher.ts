@@ -19,14 +19,42 @@ const parseJsonSafely = (text: string, jsonParser = JSON.parse) => {
 
 export const fetcher = {
   get: (url: string) => {
-    const token = localStorage.getItem('token');
+    const requestFetch: (url: string) => Promise<any> = (url) => {
+      const token = localStorage.getItem('token');
+      const platform = localStorage.getItem('platform');
 
-    return fetch(`${environment.apiBaseUrl}${url}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `user ${token}`,
-      },
-    }).then((res) => res.json());
+      return fetch(`${environment.apiBaseUrl}${url}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `user ${token}`,
+          ...(platform === 'platform' && { Os: 'web' }),
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res?.error?.code === 'CO004') {
+            // 토큰 만료 시 새로운 토큰으로 업데이트한 뒤 이전 요청 재시도한다.
+            return fetch(`${environment.apiBaseUrl}/api/users/token`, {
+              method: 'POST',
+              mode: 'cors',
+              headers: {
+                Authorization: `user ${token}`,
+                'Content-Type': 'application/json',
+              },
+            })
+              .then((res) => res.json())
+              .then((tokenRes) => {
+                localStorage.setItem('token', tokenRes.data.token);
+
+                return requestFetch(url);
+              });
+          }
+
+          return res;
+        });
+    };
+
+    return requestFetch(url);
   },
   post: async (url: string, { arg }: Arg) => {
     const token = localStorage.getItem('token');
