@@ -25,11 +25,13 @@ export const fetcher = {
   get: (url: string) => {
     const requestFetch: (url: string) => Promise<any> = (url) => {
       const token = localStorage.getItem('token');
+      const platform = localStorage.getItem('platform');
 
       return fetch(`${environment.apiBaseUrl}${url}`, {
         method: 'GET',
         headers: {
           Authorization: `user ${token}`,
+          ...(platform === 'platform' && { Os: 'web' }),
         },
       })
         .then((res) => res.json())
