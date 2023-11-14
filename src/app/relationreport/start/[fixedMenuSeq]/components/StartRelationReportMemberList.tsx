@@ -18,6 +18,10 @@ const CreateRelationReportMemberList = () => {
   });
   const { trigger, isMutating } = useCreateRelationReport();
 
+  if (!data.playDatas || data.playDatas?.length === 0) {
+    console.log('플레이데이터 정보가 없습니다.');
+  }
+
   const handleUserItemClick = async (playData: PlayData) => {
     const requestData: CreateRealtionReportInputType = {
       skillSeq: Number(params.fixedMenuSeq as string),
@@ -38,7 +42,7 @@ const CreateRelationReportMemberList = () => {
             key={index}
           >
             <div className="flex flex-col">
-              <div className="text-gray-900 font-medium">{playData.name}</div>
+              <div className="font-medium text-gray-900">{playData.name}</div>
               <div className="text-gray-600 text-[13px] line-clamp-1">
                 {playData.resultName}
               </div>
