@@ -1,22 +1,25 @@
 'use client';
+import useGetBridgeData from '@/apis/useGetBridgeData';
 import { share } from '@/utils';
 import Webview from '@/utils/webview';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import * as React from 'react';
+import { environment } from '../../../../environments/environment';
 
-interface IBridgeReportHeader {
-  shareTitle: string;
-  shareLink: string;
-}
+const BridgeReportHeader = () => {
+  const params = useParams();
+  const { data } = useGetBridgeData({
+    bridgeSeq: params.bridgeSeq as string,
+  });
 
-const BridgeReportHeader = ({ shareTitle, shareLink }: IBridgeReportHeader) => {
   const handleCloseButtonClick = () => {
     Webview.goBack();
   };
 
   const dataToShare: ShareData = {
-    title: shareTitle,
-    url: shareLink,
+    title: data?.skill?.name,
+    url: `${environment.url}/skills/${data?.skill?.seq}`,
   };
 
   const handleShareIconClick = async () => {
@@ -24,8 +27,8 @@ const BridgeReportHeader = ({ shareTitle, shareLink }: IBridgeReportHeader) => {
 
     if (isAndroidWebView) {
       Webview.doShare({
-        shareTitle,
-        shareLink,
+        shareTitle: data?.skill?.name,
+        shareLink: `${environment.url}/skills/${data?.skill?.seq}`,
       });
     } else {
       const result = await share(dataToShare);

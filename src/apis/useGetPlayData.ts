@@ -4,11 +4,15 @@ import useSWR from 'swr';
 
 export default function useGetPlayData({
   fixedMenuSeq,
+  reportSeq,
 }: {
   fixedMenuSeq: string;
+  reportSeq?: string;
 }) {
   const { data, error, mutate, isLoading } = useSWR<GetPlayDataType>(
-    `/v2/fixed-menus/${fixedMenuSeq}/play-datas`,
+    `/v2/fixed-menus/${fixedMenuSeq}/play-datas${
+      reportSeq ? `?reportSeq=${reportSeq}` : ''
+    }`,
     fetcher.get,
   );
 

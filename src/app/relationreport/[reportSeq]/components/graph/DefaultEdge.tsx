@@ -38,7 +38,10 @@ const DefaultEdge: FC<EdgeProps> = ({
             style={{
               position: 'absolute',
               transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-              padding: 8,
+              paddingLeft: 10,
+              paddingRight: 10,
+              paddingTop: 5,
+              paddingBottom: 5,
               fontSize: 14,
               fontWeight: 400,
               borderRadius: '16px',
@@ -47,7 +50,7 @@ const DefaultEdge: FC<EdgeProps> = ({
             }}
             className="nodrag nopan"
           >
-            {'🤔 ????'}
+            {'🤔 '}&nbsp;{'????'}
           </div>
         </EdgeLabelRenderer>
       )}
