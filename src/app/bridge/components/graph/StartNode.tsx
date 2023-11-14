@@ -1,5 +1,7 @@
+import useGetBridgeData from '@/apis/useGetBridgeData';
 import webview from '@/utils/webview';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 
@@ -15,8 +17,13 @@ const targetHandleStyle: CSSProperties = {
 };
 
 const StartNode: FC<NodeProps> = () => {
+  const params = useParams();
+  const { data } = useGetBridgeData({
+    bridgeSeq: params.bridgeSeq as string,
+  });
+
   const handleNodeClick = () => {
-    webview.goChatRoomPage({ chatRoomId: 52 });
+    webview.goChatRoomPage({ chatRoomId: data?.skill?.seq });
   };
 
   return (
@@ -31,7 +38,7 @@ const StartNode: FC<NodeProps> = () => {
         className="relative flex flex-col justify-center cursor-pointer"
         onClick={handleNodeClick}
       >
-        <div className="flex items-center justify-center w-[80px] h-[80px] bg-yellow-400 rounded-full">
+        <div className="flex items-center justify-center w-[90px] h-[90px] bg-yellow-400 rounded-full">
           <Image
             className="flex-shrink-0"
             src="/images/icon-plus-40.svg"
@@ -40,7 +47,7 @@ const StartNode: FC<NodeProps> = () => {
             height={24}
           />
         </div>
-        <div className="flex w-full absolute bottom-[-23px] items-center justify-center text-gray-900 font-bold text-[13px] pt-[1px] ">
+        <div className="flex w-full absolute bottom-[-27px] items-center justify-center text-gray-900 font-bold text-[13px] pt-[1px] ">
           <div className="">시작하기</div>
         </div>
       </div>

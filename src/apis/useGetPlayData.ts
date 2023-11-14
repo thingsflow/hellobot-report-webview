@@ -4,11 +4,15 @@ import useSWR from 'swr';
 
 export default function useGetPlayData({
   fixedMenuSeq,
+  reportSeq,
 }: {
   fixedMenuSeq: string;
+  reportSeq?: string;
 }) {
-  const { data, error, mutate } = useSWR<GetPlayDataType>(
-    `/v2/fixed-menus/${fixedMenuSeq}/play-datas`,
+  const { data, error, mutate, isLoading } = useSWR<GetPlayDataType>(
+    `/v2/fixed-menus/${fixedMenuSeq}/play-datas${
+      reportSeq ? `?reportSeq=${reportSeq}` : ''
+    }`,
     fetcher.get,
   );
 
@@ -23,7 +27,7 @@ export default function useGetPlayData({
   });
 
   return {
-    loading: !data && !error,
+    loading: isLoading,
     data: { playDatas: playDatasWithIsAdded, skill: data?.data?.skill },
     mutate,
   };

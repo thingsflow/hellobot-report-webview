@@ -15,10 +15,6 @@ const targetHandleStyle: CSSProperties = {
 };
 
 const AddNode: FC<NodeProps> = () => {
-  const handleNodeClick = () => {
-    webview.goChatRoomPage({ chatRoomId: 52 });
-  };
-
   return (
     <>
       <Handle
@@ -27,11 +23,8 @@ const AddNode: FC<NodeProps> = () => {
         style={targetHandleStyle}
         isConnectableStart={false}
       />
-      <div
-        className="relative flex flex-col justify-center cursor-pointer"
-        onClick={handleNodeClick}
-      >
-        <div className="flex items-center justify-center w-[60px] h-[60px] bg-white border-gray-200 border-solid border-[2px] rounded-full">
+      <div className="relative flex flex-col justify-center">
+        <div className="flex items-center justify-center w-[70px] h-[70px] bg-white border-gray-200 border-solid border-[2px] rounded-full">
           <Image
             className="flex-shrink-0"
             src="/images/icon-plus-40-light.svg"
@@ -40,7 +33,7 @@ const AddNode: FC<NodeProps> = () => {
             height={24}
           />
         </div>
-        <div className="flex w-full absolute bottom-[-23px] items-center justify-center text-gray-900 font-bold text-[13px] pt-[1px] ">
+        <div className="flex w-full absolute bottom-[-27px] items-center justify-center text-gray-500 font-bold text-[13px] pt-[1px] ">
           <div>추가하기</div>
         </div>
       </div>

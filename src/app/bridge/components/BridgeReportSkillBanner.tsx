@@ -1,46 +1,76 @@
+import * as React from 'react';
+import useGetBridgeData from '@/apis/useGetBridgeData';
 import webview from '@/utils/webview';
 import Image from 'next/image';
-import * as React from 'react';
+import { useParams } from 'next/navigation';
+import Skeleton from 'react-loading-skeleton';
 
-const BridgeReportSkillBanner = ({
-  title = '2024년 신년운세 보고서',
-  image,
-  stars,
-  views,
-}: any) => {
+const BridgeReportSkillBanner = () => {
+  const params = useParams();
+  const { data, loading } = useGetBridgeData({
+    bridgeSeq: params.bridgeSeq as string,
+  });
+
   const handleBannerButtonClick = () => {
-    webview.goSkillDetailPage({ skillId: 2141 });
+    webview.goSkillDetailPage({ skillId: data?.skill?.seq });
   };
 
   return (
     <div
-      className="w-full px-4 cursor-pointer z-60 relative "
+      className="relative w-full px-4 cursor-pointer z-60 "
       onClick={handleBannerButtonClick}
     >
-      <div className="flex bg-white border border-gray-200 border-solid rounded-xl p-3">
-        <div className="w-[98px] h-[73px] bg-gray-400 flex-shrink-0 rounded-lg mr-3"></div>
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <div className="w-[20px] h-[20px] bg-gray-400 mr-[5px]"></div>
-            <div className="text-[#7E8185] text-[11px]">사주 by 판밍밍</div>
-          </div>
-          <h5 className="font-medium">{title}</h5>
-          <div className="flex">
-            <div className="flex gap-1 items-center">
+      {loading ? (
+        <Skeleton
+          className="py-[13px] rounded-lg"
+          width={'100%'}
+          height={'99px'}
+          duration={0.9}
+        />
+      ) : (
+        <div className="flex p-3 bg-white border border-gray-200 border-solid rounded-xl ">
+          <Image
+            className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px]"
+            src={
+              data?.skill?.newSkillBannerImageUrl ||
+              '/images/new-skill-banner-default.png'
+            }
+            alt="Banner Image"
+            width={98}
+            height={73}
+            placeholder="empty"
+          />
+          <div className="flex flex-col">
+            <div className="flex items-center">
               <Image
-                className="bg-gray300 fill-white"
-                src={'/images/ic-star.svg'}
-                width={16}
-                height={16}
-                alt="Skill Icon"
+                src={data?.skill?.chatbot?.activeProfileUrl || ''}
+                alt="Skill Profile Image"
+                width={20}
+                height={20}
               />
-              <div className="text-[#555759] pt-[4px] text-[13px]">
-                4.5 ・ 조회수 300만+
+              <div className="text-[#7E8185] text-[11px]">
+                {data?.skill?.chatbot?.name}
+              </div>
+            </div>
+            <h5 className="font-medium">{data?.skill?.name}</h5>
+            <div className="flex">
+              <div className="flex items-center gap-1">
+                <Image
+                  className="bg-gray300 fill-white"
+                  src={'/images/ic-star.svg'}
+                  width={16}
+                  height={16}
+                  alt="Skill Icon"
+                />
+                <div className="text-[#555759] pt-[4px] text-[13px]">
+                  {/* viewCount > badge.title로 수정 필요 */}
+                  {data?.skill?.evalAvgScore} ・ 조회수 {data?.skill?.viewCount}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
