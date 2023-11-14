@@ -34,7 +34,7 @@ export default function useGetPlayData({
   }
 
   return {
-    loading: !data && !error,
+    loading: isLoading,
     data: { playDatas: playDatasWithIsAdded, skill: data?.data?.skill },
     mutate,
     isLoading,
