@@ -6,13 +6,36 @@ import { InviteFriendsPopup, RelationReportPageContainer } from './components';
 import AddFriendsPopup from './components/popup/AddFriendsPopup';
 import EditMoimPopup from './components/popup/EditMoimPopup';
 
-export const RelationReportModalContext = React.createContext<any>(null); // TODO: 타입 정의
+interface IRelationReportModalContext {
+  isInviteFriendsPopupOpen: boolean;
+  setInviteFriendsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isAddFriendsPopupOpen: boolean;
+  setIsAddFriendsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  editMoimPopupInfo: {
+    title: string;
+    isPrivate: boolean;
+  } | null;
+  setEditMoimPopupInfo: React.Dispatch<
+    React.SetStateAction<{
+      title: string;
+      isPrivate: boolean;
+    } | null>
+  >;
+}
 
-const RelationReportPage = ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+const initialState = {
+  isInviteFriendsPopupOpen: false,
+  setInviteFriendsPopupOpen: () => {},
+  isAddFriendsPopupOpen: false,
+  setIsAddFriendsPopupOpen: () => {},
+  editMoimPopupInfo: null,
+  setEditMoimPopupInfo: () => {},
+};
+
+export const RelationReportModalContext =
+  React.createContext<IRelationReportModalContext>(initialState); // TODO: 타입 정의
+
+const RelationReportPage = () => {
   const [isInviteFriendsPopupOpen, setInviteFriendsPopupOpen] =
     React.useState(false);
   const [isAddFriendsPopupOpen, setIsAddFriendsPopupOpen] =
@@ -21,13 +44,6 @@ const RelationReportPage = ({
     title: string;
     isPrivate: boolean;
   } | null>(null);
-
-  React.useEffect(() => {
-    const { platform } = searchParams;
-    if (platform) {
-      localStorage.setItem('platform', platform as string);
-    }
-  }, []);
 
   return (
     <RelationReportModalContext.Provider
@@ -60,16 +76,8 @@ const RelationReportPage = ({
         autoClose={3000}
         enableMultiContainer={false}
       />
-      <AddFriendsPopup
-        onClose={() => setIsAddFriendsPopupOpen(false)}
-        onConfirmButtonClick={() => {}}
-      />
-      <EditMoimPopup
-        onClose={() => setEditMoimPopupInfo(null)}
-        onConfirmButtonClick={() => {
-          setEditMoimPopupInfo(null);
-        }}
-      />
+      <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
+      {editMoimPopupInfo && <EditMoimPopup />}
     </RelationReportModalContext.Provider>
   );
 };
