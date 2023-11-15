@@ -64,10 +64,9 @@ const BridgeReportSkillBanner = () => {
                   alt="Skill Icon"
                 />
                 <div className="text-[#555759] pt-[4px] text-[13px]">
-                  {/* viewCount > badge.title로 수정 필요 */}
                   {data?.skill?.evalAvgScore} ・{' '}
                   {t('home_screen_label_skill_view_count', {
-                    value: data?.skill?.viewCount,
+                    value: data?.skill?.badge?.title,
                   })}
                 </div>
               </div>

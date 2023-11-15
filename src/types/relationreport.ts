@@ -78,6 +78,10 @@ export interface GetBridgeDataType extends Error {
         activeProfileUrl?: string;
         name?: string;
       };
+      badge?: {
+        title?: string;
+        imageUrl?: string;
+      };
       seq?: number;
       name?: string;
       description?: string;
@@ -87,7 +91,6 @@ export interface GetBridgeDataType extends Error {
       featuredBannerImageUrl?: string;
       evalAvgScore?: number;
       totalEvalutationCount?: number;
-      viewCount?: number;
     };
   };
 }
