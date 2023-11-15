@@ -1,19 +1,25 @@
 import { fetcher } from '@/lib/fetcher';
 import { GetPlayDataType } from '@/types/relationreport';
 import useSWR from 'swr';
+import { BareFetcher, PublicConfiguration } from 'swr/_internal';
 
 export default function useGetPlayData({
   fixedMenuSeq,
   reportSeq,
+  options,
 }: {
   fixedMenuSeq: string;
   reportSeq?: string;
+  options?: Partial<
+    PublicConfiguration<GetPlayDataType, any, BareFetcher<GetPlayDataType>>
+  >;
 }) {
   const { data, error, mutate, isLoading } = useSWR<GetPlayDataType>(
     `/v2/fixed-menus/${fixedMenuSeq}/play-datas${
       reportSeq ? `?reportSeq=${reportSeq}` : ''
     }`,
     fetcher.get,
+    options,
   );
 
   // data에 isAdded라는 클라이언트 state를 추가합니다.

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import * as React from 'react';
 import { environment } from '../../../../environments/environment';
+import { t } from '@/utils/translate';
 
 const BridgeReportHeader = () => {
   const params = useParams();
@@ -33,8 +34,9 @@ const BridgeReportHeader = () => {
     } else {
       const result = await share(dataToShare);
       if (result === 'copiedToClipboard') {
-        alert('링크를 클립보드에 복사했습니다.');
+        alert(t('relationshipmap_invite_popup_toast_copied'));
       } else if (result === 'failed') {
+        // TODO: lokalise
         alert('공유하기가 지원되지 않는 환경입니다.');
       }
     }

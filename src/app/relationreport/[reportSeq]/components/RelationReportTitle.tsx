@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import * as React from 'react';
-import { environment } from '../../../../../environments/environment';
 import { RelationReportModalContext } from '../page';
 import { useRouter } from 'next/navigation';
+import { t } from '@/utils/translate';
 
 interface IRelationReportTitle {
   title: string;
@@ -18,6 +18,7 @@ const RelationReportTitle = ({
   const createNewMoimButtonClick = () => {
     router.push('/relationreport/create');
   };
+
   const { setEditMoimPopupInfo } = React.useContext(RelationReportModalContext);
 
   return (
@@ -49,7 +50,9 @@ const RelationReportTitle = ({
             width={16}
             height={16}
           />
-          <p className="pt-[1px]">친구 초대</p>
+          <p className="pt-[1px]">
+            {t('relationshipmap_screen_button_invite')}
+          </p>
         </div>
         <div
           className="z-50 flex gap-1 px-4 py-2 text-xs text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
@@ -61,7 +64,9 @@ const RelationReportTitle = ({
             width={16}
             height={16}
           />
-          <p className="pt-[1px]">새로운 모임 만들기</p>
+          <p className="pt-[1px]">
+            {t('relationshipmap_create_screen_button_create')}
+          </p>
         </div>
       </div>
     </div>

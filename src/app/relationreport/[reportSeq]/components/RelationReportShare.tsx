@@ -3,22 +3,21 @@ import { copyToClipboard } from '@/utils';
 import shareWithKakao from '@/utils/shareWithKakao';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
+import { t } from '@/utils/translate';
 
 const RelationReportShare = () => {
   const handleCopyLinkButtonClick = () => {
+    // TODO: 공유url 실제값으로 변경
     copyToClipboard('https://storyplay.com');
-    toast('클립보드에 링크가 복사되었습니다.');
+    toast(t('relationshipmap_invite_popup_toast_copied'));
   };
 
   return (
     <div>
       <div className="flex flex-col items-center py-10">
-        <h3 className="font-bold text-[20px] mb-1">
-          가족이 모이면 이런 관계도가 보여요!
-        </h3>
-        <div className="w-full h-[300px] bg-gray-300"></div>
+        <div className="w-full h-[320px] bg-gray-300"></div>
         <p className="whitespace-pre-wrap text-[#7E8185] text-center mt-8">
-          {'지금 링크를 공유하고\n우리 모임의 관계도를 확인해 보세요.'}
+          {t('relationshipmap_screen_description_share')}
         </p>
         <div className="flex gap-3 mt-6">
           <div

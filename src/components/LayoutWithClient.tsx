@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
-import { environment } from '../../environments/environment';
+import { STORAGE_KEY } from '@/consts/common';
 
 const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
@@ -11,9 +11,11 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
   const [currentToken, setCurrentToken] = React.useState('');
 
   React.useEffect(() => {
-    const tokenInStorage = localStorage.getItem('token') as string | undefined;
-    const platformInStorage = localStorage.getItem('platform');
-    const langInStorage = localStorage.getItem('lang');
+    const tokenInStorage = localStorage.getItem(STORAGE_KEY.TOKEN) as
+      | string
+      | undefined;
+    const platformInStorage = localStorage.getItem(STORAGE_KEY.PLATFORM);
+    const langInStorage = localStorage.getItem(STORAGE_KEY.LANG);
     setCurrentToken(tokenInStorage as string);
 
     // 쿼리 파라미터에 (token/platform/lang)이 있는지 검사. 있으면 localStorage 업데이트
@@ -22,7 +24,7 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
 
     if (tokenInParam) {
       setCurrentToken(tokenInParam);
-      localStorage.setItem('token', tokenInParam);
+      localStorage.setItem(STORAGE_KEY.TOKEN, tokenInParam);
     } else {
       if (!tokenInStorage) {
         console.error(
@@ -33,7 +35,7 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
     }
 
     if (platformInParam) {
-      localStorage.setItem('platform', platformInParam);
+      localStorage.setItem(STORAGE_KEY.PLATFORM, platformInParam);
     } else {
       if (!platformInStorage) {
         console.error(
@@ -44,7 +46,7 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
     }
 
     if (langInParam) {
-      localStorage.setItem('lang', langInParam);
+      localStorage.setItem(STORAGE_KEY.LANG, langInParam);
     } else {
       if (!langInStorage) {
         console.error(

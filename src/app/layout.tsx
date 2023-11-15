@@ -4,7 +4,6 @@ import 'reactflow/dist/style.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import AuthContainer from '@/components/AuthContainer';
 import LayoutWithClient from '@/components/LayoutWithClient';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {

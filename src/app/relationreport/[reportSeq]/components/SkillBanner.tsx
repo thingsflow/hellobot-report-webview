@@ -1,3 +1,4 @@
+import { t } from '@/utils/translate';
 import webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
@@ -45,7 +46,9 @@ const SkillBanner = ({
             <div className="text-white pt-[4px] opacity-70">4.5 (1,234)</div>
           </div>
           <div className="text-white opacity-30 px-2 pt-[4px]">|</div>
-          <div className="text-white pt-[4px] opacity-70">조회수 300만+</div>
+          <div className="text-white pt-[4px] opacity-70">
+            {t('chat_recommend_screen_label_views', { value: '300만+' })}
+          </div>
         </div>
       </div>
     </div>

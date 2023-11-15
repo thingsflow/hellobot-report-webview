@@ -1,4 +1,5 @@
 import { environment } from '../../environments/environment';
+import { t } from './translate';
 
 const shareWithKakao = () => {
   if (window.Kakao) {
@@ -23,7 +24,7 @@ const shareWithKakao = () => {
       },
       buttons: [
         {
-          title: '내 결과 보러가기',
+          title: t('result_detail_button_my_result'),
           link: {
             mobileWebUrl: 'http://localhost:4400/',
             webUrl: 'http://localhost:4400/',

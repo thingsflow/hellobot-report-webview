@@ -1,3 +1,4 @@
+import { t } from '@/utils/translate';
 import Image from 'next/image';
 import * as React from 'react';
 
@@ -52,7 +53,7 @@ const RelationReportDetail = () => {
         </p>
       </div>
       <div className="my-4 flex gap-[10px] text-gray-800 items-center justify-center w-full h-12 border border-solid border-gray-300 rounded-[6px] bg-white">
-        더보기
+        {t('common_more')}
         <Image
           src="/images/button-lg-btn-arrow-down.svg"
           width={16}

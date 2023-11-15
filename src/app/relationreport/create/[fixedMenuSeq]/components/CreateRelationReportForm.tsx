@@ -14,11 +14,15 @@ import {
 import useCreateRelationReport from '@/apis/useCreateRelationReport';
 import { useParams, useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
+import { t } from '@/utils/translate';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
+    options: {
+      revalidateIfStale: false,
+    },
   });
   const { trigger, isMutating } = useCreateRelationReport();
   const router = useRouter();
@@ -46,7 +50,7 @@ const CreateRelationReportForm = () => {
             }) || [],
         },
       },
-      false,
+      { revalidate: false },
     );
   };
 
@@ -73,9 +77,7 @@ const CreateRelationReportForm = () => {
       <div className="pt-8 px-4 pb-[96px]">
         <h5 className="font-bold text-gray-900">시작 멤버 선택</h5>
         <p className="text-xs text-gray-500 whitespace-pre-wrap">
-          {
-            '선택한 유저를 기준으로 새로운 관계도가 만들어 집니다.\n관계도를 시작할 첫번째 멤버를 선택해 주세요'
-          }
+          {t('relationshipmap_create_screen_description_start_member')}
         </p>
         <div className="flex flex-col w-full">
           {data?.playDatas ? (
@@ -96,14 +98,14 @@ const CreateRelationReportForm = () => {
                       className="cursor-pointer w-[74px] rounded-[20px] bg-gray-900 h-10 flex items-center justify-center text-white text-[14px] font-bold"
                       onClick={() => handleSelectButtonClick(item)}
                     >
-                      선택됨
+                      {t('relationshipmap_create_screen_button_selected')}
                     </div>
                   ) : (
                     <div
                       className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold"
                       onClick={() => handleSelectButtonClick(item)}
                     >
-                      선택
+                      {t('relationshipmap_create_screen_button_select')}
                     </div>
                   )}
                 </div>
@@ -114,6 +116,8 @@ const CreateRelationReportForm = () => {
                   onClick={handleLoadMoreMemberButtonClick}
                 >
                   <p className="text-[#555759] text-[14px] flex items-center border border-solid px-6 py-[7px] rounded-full border-gray-300">
+                    {/* TODO: lokalise 수정 필요함 */}
+                    {/* {t('relationshipmap_create_screen_button_more')} */}
                     <span className="font-bold pt-[1px]">멤버&nbsp;</span>
                     <span className="pt-[1px]">더보기</span>
                     <Image
@@ -142,14 +146,18 @@ const CreateRelationReportForm = () => {
           )}
         </div>
         <div className="pt-8">
-          <h5 className="mb-4 font-bold text-gray-900">모임 이름</h5>
+          <h5 className="mb-4 font-bold text-gray-900">
+            {t('relationshipmap_edit_popup_label_group_name')}
+          </h5>
           <div className="relative">
             <input
               type="text"
               className="w-full h-12 bg-[#f5f5f5] rounded-lg text=[#242526] px-4 py-3 pr-11"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="모임 이름을 입력해주세요"
+              placeholder={t(
+                'relationshipmap_create_screen_input_group_name_placeholder',
+              )}
             />
             <Image
               className="cursor-pointer absolute top-1/2 -translate-y-1/2 right-4 bg-[#f5f5f5]"
@@ -161,7 +169,9 @@ const CreateRelationReportForm = () => {
             />
           </div>
           <div className="flex flex-col pt-8">
-            <h5 className="mb-4 font-bold text-gray-900">공개 여부</h5>
+            <h5 className="mb-4 font-bold text-gray-900">
+              {t('relationshipmap_edit_popup_label_status')}
+            </h5>
             <div className="flex items-center justify-between">
               <div className="flex items-center h-12">
                 <Image
@@ -170,7 +180,9 @@ const CreateRelationReportForm = () => {
                   height={24}
                   alt="Lock Icon"
                 />
-                <p className="text=[#242526]">이 관계도 나만보기</p>
+                <p className="text=[#242526]">
+                  {t('relationshipmap_create_screen_description_status')}
+                </p>
               </div>
               <Toggle
                 isOn={isPrivate}
@@ -181,7 +193,7 @@ const CreateRelationReportForm = () => {
         </div>
       </div>
       <Button
-        title="새로운 모임 만들기"
+        title={t('relationshipmap_screen_button_create')}
         onClick={handleCreateNewMoimButtonClick}
       />
       {isSelectStartMemberPopupOpen && (

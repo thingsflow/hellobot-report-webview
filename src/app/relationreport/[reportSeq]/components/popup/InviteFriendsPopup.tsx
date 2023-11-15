@@ -5,6 +5,7 @@ import shareWithKakao from '@/utils/shareWithKakao';
 import { RelationReportModalContext } from '../../page';
 import { copyToClipboard } from '@/utils';
 import { toast } from 'react-toastify';
+import { t } from '@/utils/translate';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -28,8 +29,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
     <CommonPopup title={'친구 초대'} onClose={onClose}>
       <div className="flex flex-col gap-6">
         <p className="text-[#7E8185] text-[14px]">
-          내가 공유한 링크로 친구가 결제하면 15프로 할인된 가격으로 스킬을
-          이용할 수 있어요.
+          {t('relationshipmap_invite_popup_description')}
         </p>
         <div>
           <div className="flex w-full mb-2">
@@ -40,7 +40,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
               className="cursor-pointer bg-gray-200 font-semibold rounded-r-lg rounded-sm w-[91px] text-gray-900 h-12 flex items-center justify-center"
               onClick={handleCopyLinkButtonClick}
             >
-              링크 복사
+              {t('relationshipmap_invite_popup_button_copy')}
             </div>
           </div>
           <div
@@ -56,7 +56,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
               />
             </div>
             <p className="rounded-[6px] font-semibold text-[15px] text-black/[.85]">
-              카카오톡 전송
+              {t('relationshipmap_invite_popup_button_kakao')}
             </p>
           </div>
         </div>

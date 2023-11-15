@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import { t } from '@/utils/translate';
 
 const CreateRelationReportHeader = () => {
   const router = useRouter();
@@ -22,7 +23,7 @@ const CreateRelationReportHeader = () => {
         onClick={handleBackButtonClick}
       />
       <h1 className="text-[#242526] text-[17px] font-bold">
-        새로운 모임 만들기
+        {t('relationshipmap_screen_button_create')}
       </h1>
     </header>
   );

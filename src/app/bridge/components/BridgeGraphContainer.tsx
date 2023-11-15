@@ -5,12 +5,11 @@ import BridgeReportHeader from './BridgeReportHeader';
 import BridgeReportSkillBanner from './BridgeReportSkillBanner';
 import useGetBridgeData from '@/apis/useGetBridgeData';
 import Loading from '@/components/Loading';
-import { RelationType } from '@/types/relationreport';
 import { useParams } from 'next/navigation';
 
 const BridgeGraphContainer = () => {
   const params = useParams();
-  const { data, loading } = useGetBridgeData({
+  const { loading } = useGetBridgeData({
     bridgeSeq: params.bridgeSeq as string,
   });
 

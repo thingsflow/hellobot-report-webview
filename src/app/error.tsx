@@ -1,5 +1,6 @@
 'use client';
 
+import { t } from '@/utils/translate';
 import webview from '@/utils/webview';
 import Image from 'next/image';
 
@@ -25,7 +26,7 @@ export default function GlobalError({
             />
             <p className="m-4 text-xl font-medium text-gray-600">
               {/* TODO: 운영이면  문제가 발생했어요! 개발이면 에러 메시지*/}
-              {'문제가 발생했어요!'}
+              {t('common_toast_error')}
               {error.message}
             </p>
             <button
