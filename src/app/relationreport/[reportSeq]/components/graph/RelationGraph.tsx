@@ -41,7 +41,7 @@ const initialEdges: Edge[] = generateEdgeData(initialNodes);
 
 const RelationGraph = () => {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
 
   return (
@@ -54,9 +54,9 @@ const RelationGraph = () => {
         onEdgesChange={onEdgesChange}
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
-        fitView={true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기 2명이면 false
+        fitView={true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기(2명이면 false)
         preventScrolling={false}
-        zoomOnPinch={true} // pinch(?)액션으로 줌인, 줌아웃 가능 여부
+        zoomOnPinch={true} // pinch 액션으로 줌인, 줌아웃 가능 여부
         selectionOnDrag={true} // 드래그 이벤트로 그래프 이동 가능 여부
         zoomOnScroll={true}
         panOnScroll={true} // 그래프 위에서 스크롤 작동하게하기

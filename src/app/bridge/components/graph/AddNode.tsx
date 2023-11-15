@@ -1,4 +1,4 @@
-import webview from '@/utils/webview';
+import { t } from '@/utils/translate';
 import Image from 'next/image';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
@@ -34,7 +34,7 @@ const AddNode: FC<NodeProps> = () => {
           />
         </div>
         <div className="flex w-full absolute bottom-[-27px] items-center justify-center text-gray-500 font-bold text-[13px] pt-[1px] ">
-          <div>추가하기</div>
+          <div>{t('bridge_relationshipmap_screen_button_add')}</div>
         </div>
       </div>
       <Handle

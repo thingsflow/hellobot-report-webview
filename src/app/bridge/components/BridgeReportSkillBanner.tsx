@@ -4,6 +4,7 @@ import webview from '@/utils/webview';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
+import { t } from '@/utils/translate';
 
 const BridgeReportSkillBanner = () => {
   const params = useParams();
@@ -64,7 +65,10 @@ const BridgeReportSkillBanner = () => {
                 />
                 <div className="text-[#555759] pt-[4px] text-[13px]">
                   {/* viewCount > badge.title로 수정 필요 */}
-                  {data?.skill?.evalAvgScore} ・ 조회수 {data?.skill?.viewCount}
+                  {data?.skill?.evalAvgScore} ・{' '}
+                  {t('home_screen_label_skill_view_count', {
+                    value: data?.skill?.viewCount,
+                  })}
                 </div>
               </div>
             </div>

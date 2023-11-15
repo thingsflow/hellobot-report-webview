@@ -8,6 +8,7 @@ import Loading from '@/components/Loading';
 import { PlayData } from '@/types/relationreport';
 import { useParams } from 'next/navigation';
 import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
+import { t } from '@/utils/translate';
 
 interface IAddFriendsPopup {
   onClose: () => void;
@@ -71,7 +72,10 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
 
   return (
     <>
-      <CommonPopup title={'추가하기'} onClose={onClose}>
+      <CommonPopup
+        title={t('relationshipmap_add_popup_title')}
+        onClose={onClose}
+      >
         <div className="relative flex flex-col gap-4">
           {data.playDatas ? (
             <div className="flex flex-col h-[390px] w-full overflow-scroll">
@@ -91,14 +95,14 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
                     </div>
                     {item.isAlreadyAdded ? (
                       <div className="w-[74px] rounded-[20px] bg-gray-400 h-10 flex items-center justify-center text-gray-200 text-[14px] font-bold">
-                        추가됨
+                        {t('relationshipmap_add_popup_button_added')}
                       </div>
                     ) : (
                       <div
                         className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold"
                         onClick={() => handlePlayDataItemClick(item)}
                       >
-                        추가
+                        {t('relationshipmap_add_popup_button_add')}
                       </div>
                     )}
                   </div>
@@ -113,21 +117,23 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
                 height={50}
                 alt="Warning Icon"
               />
-              <p className="mt-8 text-gray-500">저장된 결과가 없어요.</p>
+              <p className="mt-8 text-gray-500">
+                {t('relationshipmap_add_popup_description_empty')}
+              </p>
             </div>
           )}
           <div
             className="flex items-center justify-center w-full h-12 font-bold text-white bg-gray-900 cursor-pointer rounded-3xl"
             onClick={handleOtherResultButtonClick}
           >
-            새로운 결과 보러가기
+            {t('relationshipmap_add_popup_button_new_result')}
           </div>
         </div>
         <div
           className="cursor-pointer absolute text-white text-[14px] -bottom-8 right-1/2 translate-x-1/2"
           onClick={handleOtherRelationReportButtonClick}
         >
-          다른 관계도 보러가기
+          {t('relationshipmap_add_popup_button_other_map')}
         </div>
       </CommonPopup>
       {loading && <Loading />}

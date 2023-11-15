@@ -7,6 +7,7 @@ import {
   CreateRealtionReportType,
   PlayData,
 } from '@/types/relationreport';
+import { t } from '@/utils/translate';
 import { useParams, useRouter } from 'next/navigation';
 import * as React from 'react';
 
@@ -19,6 +20,7 @@ const CreateRelationReportMemberList = () => {
   const { trigger, isMutating } = useCreateRelationReport();
 
   if (!data.playDatas || data.playDatas?.length === 0) {
+    // TODO: lokalise
     console.error('플레이데이터 정보가 없습니다.');
   }
 
@@ -48,7 +50,7 @@ const CreateRelationReportMemberList = () => {
               </div>
             </div>
             <div className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold">
-              선택
+              {t('relationshipmap_create_screen_button_select')}
             </div>
           </div>
         );

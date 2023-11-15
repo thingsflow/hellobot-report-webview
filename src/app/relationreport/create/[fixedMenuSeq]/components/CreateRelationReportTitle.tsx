@@ -1,5 +1,6 @@
 'use client';
 import useGetPlayData from '@/apis/useGetPlayData';
+import { t } from '@/utils/translate';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import * as React from 'react';
@@ -14,7 +15,7 @@ const CreateRelationReportTitle = () => {
   return (
     <div className="flex flex-col w-full px-4 py-8">
       <h2 className="text-[22px] font-bold text-gray-900 whitespace-pre-wrap">
-        {'아래 스킬 결과로\n새로운 관계도 모임을 생성합니다.'}
+        {t('relationshipmap_create_screen_description_main')}
       </h2>
       <div className="flex mt-4">
         {data?.skill ? (

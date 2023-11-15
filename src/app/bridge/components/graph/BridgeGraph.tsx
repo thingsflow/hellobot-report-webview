@@ -65,7 +65,7 @@ const initialEdges: Edge[] = [
 
 const BridgeGraph = () => {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
 
   return (

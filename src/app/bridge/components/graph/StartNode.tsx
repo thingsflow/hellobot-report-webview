@@ -1,4 +1,5 @@
 import useGetBridgeData from '@/apis/useGetBridgeData';
+import { t } from '@/utils/translate';
 import webview from '@/utils/webview';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
@@ -48,7 +49,9 @@ const StartNode: FC<NodeProps> = () => {
           />
         </div>
         <div className="flex w-full absolute bottom-[-27px] items-center justify-center text-gray-900 font-bold text-[13px] pt-[1px] ">
-          <div className="">시작하기</div>
+          <div className="">
+            {t('bridge_relationshipmap_screen_button_start')}
+          </div>
         </div>
       </div>
       <Handle

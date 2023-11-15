@@ -3,12 +3,13 @@ import useGetBridgeData from '@/apis/useGetBridgeData';
 import { RelationType } from '@/types/relationreport';
 import { useParams } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
+import { t } from '@/utils/translate';
 
 const RELATION_REPORT_TYPE_TEXT: { [key in RelationType]: string } = {
-  Friend: '친구 관계도',
-  Companion: '직장동료 관계도',
-  Family: '가족 관계도',
-  Partner: '연인 관계도',
+  Friend: t('bridge_relationshipmap_screen_title_friends'),
+  Companion: t('bridge_relationshipmap_screen_title_colleague'),
+  Family: t('bridge_relationshipmap_screen_title_family'),
+  Partner: t('bridge_relationshipmap_screen_title_lover'),
 };
 
 const BridgeReportTitle = () => {
@@ -33,7 +34,7 @@ const BridgeReportTitle = () => {
           </h1>
         )}
         <p className="text-gray-600 text-[13px]">
-          아래 스킬을 보고 관계도를 완성해 보세요
+          {t('bridge_relationshipmap_screen_description')}
         </p>
       </div>
     </div>

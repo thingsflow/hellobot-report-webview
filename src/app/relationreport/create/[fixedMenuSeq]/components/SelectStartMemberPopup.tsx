@@ -1,5 +1,6 @@
 import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
+import { t } from '@/utils/translate';
 
 const data = [
   {
@@ -67,7 +68,10 @@ const SelectStartMemberPopup = ({
   onSelect,
 }: ISelectStartMemberPopup) => {
   return (
-    <CommonPopup title={'시작 멤버 선택'} onClose={onClose}>
+    <CommonPopup
+      title={t('relationshipmap_create_screen_label_start_member')}
+      onClose={onClose}
+    >
       <div className="flex flex-col gap-4 relative">
         <div className="flex flex-col h-[390px] w-full overflow-scroll scrollbar-hide">
           {mockData.map((item) => {
@@ -89,7 +93,7 @@ const SelectStartMemberPopup = ({
                   className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold"
                   onClick={onSelect}
                 >
-                  선택
+                  {t('relationshipmap_create_screen_button_select')}
                 </div>
               </div>
             );

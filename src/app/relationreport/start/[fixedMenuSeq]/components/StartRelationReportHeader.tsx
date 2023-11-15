@@ -1,4 +1,5 @@
 'use client';
+import { t } from '@/utils/translate';
 import Webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
@@ -19,7 +20,9 @@ const StartRelationReportHeader = () => {
         priority
         onClick={handleBackButtonClick}
       />
-      <h1 className="text-[#242526] text-[17px] font-bold">시작 멤버 선택</h1>
+      <h1 className="text-[#242526] text-[17px] font-bold">
+        {t('relationshipmap_create_screen_label_start_member')}
+      </h1>
     </header>
   );
 };

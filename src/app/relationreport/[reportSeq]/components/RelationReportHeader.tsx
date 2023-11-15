@@ -3,6 +3,7 @@ import { share } from '@/utils';
 import Webview from '@/utils/webview';
 import Image from 'next/image';
 import * as React from 'react';
+import { toast } from 'react-toastify';
 
 interface IRelationReportHeader {
   title: string;
@@ -30,8 +31,9 @@ const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
     } else {
       const result = await share(dataToShare);
       if (result === 'copiedToClipboard') {
-        alert('링크를 클립보드에 복사했습니다.');
+        toast('relationshipmap_invite_popup_toast_copied');
       } else if (result === 'failed') {
+        // TODO: lokalise
         alert('공유하기가 지원되지 않는 환경입니다.');
       }
     }

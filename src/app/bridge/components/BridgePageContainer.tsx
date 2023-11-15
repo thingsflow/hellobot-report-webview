@@ -6,6 +6,7 @@ import Image from 'next/image';
 import useGetBridgeData from '@/apis/useGetBridgeData';
 import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
+import { t } from '@/utils/translate';
 
 const BridgePageContainer = () => {
   const params = useParams();
@@ -51,7 +52,10 @@ const BridgePageContainer = () => {
           />
         </div>
       )}
-      <Button title="시작하기" onClick={handleStartButtonClick} />
+      <Button
+        title={t('bridge_relationshipmap_screen_button_start')}
+        onClick={handleStartButtonClick}
+      />
       {loading && <Loading />}
     </div>
   );
