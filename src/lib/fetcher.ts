@@ -1,9 +1,6 @@
+import { ERROR_CODE, STORAGE_KEY } from '@/consts/common';
 import { environment } from '../../environments/environment';
 import { Arguments } from 'swr';
-
-const ERROR_CODE = {
-  TOKEN_EXPIRED: 'CO004',
-};
 
 interface Arg {
   arg: Arguments; // assigned user requrst body
@@ -24,14 +21,14 @@ const parseJsonSafely = (text: string, jsonParser = JSON.parse) => {
 export const fetcher = {
   get: (url: string) => {
     const requestFetch: (url: string) => Promise<any> = (url) => {
-      const token = localStorage.getItem('token');
-      const platform = localStorage.getItem('platform');
+      const token = localStorage.getItem(STORAGE_KEY.TOKEN);
+      const platform = localStorage.getItem(STORAGE_KEY.PLATFORM);
 
       return fetch(`${environment.apiBaseUrl}${url}`, {
         method: 'GET',
         headers: {
           Authorization: `user ${token}`,
-          ...(platform === 'platform' && { Os: 'web' }),
+          ...(platform === 'web' && { Os: 'web' }),
         },
       })
         .then((res) => res.json())
@@ -48,7 +45,7 @@ export const fetcher = {
             })
               .then((res) => res.json())
               .then((tokenRes) => {
-                localStorage.setItem('token', tokenRes.data.token);
+                localStorage.setItem(STORAGE_KEY.TOKEN, tokenRes.data.token);
 
                 return requestFetch(url);
               });
@@ -65,7 +62,7 @@ export const fetcher = {
       url,
       { arg },
     ) => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem(STORAGE_KEY.TOKEN);
 
       return fetch(`${environment.apiBaseUrl}${url}`, {
         method: 'POST',
@@ -89,7 +86,7 @@ export const fetcher = {
             })
               .then((res) => res.json())
               .then((tokenRes) => {
-                localStorage.setItem('token', tokenRes.data.token);
+                localStorage.setItem(STORAGE_KEY.TOKEN, tokenRes.data.token);
 
                 return requestFetch(url, { arg });
               });
@@ -106,7 +103,7 @@ export const fetcher = {
       url,
       { arg },
     ) => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem(STORAGE_KEY.TOKEN);
 
       return fetch(`${environment.apiBaseUrl}${url}`, {
         method: 'PATCH',
@@ -130,7 +127,7 @@ export const fetcher = {
             })
               .then((res) => res.json())
               .then((tokenRes) => {
-                localStorage.setItem('token', tokenRes.data.token);
+                localStorage.setItem(STORAGE_KEY.TOKEN, tokenRes.data.token);
 
                 return requestFetch(url, { arg });
               });
