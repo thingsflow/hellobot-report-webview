@@ -3,9 +3,11 @@ import { environment } from '../../environments/environment';
 const shareWithKakao = () => {
   if (window.Kakao) {
     const kakao = window.Kakao;
+    if (!kakao.isInitialized()) {
+      kakao.init(environment.kakaoAppJsKey);
+    }
 
-    kakao.Share.createDefaultButton({
-      container: '#kakaotalk-sharing-btn',
+    kakao.Link.sendDefault({
       objectType: 'feed',
       content: {
         title: '2023 관계도',
