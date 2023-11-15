@@ -20,6 +20,9 @@ const CreateRelationReportForm = () => {
   const params = useParams();
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
+    options: {
+      revalidateIfStale: false,
+    },
   });
   const { trigger, isMutating } = useCreateRelationReport();
   const router = useRouter();
@@ -47,7 +50,7 @@ const CreateRelationReportForm = () => {
             }) || [],
         },
       },
-      false,
+      { revalidate: false },
     );
   };
 
