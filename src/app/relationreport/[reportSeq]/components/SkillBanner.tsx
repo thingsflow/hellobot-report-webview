@@ -12,7 +12,7 @@ const SkillBanner = () => {
   });
 
   const handleBannerButtonClick = () => {
-    webview.goSkillDetailPage({ seq: data?.skill?.seq });
+    webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
   };
 
   // TODO: 스킬 데이터 연동

@@ -13,7 +13,7 @@ const BridgeReportSkillBanner = () => {
   });
 
   const handleBannerButtonClick = () => {
-    webview.goSkillDetailPage({ seq: data?.skill?.seq });
+    webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
   };
 
   return (

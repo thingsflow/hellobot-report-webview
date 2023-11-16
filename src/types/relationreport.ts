@@ -26,6 +26,11 @@ export interface Skill {
   priceAmount?: number;
   discountPriceAmount?: number;
   newSkillBannerImageUrl?: string;
+  chatbot?: {
+    seq?: number;
+    activeProfileUrl?: string;
+    name?: string;
+  };
   // TODO: 스킬 데이터 추가 연동하기
   // imageUrl?: number
   // badge?: {
