@@ -16,7 +16,7 @@ const BridgePageContainer = () => {
 
   const handleStartButtonClick = () => {
     webview.goSkillDetailPage({
-      seq: data?.skill?.seq,
+      skillSeq: data?.skill?.seq,
     });
   };
 

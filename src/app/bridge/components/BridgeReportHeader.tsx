@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import * as React from 'react';
 import { environment } from '../../../../environments/environment';
 import { t } from '@/utils/translate';
+import { toast } from 'react-toastify';
 
 const BridgeReportHeader = () => {
   const params = useParams();
@@ -33,11 +34,9 @@ const BridgeReportHeader = () => {
       });
     } else {
       const result = await share(dataToShare);
+
       if (result === 'copiedToClipboard') {
-        alert(t('relationshipmap_invite_popup_toast_copied'));
-      } else if (result === 'failed') {
-        // TODO: lokalise
-        alert('공유하기가 지원되지 않는 환경입니다.');
+        toast(t('relationshipmap_invite_popup_toast_copied'));
       }
     }
   };

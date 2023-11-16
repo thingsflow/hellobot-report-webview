@@ -9,6 +9,7 @@ import { PlayData } from '@/types/relationreport';
 import { useParams } from 'next/navigation';
 import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 import { t } from '@/utils/translate';
+import useGetRelationReport from '@/apis/useGetRelationReport';
 
 interface IAddFriendsPopup {
   onClose: () => void;
@@ -16,12 +17,15 @@ interface IAddFriendsPopup {
 
 const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
   const params = useParams();
+  const { data: relationReportData } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
   const { isAddFriendsPopupOpen } = React.useContext(
     RelationReportModalContext,
   );
 
   const { data, loading, mutate } = useGetPlayData({
-    fixedMenuSeq: '34603', // TODO: 실제 스킬 시퀀스로 변경
+    fixedMenuSeq: String(relationReportData?.skill?.seq),
     reportSeq: params.reportSeq as string,
   });
 
@@ -34,8 +38,10 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
   };
 
   const handleOtherResultButtonClick = () => {
-    // TODO: 챗봇 seq으로 변경
-    webview.goChatRoomPage({ seq: 52 });
+    webview.goChatRoomPage({
+      skillSeq: data.skill?.seq,
+      chatbotSeq: data.skill?.chatbot?.seq,
+    });
   };
 
   const handlePlayDataItemClick = async (targetData: PlayData) => {
@@ -79,7 +85,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
       >
         <div className="relative flex flex-col gap-4">
           {data.playDatas ? (
-            <div className="flex flex-col h-[390px] w-full overflow-scroll">
+            <div className="flex flex-col h-[390px] w-full overflow-scroll scrollbar-hide">
               {data.playDatas?.map((item) => {
                 return (
                   <div

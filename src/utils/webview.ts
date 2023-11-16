@@ -4,10 +4,19 @@ type WebviewActionTypes =
   | 'goSkillDetailPage'
   | 'goRelationReportListPage'
   | 'goChatRoomPage';
-interface WebviewActionParameter {
+
+interface DoShareType {
   shareTitle?: string;
   shareLink?: string;
-  seq?: number;
+}
+
+interface goSkillDetailPageType {
+  skillSeq?: number;
+}
+
+interface goChatRoomPageType {
+  skillSeq?: number;
+  chatbotSeq?: number;
 }
 
 const sendEvent = ({
@@ -15,7 +24,7 @@ const sendEvent = ({
   parameter,
 }: {
   action: WebviewActionTypes;
-  parameter?: WebviewActionParameter;
+  parameter?: DoShareType | goSkillDetailPageType | goChatRoomPageType;
 }) => {
   // IOS
   const platform = localStorage.getItem('platform');
@@ -67,7 +76,7 @@ const sendEvent = ({
   return;
 };
 
-const doShare = (parameter: WebviewActionParameter) => {
+const doShare = (parameter: DoShareType) => {
   sendEvent({ action: 'doShare', parameter });
 };
 
@@ -75,7 +84,7 @@ const goBack = () => {
   sendEvent({ action: 'goBack' });
 };
 
-const goSkillDetailPage = (parameter: WebviewActionParameter) => {
+const goSkillDetailPage = (parameter: goSkillDetailPageType) => {
   sendEvent({ action: 'goSkillDetailPage', parameter });
 };
 
@@ -83,7 +92,7 @@ const goRelationReportListPage = () => {
   sendEvent({ action: 'goRelationReportListPage' });
 };
 
-const goChatRoomPage = (parameter: WebviewActionParameter) => {
+const goChatRoomPage = (parameter: goChatRoomPageType) => {
   sendEvent({ action: 'goChatRoomPage', parameter });
 };
 
