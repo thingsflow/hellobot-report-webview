@@ -34,16 +34,9 @@ export const share = (data: ShareData) => {
       }
 
       if (data.url) {
-        const result = await copyToClipboard(data.url);
-
-        if (result) {
-          resolve('copiedToClipboard');
-          return 'copiedToClipboard';
-        }
+        copyToClipboard(data.url);
+        resolve('copiedToClipboard');
       }
-
-      resolve('failed');
-      return 'failed';
     },
   );
 };
