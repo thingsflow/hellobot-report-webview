@@ -75,6 +75,7 @@ export interface GetBridgeDataType extends Error {
     skillSeq?: number;
     skill?: {
       chatbot?: {
+        seq?: number;
         activeProfileUrl?: string;
         name?: string;
       };

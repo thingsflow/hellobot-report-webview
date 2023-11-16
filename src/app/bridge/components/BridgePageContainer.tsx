@@ -16,7 +16,7 @@ const BridgePageContainer = () => {
 
   const handleStartButtonClick = () => {
     webview.goSkillDetailPage({
-      chatRoomId: data?.skill?.seq,
+      seq: data?.skill?.seq,
     });
   };
 

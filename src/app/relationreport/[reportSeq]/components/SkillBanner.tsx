@@ -10,7 +10,7 @@ const SkillBanner = ({
   views,
 }: any) => {
   const handleBannerButtonClick = () => {
-    webview.goSkillDetailPage({ skillId: 2141 });
+    webview.goSkillDetailPage({ seq: 2141 });
   };
 
   return (
