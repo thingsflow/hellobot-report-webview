@@ -24,7 +24,7 @@ const StartNode: FC<NodeProps> = () => {
   });
 
   const handleNodeClick = () => {
-    webview.goChatRoomPage({ chatRoomId: data?.skill?.seq });
+    webview.goChatRoomPage({ seq: data?.skill?.chatbot?.seq });
   };
 
   return (

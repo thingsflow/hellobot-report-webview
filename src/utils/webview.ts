@@ -7,8 +7,7 @@ type WebviewActionTypes =
 interface WebviewActionParameter {
   shareTitle?: string;
   shareLink?: string;
-  skillId?: number;
-  chatRoomId?: number;
+  seq?: number;
 }
 
 const sendEvent = ({

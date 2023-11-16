@@ -34,7 +34,8 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
   };
 
   const handleOtherResultButtonClick = () => {
-    webview.goChatRoomPage({ chatRoomId: data.skill?.seq });
+    // TODO: 챗봇 seq으로 변경
+    webview.goChatRoomPage({ seq: 52 });
   };
 
   const handlePlayDataItemClick = async (targetData: PlayData) => {
