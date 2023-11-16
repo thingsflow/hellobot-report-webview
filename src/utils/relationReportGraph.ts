@@ -1,3 +1,4 @@
+import { RelationReport } from '@/types/relationreport';
 import { Node } from 'reactflow';
 
 const mockResult = [
@@ -39,51 +40,6 @@ const mockResult = [
   '말안해도 눈빛👀만 봐도 통하는 사이',
 ];
 
-const mockResultText = [
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '병오일주',
-  '병오일주',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '병오일주',
-  '병오일주',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '병오일주',
-  '병오일주',
-  '병오일주',
-  '병오일주',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '긴 결과 텍스트 히히히히히히호홓',
-  '긴 결과 텍스트 히히히히히히호홓',
-];
-
 export interface NodeData {
   index: number;
   isDefaultNode: boolean;
@@ -120,13 +76,29 @@ const getRadiusOffset = (nodeCount: number) => {
   }
 };
 
-export const generateNodeData = (names: string[]) => {
-  if (typeof window === 'undefined') return [];
+export const generateNodes = (
+  playData?: Array<{
+    seq?: number;
+    name?: string;
+    resultName?: string;
+  }>,
+): Node<
+  {
+    index: number;
+    userName?: string;
+    resultText?: string;
+    isDefaultNode: boolean;
+    seq?: number;
+  },
+  string | undefined
+>[] => {
+  if (typeof window === 'undefined' || !playData) return [];
 
   const deviceWidth = window.innerWidth > 600 ? 600 : window.innerWidth || 375;
   const deviceHeight = window.innerHeight || 812;
+  const isPlayDataOver20 = playData.length >= 20;
 
-  if (names.length < 2) {
+  if (playData.length < 2) {
     // 관계도에 한 명만 추가되어있는 경우
     const PADDING_X = 110; // 그래프 양 옆 패딩의 합
     const PADDING_TOP = 223; // 그래프 상단 패딩 높이
@@ -136,9 +108,10 @@ export const generateNodeData = (names: string[]) => {
         id: 'first_node',
         data: {
           index: 0,
-          userName: names[0],
-          resultText: mockResultText[0],
+          userName: playData[0].name,
+          resultText: playData[0].resultName,
           isDefaultNode: false,
+          seq: playData[0]?.seq,
         },
         position: {
           x: PADDING_X / 2,
@@ -156,51 +129,11 @@ export const generateNodeData = (names: string[]) => {
         type: 'defaultNode',
       },
     ];
-  } else if (names.length >= 20) {
-    // 관계도에 20명이 모두 추가된 경우
-    const result = [];
-    const nodeCount = names.length;
-    const radiusOffset = getRadiusOffset(names.length);
-    const radius = (deviceWidth / 2) * radiusOffset;
-
-    const centerX = deviceWidth / 2;
-    const centerY = deviceHeight / 2;
-
-    const angleIncrement = (2 * Math.PI) / nodeCount;
-    const angleRadians = (270 * Math.PI) / 180; // 그래프 상단 꼭지점 위치를 맞추기 위해 그래프를 270도 회전시킨다.
-
-    for (let i = 0; i < names.length + 1; i++) {
-      const angle = i * angleIncrement;
-
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY + radius * Math.sin(angle);
-
-      const rotatedX = x * Math.cos(angleRadians) - y * Math.sin(angleRadians);
-      const rotatedY = x * Math.sin(angleRadians) + y * Math.cos(angleRadians);
-
-      result.push({
-        id: `node${i}`,
-        data: {
-          index: i,
-          userName: names[i],
-          resultText: mockResultText[i],
-          isDefaultNode: false,
-        },
-        position: {
-          x: rotatedX,
-          y: rotatedY,
-        },
-        type: 'commonNode',
-      });
-    }
-
-    return result;
   }
 
-  // 관계도에 2명 이상 20명 이하 추가되어있는 경우
   const result = [];
-  const nodeCount = names.length + 1;
-  const radiusOffset = getRadiusOffset(names.length);
+  const nodeCount = playData.length + 1;
+  const radiusOffset = getRadiusOffset(playData.length);
   const radius = (deviceWidth / 2) * radiusOffset;
 
   const centerX = deviceWidth / 2;
@@ -209,7 +142,7 @@ export const generateNodeData = (names: string[]) => {
   const angleIncrement = (2 * Math.PI) / nodeCount;
   const angleRadians = (270 * Math.PI) / 180; // 그래프 상단 꼭지점 위치를 맞추기 위해 그래프를 270도 회전시킨다.
 
-  for (let i = 0; i < names.length + 1; i++) {
+  for (let i = 0; i < playData.length + 1; i++) {
     const angle = i * angleIncrement;
 
     const x = centerX + radius * Math.cos(angle);
@@ -218,28 +151,45 @@ export const generateNodeData = (names: string[]) => {
     const rotatedX = x * Math.cos(angleRadians) - y * Math.sin(angleRadians);
     const rotatedY = x * Math.sin(angleRadians) + y * Math.cos(angleRadians);
 
-    const isLastIndex = i === names.length;
+    const isLastIndex = i === playData.length;
 
     result.push({
       id: `node${i}`,
       data: {
         index: i,
-        userName: names[i],
-        resultText: mockResultText[i],
-        isDefaultNode: isLastIndex ? true : false,
+        userName: playData[i]?.name,
+        resultText: playData[i]?.resultName,
+        isDefaultNode: isPlayDataOver20 ? false : isLastIndex ? true : false,
+        seq: playData[i]?.seq,
       },
       position: {
         x: rotatedX,
         y: rotatedY,
       },
-      type: isLastIndex ? 'defaultNode' : 'commonNode',
+      type: isPlayDataOver20
+        ? 'commonNode'
+        : isLastIndex
+        ? 'defaultNode'
+        : 'commonNode',
     });
   }
 
   return result;
 };
 
-export const generateEdgeData = (nodes: Node<NodeData>[]) => {
+export const generateEdges = (
+  data: RelationReport,
+  nodes: Node<
+    {
+      index: number;
+      userName?: string | undefined;
+      resultText?: string | undefined;
+      isDefaultNode: boolean;
+      seq?: number;
+    },
+    string | undefined
+  >[],
+) => {
   if (nodes.length === 0) return [];
 
   const result = [];
@@ -262,6 +212,16 @@ export const generateEdgeData = (nodes: Node<NodeData>[]) => {
   for (let i = 0; i < nodes.length; i++) {
     for (let j = 0; j < nodes.length; j++) {
       if (i === j) break;
+      const edgeData = data.edges?.find((item) => {
+        if (
+          (nodes[i].data.seq === item.source &&
+            nodes[j].data.seq === item.target) ||
+          (nodes[i].data.seq === item.target &&
+            nodes[j].data.seq === item.source)
+        ) {
+          return item;
+        }
+      });
       const isDefaultEdge =
         nodes[i].data.isDefaultNode || nodes[j].data.isDefaultNode;
 
@@ -271,7 +231,7 @@ export const generateEdgeData = (nodes: Node<NodeData>[]) => {
         target: nodes[j].id,
         type: isDefaultEdge ? 'default' : 'common',
         data: {
-          text: mockResult[i],
+          text: edgeData?.label,
           isOnlyEdge: false,
         },
       });

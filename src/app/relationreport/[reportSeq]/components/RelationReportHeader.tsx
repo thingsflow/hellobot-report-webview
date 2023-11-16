@@ -1,23 +1,27 @@
 'use client';
+import useGetRelationReport from '@/apis/useGetRelationReport';
 import { share } from '@/utils';
 import Webview from '@/utils/webview';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import * as React from 'react';
 import { toast } from 'react-toastify';
+import { environment } from '../../../../../environments/environment';
+import { t } from '@/utils/translate';
 
-interface IRelationReportHeader {
-  title: string;
-  shareLink: string;
-}
+const RelationReportHeader = () => {
+  const params = useParams();
+  const { data } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
 
-const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
   const handleCloseButtonClick = () => {
     Webview.goBack();
   };
 
   const dataToShare: ShareData = {
-    title,
-    url: shareLink,
+    title: data?.title,
+    url: environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
   };
 
   const handleShareIconClick = async () => {
@@ -25,16 +29,15 @@ const RelationReportHeader = ({ title, shareLink }: IRelationReportHeader) => {
 
     if (isAndroidWebView) {
       Webview.doShare({
-        shareTitle: title,
-        shareLink,
+        shareTitle: data?.title,
+        shareLink:
+          environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
       });
     } else {
       const result = await share(dataToShare);
+
       if (result === 'copiedToClipboard') {
-        toast('relationshipmap_invite_popup_toast_copied');
-      } else if (result === 'failed') {
-        // TODO: lokalise
-        alert('공유하기가 지원되지 않는 환경입니다.');
+        toast(t('relationshipmap_invite_popup_toast_copied'));
       }
     }
   };

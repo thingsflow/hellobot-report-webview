@@ -1,22 +1,26 @@
 import Image from 'next/image';
 import * as React from 'react';
 import { RelationReportModalContext } from '../page';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { t } from '@/utils/translate';
+import useGetRelationReport from '@/apis/useGetRelationReport';
 
 interface IRelationReportTitle {
-  title: string;
   onKakaoTalkButtonClick: () => void;
 }
 
 const RelationReportTitle = ({
-  title,
   onKakaoTalkButtonClick,
 }: IRelationReportTitle) => {
   const router = useRouter();
+  const params = useParams();
+
+  const { data } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
 
   const createNewMoimButtonClick = () => {
-    router.push('/relationreport/create');
+    router.push('/relationreport/create/' + data?.skillSeq);
   };
 
   const { setEditMoimPopupInfo } = React.useContext(RelationReportModalContext);
@@ -24,13 +28,13 @@ const RelationReportTitle = ({
   return (
     <div className="px-5 pt-6">
       <div className="flex items-center mb-3">
-        <h1 className="text-[22px] font-bold mr-1">{title}</h1>
+        <h1 className="text-[22px] font-bold mr-1">{data?.title}</h1>
         <Image
           className="z-50 cursor-pointer"
           onClick={() =>
             setEditMoimPopupInfo({
-              title: '기본 설정된 타이틀',
-              isPrivate: true,
+              title: data?.title || '',
+              isPrivate: data?.shareScope === 'PRIVATE' ? true : false,
             })
           }
           src="/images/icon-modify-small.svg"

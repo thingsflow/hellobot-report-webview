@@ -6,19 +6,38 @@ import { RelationReportModalContext } from '../../page';
 import { copyToClipboard } from '@/utils';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
+import { useParams } from 'next/navigation';
+import useGetRelationReport from '@/apis/useGetRelationReport';
+import { environment } from '../../../../../../environments/environment';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
 }
 
 const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
+  const params = useParams();
+  const { data } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
   const { isInviteFriendsPopupOpen } = React.useContext(
     RelationReportModalContext,
   );
 
   const handleCopyLinkButtonClick = () => {
-    copyToClipboard('https://storyplay.com');
-    toast('클립보드에 링크가 복사되었습니다.');
+    copyToClipboard(
+      environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
+    );
+    toast(t('relationshipmap_invite_popup_toast_copied'));
+  };
+
+  const handleShareWithKakaoButtonClick = () => {
+    shareWithKakao({
+      title: data?.title,
+      description: '뭐가 들어가야하지?',
+      imageUrl: data?.imageUrl,
+      shareUrl:
+        environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
+    });
   };
 
   if (!isInviteFriendsPopupOpen) {
@@ -26,15 +45,19 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   }
 
   return (
-    <CommonPopup title={'친구 초대'} onClose={onClose}>
+    <CommonPopup
+      title={t('relationshipmap_screen_button_invite')}
+      onClose={onClose}
+    >
       <div className="flex flex-col gap-6">
         <p className="text-[#7E8185] text-[14px]">
           {t('relationshipmap_invite_popup_description')}
         </p>
         <div>
           <div className="flex w-full mb-2">
-            <div className="flex items-center h-12 p-2 text-gray-600 rounded-l-lg bg-gray-50 basis-2/3 grow">
-              https://bit.ly/hello_bot
+            <div className="flex items-center h-12 p-2 overflow-hidden text-gray-600 rounded-l-lg bg-gray-50 basis-2/3 grow whitespace-nowrap">
+              {environment.relationReportShareBaseUrl +
+                `?relationSeq=${data?.seq}`}
             </div>
             <div
               className="cursor-pointer bg-gray-200 font-semibold rounded-r-lg rounded-sm w-[91px] text-gray-900 h-12 flex items-center justify-center"
@@ -45,7 +68,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
           </div>
           <div
             className="cursor-pointer basis-1/3 flex gap-2 w-full bg-[#FEE500] h-[45px] justify-center items-center rounded-lg"
-            onClick={shareWithKakao}
+            onClick={handleShareWithKakaoButtonClick}
           >
             <div>
               <Image

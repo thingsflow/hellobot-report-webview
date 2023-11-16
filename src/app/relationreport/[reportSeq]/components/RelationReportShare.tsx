@@ -4,12 +4,31 @@ import shareWithKakao from '@/utils/shareWithKakao';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
+import { useParams } from 'next/navigation';
+import useGetRelationReport from '@/apis/useGetRelationReport';
+import { environment } from '../../../../../environments/environment';
 
 const RelationReportShare = () => {
+  const params = useParams();
+  const { data } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
   const handleCopyLinkButtonClick = () => {
-    // TODO: 공유url 실제값으로 변경
-    copyToClipboard('https://storyplay.com');
+    copyToClipboard(
+      environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
+    );
     toast(t('relationshipmap_invite_popup_toast_copied'));
+    toast(t('relationshipmap_invite_popup_toast_copied'));
+  };
+
+  const handleShareWithKakaoButtonClick = () => {
+    shareWithKakao({
+      title: data?.title,
+      description: '뭐가 들어가야하지?',
+      imageUrl: data?.imageUrl,
+      shareUrl:
+        environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
+    });
   };
 
   return (
@@ -22,7 +41,7 @@ const RelationReportShare = () => {
         <div className="flex gap-3 mt-6">
           <div
             className="w-12 h-12 rounded-full bg-[#FFE812] flex items-center justify-center"
-            onClick={shareWithKakao}
+            onClick={handleShareWithKakaoButtonClick}
           >
             <Image
               src="/images/kakao.svg"

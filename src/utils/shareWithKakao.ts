@@ -1,7 +1,17 @@
 import { environment } from '../../environments/environment';
 import { t } from './translate';
 
-const shareWithKakao = () => {
+const shareWithKakao = ({
+  title,
+  description,
+  imageUrl,
+  shareUrl,
+}: {
+  title?: string;
+  description?: string;
+  imageUrl?: string;
+  shareUrl?: string;
+}) => {
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
@@ -11,23 +21,22 @@ const shareWithKakao = () => {
     kakao.Link.sendDefault({
       objectType: 'feed',
       content: {
-        title: '2023 관계도',
-        description: '관계도 설명~~~어쩌구 저쩌구',
-        imageUrl:
-          'https://github.com/thingsflow/hellobot-report-webview/assets/116791055/36d4b1cf-d3ef-45a9-b6d4-cd9bea0ca390',
+        title,
+        description,
+        imageUrl,
         imageWidth: 1200,
         imageHeight: 1200,
         link: {
-          mobileWebUrl: 'http://localhost:4400/',
-          webUrl: 'http://localhost:4400/',
+          mobileWebUrl: shareUrl,
+          webUrl: shareUrl,
         },
       },
       buttons: [
         {
           title: t('result_detail_button_my_result'),
           link: {
-            mobileWebUrl: 'http://localhost:4400/',
-            webUrl: 'http://localhost:4400/',
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
           },
         },
       ],

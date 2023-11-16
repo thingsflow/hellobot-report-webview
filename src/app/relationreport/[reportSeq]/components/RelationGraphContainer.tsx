@@ -17,12 +17,8 @@ const RelationGraphContainer = () => {
       >
         <RelationGraph />
       </div>
-      <RelationReportHeader
-        title={'무의식 속 내 모습 [우리 모임] 관계도'}
-        shareLink="https://storyplay.com"
-      />
+      <RelationReportHeader />
       <RelationReportTitle
-        title={'무의식 속 내 모습 [우리 모임] 관계도'}
         onKakaoTalkButtonClick={() => setInviteFriendsPopupOpen(true)}
       />
     </div>

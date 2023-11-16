@@ -1,18 +1,21 @@
+import useGetRelationReport from '@/apis/useGetRelationReport';
 import { t } from '@/utils/translate';
 import webview from '@/utils/webview';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import * as React from 'react';
 
-const SkillBanner = ({
-  title = '2024년 신년운세 보고서',
-  image,
-  stars,
-  views,
-}: any) => {
+const SkillBanner = () => {
+  const params = useParams();
+  const { data } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
+
   const handleBannerButtonClick = () => {
-    webview.goSkillDetailPage({ seq: 2141 });
+    webview.goSkillDetailPage({ seq: data?.skill?.seq });
   };
 
+  // TODO: 스킬 데이터 연동
   return (
     <div className="cursor-pointer h-[86px] flex bg-gray-500 items-center px-5 gap-4">
       <div className="w-[22px] h-[22px] bg-gray-400 flex-shrink-0"></div>
@@ -24,8 +27,8 @@ const SkillBanner = ({
         alt="Skill Icon"
       /> */}
       <div>
-        <h5 className="text-white flex" onClick={handleBannerButtonClick}>
-          <span className="pt-[1px] font-medium">{title}</span>
+        <h5 className="flex text-white" onClick={handleBannerButtonClick}>
+          <span className="pt-[1px] font-medium">{data?.skill?.name}</span>
           <Image
             className="bg-gray300 fill-white"
             src={'/images/arrow-right-white.svg'}
@@ -35,7 +38,7 @@ const SkillBanner = ({
           />
         </h5>
         <div className="flex">
-          <div className="flex gap-1 items-center">
+          <div className="flex items-center gap-1">
             <Image
               className="bg-gray300 fill-white"
               src={'/images/ic-star.svg'}

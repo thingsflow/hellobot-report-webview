@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactFlow, {
-  Edge,
   EdgeTypes,
-  Node,
   useEdgesState,
   useNodesState,
   SelectionMode,
@@ -13,13 +11,11 @@ import CommonEdge from './Edge';
 import CommonNode from './Node';
 import DefaultNode from './DefaultNode';
 
-import {
-  NodeData,
-  generateEdgeData,
-  generateNodeData,
-} from '@/utils/relationReportGraph';
+import { generateEdges, generateNodes } from '@/utils/relationReportGraph';
 import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
+import useGetRelationReport from '@/apis/useGetRelationReport';
+import { useParams } from 'next/navigation';
 
 const nodeTypes = {
   commonNode: CommonNode,
@@ -30,19 +26,23 @@ const edgeTypes: EdgeTypes = {
   default: DefaultEdge,
 };
 
-const initialNodes: Node<NodeData>[] = generateNodeData([
-  '김은빈',
-  '현아',
-  '네글자야',
-  '수지',
-]);
-
-const initialEdges: Edge[] = generateEdgeData(initialNodes);
-
 const RelationGraph = () => {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+  const params = useParams();
+  const { data } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
+
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdge, onEdgesChange] = useEdgesState([]);
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
+
+  React.useEffect(() => {
+    if (!data) return;
+
+    const nodes = generateNodes(data?.playDatas);
+    setNodes(nodes);
+    setEdge(generateEdges(data, nodes));
+  }, [data]);
 
   return (
     <>

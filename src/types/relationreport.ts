@@ -26,6 +26,14 @@ export interface Skill {
   priceAmount?: number;
   discountPriceAmount?: number;
   newSkillBannerImageUrl?: string;
+  // TODO: 스킬 데이터 추가 연동하기
+  // imageUrl?: number
+  // badge?: {
+  //   title?: string;
+  //   imageUrl?: string;
+  // };
+  // evalAvgScore?: number;
+  // totalEvalutationCount?: number;
 }
 
 export type ShareScope = 'PUBLIC' | 'PRIVATE';
@@ -59,6 +67,7 @@ export interface RelationReport {
   skill?: Skill;
 }
 
+// ----------- API TYPES ------------
 export interface GetPlayDataType extends Error {
   data?: {
     playDatas?: Array<PlayData>;
@@ -121,4 +130,8 @@ export interface UpdateRelationReportInputType {
   playDataSeqs?: Array<number>;
   shareScope?: ShareScope;
   title?: string;
+}
+
+export interface GetRelationReportType extends Error {
+  data?: RelationReport;
 }
