@@ -1,12 +1,15 @@
-import { FC } from 'react';
+import React from 'react';
 import {
   EdgeProps,
   BaseEdge,
   getStraightPath,
   EdgeLabelRenderer,
 } from 'reactflow';
+import { RelationReportModalContext } from '../../page';
+import Lottie from 'react-lottie-player';
+import lottieJson from '../../../../../../public/images/generate-loading.json';
 
-const Edge: FC<EdgeProps> = ({
+const Edge: React.FC<EdgeProps> = ({
   id,
   sourceX,
   sourceY,
@@ -14,6 +17,7 @@ const Edge: FC<EdgeProps> = ({
   targetY,
   data,
 }) => {
+  const { isAllLoading } = React.useContext(RelationReportModalContext);
   const [path, labelX, labelY] = getStraightPath({
     sourceX,
     sourceY,
@@ -32,22 +36,46 @@ const Edge: FC<EdgeProps> = ({
         }}
       />
       <EdgeLabelRenderer>
-        <div
-          style={{
-            position: 'absolute',
-            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-            padding: 8,
-            width: '136px',
-            fontSize: 14,
-            fontWeight: 400,
-            borderRadius: '16px',
-            border: '1px solid #DDDEE1',
-            background: '#FFF',
-          }}
-          className="nodrag nopan"
-        >
-          {data.text}
-        </div>
+        {isAllLoading && !data.text ? (
+          <div
+            style={{
+              position: 'absolute',
+              transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+              width: '60px',
+              height: '38px',
+              borderRadius: '16px',
+              border: '1px solid #DDDEE1',
+              background: '#FFF',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            className="nodrag nopan"
+          >
+            <div className="w-[38px]">
+              <Lottie loop animationData={lottieJson} play />
+            </div>
+          </div>
+        ) : (
+          <>
+            <div
+              style={{
+                position: 'absolute',
+                transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                padding: 8,
+                width: '136px',
+                fontSize: 14,
+                fontWeight: 400,
+                borderRadius: '16px',
+                border: '1px solid #DDDEE1',
+                background: '#FFF',
+              }}
+              className="nodrag nopan"
+            >
+              {data.text}
+            </div>
+          </>
+        )}
       </EdgeLabelRenderer>
     </>
   );

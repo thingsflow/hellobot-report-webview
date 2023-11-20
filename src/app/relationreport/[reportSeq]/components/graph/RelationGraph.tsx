@@ -16,6 +16,9 @@ import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import { useParams } from 'next/navigation';
+import { RelationReportModalContext } from '../../page';
+import { toast } from 'react-toastify';
+import { t } from '@/utils/translate';
 
 const nodeTypes = {
   commonNode: CommonNode,
@@ -28,20 +31,58 @@ const edgeTypes: EdgeTypes = {
 
 const RelationGraph = () => {
   const params = useParams();
-  const { data } = useGetRelationReport({
-    reportSeq: params.reportSeq as string,
-  });
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdge, onEdgesChange] = useEdgesState([]);
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
+  const { isAllLoading, setIsAllLoading } = React.useContext(
+    RelationReportModalContext,
+  );
+  const toastRef = React.useRef<any>(null);
+
+  const { data } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+    options: {
+      refreshInterval: 1000,
+    },
+  });
 
   React.useEffect(() => {
-    if (!data) return;
+    const DEFAULT_NODE_COUNT = 1;
 
+    if (!data) return;
     const nodes = generateNodes(data?.playDatas);
+    const edges = generateEdges(data, nodes);
+
     setNodes(nodes);
-    setEdge(generateEdges(data, nodes));
+    setEdge(edges);
+
+    if (!data.edges) return;
+    if (
+      data.edges?.length >=
+      edges.length - nodes.length + DEFAULT_NODE_COUNT
+    ) {
+      setIsAllLoading(false);
+      toast.dismiss(toastRef.current);
+      toast.dismiss();
+    } else {
+      setIsAllLoading(true);
+      toastRef.current = toast(t('relationshipmap_popup_toast__update'), {
+        isLoading: true,
+      });
+    }
+    // if (
+    //   data.edges &&
+    //   data.edges?.length <= edges.length - nodes.length + DEFAULT_NODE_COUNT
+    // ) {
+    //   setIsAllLoading(true);
+    //   toast(t('relationshipmap_popup_toast__update'), {
+    //     autoClose: false,
+    //   });
+    // } else {
+    //   setIsAllLoading(false);
+    //   toast.dismiss();
+    // }
   }, [data]);
 
   return (

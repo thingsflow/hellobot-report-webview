@@ -37,7 +37,6 @@ const targetHandleStyle: CSSProperties = {
 };
 
 const CommonNode: FC<NodeProps> = ({ data }) => {
-  console.log('node', data, RELATION_REPORT_NODE_COLORS[data.index]);
   return (
     <>
       <Handle
