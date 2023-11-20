@@ -21,6 +21,8 @@ interface IRelationReportModalContext {
       isPrivate: boolean;
     } | null>
   >;
+  isAllLoading: boolean;
+  setIsAllLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const initialState = {
@@ -30,6 +32,8 @@ const initialState = {
   setIsAddFriendsPopupOpen: () => {},
   editMoimPopupInfo: null,
   setEditMoimPopupInfo: () => {},
+  isAllLoading: false,
+  setIsAllLoading: () => {},
 };
 
 export const RelationReportModalContext =
@@ -40,6 +44,7 @@ const RelationReportPage = () => {
     React.useState(false);
   const [isAddFriendsPopupOpen, setIsAddFriendsPopupOpen] =
     React.useState(false);
+  const [isAllLoading, setIsAllLoading] = React.useState(false);
   const [editMoimPopupInfo, setEditMoimPopupInfo] = React.useState<{
     title: string;
     isPrivate: boolean;
@@ -54,6 +59,8 @@ const RelationReportPage = () => {
         setIsAddFriendsPopupOpen,
         editMoimPopupInfo,
         setEditMoimPopupInfo,
+        isAllLoading,
+        setIsAllLoading,
       }}
     >
       <RelationReportPageContainer />

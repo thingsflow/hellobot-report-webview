@@ -15,9 +15,10 @@ export default function useGetPlayData({
   >;
 }) {
   const { data, error, mutate, isLoading } = useSWR<GetPlayDataType>(
-    `/v2/fixed-menus/${fixedMenuSeq}/play-datas${
-      reportSeq ? `?reportSeq=${reportSeq}` : ''
-    }`,
+    fixedMenuSeq &&
+      `/v2/fixed-menus/${fixedMenuSeq}/play-datas?${
+        reportSeq ? `reportSeq=${reportSeq}` : ''
+      }`,
     fetcher.get,
     options,
   );

@@ -24,7 +24,7 @@ const RelationReportShare = () => {
   const handleShareWithKakaoButtonClick = () => {
     shareWithKakao({
       title: data?.title,
-      description: '뭐가 들어가야하지?',
+      description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
       imageUrl: data?.imageUrl,
       shareUrl:
         environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
@@ -34,7 +34,20 @@ const RelationReportShare = () => {
   return (
     <div>
       <div className="flex flex-col items-center py-10">
-        <div className="w-full h-[320px] bg-gray-300"></div>
+        {data?.sampleImageUrl && (
+          <div className="relative w-full h-auto">
+            <Image
+              src={data.sampleImageUrl || ''}
+              alt="Sample Image"
+              width={200}
+              height={500}
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
+            />
+          </div>
+        )}
         <p className="whitespace-pre-wrap text-[#7E8185] text-center mt-8">
           {t('relationshipmap_screen_description_share')}
         </p>

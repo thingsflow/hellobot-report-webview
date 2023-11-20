@@ -1,6 +1,29 @@
-import { RELATION_REPORT_NODE_COLORS } from '@/consts/common';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
+
+// 외부 파일에서 불러오면 적용되지 않는 이슈가 있음
+export const RELATION_REPORT_NODE_COLORS = [
+  'bg-[#20DB93]',
+  'bg-[#818CF8]',
+  'bg-[#38BDF8]',
+  'bg-[#FF5D7A]',
+  'bg-[#F59E0B]',
+  'bg-[#3B82F6]',
+  'bg-[#7C42FF]',
+  'bg-[#0DA4C9]',
+  'bg-[#FF90CA]',
+  'bg-[#0EA5E9]',
+  'bg-[#BE7AFE]',
+  'bg-[#E38A38]',
+  'bg-[#10B981]',
+  'bg-[#5B5FFF]',
+  'bg-[#DD3588]',
+  'bg-[#06C8D4]',
+  'bg-[#0E7490]',
+  'bg-[#EF4444]',
+  'bg-[#7AB6FF]',
+  'bg-[#3D41CD]',
+];
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -26,7 +49,7 @@ const CommonNode: FC<NodeProps> = ({ data }) => {
         <div
           className={`${
             RELATION_REPORT_NODE_COLORS[data.index]
-          }  flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
+          } flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
         >
           {data.userName}
         </div>

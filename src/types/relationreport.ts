@@ -31,14 +31,14 @@ export interface Skill {
     activeProfileUrl?: string;
     name?: string;
   };
-  // TODO: 스킬 데이터 추가 연동하기
-  // imageUrl?: number
-  // badge?: {
-  //   title?: string;
-  //   imageUrl?: string;
-  // };
-  // evalAvgScore?: number;
-  // totalEvalutationCount?: number;
+  badge?: {
+    title?: string;
+    imageUrl?: string;
+  };
+  description?: string;
+  featuredBannerImageUrl?: string;
+  evalAvgScore?: number;
+  totalEvalutationCount?: number;
 }
 
 export type ShareScope = 'PUBLIC' | 'PRIVATE';
@@ -70,6 +70,7 @@ export interface RelationReport {
   ownerPlayDataName?: string; // '수지 외 1명'에서 '수지'.
   extraUsersCount?: number; // '수지 외 1명'에서 1.
   skill?: Skill;
+  sampleImageUrl?: string;
 }
 
 // ----------- API TYPES ------------
