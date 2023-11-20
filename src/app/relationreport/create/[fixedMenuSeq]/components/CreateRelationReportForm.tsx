@@ -15,6 +15,7 @@ import useCreateRelationReport from '@/apis/useCreateRelationReport';
 import { useParams, useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
 import { t } from '@/utils/translate';
+import { toast } from 'react-toastify';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
@@ -22,6 +23,7 @@ const CreateRelationReportForm = () => {
     fixedMenuSeq: params.fixedMenuSeq as string,
     options: {
       revalidateIfStale: false,
+      revalidateOnFocus: false,
     },
   });
   const { trigger, isMutating } = useCreateRelationReport();
@@ -57,7 +59,14 @@ const CreateRelationReportForm = () => {
   const handleCreateNewMoimButtonClick = async () => {
     const selectedUser = data?.playDatas?.find((item) => item.isAdded);
     if (!selectedUser) {
-      console.error('시작 멤버를 선택해주세요');
+      // TODO: lokalise
+      toast('새로운 모임을 생성하려면, 시작 멤버를 선택해 주세요.');
+      return;
+    }
+
+    if (title.length === 0) {
+      // TODO: lokalise
+      toast('새로운 모임을 생성하려면, 모임 이름을 입력해 주세요.');
       return;
     }
 
@@ -75,7 +84,9 @@ const CreateRelationReportForm = () => {
   return (
     <>
       <div className="pt-8 px-4 pb-[96px]">
-        <h5 className="font-bold text-gray-900">시작 멤버 선택</h5>
+        <h5 className="font-bold text-gray-900">
+          시작 멤버 선택 <span className="text-[#F23658]">*</span>
+        </h5>
         <p className="text-xs text-gray-500 whitespace-pre-wrap">
           {t('relationshipmap_create_screen_description_start_member')}
         </p>
@@ -147,7 +158,8 @@ const CreateRelationReportForm = () => {
         </div>
         <div className="pt-8">
           <h5 className="mb-4 font-bold text-gray-900">
-            {t('relationshipmap_edit_popup_label_group_name')}
+            {t('relationshipmap_edit_popup_label_group_name')}{' '}
+            <span className="text-[#F23658]">*</span>
           </h5>
           <div className="relative">
             <input
@@ -170,7 +182,8 @@ const CreateRelationReportForm = () => {
           </div>
           <div className="flex flex-col pt-8">
             <h5 className="mb-4 font-bold text-gray-900">
-              {t('relationshipmap_edit_popup_label_status')}
+              {t('relationshipmap_edit_popup_label_status')}{' '}
+              <span className="text-[#F23658]">*</span>
             </h5>
             <div className="flex items-center justify-between">
               <div className="flex items-center h-12">

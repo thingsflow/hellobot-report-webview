@@ -28,7 +28,7 @@ const useGetRelationReport = ({
   }
 
   return {
-    loading: isLoading,
+    loading: isLoading || isValidating,
     data: data?.data,
     mutate,
     isLoading,
