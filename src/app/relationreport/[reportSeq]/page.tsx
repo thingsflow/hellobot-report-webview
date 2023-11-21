@@ -23,6 +23,8 @@ interface IRelationReportModalContext {
   >;
   isAllLoading: boolean;
   setIsAllLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  isOnlyEdge: boolean;
+  setIsOnlyEdge: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const initialState = {
@@ -34,6 +36,8 @@ const initialState = {
   setEditMoimPopupInfo: () => {},
   isAllLoading: false,
   setIsAllLoading: () => {},
+  isOnlyEdge: false,
+  setIsOnlyEdge: () => {},
 };
 
 export const RelationReportModalContext =
@@ -49,6 +53,8 @@ const RelationReportPage = () => {
     title: string;
     isPrivate: boolean;
   } | null>(null);
+  // 관계도에 엣지가 한 개 인가?
+  const [isOnlyEdge, setIsOnlyEdge] = React.useState(false);
 
   return (
     <RelationReportModalContext.Provider
@@ -61,6 +67,8 @@ const RelationReportPage = () => {
         setEditMoimPopupInfo,
         isAllLoading,
         setIsAllLoading,
+        isOnlyEdge,
+        setIsOnlyEdge,
       }}
     >
       <RelationReportPageContainer />
