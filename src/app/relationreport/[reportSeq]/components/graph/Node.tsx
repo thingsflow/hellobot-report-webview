@@ -49,11 +49,11 @@ const CommonNode: FC<NodeProps> = ({ data }) => {
         <div
           className={`${
             RELATION_REPORT_NODE_COLORS[data.index]
-          } flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
+          } flex items-center justify-center xs:min-w-[70px] xs:h-[70px] min-w-[60px] h-[60px] px-2 rounded-full text-white text-lg font-bold`}
         >
           {data.userName}
         </div>
-        <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
+        <div className="flex absolute xs:w-[70px] xs:top-[70px] w-[60px] top-[60px] absolute-center justify-center">
           <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
             {data.resultText}
           </div>

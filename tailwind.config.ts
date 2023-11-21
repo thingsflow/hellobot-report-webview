@@ -89,6 +89,7 @@ const config: Config = {
         popup: '0px 8px 24px 0px rgba(0, 0, 0, 0.24)',
       },
       screens: {
+        xs: '375px',
         sm: '600px',
       },
     },

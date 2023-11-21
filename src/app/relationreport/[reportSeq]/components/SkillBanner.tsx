@@ -15,17 +15,27 @@ const SkillBanner = () => {
     webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
   };
 
-  // TODO: 스킬 데이터 연동
   return (
     <div className="cursor-pointer h-[86px] flex bg-gray-500 items-center px-5 gap-4">
-      <div className="w-[22px] h-[22px] bg-gray-400 flex-shrink-0"></div>
-      {/* <Image
-        className="bg-gray300"
-        src={''}
-        width={22}
-        height={22}
-        alt="Skill Icon"
-      /> */}
+      <div
+        style={{
+          width: '22px',
+          height: '22px',
+          position: 'relative',
+        }}
+      >
+        <Image
+          src={data?.skill?.chatbot?.activeProfileUrl || ''}
+          width={22}
+          height={22}
+          alt="Skill Icon"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+      </div>
       <div>
         <h5 className="flex text-white" onClick={handleBannerButtonClick}>
           <span className="pt-[1px] font-medium">{data?.skill?.name}</span>
@@ -46,11 +56,16 @@ const SkillBanner = () => {
               height={12}
               alt="Skill Icon"
             />
-            <div className="text-white pt-[4px] opacity-70">4.5 (1,234)</div>
+            <div className="text-white pt-[4px] opacity-70">
+              {data?.skill?.evalAvgScore || 0} (
+              {data?.skill?.totalEvalutationCount || 0})
+            </div>
           </div>
           <div className="text-white opacity-30 px-2 pt-[4px]">|</div>
           <div className="text-white pt-[4px] opacity-70">
-            {t('chat_recommend_screen_label_views', { value: '300만+' })}
+            {t('chat_recommend_screen_label_views', {
+              value: data?.skill?.badge?.title,
+            })}
           </div>
         </div>
       </div>
