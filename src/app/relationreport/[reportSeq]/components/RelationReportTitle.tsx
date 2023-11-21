@@ -28,7 +28,14 @@ const RelationReportTitle = ({
   return (
     <div className="px-5 pt-6">
       <div className="flex item-center mb-3 gap-2">
-        <Image src="/images/lock.svg" width={30} height={30} alt="Lock Icon" />
+        {data?.shareScope === 'PRIVATE' && (
+          <Image
+            src="/images/lock.svg"
+            width={30}
+            height={30}
+            alt="Lock Icon"
+          />
+        )}
         <div>
           <div className="flex items-center ">
             <h1 className="text-[22px] font-bold mr-1">{data?.title}</h1>
