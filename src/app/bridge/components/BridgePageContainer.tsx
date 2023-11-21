@@ -39,20 +39,6 @@ const BridgePageContainer = () => {
           />
         </div>
       )}
-      {data?.howToImageUrl && (
-        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-          <Image
-            src={data.howToImageUrl || ''}
-            alt="HowTo Image"
-            width={200}
-            height={500}
-            style={{
-              width: '100%',
-              height: 'auto',
-            }}
-          />
-        </div>
-      )}
       <Button
         title={t('bridge_relationshipmap_screen_button_start')}
         onClick={handleStartButtonClick}

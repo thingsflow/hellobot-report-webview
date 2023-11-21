@@ -85,7 +85,6 @@ export interface GetBridgeDataType extends Error {
   data?: {
     seq?: number;
     relationType?: RelationType;
-    howToImageUrl?: string;
     previewImageUrl?: string;
     skillSeq?: number;
     skill?: {
