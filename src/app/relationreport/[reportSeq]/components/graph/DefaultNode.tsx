@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 import { RelationReportModalContext } from '../../page';
+import { t } from '@/utils';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -35,7 +36,7 @@ const DefaultNode: FC<NodeProps> = () => {
         className="relative flex flex-col justify-center cursor-pointer"
         onClick={handleNodeClick}
       >
-        <div className="flex items-center justify-center w-[70px] h-[70px] bg-yellow-400 rounded-full">
+        <div className="flex items-center justify-center xs:w-[70px] xs:h-[70px] w-[60px] h-[60px] bg-yellow-400 rounded-full">
           <Image
             className="flex-shrink-0"
             src="/images/icon-plus-40.svg"
@@ -46,7 +47,7 @@ const DefaultNode: FC<NodeProps> = () => {
         </div>
         <div className="flex w-16 absolute bottom-[-23px] absolute-center">
           <div className="inline-block text-gray-900 font-bold text-[13px] pt-[1px]">
-            추가하기
+            {t('relationshipmap_add_popup_title')}
           </div>
           <Image
             className="inline-block"

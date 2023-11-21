@@ -17,7 +17,7 @@ const RelationReportFooter = () => {
       </p>
       <div
         className="cursor-pointer w-full h-12 bg-[#FFE967] flex items-center justify-center font-bold rounded-[26px] mt-4"
-        onClick={() => router.push('/relationreport/create' + data?.skillSeq)}
+        onClick={() => router.push('/relationreport/create/' + data?.skillSeq)}
       >
         {t('relationshipmap_create_screen_button_create')}
       </div>

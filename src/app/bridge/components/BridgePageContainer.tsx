@@ -7,6 +7,7 @@ import useGetBridgeData from '@/apis/useGetBridgeData';
 import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
 import { t } from '@/utils/translate';
+import { ToastContainer, toast } from 'react-toastify';
 
 const BridgePageContainer = () => {
   const params = useParams();
@@ -57,6 +58,18 @@ const BridgePageContainer = () => {
         onClick={handleStartButtonClick}
       />
       {loading && <Loading />}
+      <ToastContainer
+        position={toast.POSITION.BOTTOM_CENTER}
+        icon={false}
+        hideProgressBar={true}
+        pauseOnHover={false}
+        draggable={false}
+        closeButton={false}
+        className="toast-black"
+        limit={1}
+        autoClose={3000}
+        enableMultiContainer={false}
+      />
     </div>
   );
 };

@@ -17,7 +17,9 @@ const Edge: React.FC<EdgeProps> = ({
   targetY,
   data,
 }) => {
-  const { isAllLoading } = React.useContext(RelationReportModalContext);
+  const { isAllLoading, isOnlyEdge } = React.useContext(
+    RelationReportModalContext,
+  );
   const [path, labelX, labelY] = getStraightPath({
     sourceX,
     sourceY,
@@ -37,25 +39,57 @@ const Edge: React.FC<EdgeProps> = ({
       />
       <EdgeLabelRenderer>
         {isAllLoading && !data.text ? (
-          <div
-            style={{
-              position: 'absolute',
-              transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-              width: '60px',
-              height: '38px',
-              borderRadius: '16px',
-              border: '1px solid #DDDEE1',
-              background: '#FFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            className="nodrag nopan"
-          >
-            <div className="w-[38px]">
-              <Lottie loop animationData={lottieJson} play />
-            </div>
-          </div>
+          <>
+            {isOnlyEdge ? (
+              <>
+                <div
+                  style={{
+                    position: 'absolute',
+                    transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                    width: '141px',
+                    height: '77px',
+                    borderRadius: '16px',
+                    border: '1px solid #DDDEE1',
+                    background: '#FFF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    paddingTop: '12px',
+                  }}
+                  className="nodrag nopan"
+                >
+                  {/* TODO: lokalise */}
+                  <p className="text-gray-900 text-[14px] font-bold">
+                    🤔 우리 사이는...
+                  </p>
+                  <div className="w-[38px]">
+                    <Lottie loop animationData={lottieJson} play />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div
+                style={{
+                  position: 'absolute',
+                  transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                  width: '60px',
+                  height: '38px',
+                  borderRadius: '16px',
+                  border: '1px solid #DDDEE1',
+                  background: '#FFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                className="nodrag nopan"
+              >
+                <div className="w-[38px]">
+                  <Lottie loop animationData={lottieJson} play />
+                </div>
+              </div>
+            )}
+          </>
         ) : (
           <>
             <div

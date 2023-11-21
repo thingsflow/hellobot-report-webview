@@ -15,10 +15,11 @@ export default function useGetPlayData({
   >;
 }) {
   const { data, error, mutate, isLoading } = useSWR<GetPlayDataType>(
-    fixedMenuSeq &&
-      `/v2/fixed-menus/${fixedMenuSeq}/play-datas?${
-        reportSeq ? `reportSeq=${reportSeq}` : ''
-      }`,
+    fixedMenuSeq !== 'undefined'
+      ? `/v2/fixed-menus/${fixedMenuSeq}/play-datas?${
+          reportSeq ? `reportSeq=${reportSeq}` : ''
+        }`
+      : '',
     fetcher.get,
     options,
   );
@@ -33,11 +34,8 @@ export default function useGetPlayData({
     };
   });
 
-  if (
-    !isLoading &&
-    (!data?.data?.playDatas || data?.data.playDatas.length === 0)
-  ) {
-    console.error('플레이데이터 정보가 없습니다.');
+  if (data?.error || error) {
+    throw Error(data?.error?.message || error.message);
   }
 
   return {

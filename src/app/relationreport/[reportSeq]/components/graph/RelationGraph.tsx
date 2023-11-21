@@ -35,7 +35,7 @@ const RelationGraph = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdge, onEdgesChange] = useEdgesState([]);
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
-  const { isAllLoading, setIsAllLoading } = React.useContext(
+  const { setIsAllLoading, setIsOnlyEdge } = React.useContext(
     RelationReportModalContext,
   );
   const toastRef = React.useRef<any>(null);
@@ -51,6 +51,9 @@ const RelationGraph = () => {
     const DEFAULT_NODE_COUNT = 1;
 
     if (!data) return;
+
+    !data.edges?.length && setIsOnlyEdge(true);
+
     const nodes = generateNodes(data?.playDatas);
     const edges = generateEdges(data, nodes);
 
@@ -71,18 +74,6 @@ const RelationGraph = () => {
         isLoading: true,
       });
     }
-    // if (
-    //   data.edges &&
-    //   data.edges?.length <= edges.length - nodes.length + DEFAULT_NODE_COUNT
-    // ) {
-    //   setIsAllLoading(true);
-    //   toast(t('relationshipmap_popup_toast__update'), {
-    //     autoClose: false,
-    //   });
-    // } else {
-    //   setIsAllLoading(false);
-    //   toast.dismiss();
-    // }
   }, [data]);
 
   return (
