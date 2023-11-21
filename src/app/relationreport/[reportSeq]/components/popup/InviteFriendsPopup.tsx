@@ -33,7 +33,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   const handleShareWithKakaoButtonClick = () => {
     shareWithKakao({
       title: data?.title,
-      description: '뭐가 들어가야하지?',
+      description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
       imageUrl: data?.imageUrl,
       shareUrl:
         environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,

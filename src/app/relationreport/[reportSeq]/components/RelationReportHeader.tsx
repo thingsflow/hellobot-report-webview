@@ -8,12 +8,17 @@ import * as React from 'react';
 import { toast } from 'react-toastify';
 import { environment } from '../../../../../environments/environment';
 import { t } from '@/utils/translate';
+import { RelationReportModalContext } from '../page';
 
 const RelationReportHeader = () => {
   const params = useParams();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
+
+  const { setIsPreventSharePopupOpen } = React.useContext(
+    RelationReportModalContext,
+  );
 
   const handleCloseButtonClick = () => {
     Webview.goBack();
@@ -25,6 +30,11 @@ const RelationReportHeader = () => {
   };
 
   const handleShareIconClick = async () => {
+    if (data?.shareScope === 'PRIVATE') {
+      setIsPreventSharePopupOpen(true);
+      return;
+    }
+
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
 
     if (isAndroidWebView) {

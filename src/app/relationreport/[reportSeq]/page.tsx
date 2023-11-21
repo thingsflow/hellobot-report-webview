@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { InviteFriendsPopup, RelationReportPageContainer } from './components';
 import AddFriendsPopup from './components/popup/AddFriendsPopup';
 import EditMoimPopup from './components/popup/EditMoimPopup';
+import PreventSharePopup from './components/popup/PreventSharePopup';
 
 interface IRelationReportModalContext {
   isInviteFriendsPopupOpen: boolean;
@@ -20,6 +21,8 @@ interface IRelationReportModalContext {
       isPrivate: boolean;
     } | null>
   >;
+  isPreventSharePopupOpen: boolean;
+  setIsPreventSharePopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isAllLoading: boolean;
   setIsAllLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isOnlyEdge: boolean;
@@ -31,6 +34,8 @@ const initialState = {
   setInviteFriendsPopupOpen: () => {},
   isAddFriendsPopupOpen: false,
   setIsAddFriendsPopupOpen: () => {},
+  isPreventSharePopupOpen: false,
+  setIsPreventSharePopupOpen: () => {},
   editMoimPopupInfo: null,
   setEditMoimPopupInfo: () => {},
   isAllLoading: false,
@@ -46,6 +51,8 @@ const RelationReportPage = () => {
   const [isInviteFriendsPopupOpen, setInviteFriendsPopupOpen] =
     React.useState(false);
   const [isAddFriendsPopupOpen, setIsAddFriendsPopupOpen] =
+    React.useState(false);
+  const [isPreventSharePopupOpen, setIsPreventSharePopupOpen] =
     React.useState(false);
   const [isAllLoading, setIsAllLoading] = React.useState(false);
   const [editMoimPopupInfo, setEditMoimPopupInfo] = React.useState<{
@@ -68,6 +75,8 @@ const RelationReportPage = () => {
         setIsAllLoading,
         isOnlyEdge,
         setIsOnlyEdge,
+        isPreventSharePopupOpen,
+        setIsPreventSharePopupOpen,
       }}
     >
       <RelationReportPageContainer />
@@ -85,6 +94,7 @@ const RelationReportPage = () => {
         enableMultiContainer={false}
       />
       <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
+      <PreventSharePopup onClose={() => setIsPreventSharePopupOpen(false)} />
       {editMoimPopupInfo && <EditMoimPopup />}
     </RelationReportModalContext.Provider>
   );
