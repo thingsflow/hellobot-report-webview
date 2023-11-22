@@ -9,12 +9,16 @@ import { toast } from 'react-toastify';
 import { environment } from '../../../../../environments/environment';
 import { t } from '@/utils/translate';
 import * as gaEvent from '@/utils/gaEvent';
+import { RelationReportModalContext } from '../page';
 
 const RelationReportHeader = () => {
   const params = useParams();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
+  const { setIsPreventSharePopupOpen } = React.useContext(
+    RelationReportModalContext,
+  );
 
   React.useEffect(() => {
     if (data?.title) {
@@ -41,6 +45,11 @@ const RelationReportHeader = () => {
     gaEvent.touchRelationShare({
       screenName: 'relationship_map',
     });
+
+    if (data?.shareScope === 'PRIVATE') {
+      setIsPreventSharePopupOpen(true);
+      return;
+    }
 
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
 

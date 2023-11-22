@@ -6,19 +6,16 @@ import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
 
-interface IRelationReportTitle {
-  onKakaoTalkButtonClick: () => void;
-}
-
-const RelationReportTitle = ({
-  onKakaoTalkButtonClick,
-}: IRelationReportTitle) => {
+const RelationReportTitle = () => {
   const router = useRouter();
   const params = useParams();
 
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
+
+  const { setInviteFriendsPopupOpen, setIsPreventSharePopupOpen } =
+    React.useContext(RelationReportModalContext);
 
   const createNewMoimButtonClick = () => {
     gaEvent.touchRelationCreateNew({
@@ -29,6 +26,15 @@ const RelationReportTitle = ({
   };
 
   const { setEditMoimPopupInfo } = React.useContext(RelationReportModalContext);
+
+  const handleKakaoTalkButtonClick = () => {
+    if (data?.shareScope === 'PRIVATE') {
+      setIsPreventSharePopupOpen(true);
+      return;
+    }
+
+    setInviteFriendsPopupOpen(true);
+  };
 
   return (
     <div className="px-5 pt-6">
@@ -63,7 +69,7 @@ const RelationReportTitle = ({
       <div className="flex gap-[6px]">
         <div
           className="z-50 flex gap-1 px-4 py-2 text-xs text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
-          onClick={onKakaoTalkButtonClick}
+          onClick={handleKakaoTalkButtonClick}
         >
           <Image
             src="/images/icons-08-button-icon-btn-more.svg"
