@@ -29,6 +29,11 @@ interface logEventType {
   };
 }
 
+interface logEventTypeWithJsonString {
+  name: string;
+  params?: string;
+}
+
 const sendEvent = ({
   action,
   parameter,
@@ -38,7 +43,7 @@ const sendEvent = ({
     | DoShareType
     | goSkillDetailPageType
     | goChatRoomPageType
-    | logEventType;
+    | logEventTypeWithJsonString;
 }) => {
   const platform = localStorage.getItem('platform');
   console.log('platform: ', platform);
@@ -111,7 +116,10 @@ const goChatRoomPage = (parameter: goChatRoomPageType) => {
 const logEvent = (parameter: logEventType) => {
   sendEvent({
     action: 'logEvent',
-    parameter: parameter,
+    parameter: {
+      name: parameter.name,
+      params: JSON.stringify(parameter.params).replace(/\\/g, ''),
+    },
   });
 };
 
