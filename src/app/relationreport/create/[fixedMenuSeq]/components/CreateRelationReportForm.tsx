@@ -35,10 +35,12 @@ const CreateRelationReportForm = () => {
     React.useState(false);
 
   React.useEffect(() => {
-    gaEvent.viewRelationCreateNew({
-      menuSeq: data.skill?.seq,
-      menuName: data.skill?.name,
-    });
+    if (data?.skill) {
+      gaEvent.viewRelationCreateNew({
+        menuSeq: data.skill?.seq,
+        menuName: data.skill?.name,
+      });
+    }
   }, [data]);
 
   const handleLoadMoreMemberButtonClick = () => {

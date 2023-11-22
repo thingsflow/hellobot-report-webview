@@ -45,6 +45,10 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
   };
 
   const handleOtherResultButtonClick = () => {
+    gaEvent.touchRelationAddNewResultButton({
+      menuName: data.skill?.name,
+      menuSeq: data.skill?.seq,
+    });
     webview.goChatRoomPage({
       skillSeq: data.skill?.seq,
       chatbotSeq: data.skill?.chatbot?.seq,

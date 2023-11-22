@@ -24,7 +24,7 @@ const BridgePageContainer = () => {
   };
 
   React.useEffect(() => {
-    if (data) {
+    if (data?.relationType) {
       gaEvent.viewBridgeRelationshipMap({
         type: data.relationType,
         menuSeq: data.skillSeq,
