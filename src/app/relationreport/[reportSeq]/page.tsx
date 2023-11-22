@@ -40,7 +40,7 @@ const initialState = {
 };
 
 export const RelationReportModalContext =
-  React.createContext<IRelationReportModalContext>(initialState); // TODO: 타입 정의
+  React.createContext<IRelationReportModalContext>(initialState);
 
 const RelationReportPage = () => {
   const [isInviteFriendsPopupOpen, setInviteFriendsPopupOpen] =
