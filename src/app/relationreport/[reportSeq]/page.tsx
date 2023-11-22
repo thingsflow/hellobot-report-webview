@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { InviteFriendsPopup, RelationReportPageContainer } from './components';
 import AddFriendsPopup from './components/popup/AddFriendsPopup';
 import EditMoimPopup from './components/popup/EditMoimPopup';
+import webview from '@/utils/webview';
 
 interface IRelationReportModalContext {
   isInviteFriendsPopupOpen: boolean;
@@ -54,6 +55,16 @@ const RelationReportPage = () => {
   } | null>(null);
   // 관계도에 엣지가 한 개 인가?
   const [isOnlyEdge, setIsOnlyEdge] = React.useState(false);
+
+  React.useEffect(() => {
+    webview.logEvent({
+      name: '이벤트명',
+      params: {
+        id: 123,
+        name: '예시 파라미터',
+      },
+    });
+  }, []);
 
   return (
     <RelationReportModalContext.Provider

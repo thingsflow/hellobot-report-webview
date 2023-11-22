@@ -47,7 +47,7 @@ const RelationReportDetail = () => {
   return (
     <div className="flex flex-col px-6 ">
       {data &&
-        itemsToShow?.map((item) => {
+        itemsToShow?.map((item, index) => {
           const sourceIndex =
             data.playDatas?.findIndex(
               (playData) => playData.seq === item.source,
@@ -62,7 +62,7 @@ const RelationReportDetail = () => {
           return (
             <div
               className="pt-[52px] pb-10 border-b border-solid border-gray-200"
-              key={`${item.detail}${item.source}`}
+              key={`${item.detail}${item.source}${index}`}
             >
               <div className="flex justify-center">
                 <div className="relative">

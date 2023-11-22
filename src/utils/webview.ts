@@ -3,7 +3,8 @@ type WebviewActionTypes =
   | 'goBack'
   | 'goSkillDetailPage'
   | 'goRelationReportListPage'
-  | 'goChatRoomPage';
+  | 'goChatRoomPage'
+  | 'logEvent';
 
 interface DoShareType {
   shareTitle?: string;
@@ -19,14 +20,30 @@ interface goChatRoomPageType {
   chatbotSeq?: number;
 }
 
+interface logEventType {
+  name: string;
+  params?: {
+    name: string;
+    id: number;
+  };
+}
+
+interface logEventTypeWithJSONString {
+  name: string;
+  params?: string;
+}
+
 const sendEvent = ({
   action,
   parameter,
 }: {
   action: WebviewActionTypes;
-  parameter?: DoShareType | goSkillDetailPageType | goChatRoomPageType;
+  parameter?:
+    | DoShareType
+    | goSkillDetailPageType
+    | goChatRoomPageType
+    | logEventTypeWithJSONString;
 }) => {
-  // IOS
   const platform = localStorage.getItem('platform');
   console.log('platform: ', platform);
 
@@ -58,7 +75,6 @@ const sendEvent = ({
     }
   }
 
-  // Web
   if (platform === 'web') {
     if (window?.parent) {
       window.parent.postMessage(
@@ -96,10 +112,21 @@ const goChatRoomPage = (parameter: goChatRoomPageType) => {
   sendEvent({ action: 'goChatRoomPage', parameter });
 };
 
+const logEvent = (parameter: logEventType) => {
+  sendEvent({
+    action: 'logEvent',
+    parameter: {
+      name: parameter.name,
+      params: parameter.params && JSON.stringify(parameter.params),
+    },
+  });
+};
+
 export default {
   doShare,
   goBack,
   goSkillDetailPage,
   goRelationReportListPage,
   goChatRoomPage,
+  logEvent,
 };
