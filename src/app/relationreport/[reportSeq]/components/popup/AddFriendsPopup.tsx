@@ -10,6 +10,7 @@ import { useParams } from 'next/navigation';
 import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
+import * as gaEvent from '@/utils/gaEvent';
 
 interface IAddFriendsPopup {
   onClose: () => void;
@@ -33,11 +34,21 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
     reportSeq: params.reportSeq as string,
   });
 
+  React.useEffect(() => {
+    if (isAddFriendsPopupOpen) {
+      gaEvent.viewListAddMemberPopup();
+    }
+  }, [isAddFriendsPopupOpen]);
+
   const handleOtherRelationReportButtonClick = () => {
     webview.goRelationReportListPage();
   };
 
   const handleOtherResultButtonClick = () => {
+    gaEvent.touchRelationAddNewResultButton({
+      menuName: data.skill?.name,
+      menuSeq: data.skill?.seq,
+    });
     webview.goChatRoomPage({
       skillSeq: data.skill?.seq,
       chatbotSeq: data.skill?.chatbot?.seq,

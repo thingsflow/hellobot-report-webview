@@ -4,6 +4,7 @@ import { RelationReportModalContext } from '../page';
 import { useParams, useRouter } from 'next/navigation';
 import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
+import * as gaEvent from '@/utils/gaEvent';
 
 interface IRelationReportTitle {
   onKakaoTalkButtonClick: () => void;
@@ -20,6 +21,10 @@ const RelationReportTitle = ({
   });
 
   const createNewMoimButtonClick = () => {
+    gaEvent.touchRelationCreateNew({
+      menuName: data?.skill?.name,
+      menuSeq: data?.skillSeq,
+    });
     router.push('/relationreport/create/' + data?.skillSeq);
   };
 

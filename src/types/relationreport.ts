@@ -110,13 +110,13 @@ export interface GetBridgeDataType extends Error {
   };
 }
 
-export interface CreateRealtionReportType extends Error {
+export interface CreateRelationReportType extends Error {
   data: {
     title?: string;
     shareScope?: ShareScope;
     skillSeq: number;
     seq: number;
-    link?: string;
+    reportLink?: string;
   };
 }
 

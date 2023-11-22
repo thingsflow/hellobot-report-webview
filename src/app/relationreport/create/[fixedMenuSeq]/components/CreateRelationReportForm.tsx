@@ -8,7 +8,7 @@ import useGetPlayData from '@/apis/useGetPlayData';
 import Skeleton from 'react-loading-skeleton';
 import {
   CreateRealtionReportInputType,
-  CreateRealtionReportType,
+  CreateRelationReportType,
   PlayData,
 } from '@/types/relationreport';
 import useCreateRelationReport from '@/apis/useCreateRelationReport';
@@ -16,6 +16,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
 import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
+import * as gaEvent from '@/utils/gaEvent';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
@@ -32,6 +33,16 @@ const CreateRelationReportForm = () => {
   const [isPrivate, setIsPrivate] = React.useState(false);
   const [isSelectStartMemberPopupOpen, setIsSelectStartMemberPopupOpen] =
     React.useState(false);
+
+  React.useEffect(() => {
+    if (data?.skill) {
+      gaEvent.viewRelationCreateNew({
+        menuSeq: data.skill?.seq,
+        menuName: data.skill?.name,
+      });
+    }
+  }, [data]);
+
   const handleLoadMoreMemberButtonClick = () => {
     setIsSelectStartMemberPopupOpen(true);
   };
@@ -76,9 +87,14 @@ const CreateRelationReportForm = () => {
       skillSeq: Number(params.fixedMenuSeq as string),
       playDataSeq: selectedUser.seq!,
     };
+    const response: CreateRelationReportType = await trigger(requestData);
 
-    const response: CreateRealtionReportType = await trigger(requestData);
-    response?.data.link && router.push(response?.data.link);
+    gaEvent.createdRelationNew({
+      menuSeq: data.skill?.seq,
+      menuName: data.skill?.name,
+    });
+
+    response?.data.reportLink && router.push(response?.data.reportLink);
   };
 
   return (

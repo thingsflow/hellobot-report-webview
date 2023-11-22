@@ -8,12 +8,25 @@ import * as React from 'react';
 import { toast } from 'react-toastify';
 import { environment } from '../../../../../environments/environment';
 import { t } from '@/utils/translate';
+import * as gaEvent from '@/utils/gaEvent';
 
 const RelationReportHeader = () => {
   const params = useParams();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
+
+  React.useEffect(() => {
+    if (data?.title) {
+      gaEvent.viewRelationshipMap({
+        relationshipMapName: data?.title,
+        isJoinedRelationshipMap: !!data.hasPlayDataAdded,
+        relationshipMapMemberCount: data.extraUsersCount || 0 + 1,
+        menuName: data.skill?.name,
+        menuSeq: data.skillSeq,
+      });
+    }
+  }, [data]);
 
   const handleCloseButtonClick = () => {
     Webview.goBack();
@@ -25,6 +38,10 @@ const RelationReportHeader = () => {
   };
 
   const handleShareIconClick = async () => {
+    gaEvent.touchRelationShare({
+      screenName: 'relationship_map',
+    });
+
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
 
     if (isAndroidWebView) {

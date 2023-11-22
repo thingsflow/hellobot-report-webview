@@ -9,6 +9,7 @@ import { t } from '@/utils/translate';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import { environment } from '../../../../../../environments/environment';
+import * as gaEvent from '@/utils/gaEvent';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -24,6 +25,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   );
 
   const handleCopyLinkButtonClick = () => {
+    gaEvent.touchRelationLinkCopy();
     copyToClipboard(
       environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
     );
@@ -31,9 +33,10 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   };
 
   const handleShareWithKakaoButtonClick = () => {
+    gaEvent.touchRelationKakaoShare();
     shareWithKakao({
       title: data?.title,
-      description: '뭐가 들어가야하지?',
+      description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
       imageUrl: data?.imageUrl,
       shareUrl:
         environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,

@@ -3,6 +3,7 @@ import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 import { RelationReportModalContext } from '../../page';
 import { t } from '@/utils';
+import * as gaEvent from '@/utils/gaEvent';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -21,6 +22,7 @@ const DefaultNode: FC<NodeProps> = () => {
   );
 
   const handleNodeClick = () => {
+    gaEvent.touchRelationAdd();
     setIsAddFriendsPopupOpen(true);
   };
 

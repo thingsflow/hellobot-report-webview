@@ -8,6 +8,7 @@ import * as React from 'react';
 import { environment } from '../../../../environments/environment';
 import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
+import * as gaEvent from '@/utils/gaEvent';
 
 const BridgeReportHeader = () => {
   const params = useParams();
@@ -25,6 +26,10 @@ const BridgeReportHeader = () => {
   };
 
   const handleShareIconClick = async () => {
+    gaEvent.touchRelationShare({
+      screenName: 'relationship_map',
+    });
+
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
 
     if (isAndroidWebView) {
