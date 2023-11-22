@@ -70,14 +70,12 @@ const CreateRelationReportForm = () => {
   const handleCreateNewMoimButtonClick = async () => {
     const selectedUser = data?.playDatas?.find((item) => item.isAdded);
     if (!selectedUser) {
-      // TODO: lokalise
-      toast('새로운 모임을 생성하려면, 시작 멤버를 선택해 주세요.');
+      toast(t('relationshipmap_create_screen_alert_no_starting_member'));
       return;
     }
 
     if (title.length === 0) {
-      // TODO: lokalise
-      toast('새로운 모임을 생성하려면, 모임 이름을 입력해 주세요.');
+      toast(t('relationshipmap_create_screen_alert_no_group_name'));
       return;
     }
 
@@ -143,10 +141,12 @@ const CreateRelationReportForm = () => {
                   onClick={handleLoadMoreMemberButtonClick}
                 >
                   <p className="text-[#555759] text-[14px] flex items-center border border-solid px-6 py-[7px] rounded-full border-gray-300">
-                    {/* TODO: lokalise 수정 필요함 */}
-                    {/* {t('relationshipmap_create_screen_button_more')} */}
-                    <span className="font-bold pt-[1px]">멤버&nbsp;</span>
-                    <span className="pt-[1px]">더보기</span>
+                    <span
+                      className="font-bold pt-[1px]"
+                      dangerouslySetInnerHTML={{
+                        __html: t('relationshipmap_create_screen_button_more'),
+                      }}
+                    />
                     <Image
                       className="inline-block"
                       src="/images/arrow-right.svg"

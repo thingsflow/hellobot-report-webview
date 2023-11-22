@@ -8,6 +8,10 @@ export default function useGetBridgeData({ bridgeSeq }: { bridgeSeq: string }) {
     fetcher.get,
   );
 
+  if (data?.error || error) {
+    throw Error(data?.error?.message || error.message);
+  }
+
   return {
     loading: isLoading,
     data: data?.data,

@@ -8,6 +8,7 @@ import {
 import { RelationReportModalContext } from '../../page';
 import Lottie from 'react-lottie-player';
 import lottieJson from '../../../../../../public/images/generate-loading.json';
+import { t } from '@/utils';
 
 const Edge: React.FC<EdgeProps> = ({
   id,
@@ -59,9 +60,8 @@ const Edge: React.FC<EdgeProps> = ({
                   }}
                   className="nodrag nopan"
                 >
-                  {/* TODO: lokalise */}
                   <p className="text-gray-900 text-[14px] font-bold">
-                    🤔 우리 사이는...
+                    🤔 {t('relationshipmap_screen_description_loading')}
                   </p>
                   <div className="w-[38px]">
                     <Lottie loop animationData={lottieJson} play />
