@@ -21,12 +21,7 @@ interface goChatRoomPageType {
 }
 
 interface logEventType {
-  name: string;
-  params?: {
-    string_param?: string;
-    number_param?: number;
-    bool_param?: boolean;
-  };
+  [key: string]: any;
 }
 
 interface logEventTypeWithJsonString {
@@ -113,12 +108,13 @@ const goChatRoomPage = (parameter: goChatRoomPageType) => {
   sendEvent({ action: 'goChatRoomPage', parameter });
 };
 
-const logEvent = (parameter: logEventType) => {
+const logEvent = (name: string, params?: logEventType) => {
+  console.log('logEvent!!!', name, params);
   sendEvent({
     action: 'logEvent',
     parameter: {
-      name: parameter.name,
-      params: JSON.stringify(parameter.params).replace(/\\/g, ''),
+      name,
+      params: params && JSON.stringify(params).replace(/\\/g, ''),
     },
   });
 };

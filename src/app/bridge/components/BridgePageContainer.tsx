@@ -8,6 +8,8 @@ import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
 import { t } from '@/utils/translate';
 import { ToastContainer, toast } from 'react-toastify';
+import React from 'react';
+import * as gaEvent from '@/utils/gaEvent';
 
 const BridgePageContainer = () => {
   const params = useParams();
@@ -20,6 +22,16 @@ const BridgePageContainer = () => {
       skillSeq: data?.skill?.seq,
     });
   };
+
+  React.useEffect(() => {
+    if (data) {
+      gaEvent.viewBridgeRelationshipMap({
+        type: data.relationType,
+        menuSeq: data.skillSeq,
+        menuName: data.skill?.name,
+      });
+    }
+  }, [data]);
 
   return (
     <div className="relative bg-gray-50 ">

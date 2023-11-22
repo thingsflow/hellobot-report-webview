@@ -4,7 +4,7 @@ import useGetPlayData from '@/apis/useGetPlayData';
 import Loading from '@/components/Loading';
 import {
   CreateRealtionReportInputType,
-  CreateRealtionReportType,
+  CreateRelationReportType,
   PlayData,
 } from '@/types/relationreport';
 import { t } from '@/utils/translate';
@@ -30,8 +30,8 @@ const CreateRelationReportMemberList = () => {
       playDataSeq: playData.seq!,
     };
 
-    const response: CreateRealtionReportType = await trigger(requestData);
-    response?.data.link && router.push(response?.data.link);
+    const response: CreateRelationReportType = await trigger(requestData);
+    response?.data.reportLink && router.push(response?.data.reportLink);
   };
 
   return (
