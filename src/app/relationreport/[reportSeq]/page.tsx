@@ -60,8 +60,9 @@ const RelationReportPage = () => {
     webview.logEvent({
       name: '이벤트명',
       params: {
-        id: 123,
-        name: '예시 파라미터',
+        string_param: '예시 파라미터',
+        number_param: 123,
+        bool_param: true,
       },
     });
   }, []);

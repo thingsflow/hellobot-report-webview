@@ -76,6 +76,7 @@
   input {
     outline: none;
     caret-color: blue;
+    -webkit-user-select: text;
   }
 }
 
