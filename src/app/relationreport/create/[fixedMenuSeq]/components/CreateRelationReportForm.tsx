@@ -99,7 +99,8 @@ const CreateRelationReportForm = () => {
     <>
       <div className="pt-8 px-4 pb-[96px]">
         <h5 className="font-bold text-gray-900">
-          시작 멤버 선택 <span className="text-[#F23658]">*</span>
+          {t('select_member_screen_title')}
+          <span className="text-[#F23658]">*</span>
         </h5>
         <p className="text-xs text-gray-500 whitespace-pre-wrap">
           {t('relationshipmap_create_screen_description_start_member')}
