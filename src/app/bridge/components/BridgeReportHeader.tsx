@@ -38,11 +38,13 @@ const BridgeReportHeader = () => {
         shareLink: `${environment.url}/skills/${data?.skill?.seq}`,
       });
     } else {
-      const result = await share(dataToShare);
+      try {
+        const result = await share(dataToShare);
 
-      if (result === 'copiedToClipboard') {
-        toast(t('relationshipmap_invite_popup_toast_copied'));
-      }
+        if (result === 'copiedToClipboard') {
+          toast(t('relationshipmap_invite_popup_toast_copied'));
+        }
+      } catch (e) {}
     }
   };
 
