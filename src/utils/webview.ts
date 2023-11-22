@@ -23,14 +23,10 @@ interface goChatRoomPageType {
 interface logEventType {
   name: string;
   params?: {
-    name: string;
-    id: number;
+    string_param?: string;
+    number_param?: number;
+    bool_param?: boolean;
   };
-}
-
-interface logEventTypeWithJSONString {
-  name: string;
-  params?: string;
 }
 
 const sendEvent = ({
@@ -42,7 +38,7 @@ const sendEvent = ({
     | DoShareType
     | goSkillDetailPageType
     | goChatRoomPageType
-    | logEventTypeWithJSONString;
+    | logEventType;
 }) => {
   const platform = localStorage.getItem('platform');
   console.log('platform: ', platform);
@@ -115,10 +111,7 @@ const goChatRoomPage = (parameter: goChatRoomPageType) => {
 const logEvent = (parameter: logEventType) => {
   sendEvent({
     action: 'logEvent',
-    parameter: {
-      name: parameter.name,
-      params: parameter.params && JSON.stringify(parameter.params),
-    },
+    parameter: parameter,
   });
 };
 
