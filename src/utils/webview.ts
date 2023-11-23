@@ -109,7 +109,6 @@ const goChatRoomPage = (parameter: goChatRoomPageType) => {
 };
 
 const logEvent = (name: string, params?: logEventType) => {
-  console.log('logEvent!!!', name, params);
   sendEvent({
     action: 'logEvent',
     parameter: {
