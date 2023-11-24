@@ -5,7 +5,7 @@ export const environment = {
   kakaoAppJsKey: 'd0a17cce5032fc5900c8a69e953211b1', // https://developers.kakao.com/apps/404562
   // PROD: d3f2bac0af896694bd9068932e3ba640
   // DEV: d0a17cce5032fc5900c8a69e953211b1
-  relationReportShareBaseUrl: 'http://localhost:4200/relation-reports/diagram',
+  relationReportShareBaseUrl: 'http://dev.hellobot.co/relation-reports/diagram',
   relationReportShareBaseUrldev:
     'http://dev.hellobot.co/relation-reports/diagram',
 };
