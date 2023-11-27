@@ -113,6 +113,12 @@ const CreateRelationReportForm = () => {
     }
   };
 
+  const handleDeleteButtonClick = (e: any) => {
+    e.preventDefault();
+    setTitle('');
+    inputRef?.current?.focus();
+  };
+
   return (
     <>
       <div className="pt-8 px-4 pb-[96px]">
@@ -213,11 +219,8 @@ const CreateRelationReportForm = () => {
               width={24}
               height={24}
               alt="Clear Icon"
-              onClick={(e) => {
-                e.preventDefault();
-                inputRef?.current?.focus();
-                setTitle('');
-              }}
+              onClick={handleDeleteButtonClick}
+              onTouchStart={handleDeleteButtonClick}
             />
           </div>
           <div className="flex flex-col pt-8">

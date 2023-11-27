@@ -25,6 +25,12 @@ const EditMoimPopup = () => {
     !!editMoimPopupInfo?.isPrivate,
   );
 
+  const handleDeleteButtonClick = (e: any) => {
+    e.preventDefault();
+    setTitle('');
+    inputRef?.current?.focus();
+  };
+
   const handleCloseButtonClick = () => {
     setEditMoimPopupInfo(null);
   };
@@ -84,11 +90,8 @@ const EditMoimPopup = () => {
                 width={24}
                 height={24}
                 alt="Clear Icon"
-                onClick={(e) => {
-                  e.preventDefault();
-                  inputRef?.current?.focus();
-                  setTitle('');
-                }}
+                onTouchStart={handleDeleteButtonClick}
+                onClick={handleDeleteButtonClick}
               />
             </div>
           </div>
