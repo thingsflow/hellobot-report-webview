@@ -7,6 +7,7 @@ import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
 import { t } from '@/utils/translate';
+import { toast } from 'react-toastify';
 
 const EditMoimPopup = () => {
   const params = useParams();
@@ -29,12 +30,33 @@ const EditMoimPopup = () => {
   };
 
   const handleConfirmButtonClick = async () => {
+    if (title.length === 0) {
+      // TODO: lokalise
+      toast('모임을 수정하려면 모임 이름을 입력하세요');
+      return;
+    }
+
     await trigger({
       title,
       shareScope: isPrivate ? 'PRIVATE' : 'PUBLIC',
     });
 
     setEditMoimPopupInfo(null);
+  };
+
+  const handleToggleButton = (isPrivateFrom: boolean) => {
+    // isPrivateFrom: 공유 범위 변경 전 값
+    if (
+      confirm(
+        t(
+          isPrivateFrom === true
+            ? 'relationshipmap_edit_popup_alert_status_public'
+            : 'relationshipmap_edit_popup_alert_status_private',
+        ),
+      )
+    ) {
+      setIsPrivate((prev) => !prev);
+    }
   };
 
   return (
@@ -61,6 +83,7 @@ const EditMoimPopup = () => {
                 width={24}
                 height={24}
                 alt="Clear Icon"
+                onClick={() => setTitle('')}
               />
             </div>
           </div>
@@ -82,7 +105,7 @@ const EditMoimPopup = () => {
               </div>
               <Toggle
                 isOn={isPrivate}
-                onToggle={() => setIsPrivate((prev) => !prev)}
+                onToggle={() => handleToggleButton(isPrivate)}
               />
             </div>
           </div>
