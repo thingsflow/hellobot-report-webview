@@ -60,13 +60,11 @@ const RelationReportHeader = () => {
           environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
       });
     } else {
-      try {
-        const result = await share(dataToShare);
+      const result = await share(dataToShare);
 
-        if (result === 'copiedToClipboard') {
-          toast(t('relationshipmap_invite_popup_toast_copied'));
-        }
-      } catch (e) {}
+      if (result === 'copiedToClipboard') {
+        toast(t('relationshipmap_invite_popup_toast_copied'));
+      }
     }
   };
 
