@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 
 const EditMoimPopup = () => {
   const params = useParams();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const { editMoimPopupInfo, setEditMoimPopupInfo } = React.useContext(
     RelationReportModalContext,
   );
@@ -57,6 +58,7 @@ const EditMoimPopup = () => {
     ) {
       setIsPrivate((prev) => !prev);
     }
+    inputRef?.current?.focus();
   };
 
   return (
@@ -72,6 +74,7 @@ const EditMoimPopup = () => {
             </p>
             <div className="relative">
               <input
+                ref={inputRef}
                 type="text"
                 className="w-full h-12 bg-[#f5f5f5] rounded-lg text=[#242526] px-4 py-3 pr-11"
                 value={title}

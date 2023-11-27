@@ -28,6 +28,9 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
   const { data, loading, mutate } = useGetPlayData({
     fixedMenuSeq: String(relationReportData?.skill?.seq),
     reportSeq: params.reportSeq as string,
+    options: {
+      revalidateOnFocus: true,
+    },
   });
 
   const { trigger } = useUpdateRelationReport({
