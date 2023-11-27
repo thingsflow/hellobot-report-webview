@@ -50,19 +50,21 @@ const RelationReportTitle = () => {
         <div>
           <div className="flex items-center ">
             <h1 className="text-[22px] font-bold mr-1">{data?.title}</h1>
-            <Image
-              className="z-50 cursor-pointer"
-              onClick={() =>
-                setEditMoimPopupInfo({
-                  title: data?.title || '',
-                  isPrivate: data?.shareScope === 'PRIVATE' ? true : false,
-                })
-              }
-              src="/images/icon-modify-small.svg"
-              alt="Modify Icon"
-              width={20}
-              height={20}
-            />
+            {data?.isViewerOwner && (
+              <Image
+                className="z-50 cursor-pointer"
+                onClick={() =>
+                  setEditMoimPopupInfo({
+                    title: data?.title || '',
+                    isPrivate: data?.shareScope === 'PRIVATE' ? true : false,
+                  })
+                }
+                src="/images/icon-modify-small.svg"
+                alt="Modify Icon"
+                width={20}
+                height={20}
+              />
+            )}
           </div>
         </div>
       </div>

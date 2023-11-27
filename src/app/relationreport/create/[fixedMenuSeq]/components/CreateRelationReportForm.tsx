@@ -20,6 +20,7 @@ import * as gaEvent from '@/utils/gaEvent';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
     options: {
@@ -95,6 +96,22 @@ const CreateRelationReportForm = () => {
     });
 
     response?.data.reportLink && router.push(response?.data.reportLink);
+  };
+
+  const handleToggleButton = (isPrivateFrom: boolean) => {
+    // isPrivateFrom: 공유 범위 변경 전 값
+    if (
+      confirm(
+        t(
+          isPrivateFrom === true
+            ? 'relationshipmap_edit_popup_alert_status_public'
+            : 'relationshipmap_edit_popup_alert_status_private',
+        ),
+      )
+    ) {
+      setIsPrivate((prev) => !prev);
+    }
+    inputRef?.current?.focus();
   };
 
   return (
@@ -218,7 +235,7 @@ const CreateRelationReportForm = () => {
               </div>
               <Toggle
                 isOn={isPrivate}
-                onToggle={() => setIsPrivate((prev) => !prev)}
+                onToggle={() => handleToggleButton(isPrivate)}
               />
             </div>
           </div>

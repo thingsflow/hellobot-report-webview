@@ -4,6 +4,10 @@ import { Handle, Position, NodeProps } from 'reactflow';
 import { RelationReportModalContext } from '../../page';
 import { t } from '@/utils';
 import * as gaEvent from '@/utils/gaEvent';
+import useGetRelationReport from '@/apis/useGetRelationReport';
+import { useParams } from 'next/navigation';
+import useGetPlayData from '@/apis/useGetPlayData';
+import webview from '@/utils/webview';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -17,13 +21,33 @@ const targetHandleStyle: CSSProperties = {
 };
 
 const DefaultNode: FC<NodeProps> = () => {
+  const params = useParams();
   const { setIsAddFriendsPopupOpen } = React.useContext(
     RelationReportModalContext,
   );
+  const { data: relationReportData } = useGetRelationReport({
+    reportSeq: params.reportSeq as string,
+  });
+
+  const { data } = useGetPlayData({
+    fixedMenuSeq: String(relationReportData?.skill?.seq),
+    reportSeq: params.reportSeq as string,
+    options: {
+      revalidateOnFocus: true,
+    },
+  });
 
   const handleNodeClick = () => {
     gaEvent.touchRelationAdd();
-    setIsAddFriendsPopupOpen(true);
+
+    if (data.playDatas?.length) {
+      setIsAddFriendsPopupOpen(true);
+      return;
+    }
+
+    webview.goSkillDetailPage({
+      skillSeq: relationReportData?.skillSeq,
+    });
   };
 
   return (

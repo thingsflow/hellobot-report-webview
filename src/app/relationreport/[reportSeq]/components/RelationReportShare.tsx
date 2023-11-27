@@ -8,13 +8,22 @@ import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import { environment } from '../../../../../environments/environment';
 import * as gaEvent from '@/utils/gaEvent';
+import { RelationReportModalContext } from '../page';
 
 const RelationReportShare = () => {
   const params = useParams();
+  const { setIsPreventSharePopupOpen } = React.useContext(
+    RelationReportModalContext,
+  );
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
   const handleCopyLinkButtonClick = () => {
+    if (data?.shareScope !== 'PRIVATE') {
+      setIsPreventSharePopupOpen(true);
+      return;
+    }
+
     gaEvent.touchRelationLinkCopy();
 
     copyToClipboard(
@@ -24,6 +33,11 @@ const RelationReportShare = () => {
   };
 
   const handleShareWithKakaoButtonClick = () => {
+    if (data?.shareScope !== 'PRIVATE') {
+      setIsPreventSharePopupOpen(true);
+      return;
+    }
+
     gaEvent.touchRelationKakaoShare();
 
     shareWithKakao({

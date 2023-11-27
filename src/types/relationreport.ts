@@ -71,6 +71,7 @@ export interface RelationReport {
   extraUsersCount?: number; // '수지 외 1명'에서 1.
   skill?: Skill;
   sampleImageUrl?: string;
+  isViewerOwner?: boolean;
 }
 
 // ----------- API TYPES ------------
