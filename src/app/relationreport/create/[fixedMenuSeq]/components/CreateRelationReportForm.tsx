@@ -20,7 +20,6 @@ import * as gaEvent from '@/utils/gaEvent';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
-  const inputRef = React.useRef<HTMLInputElement>(null);
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
     options: {
@@ -111,14 +110,13 @@ const CreateRelationReportForm = () => {
     ) {
       setIsPrivate((prev) => !prev);
     }
-    inputRef?.current?.focus();
   };
 
   return (
     <>
       <div className="pt-8 px-4 pb-[96px]">
         <h5 className="font-bold text-gray-900">
-          {t('select_member_screen_title')}
+          {t('select_member_screen_title')}{' '}
           <span className="text-[#F23658]">*</span>
         </h5>
         <p className="text-xs text-gray-500 whitespace-pre-wrap">
@@ -213,7 +211,10 @@ const CreateRelationReportForm = () => {
               width={24}
               height={24}
               alt="Clear Icon"
-              onClick={() => setTitle('')}
+              onClick={(e) => {
+                e.preventDefault();
+                setTitle('');
+              }}
             />
           </div>
           <div className="flex flex-col pt-8">
