@@ -97,6 +97,21 @@ const CreateRelationReportForm = () => {
     response?.data.reportLink && router.push(response?.data.reportLink);
   };
 
+  const handleToggleButton = (isPrivateFrom: boolean) => {
+    // isPrivateFrom: 공유 범위 변경 전 값
+    if (
+      confirm(
+        t(
+          isPrivateFrom === true
+            ? 'relationshipmap_edit_popup_alert_status_public'
+            : 'relationshipmap_edit_popup_alert_status_private',
+        ),
+      )
+    ) {
+      setIsPrivate((prev) => !prev);
+    }
+  };
+
   return (
     <>
       <div className="pt-8 px-4 pb-[96px]">
@@ -218,7 +233,7 @@ const CreateRelationReportForm = () => {
               </div>
               <Toggle
                 isOn={isPrivate}
-                onToggle={() => setIsPrivate((prev) => !prev)}
+                onToggle={() => handleToggleButton(isPrivate)}
               />
             </div>
           </div>

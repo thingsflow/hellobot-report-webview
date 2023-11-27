@@ -53,6 +53,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
       skillSeq: data.skill?.seq,
       chatbotSeq: data.skill?.chatbot?.seq,
     });
+    onClose();
   };
 
   const handlePlayDataItemClick = async (targetData: PlayData) => {
