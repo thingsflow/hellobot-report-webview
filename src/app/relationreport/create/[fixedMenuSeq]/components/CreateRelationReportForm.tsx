@@ -20,6 +20,7 @@ import * as gaEvent from '@/utils/gaEvent';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
     options: {
@@ -197,6 +198,7 @@ const CreateRelationReportForm = () => {
           </h5>
           <div className="relative">
             <input
+              ref={inputRef}
               type="text"
               className="w-full h-12 bg-[#f5f5f5] rounded-lg text=[#242526] px-4 py-3 pr-11"
               value={title}
@@ -213,6 +215,7 @@ const CreateRelationReportForm = () => {
               alt="Clear Icon"
               onClick={(e) => {
                 e.preventDefault();
+                inputRef?.current?.focus();
                 setTitle('');
               }}
             />
