@@ -132,7 +132,7 @@ export const generateNodes = (
   }
 
   const result = [];
-  const nodeCount = playData.length + 1;
+  const nodeCount = isPlayDataOver20 ? playData.length : playData.length + 1;
   const radiusOffset = getRadiusOffset(playData.length);
   const radius = (deviceWidth / 2) * radiusOffset;
 
@@ -152,6 +152,10 @@ export const generateNodes = (
     const rotatedY = x * Math.sin(angleRadians) + y * Math.cos(angleRadians);
 
     const isLastIndex = i === playData.length;
+
+    if (isPlayDataOver20 && playData.length === i) {
+      break;
+    }
 
     result.push({
       id: `node${i}`,
