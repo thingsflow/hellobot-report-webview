@@ -42,14 +42,14 @@ const RelationReportHeader = () => {
   };
 
   const handleShareIconClick = async () => {
-    gaEvent.touchRelationShare({
-      screenName: 'relationship_map',
-    });
-
-    if (data?.shareScope === 'PRIVATE') {
+    if (data?.shareScope !== 'PRIVATE') {
       setIsPreventSharePopupOpen(true);
       return;
     }
+
+    gaEvent.touchRelationShare({
+      screenName: 'relationship_map',
+    });
 
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
 
