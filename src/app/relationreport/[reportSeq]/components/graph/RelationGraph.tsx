@@ -86,7 +86,7 @@ const RelationGraph = () => {
         onEdgesChange={onEdgesChange}
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
-        fitView={true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기(2명이면 false)
+        fitView={data?.playDatas?.length === 1 ? false : true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기(1명이면 false)
         preventScrolling={true}
         zoomOnPinch={true} // pinch 액션으로 줌인, 줌아웃 가능 여부
         selectionOnDrag={true} // 드래그 이벤트로 그래프 이동 가능 여부

@@ -6,20 +6,27 @@ import { useParams } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
 import { t } from '@/utils/translate';
 
-const BridgeReportSkillBanner = () => {
-  const params = useParams();
-  const { data, loading } = useGetBridgeData({
-    bridgeSeq: params.bridgeSeq as string,
-  });
+interface ISkillBanner {
+  name?: string;
+  image?: string;
+  evalAvgScore?: number;
+  badgeTitle?: string;
+  loading: boolean;
+  onClick: () => void;
+}
 
-  const handleBannerButtonClick = () => {
-    webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
-  };
-
+const SkillBanner = ({
+  name,
+  image,
+  evalAvgScore,
+  badgeTitle,
+  loading,
+  onClick,
+}: ISkillBanner) => {
   return (
     <div
       className="relative w-full px-4 cursor-pointer z-60 "
-      onClick={handleBannerButtonClick}
+      onClick={onClick}
     >
       {loading ? (
         <Skeleton
@@ -29,20 +36,17 @@ const BridgeReportSkillBanner = () => {
           duration={0.9}
         />
       ) : (
-        <div className="flex p-3 bg-white border border-gray-200 border-solid rounded-xl ">
+        <div className="flex p-3 border border-gray-200 border-solid rounded-xl bg-gray-50">
           <Image
             className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px]"
-            src={
-              data?.skill?.newSkillBannerImageUrl ||
-              '/images/new-skill-banner-default.png'
-            }
+            src={image || '/images/new-skill-banner-default.png'}
             alt="Banner Image"
             width={98}
             height={73}
             placeholder="empty"
           />
           <div className="flex flex-col">
-            <h5 className="font-medium">{data?.skill?.name}</h5>
+            <h5 className="font-medium">{name}</h5>
             <div className="flex">
               <div className="flex items-center gap-1">
                 <Image
@@ -53,9 +57,9 @@ const BridgeReportSkillBanner = () => {
                   alt="Skill Icon"
                 />
                 <div className="text-[#555759] pt-[4px] text-[13px]">
-                  {data?.skill?.evalAvgScore} ・{' '}
+                  {evalAvgScore} ・{' '}
                   {t('home_screen_label_skill_view_count', {
-                    value: data?.skill?.badge?.title,
+                    value: badgeTitle,
                   })}
                 </div>
               </div>
@@ -67,4 +71,4 @@ const BridgeReportSkillBanner = () => {
   );
 };
 
-export default BridgeReportSkillBanner;
+export default SkillBanner;

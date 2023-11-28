@@ -5,6 +5,8 @@ import { useParams, useRouter } from 'next/navigation';
 import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
+import useGetPlayData from '@/apis/useGetPlayData';
+import webview from '@/utils/webview';
 
 const RelationReportTitle = () => {
   const router = useRouter();
@@ -12,6 +14,13 @@ const RelationReportTitle = () => {
 
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
+  });
+  const { data: userPlayData } = useGetPlayData({
+    fixedMenuSeq: String(data?.skill?.seq),
+    reportSeq: params.reportSeq as string,
+    options: {
+      revalidateOnFocus: true,
+    },
   });
 
   const { setInviteFriendsPopupOpen, setIsPreventSharePopupOpen } =
@@ -22,6 +31,14 @@ const RelationReportTitle = () => {
       menuName: data?.skill?.name,
       menuSeq: data?.skillSeq,
     });
+
+    if (!userPlayData.playDatas?.length) {
+      webview.goSkillDetailPage({
+        skillSeq: data?.skill?.seq,
+      });
+      return;
+    }
+
     router.push('/relationreport/create/' + data?.skillSeq);
   };
 
