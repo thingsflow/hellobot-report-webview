@@ -17,6 +17,7 @@ import Loading from '@/components/Loading';
 import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
 import * as gaEvent from '@/utils/gaEvent';
+import webview from '@/utils/webview';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
@@ -89,6 +90,8 @@ const CreateRelationReportForm = () => {
       playDataSeq: selectedUser.seq!,
     };
     const response: CreateRelationReportType = await trigger(requestData);
+
+    webview.doReloadRelationReportList();
 
     gaEvent.createdRelationNew({
       menuSeq: data.skill?.seq,

@@ -4,6 +4,7 @@ type WebviewActionTypes =
   | 'goSkillDetailPage'
   | 'goRelationReportListPage'
   | 'goChatRoomPage'
+  | 'doReloadRelationReportList'
   | 'logEvent';
 
 interface DoShareType {
@@ -108,6 +109,10 @@ const goChatRoomPage = (parameter: goChatRoomPageType) => {
   sendEvent({ action: 'goChatRoomPage', parameter });
 };
 
+const doReloadRelationReportList = () => {
+  sendEvent({ action: 'doReloadRelationReportList' });
+};
+
 const logEvent = (name: string, params?: logEventType) => {
   sendEvent({
     action: 'logEvent',
@@ -125,4 +130,5 @@ export default {
   goRelationReportListPage,
   goChatRoomPage,
   logEvent,
+  doReloadRelationReportList,
 };

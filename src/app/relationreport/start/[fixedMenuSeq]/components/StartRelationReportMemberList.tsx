@@ -8,6 +8,7 @@ import {
   PlayData,
 } from '@/types/relationreport';
 import { t } from '@/utils/translate';
+import webview from '@/utils/webview';
 import { useParams, useRouter } from 'next/navigation';
 import * as React from 'react';
 
@@ -26,6 +27,9 @@ const CreateRelationReportMemberList = () => {
     };
 
     const response: CreateRelationReportType = await trigger(requestData);
+
+    webview.doReloadRelationReportList();
+
     response?.data.reportLink && router.push(response?.data.reportLink);
   };
 
