@@ -1,24 +1,13 @@
 'use client';
 import * as React from 'react';
-import {
-  RelationGraphContainer,
-  RelationReportDetail,
-  RelationReportFooter,
-  RelationReportShare,
-  SkillBanner,
-} from '.';
-import Divider from '@/components/Divider';
+import { RelationGraphContainer } from '.';
+import RelationReportBottomContainer from './RelationReportBottomContainer';
 
 const RelationReportPageContainer = () => {
   return (
-    <div className=" relative">
+    <div className="relative overflow-hidden h-screen">
       <RelationGraphContainer />
-      <SkillBanner />
-      <RelationReportDetail />
-      <Divider />
-      <RelationReportShare />
-      <Divider />
-      <RelationReportFooter />
+      <RelationReportBottomContainer />
     </div>
   );
 };

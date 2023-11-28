@@ -6,10 +6,12 @@ import BridgeReportSkillBanner from './BridgeReportSkillBanner';
 import useGetBridgeData from '@/apis/useGetBridgeData';
 import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
+import SkillBanner from '@/components/SkillBanner';
+import webview from '@/utils/webview';
 
 const BridgeGraphContainer = () => {
   const params = useParams();
-  const { loading } = useGetBridgeData({
+  const { data, loading } = useGetBridgeData({
     bridgeSeq: params.bridgeSeq as string,
   });
 
@@ -20,7 +22,16 @@ const BridgeGraphContainer = () => {
       </div>
       <BridgeReportHeader />
       <BridgeReportTitle />
-      <BridgeReportSkillBanner />
+      <SkillBanner
+        name={data?.skill?.name}
+        image={data?.skill?.newSkillBannerImageUrl}
+        evalAvgScore={data?.skill?.evalAvgScore}
+        badgeTitle={data?.skill?.badge?.title}
+        loading={loading}
+        onClick={() => {
+          webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
+        }}
+      />
       {loading && <Loading />}
     </div>
   );
