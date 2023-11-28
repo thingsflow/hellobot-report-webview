@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import * as React from 'react';
-import { Controls, ControlButton, useReactFlow, useViewport } from 'reactflow';
+import {
+  Controls,
+  ControlButton,
+  useReactFlow,
+  useViewport,
+  useNodes,
+} from 'reactflow';
 
 const CustomControls = () => {
   const [currentIcon, setCurrentIcon] = React.useState<'fitView' | 'zoomIn'>(
@@ -8,6 +14,20 @@ const CustomControls = () => {
   );
   const { fitView, setCenter } = useReactFlow();
   const { x, y, zoom } = useViewport();
+  const nodes = useNodes();
+  const [currentNodeCount, setCurrentNodeCount] = React.useState(0);
+
+  React.useEffect(() => {
+    // nodes가 2개에서 3개로 늘어나는 시점에 그래프의 ceneter 위치가 변경됨. 이때에만 fitView 다시 호출해주기
+    setCurrentNodeCount((prevCount) => {
+      if (prevCount === 2 && nodes.length === 3) {
+        fitView({
+          duration: 500,
+        });
+      }
+      return nodes.length;
+    });
+  }, [nodes, currentNodeCount]);
 
   const onFitViewHandler = () => {
     setCurrentIcon('zoomIn');
