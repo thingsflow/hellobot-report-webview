@@ -47,33 +47,23 @@ const RelationReportDetail = () => {
   return (
     <div className="flex flex-col px-6 ">
       {data &&
-        itemsToShow?.map((item, index) => {
-          const sourceIndex =
-            data.playDatas?.findIndex(
-              (playData) => playData.seq === item.source,
-            ) || 0;
-          const sourceItem = data.playDatas && data.playDatas[sourceIndex];
-          const targetIndex =
-            data.playDatas?.findIndex(
-              (playData) => playData.seq === item.target,
-            ) || 0;
-          const targetItem = data.playDatas && data.playDatas[targetIndex];
-
-          return (
+        // 최초 생성자 한 명만 들어있는경우 디폴트 설명 노출
+        (data.playDatas?.length === 1 ? (
+          <>
             <div
               className="pt-[52px] pb-10 border-b border-solid border-gray-200"
-              key={`${item.detail}${item.source}${index}`}
+              key={`${data.playDatas[0].seq}`}
             >
               <div className="flex justify-center">
                 <div className="relative">
                   <div
-                    className={`${RELATION_REPORT_NODE_COLORS[sourceIndex]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
+                    className={`${RELATION_REPORT_NODE_COLORS[0]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                   >
-                    {sourceItem?.name}
+                    {data.playDatas[0]?.name}
                   </div>
                   <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
                     <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
-                      {sourceItem?.resultName}
+                      {data.playDatas[0]?.resultName}
                     </div>
                   </div>
                 </div>
@@ -86,24 +76,85 @@ const RelationReportDetail = () => {
                 />
                 <div className="relative">
                   <div
-                    className={`${RELATION_REPORT_NODE_COLORS[targetIndex]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
+                    className={`bg-gray-900 flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                   >
-                    {targetItem?.name}
+                    ?
                   </div>
                   <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
                     <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
-                      {targetItem?.resultName}
+                      -
                     </div>
                   </div>
                 </div>
               </div>
-              <h5 className="mt-[60px] text-lg font-bold text-gray-900 text-center">
-                {item.label}
-              </h5>
-              <p className="mt-4 text-gray-900">{item.detail}</p>
+              <p className="mt-10 text-gray-500">
+                {
+                  '친구를 추가하면 이 곳에 친구와 나의 관계성에 대한 한마디 정의와 상세풀이를 볼 수 있어요.'
+                }
+              </p>
             </div>
-          );
-        })}
+          </>
+        ) : (
+          <>
+            {itemsToShow?.map((item, index) => {
+              const sourceIndex =
+                data.playDatas?.findIndex(
+                  (playData) => playData.seq === item.source,
+                ) || 0;
+              const sourceItem = data.playDatas && data.playDatas[sourceIndex];
+              const targetIndex =
+                data.playDatas?.findIndex(
+                  (playData) => playData.seq === item.target,
+                ) || 0;
+              const targetItem = data.playDatas && data.playDatas[targetIndex];
+
+              return (
+                <div
+                  className="pt-[52px] pb-10 border-b border-solid border-gray-200"
+                  key={`${item.detail}${item.source}${index}`}
+                >
+                  <div className="flex justify-center">
+                    <div className="relative">
+                      <div
+                        className={`${RELATION_REPORT_NODE_COLORS[sourceIndex]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
+                      >
+                        {sourceItem?.name}
+                      </div>
+                      <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
+                        <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+                          {sourceItem?.resultName}
+                        </div>
+                      </div>
+                    </div>
+                    <Image
+                      className="px-2"
+                      src="/images/double-arrow.svg"
+                      width={74}
+                      height={74}
+                      alt="double arrow"
+                    />
+                    <div className="relative">
+                      <div
+                        className={`${RELATION_REPORT_NODE_COLORS[targetIndex]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
+                      >
+                        {targetItem?.name}
+                      </div>
+                      <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
+                        <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+                          {targetItem?.resultName}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 className="mt-[60px] text-lg font-bold text-gray-900 text-center">
+                    {item.label}
+                  </h5>
+                  <p className="mt-4 text-gray-900">{item.detail}</p>
+                </div>
+              );
+            })}
+          </>
+        ))}
       {!showAll &&
         data?.edges &&
         data.edges.length > INITIAL_MAX_ITEM_LENGTH && (
