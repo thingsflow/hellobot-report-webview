@@ -88,6 +88,8 @@ export interface GetBridgeDataType extends Error {
     relationType?: RelationType;
     previewImageUrl?: string;
     skillSeq?: number;
+    title?: string;
+    subTitle?: string;
     skill?: {
       chatbot?: {
         seq?: number;
