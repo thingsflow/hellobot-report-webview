@@ -37,8 +37,9 @@ const SkillBanner = ({
         />
       ) : (
         <div className="flex p-3 border border-gray-200 border-solid rounded-xl bg-gray-50">
+          {/* TODO: inset border 적용하기 */}
           <Image
-            className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px] border border-[#7E8185]/10 border-solid"
+            className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px] shadow-inset"
             src={image || '/images/new-skill-banner-default.png'}
             alt="Banner Image"
             width={98}
@@ -46,7 +47,9 @@ const SkillBanner = ({
             placeholder="empty"
           />
           <div className="flex flex-col">
-            <h5 className="font-medium">{name}</h5>
+            <h5 className="font-medium line-clamp-2 leading-[22px] mt-1">
+              {name}
+            </h5>
             <div className="flex">
               <div className="flex items-center gap-1">
                 <Image

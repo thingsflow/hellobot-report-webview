@@ -14,7 +14,7 @@ const CreateRelationReportTitle = () => {
 
   return (
     <div className="flex flex-col w-full px-4 py-8">
-      <h2 className="text-[22px] font-bold text-gray-900 whitespace-pre-wrap">
+      <h2 className="text-[22px] font-bold text-gray-900 whitespace-pre-wrap leading-7">
         {t('relationshipmap_create_screen_description_main')}
       </h2>
       <div className="flex mt-4">

@@ -88,6 +88,7 @@ const config: Config = {
       boxShadow: {
         popup: '0px 8px 24px 0px rgba(0, 0, 0, 0.24)',
         bottomSheet: '0px 0px 24px 0px rgba(0, 0, 0, 0.16)',
+        inset: 'inset 0 0 0 2px #faba10',
       },
       screens: {
         xs: '375px',

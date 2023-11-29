@@ -52,6 +52,10 @@ const RelationReportShare = () => {
   return (
     <div>
       <div className="flex flex-col items-center py-10">
+        <h3 className="px-4 mb-8 font-bold text-[20px]  whitespace-pre-wrap">
+          {/* TODO: lokalise */}
+          가족이 모이면 이런 관계도가 보여요!
+        </h3>
         {data?.sampleImageUrl && (
           <div className="relative w-full h-auto">
             <Image
@@ -86,7 +90,7 @@ const RelationReportShare = () => {
             onClick={handleCopyLinkButtonClick}
           >
             <Image
-              src="/images/icons-08-button-icon-btn-more.svg"
+              src="/images/icons-08-button-icon-btn-more-light.svg"
               width={24}
               height={24}
               alt="Copy Icon"

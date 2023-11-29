@@ -147,7 +147,7 @@ const RelationReportDetail = () => {
                       </div>
                     </div>
                   </div>
-                  <h5 className="mt-[60px] text-lg font-bold text-gray-900 text-center">
+                  <h5 className="mt-[64px] text-lg font-bold text-gray-900 text-center">
                     {item.label}
                   </h5>
                   <p className="mt-4 text-gray-900">{item.detail}</p>

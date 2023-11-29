@@ -43,7 +43,7 @@ const DefaultEdge: FC<EdgeProps> = ({
               paddingTop: 5,
               paddingBottom: 5,
               fontSize: 14,
-              fontWeight: 400,
+              fontWeight: 700,
               borderRadius: '16px',
               border: '1px solid #DDDEE1',
               background: '#FAFAFA',

@@ -76,7 +76,7 @@ const EditMoimPopup = () => {
         title={t('relationshipmap_edit_popup_title_group')}
         onClose={handleCloseButtonClick}
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-[30px]">
           <div className="flex flex-col gap-[9px]">
             <p className="text-[#7E8185] text-xs font-normal">
               {t('relationshipmap_edit_popup_label_group_name')}

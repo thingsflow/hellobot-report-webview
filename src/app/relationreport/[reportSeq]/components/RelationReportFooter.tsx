@@ -11,7 +11,7 @@ const RelationReportFooter = () => {
   });
 
   return (
-    <div className="px-6 py-8">
+    <div className="px-6 pt-8 pb-[60px]">
       <p className="text-center text-gray-700">
         🤔 {t('relationshipmap_screen_description_create')}
       </p>
