@@ -38,7 +38,7 @@ const SkillBanner = ({
       ) : (
         <div className="flex p-3 border border-gray-200 border-solid rounded-xl bg-gray-50">
           <Image
-            className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px]"
+            className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px] border border-[#7E8185]/10 border-solid"
             src={image || '/images/new-skill-banner-default.png'}
             alt="Banner Image"
             width={98}
