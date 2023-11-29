@@ -27,7 +27,7 @@ const RelationReportBottomContainer = () => {
       animate={isOpened ? 'opened' : 'closed'}
       variants={{
         opened: { top: '115px' },
-        closed: { top: 'calc(100svh - 100px)' },
+        closed: { top: 'calc(100dvh - 100px)' },
       }}
       transition={{ type: 'spring', bounce: 0.1, duration: 0.5 }}
     >

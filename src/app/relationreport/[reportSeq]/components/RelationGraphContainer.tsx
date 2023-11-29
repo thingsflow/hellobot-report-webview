@@ -4,9 +4,9 @@ import { RelationGraph, RelationReportHeader, RelationReportTitle } from '.';
 
 const RelationGraphContainer = () => {
   return (
-    <div className={`w-full h-[calc(100svh-86px)] bg-white overflow-hidden`}>
+    <div className={`w-full h-[calc(100dvh-86px)] bg-white overflow-hidden`}>
       <div
-        className={`absolute top-0 w-full h-[calc(100svh-86px)] overflow-hidden`}
+        className={`absolute top-0 w-full h-[calc(100dvh-86px)] overflow-hidden`}
       >
         <RelationGraph />
       </div>
