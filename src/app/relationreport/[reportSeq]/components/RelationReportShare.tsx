@@ -19,7 +19,7 @@ const RelationReportShare = () => {
     reportSeq: params.reportSeq as string,
   });
   const handleCopyLinkButtonClick = () => {
-    if (data?.shareScope !== 'PRIVATE') {
+    if (data?.shareScope === 'PRIVATE') {
       setIsPreventSharePopupOpen(true);
       return;
     }
@@ -33,7 +33,7 @@ const RelationReportShare = () => {
   };
 
   const handleShareWithKakaoButtonClick = () => {
-    if (data?.shareScope !== 'PRIVATE') {
+    if (data?.shareScope === 'PRIVATE') {
       setIsPreventSharePopupOpen(true);
       return;
     }

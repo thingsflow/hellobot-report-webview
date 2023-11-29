@@ -42,7 +42,7 @@ const RelationReportHeader = () => {
   };
 
   const handleShareIconClick = async () => {
-    if (data?.shareScope !== 'PRIVATE') {
+    if (data?.shareScope === 'PRIVATE') {
       setIsPreventSharePopupOpen(true);
       return;
     }
