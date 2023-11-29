@@ -8,6 +8,7 @@ import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
 import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
+import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
 
 const EditMoimPopup = () => {
   const params = useParams();
@@ -15,6 +16,8 @@ const EditMoimPopup = () => {
   const { editMoimPopupInfo, setEditMoimPopupInfo } = React.useContext(
     RelationReportModalContext,
   );
+  const isKeyboardOpen = useDetectKeyboardOpen();
+
   const { trigger, loading } = useUpdateRelationReport({
     reportSeq: params.reportSeq as string,
   });
@@ -28,7 +31,9 @@ const EditMoimPopup = () => {
   const handleDeleteButtonClick = (e: any) => {
     e.preventDefault();
     setTitle('');
-    inputRef?.current?.focus();
+    if (isKeyboardOpen) {
+      inputRef?.current?.focus();
+    }
   };
 
   const handleCloseButtonClick = () => {

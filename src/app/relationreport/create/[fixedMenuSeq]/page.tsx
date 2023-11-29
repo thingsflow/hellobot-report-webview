@@ -9,11 +9,13 @@ import { ToastContainer, toast } from 'react-toastify';
 // 새로운 모임 만들기 페이지
 const CreateRelationReportPage = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white h-[100dvh]">
       <CreateRelationReportHeader />
-      <CreateRelationReportTitle />
-      <Divider color="gray" />
-      <CreateRelationReportForm />
+      <div className="pt-[44px]">
+        <CreateRelationReportTitle />
+        <Divider color="gray" />
+        <CreateRelationReportForm />
+      </div>
       {
         <ToastContainer
           position={toast.POSITION.BOTTOM_CENTER}

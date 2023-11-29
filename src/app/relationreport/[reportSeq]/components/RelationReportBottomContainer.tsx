@@ -41,7 +41,9 @@ const RelationReportBottomContainer = () => {
     <>
       <motion.div
         animate={isOpened ? 'opened' : 'closed'}
-        className="absolute top-0 left-0 w-full h-[100dvh] bg-black z-50"
+        className={`absolute top-0 left-0 w-full h-[100dvh] bg-black ${
+          isOpened ? 'z-50' : 'z-0'
+        } opacity-0`}
         variants={{
           opened: {
             backdropFilter: 'blur(1px)',

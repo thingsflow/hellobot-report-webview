@@ -18,10 +18,12 @@ import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
 import * as gaEvent from '@/utils/gaEvent';
 import webview from '@/utils/webview';
+import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const isKeyboardOpen = useDetectKeyboardOpen();
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
     options: {
@@ -120,13 +122,15 @@ const CreateRelationReportForm = () => {
   const handleDeleteButtonClick = (e: any) => {
     e.preventDefault();
     setTitle('');
-    inputRef?.current?.focus();
+    if (isKeyboardOpen) {
+      inputRef?.current?.focus();
+    }
   };
 
   return (
     <>
-      <div className="pt-8 px-4 pb-[96px]">
-        <h5 className="font-bold text-gray-900">
+      <div className="pt-8 px-4 pb-[96px] border-1 border-solid">
+        <h5 className="mb-4 font-bold text-gray-900">
           {t('select_member_screen_title')}{' '}
           <span className="text-[#F23658]">*</span>
         </h5>
@@ -259,7 +263,6 @@ const CreateRelationReportForm = () => {
       {isSelectStartMemberPopupOpen && (
         <SelectStartMemberPopup
           onClose={() => setIsSelectStartMemberPopupOpen(false)}
-          onSelect={() => {}}
         />
       )}
       {isMutating && <Loading />}

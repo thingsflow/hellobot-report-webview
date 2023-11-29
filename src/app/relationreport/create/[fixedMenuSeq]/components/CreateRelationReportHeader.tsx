@@ -12,7 +12,7 @@ const CreateRelationReportHeader = () => {
   };
 
   return (
-    <header className="w-full flex justify-center items-center relative h-[44px]">
+    <header className="fixed max-w-xl w-full flex justify-center items-center h-[44px] bg-white">
       <Image
         className="cursor-pointer absolute left-4 top-1/2 -translate-y-1/2"
         src="/images/buttons-btn-back.svg"
