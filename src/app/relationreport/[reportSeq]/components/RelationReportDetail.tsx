@@ -61,7 +61,7 @@ const RelationReportDetail = () => {
                   >
                     {data.playDatas[0]?.name}
                   </div>
-                  <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
+                  <div className="flex absolute w-[110px] top-[70px] absolute-center justify-center text-center">
                     <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
                       {data.playDatas[0]?.resultName}
                     </div>
@@ -87,7 +87,8 @@ const RelationReportDetail = () => {
                   </div>
                 </div>
               </div>
-              <p className="mt-10 text-gray-500">
+              <p className="mt-20 text-gray-500">
+                {/* TODO: lokalise */}
                 {
                   '친구를 추가하면 이 곳에 친구와 나의 관계성에 대한 한마디 정의와 상세풀이를 볼 수 있어요.'
                 }
@@ -120,7 +121,7 @@ const RelationReportDetail = () => {
                       >
                         {sourceItem?.name}
                       </div>
-                      <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
+                      <div className="flex absolute w-[110px] top-[70px] absolute-center justify-center text-center">
                         <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
                           {sourceItem?.resultName}
                         </div>
@@ -139,7 +140,7 @@ const RelationReportDetail = () => {
                       >
                         {targetItem?.name}
                       </div>
-                      <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
+                      <div className="flex absolute w-[110px] top-[70px] absolute-center justify-center text-center">
                         <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
                           {targetItem?.resultName}
                         </div>

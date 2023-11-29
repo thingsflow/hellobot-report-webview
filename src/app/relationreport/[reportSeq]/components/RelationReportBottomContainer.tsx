@@ -20,6 +20,23 @@ const RelationReportBottomContainer = () => {
     reportSeq: params.reportSeq as string,
   });
 
+  const handleSkillBannerClick = () => {
+    if (isOpened) {
+      webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
+      return;
+    }
+
+    setIsOpened(true);
+  };
+
+  const handleBackgroundOverlayClick = () => {
+    setIsOpened(false);
+  };
+
+  const handleBottomSheetHeaderClick = () => {
+    setIsOpened((prev) => !prev);
+  };
+
   return (
     <>
       <motion.div
@@ -37,10 +54,12 @@ const RelationReportBottomContainer = () => {
             opacity: 0,
           },
         }}
-        onClick={() => setIsOpened(false)}
+        onClick={handleBackgroundOverlayClick}
       ></motion.div>
       <motion.div
-        className={`z-50 absolute top-0 w-full bg-white rounded-tl-2xl rounded-tr-2xl shadow-bottomSheet will-change-transform overflow-scroll h-[calc(100svh-100px)]`}
+        className={`z-50 absolute top-0 w-full bg-white rounded-tl-2xl rounded-tr-2xl shadow-bottomSheet will-change-transform h-[calc(100svh-100px)] ${
+          isOpened ? 'overflow-scroll' : 'overflow-hidden'
+        }`}
         initial="closed"
         animate={isOpened ? 'opened' : 'closed'}
         variants={{
@@ -53,7 +72,7 @@ const RelationReportBottomContainer = () => {
         <div className="flex-grow cursor-grab select-none">
           <div
             className="flex px-5 py-4 justify-between sticky top-0 bg-white z-10 w-full"
-            onClick={() => setIsOpened((prev) => !prev)}
+            onClick={handleBottomSheetHeaderClick}
           >
             <div className="flex">
               <Image
@@ -83,9 +102,7 @@ const RelationReportBottomContainer = () => {
             image={data?.skill?.newSkillBannerImageUrl}
             evalAvgScore={data?.skill?.evalAvgScore}
             badgeTitle={data?.skill?.badge?.title}
-            onClick={() => {
-              webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
-            }}
+            onClick={handleSkillBannerClick}
           />
           {/* 바텀시트 컨텐츠 */}
           <RelationReportDetail />
