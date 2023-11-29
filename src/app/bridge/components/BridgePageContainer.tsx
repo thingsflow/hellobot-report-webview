@@ -51,10 +51,13 @@ const BridgePageContainer = () => {
           />
         </div>
       )}
-      <Button
-        title={t('bridge_relationshipmap_screen_button_start')}
-        onClick={handleStartButtonClick}
-      />
+      {/* IOS에서 safe area로 인해 빈 공간 생김. 흰색 배경으로 채우기 */}
+      <div className="fixed -bottom-[50px] w-full h-[130px] bg-white overflow-hidden">
+        <Button
+          title={t('bridge_relationshipmap_screen_button_start')}
+          onClick={handleStartButtonClick}
+        />
+      </div>
       {loading && <Loading />}
       <ToastContainer
         position={toast.POSITION.BOTTOM_CENTER}

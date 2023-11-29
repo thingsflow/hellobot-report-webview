@@ -88,7 +88,7 @@ const RelationGraph = () => {
         nodeTypes={nodeTypes}
         fitView={data?.playDatas?.length === 1 ? false : true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기(1명이면 false)
         fitViewOptions={{
-          padding: 1,
+          padding: 0.25,
         }}
         preventScrolling={true}
         zoomOnPinch={true} // pinch 액션으로 줌인, 줌아웃 가능 여부
