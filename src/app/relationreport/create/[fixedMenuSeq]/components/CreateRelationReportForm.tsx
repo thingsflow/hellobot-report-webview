@@ -27,6 +27,7 @@ const CreateRelationReportForm = () => {
     options: {
       revalidateIfStale: false,
       revalidateOnFocus: false,
+      revalidateOnMount: false,
     },
   });
   const { trigger, isMutating } = useCreateRelationReport();
