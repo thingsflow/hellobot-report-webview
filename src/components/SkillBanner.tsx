@@ -11,7 +11,7 @@ interface ISkillBanner {
   image?: string;
   evalAvgScore?: number;
   badgeTitle?: string;
-  loading: boolean;
+  loading?: boolean;
   onClick: () => void;
 }
 
