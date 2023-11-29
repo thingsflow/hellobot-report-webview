@@ -1,5 +1,4 @@
 import BridgeGraphContainer from './BridgeGraphContainer';
-import Divider from '@/components/Divider';
 import Button from '@/components/Button';
 import webview from '@/utils/webview';
 import Image from 'next/image';

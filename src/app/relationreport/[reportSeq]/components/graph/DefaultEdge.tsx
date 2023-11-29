@@ -46,7 +46,7 @@ const DefaultEdge: FC<EdgeProps> = ({
               fontWeight: 400,
               borderRadius: '16px',
               border: '1px solid #DDDEE1',
-              background: '#FFF',
+              background: '#FAFAFA',
             }}
             className="nodrag nopan"
           >

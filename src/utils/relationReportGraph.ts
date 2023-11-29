@@ -62,7 +62,7 @@ export const generateNodes = (
   if (playData.length < 2) {
     // 관계도에 한 명만 추가되어있는 경우
     const PADDING_X = 110; // 그래프 양 옆 패딩의 합
-    const PADDING_TOP = 152; // 그래프 상단 패딩 높이
+    const PADDING_TOP = deviceWidth < 400 ? 10 : 50; // 그래프 상단 패딩 높이
 
     return [
       {
