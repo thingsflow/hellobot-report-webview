@@ -42,9 +42,6 @@ const RelationGraph = () => {
 
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
-    options: {
-      refreshInterval: 1000,
-    },
   });
 
   React.useEffect(() => {

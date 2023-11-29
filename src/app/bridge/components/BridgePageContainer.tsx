@@ -1,5 +1,4 @@
 import BridgeGraphContainer from './BridgeGraphContainer';
-import Divider from '@/components/Divider';
 import Button from '@/components/Button';
 import webview from '@/utils/webview';
 import Image from 'next/image';
@@ -36,7 +35,6 @@ const BridgePageContainer = () => {
   return (
     <div className="relative bg-white ">
       <BridgeGraphContainer />
-      <Divider />
       {data?.previewImageUrl && (
         <div className="relative w-full h-auto">
           <Image

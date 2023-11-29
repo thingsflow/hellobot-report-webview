@@ -42,7 +42,7 @@ const RelationReportHeader = () => {
   };
 
   const handleShareIconClick = async () => {
-    if (data?.shareScope !== 'PRIVATE') {
+    if (data?.shareScope === 'PRIVATE') {
       setIsPreventSharePopupOpen(true);
       return;
     }
@@ -72,7 +72,7 @@ const RelationReportHeader = () => {
     <header className="flex justify-between w-full px-4 pt-4">
       <Image
         className="z-10 cursor-pointer"
-        src="/images/buttons-btn-modal-share.svg"
+        src="/images/modal-share-light.svg"
         alt="Share Icon"
         width={32}
         height={32}
@@ -81,7 +81,7 @@ const RelationReportHeader = () => {
       />
       <Image
         className="z-10 cursor-pointer"
-        src="/images/buttons-btn-modal-close.svg"
+        src="/images/modal-close-light.svg"
         alt="Close Icon"
         width={32}
         height={32}

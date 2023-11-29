@@ -18,15 +18,18 @@ import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
 import * as gaEvent from '@/utils/gaEvent';
 import webview from '@/utils/webview';
+import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const isKeyboardOpen = useDetectKeyboardOpen();
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
     options: {
       revalidateIfStale: false,
       revalidateOnFocus: false,
+      revalidateOnMount: false,
     },
   });
   const { trigger, isMutating } = useCreateRelationReport();
@@ -119,17 +122,19 @@ const CreateRelationReportForm = () => {
   const handleDeleteButtonClick = (e: any) => {
     e.preventDefault();
     setTitle('');
-    inputRef?.current?.focus();
+    if (isKeyboardOpen) {
+      inputRef?.current?.focus();
+    }
   };
 
   return (
     <>
-      <div className="pt-8 px-4 pb-[96px]">
-        <h5 className="font-bold text-gray-900">
+      <div className="pt-8 px-4 pb-[96px] border-1 border-solid">
+        <h5 className="mb-1 font-bold text-gray-900">
           {t('select_member_screen_title')}{' '}
           <span className="text-[#F23658]">*</span>
         </h5>
-        <p className="text-xs text-gray-500 whitespace-pre-wrap">
+        <p className="text-xs text-gray-500 whitespace-pre-wrap mb-2">
           {t('relationshipmap_create_screen_description_start_member')}
         </p>
         <div className="flex flex-col w-full">
@@ -165,7 +170,7 @@ const CreateRelationReportForm = () => {
               ))}
               {data.playDatas && data.playDatas?.length > 3 && (
                 <div
-                  className="flex items-center justify-center w-full h-10 my-2"
+                  className="flex items-center justify-center w-full h-10 mb-2 mt-4"
                   onClick={handleLoadMoreMemberButtonClick}
                 >
                   <p className="text-[#555759] text-[14px] flex items-center border border-solid px-6 py-[7px] rounded-full border-gray-300">
@@ -201,7 +206,7 @@ const CreateRelationReportForm = () => {
           )}
         </div>
         <div className="pt-8">
-          <h5 className="mb-4 font-bold text-gray-900">
+          <h5 className="mb-1 font-bold text-gray-900">
             {t('relationshipmap_edit_popup_label_group_name')}{' '}
             <span className="text-[#F23658]">*</span>
           </h5>
@@ -227,7 +232,7 @@ const CreateRelationReportForm = () => {
             />
           </div>
           <div className="flex flex-col pt-8">
-            <h5 className="mb-4 font-bold text-gray-900">
+            <h5 className="mb-1 font-bold text-gray-900">
               {t('relationshipmap_edit_popup_label_status')}{' '}
               <span className="text-[#F23658]">*</span>
             </h5>
@@ -258,7 +263,6 @@ const CreateRelationReportForm = () => {
       {isSelectStartMemberPopupOpen && (
         <SelectStartMemberPopup
           onClose={() => setIsSelectStartMemberPopupOpen(false)}
-          onSelect={() => {}}
         />
       )}
       {isMutating && <Loading />}

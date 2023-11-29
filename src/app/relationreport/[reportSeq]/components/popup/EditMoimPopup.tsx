@@ -8,6 +8,7 @@ import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
 import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
+import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
 
 const EditMoimPopup = () => {
   const params = useParams();
@@ -15,6 +16,8 @@ const EditMoimPopup = () => {
   const { editMoimPopupInfo, setEditMoimPopupInfo } = React.useContext(
     RelationReportModalContext,
   );
+  const isKeyboardOpen = useDetectKeyboardOpen();
+
   const { trigger, loading } = useUpdateRelationReport({
     reportSeq: params.reportSeq as string,
   });
@@ -28,7 +31,9 @@ const EditMoimPopup = () => {
   const handleDeleteButtonClick = (e: any) => {
     e.preventDefault();
     setTitle('');
-    inputRef?.current?.focus();
+    if (isKeyboardOpen) {
+      inputRef?.current?.focus();
+    }
   };
 
   const handleCloseButtonClick = () => {
@@ -71,7 +76,7 @@ const EditMoimPopup = () => {
         title={t('relationshipmap_edit_popup_title_group')}
         onClose={handleCloseButtonClick}
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-[30px]">
           <div className="flex flex-col gap-[9px]">
             <p className="text-[#7E8185] text-xs font-normal">
               {t('relationshipmap_edit_popup_label_group_name')}

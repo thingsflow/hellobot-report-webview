@@ -66,7 +66,9 @@ const RelationReportTitle = () => {
         )}
         <div>
           <div className="flex items-center ">
-            <h1 className="text-[22px] font-bold mr-1">{data?.title}</h1>
+            <h1 className="text-[22px] font-bold mr-1 leading-7">
+              {data?.title}
+            </h1>
             {data?.isViewerOwner && (
               <Image
                 className="z-50 cursor-pointer"
@@ -87,7 +89,7 @@ const RelationReportTitle = () => {
       </div>
       <div className="flex gap-[6px]">
         <div
-          className="z-50 flex gap-1 px-4 py-2 text-xs text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
+          className="z-50 flex gap-1 px-4 py-2 text-[14px] text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
           onClick={handleKakaoTalkButtonClick}
         >
           <Image
@@ -101,7 +103,7 @@ const RelationReportTitle = () => {
           </p>
         </div>
         <div
-          className="z-50 flex gap-1 px-4 py-2 text-xs text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
+          className="z-50 flex gap-1 px-4 py-2 text-[14px] text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
           onClick={createNewMoimButtonClick}
         >
           <Image

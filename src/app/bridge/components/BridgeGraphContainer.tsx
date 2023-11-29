@@ -2,7 +2,6 @@
 import BridgeGraph from './graph/BridgeGraph';
 import BridgeReportTitle from './BridgeReportTitle';
 import BridgeReportHeader from './BridgeReportHeader';
-import BridgeReportSkillBanner from './BridgeReportSkillBanner';
 import useGetBridgeData from '@/apis/useGetBridgeData';
 import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';

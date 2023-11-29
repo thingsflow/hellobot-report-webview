@@ -7,14 +7,10 @@ import { PlayData } from '@/types/relationreport';
 
 interface ISelectStartMemberPopup {
   onClose: () => void;
-  onSelect: () => void;
 }
 
 // 시작멤버 선택화면에서 선택한 프로필을 리스트 맨 앞으로 옮기기
-const SelectStartMemberPopup = ({
-  onClose,
-  onSelect,
-}: ISelectStartMemberPopup) => {
+const SelectStartMemberPopup = ({ onClose }: ISelectStartMemberPopup) => {
   const params = useParams();
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,

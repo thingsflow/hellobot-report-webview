@@ -43,6 +43,7 @@ const CustomControls = () => {
 
   return (
     <Controls
+      className="w-10 h-10"
       position={'bottom-right'}
       showZoom={false}
       showInteractive={false}
@@ -50,7 +51,7 @@ const CustomControls = () => {
     >
       {currentIcon === 'fitView' ? (
         <ControlButton
-          className="w-6 h-6 react-flow__controls-fitview"
+          className="w-10 h-10 react-flow__controls-fitview"
           onClick={onFitViewHandler}
           title="fit view"
           aria-label="fit view"
@@ -58,23 +59,23 @@ const CustomControls = () => {
           <Image
             src="/images/fitview.svg"
             alt="FitView Icon"
-            width={24}
-            height={24}
+            width={40}
+            height={40}
           />
         </ControlButton>
       ) : (
         <ControlButton
-          className="w-6 h-6 react-flow__controls-zoomin"
+          className="w-10 h-10 react-flow__controls-zoomin shrink-0 "
           onClick={onZoomInHandler}
           title="fit view"
           aria-label="fit view"
         >
           <Image
-            className="flex-shrink-0"
+            className="w-[40px] h-[40px] shrink-0 "
             src="/images/zoom.svg"
             alt="ZoomIn Icon"
-            width={24}
-            height={24}
+            width={40}
+            height={40}
           />
         </ControlButton>
       )}
