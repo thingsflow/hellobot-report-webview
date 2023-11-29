@@ -75,6 +75,7 @@ const RelationReportBottomContainer = () => {
           <div
             className="flex px-5 py-4 justify-between sticky top-0 bg-white z-10 w-full"
             onClick={handleBottomSheetHeaderClick}
+            onTouchStart={handleBottomSheetHeaderClick}
           >
             <div className="flex">
               <Image
@@ -105,6 +106,7 @@ const RelationReportBottomContainer = () => {
             evalAvgScore={data?.skill?.evalAvgScore}
             badgeTitle={data?.skill?.badge?.title}
             onClick={handleSkillBannerClick}
+            onTouchStart={handleSkillBannerClick}
           />
           {/* 바텀시트 컨텐츠 */}
           <RelationReportDetail />

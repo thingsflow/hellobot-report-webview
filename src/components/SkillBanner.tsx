@@ -13,6 +13,7 @@ interface ISkillBanner {
   badgeTitle?: string;
   loading?: boolean;
   onClick: () => void;
+  onTouchStart: () => void;
 }
 
 const SkillBanner = ({
@@ -22,11 +23,13 @@ const SkillBanner = ({
   badgeTitle,
   loading,
   onClick,
+  onTouchStart,
 }: ISkillBanner) => {
   return (
     <div
       className="relative w-full px-4 cursor-pointer z-60 "
       onClick={onClick}
+      onTouchStart={onTouchStart}
     >
       {loading ? (
         <Skeleton
