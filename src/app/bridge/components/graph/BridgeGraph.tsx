@@ -39,6 +39,7 @@ const generaateNodes = () => {
       },
       type: 'startNode',
       data: {},
+      draggable: false,
     },
     {
       id: 'add_node',
@@ -48,6 +49,7 @@ const generaateNodes = () => {
       },
       type: 'addNode',
       data: {},
+      draggable: false,
     },
   ];
 };
@@ -79,13 +81,16 @@ const BridgeGraph = () => {
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         preventScrolling={false}
-        zoomOnPinch={true} // pinch(?)액션으로 줌인, 줌아웃 가능 여부
+        zoomOnPinch={false} // pinch(?)액션으로 줌인, 줌아웃 가능 여부
         selectionOnDrag={false} // 드래그 이벤트로 그래프 이동 가능 여부
-        zoomOnScroll={true}
+        zoomOnScroll={false}
         panOnScroll={false} // 그래프 위에서 스크롤 작동하게하기
         panOnDrag={false}
         proOptions={{ hideAttribution: true }} // reactflow 프로 사용자만 감출 수 있는..
         selectionMode={SelectionMode.Partial}
+        draggable={false}
+        nodesDraggable={false}
+        selectNodesOnDrag={false}
       ></ReactFlow>
     </>
   );
