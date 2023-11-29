@@ -16,7 +16,7 @@ import webview from '@/utils/webview';
 const RelationReportBottomContainer = () => {
   const [isOpened, setIsOpened] = React.useState(false);
   const params = useParams();
-  const { data, loading } = useGetRelationReport({
+  const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
 
@@ -65,7 +65,6 @@ const RelationReportBottomContainer = () => {
           image={data?.skill?.newSkillBannerImageUrl}
           evalAvgScore={data?.skill?.evalAvgScore}
           badgeTitle={data?.skill?.badge?.title}
-          loading={loading}
           onClick={() => {
             webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
           }}
