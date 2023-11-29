@@ -36,7 +36,6 @@ const BridgePageContainer = () => {
   return (
     <div className="relative bg-white ">
       <BridgeGraphContainer />
-      <Divider />
       {data?.previewImageUrl && (
         <div className="relative w-full h-auto">
           <Image
