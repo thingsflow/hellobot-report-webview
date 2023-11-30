@@ -5,6 +5,8 @@ import { InviteFriendsPopup, RelationReportPageContainer } from './components';
 import AddFriendsPopup from './components/popup/AddFriendsPopup';
 import EditMoimPopup from './components/popup/EditMoimPopup';
 import PreventSharePopup from './components/popup/PreventSharePopup';
+import airbridge from 'airbridge-web-sdk-loader';
+import { useParams, useSearchParams } from 'next/navigation';
 
 interface IRelationReportModalContext {
   isInviteFriendsPopupOpen: boolean;
@@ -53,6 +55,9 @@ export const RelationReportModalContext =
   React.createContext<IRelationReportModalContext>(initialState);
 
 const RelationReportPage = () => {
+  const searchParams = useSearchParams();
+  const params = useParams();
+  const share = searchParams.get('share');
   const [isInviteFriendsPopupOpen, setInviteFriendsPopupOpen] =
     React.useState(false);
   const [isAddFriendsPopupOpen, setIsAddFriendsPopupOpen] =
@@ -67,6 +72,23 @@ const RelationReportPage = () => {
   const [playData, setPlayData] = React.useState<any[]>([]);
   // 관계도에 엣지가 한 개 인가?
   const [isOnlyEdge, setIsOnlyEdge] = React.useState(false);
+
+  React.useEffect(() => {
+    if (share === 'true') {
+      airbridge.openDeeplink({
+        type: 'redirect',
+        deeplinks: {
+          ios: `hellobot-test://relation/report?link=${window.location.href}`,
+          android: `hellobot://relation/report?link=${window.location.href}`,
+          desktop: `${window.location.protocol}//${window.location.host}/relationreport/568?share=false`,
+        },
+        fallbacks: {
+          ios: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}?share=false`,
+          android: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}?share=false`,
+        },
+      });
+    }
+  }, []);
 
   return (
     <RelationReportModalContext.Provider
@@ -87,6 +109,9 @@ const RelationReportPage = () => {
         setPlayData,
       }}
     >
+      <div className="text-lg">
+        {share === 'true' ? '관계도 페이지' : 'FallBackPage'}
+      </div>
       <RelationReportPageContainer />
       <InviteFriendsPopup onClose={() => setInviteFriendsPopupOpen(false)} />
       <ToastContainer
@@ -101,6 +126,7 @@ const RelationReportPage = () => {
         autoClose={3000}
         enableMultiContainer={false}
       />
+
       <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
       <PreventSharePopup onClose={() => setIsPreventSharePopupOpen(false)} />
       {editMoimPopupInfo && <EditMoimPopup />}

@@ -2,6 +2,7 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { STORAGE_KEY } from '@/consts/common';
+import airbridge from 'airbridge-web-sdk-loader';
 
 const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
@@ -9,6 +10,13 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
   const platformInParam = searchParams.get('platform');
   const langInParam = searchParams.get('lang');
   const [currentToken, setCurrentToken] = React.useState('');
+
+  React.useEffect(() => {
+    airbridge.init({
+      app: 'hellobot_dev',
+      webToken: '6ec27ed73ca64da8aefd14bca3a82e3a',
+    });
+  }, []);
 
   React.useEffect(() => {
     const tokenInStorage = localStorage.getItem(STORAGE_KEY.TOKEN) as
