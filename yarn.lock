@@ -588,6 +588,11 @@ acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.10.0.tgz#8be5b3907a67221a81ab23c7889c4c5526b62ec5"
   integrity sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==
 
+airbridge-web-sdk-loader@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/airbridge-web-sdk-loader/-/airbridge-web-sdk-loader-1.9.0.tgz#a95a457295575e5917cf9a221e9a209edd7830f6"
+  integrity sha512-ZK7PEPAaRwRQ4s16aZpOTzRfYy3VdYf61owC+Qum6EypsowwZbocBcE6JnFbv28IUJcvVJV9SFXn5Y8CEvfqKQ==
+
 ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"

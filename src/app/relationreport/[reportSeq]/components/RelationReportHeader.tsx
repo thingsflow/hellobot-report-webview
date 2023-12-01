@@ -38,7 +38,9 @@ const RelationReportHeader = () => {
 
   const dataToShare: ShareData = {
     title: data?.title,
-    url: environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
+    url:
+      environment.relationReportShareBaseUrl +
+      `?relationSeq=${data?.seq}&share=true`,
   };
 
   const handleShareIconClick = async () => {
@@ -52,12 +54,12 @@ const RelationReportHeader = () => {
     });
 
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
-
     if (isAndroidWebView) {
       Webview.doShare({
         shareTitle: data?.title,
         shareLink:
-          environment.relationReportShareBaseUrl + `?relationSeq=${data?.seq}`,
+          environment.relationReportShareBaseUrl +
+          `?relationSeq=${data?.seq}&share=true`,
       });
     } else {
       const result = await share(dataToShare);

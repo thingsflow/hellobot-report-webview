@@ -5,10 +5,10 @@ import Webview from '@/utils/webview';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import * as React from 'react';
-import { environment } from '../../../../environments/environment';
 import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
 import * as gaEvent from '@/utils/gaEvent';
+import getShareUrl from '@/utils/getShareUrl';
 
 const BridgeReportHeader = () => {
   const params = useParams();
@@ -22,7 +22,7 @@ const BridgeReportHeader = () => {
 
   const dataToShare: ShareData = {
     title: data?.skill?.name,
-    url: `${environment.url}/skills/${data?.skill?.seq}`,
+    url: getShareUrl(`/skills/${data?.skill?.seq}`),
   };
 
   const handleShareIconClick = async () => {
@@ -35,7 +35,7 @@ const BridgeReportHeader = () => {
     if (isAndroidWebView) {
       Webview.doShare({
         shareTitle: data?.skill?.name,
-        shareLink: `${environment.url}/skills/${data?.skill?.seq}`,
+        shareLink: getShareUrl(`/skills/${data?.skill?.seq}`),
       });
     } else {
       const result = await share(dataToShare);
