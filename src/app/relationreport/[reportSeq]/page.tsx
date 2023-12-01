@@ -80,13 +80,14 @@ const RelationReportPage = () => {
         deeplinks: {
           ios: `hellobot-test://relation/report?link=${window.location.href}`,
           android: `hellobot://relation/report?link=${window.location.href}`,
-          desktop: `${window.location.protocol}//${window.location.host}/relationreport/568?share=false`,
+          desktop: `${window.location.protocol}//${window.location.host}/relationreport/568`,
         },
         fallbacks: {
-          ios: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}?share=false`,
-          android: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}?share=false`,
+          ios: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}`,
+          android: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}`,
         },
       });
+      sessionStorage.setItem('isDeepLinkCompleted', 'true');
     }
   }, []);
 
@@ -109,9 +110,6 @@ const RelationReportPage = () => {
         setPlayData,
       }}
     >
-      <div className="text-lg">
-        {share === 'true' ? '관계도 페이지' : 'FallBackPage'}
-      </div>
       <RelationReportPageContainer />
       <InviteFriendsPopup onClose={() => setInviteFriendsPopupOpen(false)} />
       <ToastContainer
