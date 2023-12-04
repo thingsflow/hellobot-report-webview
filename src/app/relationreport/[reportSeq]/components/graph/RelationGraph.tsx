@@ -15,7 +15,7 @@ import { generateEdges, generateNodes } from '@/utils/relationReportGraph';
 import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
 import useGetRelationReport from '@/apis/useGetRelationReport';
-import { useParams } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { RelationReportModalContext } from '../../page';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
@@ -43,7 +43,6 @@ const RelationGraph = () => {
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-
   React.useEffect(() => {
     const DEFAULT_NODE_COUNT = 1;
     if (!data) return;
