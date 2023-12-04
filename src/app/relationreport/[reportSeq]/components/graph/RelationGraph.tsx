@@ -46,7 +46,6 @@ const RelationGraph = () => {
 
   React.useEffect(() => {
     const DEFAULT_NODE_COUNT = 1;
-
     if (!data) return;
 
     !data.edges?.length && setIsOnlyEdge(true);
@@ -56,20 +55,25 @@ const RelationGraph = () => {
 
     setNodes(nodes);
     setEdge(edges);
-
     if (!data.edges) return;
     if (
       data.edges?.length >=
       edges.length - nodes.length + DEFAULT_NODE_COUNT
     ) {
       setIsAllLoading(false);
-      toast.dismiss(toastRef.current);
-      toast.dismiss();
+      if (toastRef.current) {
+        toast.dismiss(toastRef.current);
+        toastRef.current = null;
+      }
     } else {
       setIsAllLoading(true);
-      toastRef.current = toast(t('relationshipmap_popup_toast__update'), {
-        isLoading: true,
-      });
+
+      if (!toastRef.current) {
+        const toastId = toast(t('relationshipmap_popup_toast__update'), {
+          isLoading: true,
+        });
+        toastRef.current = toastId;
+      }
     }
   }, [data]);
 
