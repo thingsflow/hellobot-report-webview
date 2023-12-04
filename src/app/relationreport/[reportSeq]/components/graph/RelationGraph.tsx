@@ -15,10 +15,11 @@ import { generateEdges, generateNodes } from '@/utils/relationReportGraph';
 import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
 import useGetRelationReport from '@/apis/useGetRelationReport';
-import { useParams } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { RelationReportModalContext } from '../../page';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
+import PermissionErrorPage from '../../../permissionerror/page';
 
 const nodeTypes = {
   commonNode: CommonNode,
@@ -40,10 +41,9 @@ const RelationGraph = () => {
   );
   const toastRef = React.useRef<any>(null);
 
-  const { data } = useGetRelationReport({
+  const { data, error } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-
   React.useEffect(() => {
     const DEFAULT_NODE_COUNT = 1;
     if (!data) return;
@@ -76,6 +76,9 @@ const RelationGraph = () => {
       }
     }
   }, [data]);
+  if (error) {
+    redirect('/relationreport/permissionerror');
+  }
 
   return (
     <>
