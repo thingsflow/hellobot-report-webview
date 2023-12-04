@@ -5,7 +5,6 @@ import { InviteFriendsPopup, RelationReportPageContainer } from './components';
 import AddFriendsPopup from './components/popup/AddFriendsPopup';
 import EditMoimPopup from './components/popup/EditMoimPopup';
 import PreventSharePopup from './components/popup/PreventSharePopup';
-import airbridge from 'airbridge-web-sdk-loader';
 import { useParams, useSearchParams } from 'next/navigation';
 
 interface IRelationReportModalContext {
@@ -72,24 +71,6 @@ const RelationReportPage = () => {
   const [playData, setPlayData] = React.useState<any[]>([]);
   // 관계도에 엣지가 한 개 인가?
   const [isOnlyEdge, setIsOnlyEdge] = React.useState(false);
-
-  React.useEffect(() => {
-    if (share === 'true') {
-      airbridge.openDeeplink({
-        type: 'redirect',
-        deeplinks: {
-          ios: `hellobot-test://relation/report?link=${window.location.href}`,
-          android: `hellobot://relation/report?link=${window.location.href}`,
-          desktop: `${window.location.protocol}//${window.location.host}/relationreport/568`,
-        },
-        fallbacks: {
-          ios: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}`,
-          android: `${window.location.protocol}//${window.location.host}/relationreport/${params.reportSeq}`,
-        },
-      });
-      sessionStorage.setItem('isDeepLinkCompleted', 'true');
-    }
-  }, []);
 
   return (
     <RelationReportModalContext.Provider
