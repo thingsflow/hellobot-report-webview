@@ -1,18 +1,23 @@
 'use client';
 import { t } from '@/utils/translate';
-import webview from '@/utils/webview';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 const PermissionErrorPage = () => {
-  const handleBackButtonClick = () => {
-    webview.goBack();
+  const route = useRouter();
+  const onMainMove = () => {
+    route.push('https://hellobot.co');
   };
 
   return (
     <html>
       <body>
         <div className="flex flex-col">
-          <div className="flex justify-center items-center gap-2 text-[17px] font-bold my-2">
+          <div
+            className="flex justify-center items-center gap-2 text-[17px] font-bold my-2"
+            onClick={onMainMove}
+          >
             <Image
+              className="cursor-pointer"
               src={'/images/img_hellobotlogo_kr.svg'}
               width={106}
               height={32}
