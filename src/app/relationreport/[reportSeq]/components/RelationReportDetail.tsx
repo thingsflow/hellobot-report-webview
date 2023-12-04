@@ -61,8 +61,8 @@ const RelationReportDetail = () => {
                   >
                     {data.playDatas[0]?.name}
                   </div>
-                  <div className="flex absolute w-[110px] top-[70px] absolute-center justify-center text-center">
-                    <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+                  <div className="flex absolute w-[110px] top-[76px] absolute-center justify-center text-center ">
+                    <div className="text-gray-600 text-[13px] line-clamp-2">
                       {data.playDatas[0]?.resultName}
                     </div>
                   </div>
@@ -80,7 +80,7 @@ const RelationReportDetail = () => {
                   >
                     ?
                   </div>
-                  <div className="flex absolute w-[70px] top-[70px] absolute-center justify-center">
+                  <div className="flex absolute w-[70px] top-[76px] absolute-center justify-center">
                     <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
                       -
                     </div>
@@ -121,7 +121,7 @@ const RelationReportDetail = () => {
                       >
                         {sourceItem?.name}
                       </div>
-                      <div className="flex absolute w-[110px] top-[70px] absolute-center justify-center text-center">
+                      <div className="flex absolute w-[110px] top-[76px] absolute-center justify-center text-center">
                         <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
                           {sourceItem?.resultName}
                         </div>
@@ -140,7 +140,7 @@ const RelationReportDetail = () => {
                       >
                         {targetItem?.name}
                       </div>
-                      <div className="flex absolute w-[110px] top-[70px] absolute-center justify-center text-center">
+                      <div className="flex absolute w-[110px] top-[76px] absolute-center justify-center text-center">
                         <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
                           {targetItem?.resultName}
                         </div>
@@ -150,7 +150,14 @@ const RelationReportDetail = () => {
                   <h5 className="mt-[64px] text-lg font-bold text-gray-900 text-center">
                     {item.label}
                   </h5>
-                  <p className="mt-4 text-gray-900">{item.detail}</p>
+                  <p className="mt-4 text-gray-900 whitespace-pre-line">
+                    {item.detail?.split('\\n').map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </p>
                 </div>
               );
             })}
