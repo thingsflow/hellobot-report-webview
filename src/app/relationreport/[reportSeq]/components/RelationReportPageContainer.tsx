@@ -5,7 +5,7 @@ import RelationReportBottomContainer from './RelationReportBottomContainer';
 
 const RelationReportPageContainer = () => {
   return (
-    <div className="relative overflow-hidden h-screen">
+    <div className="relative">
       <RelationGraphContainer />
       <RelationReportBottomContainer />
     </div>
