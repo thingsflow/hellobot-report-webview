@@ -19,6 +19,14 @@ export interface PlayData {
   isAdded?: boolean; // client only (모임 생성 화면 내에서 해당 플레이데이터가 선택되었는가?)
 }
 
+export type UserType =
+  | 'anonymous'
+  | 'facebook'
+  | 'kakao'
+  | 'email'
+  | 'apple'
+  | 'google';
+
 export interface Skill {
   seq?: number;
   name?: string;
@@ -142,4 +150,27 @@ export interface UpdateRelationReportInputType {
 
 export interface GetRelationReportType extends Error {
   data?: RelationReport;
+}
+
+export interface GetUserType extends Error {
+  data?: {
+    seq?: number;
+    type?: UserType;
+    isTester?: boolean;
+    email?: string;
+    name?: string;
+    profileUrl?: string;
+    thumbnailUrl?: string;
+    signinAt?: string;
+    createAt?: string;
+    coin?: number;
+    currentGauge?: number;
+    agreeAcceptMarketing?: boolean;
+    birthYear?: number;
+    birthMonth?: number;
+    birthDay?: number;
+    gender?: string;
+    character?: string;
+    hasSubscribed?: boolean;
+  };
 }

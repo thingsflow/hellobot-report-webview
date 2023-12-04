@@ -12,6 +12,8 @@ import SkillBanner from '@/components/SkillBanner';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import webview from '@/utils/webview';
+import useGetUser from '@/apis/useGetUser';
+import { environment } from '../../../../../environments/environment';
 
 const RelationReportBottomContainer = () => {
   const [isOpened, setIsOpened] = React.useState(false);
@@ -20,7 +22,27 @@ const RelationReportBottomContainer = () => {
     reportSeq: params.reportSeq as string,
   });
 
+  const { data: userData } = useGetUser({});
+
   const handleSkillBannerClick = () => {
+    const isKeepAnonymous = localStorage.getItem('isKeepAnonymous');
+
+    if (userData?.type === 'anonymous' && isKeepAnonymous !== 'true') {
+      if (
+        confirm(
+          '로그인 하시겠습니까? 로그인을 하지 않고 진행하게 될 시, 관계도 및 결과가 저장되지 않습니다.',
+        )
+      ) {
+        webview.doLoginWithRedirectUrl({
+          redireactUrl:
+            environment.relationReportShareBaseUrl +
+            `?relationSeq=${params.reportSeq}`,
+        });
+      } else {
+        localStorage.setItem('isKeepAnonymous', 'true');
+      }
+    }
+
     if (isOpened) {
       webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
       return;
