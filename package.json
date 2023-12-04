@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
-    "airbridge-web-sdk-loader": "^1.9.0",
     "framer-motion": "^10.16.5",
     "next": "13.5.6",
     "react": "^18",

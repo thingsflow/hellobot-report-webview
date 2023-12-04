@@ -5,9 +5,11 @@ import { RelationReportModalContext } from '../../page';
 import { t } from '@/utils';
 import * as gaEvent from '@/utils/gaEvent';
 import useGetRelationReport from '@/apis/useGetRelationReport';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import useGetPlayData from '@/apis/useGetPlayData';
 import webview from '@/utils/webview';
+import useGetUser from '@/apis/useGetUser';
+import { environment } from '../../../../../../environments/environment';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -22,11 +24,22 @@ const targetHandleStyle: CSSProperties = {
 
 const DefaultNode: FC<NodeProps> = () => {
   const params = useParams();
+  const searchParams = useSearchParams();
+  const share = searchParams.get('isShare');
+
   const { setIsAddFriendsPopupOpen } = React.useContext(
     RelationReportModalContext,
   );
   const { data: relationReportData } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
+    options: {
+      revalidateOnMount: false,
+    },
+  });
+  const { data: userData } = useGetUser({
+    options: {
+      revalidateOnMount: false,
+    },
   });
 
   const { data } = useGetPlayData({
@@ -39,6 +52,28 @@ const DefaultNode: FC<NodeProps> = () => {
 
   const handleNodeClick = () => {
     gaEvent.touchRelationAdd();
+
+    const isKeepAnonymous = localStorage.getItem('isKeepAnonymous');
+
+    if (
+      userData?.type === 'anonymous' &&
+      isKeepAnonymous !== 'true' &&
+      share === 'true'
+    ) {
+      if (
+        confirm(
+          '로그인 하시겠습니까? 로그인을 하지 않고 진행하게 될 시, 관계도 및 결과가 저장되지 않습니다.',
+        )
+      ) {
+        webview.doLoginWithRedirectUrl({
+          redireactUrl:
+            environment.relationReportShareBaseUrl +
+            `?relationSeq=${params.reportSeq}`,
+        });
+      } else {
+        localStorage.setItem('isKeepAnonymous', 'true');
+      }
+    }
 
     if (data.playDatas?.length) {
       setIsAddFriendsPopupOpen(true);
