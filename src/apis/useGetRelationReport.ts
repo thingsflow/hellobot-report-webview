@@ -3,6 +3,7 @@ import { ERROR_CODE } from '@/consts/common';
 import { fetcher } from '@/lib/fetcher';
 import { GetPlayDataType, GetRelationReportType } from '@/types/relationreport';
 import { t } from '@/utils';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import useSWR from 'swr';
 import { BareFetcher, PublicConfiguration } from 'swr/_internal';
@@ -30,12 +31,7 @@ const useGetRelationReport = ({
       // TODO: lokalise 수정
 
       // throw Error(t('relationshipmap_alert_private', { value: '관계도' }));
-      return {
-        loading: isLoading || isValidating,
-        error: data?.error,
-        mutate,
-        isLoading,
-      };
+      redirect('/relationreport/permissionerror');
     }
 
     throw Error(data?.error?.message || error.message);

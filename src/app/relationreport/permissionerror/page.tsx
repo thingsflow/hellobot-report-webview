@@ -2,10 +2,11 @@
 import { t } from '@/utils/translate';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { environment } from '../../../../environments/environment';
 const PermissionErrorPage = () => {
   const route = useRouter();
   const onMainMove = () => {
-    route.push('https://hellobot.co');
+    route.push(environment.url);
   };
 
   return (
@@ -13,7 +14,7 @@ const PermissionErrorPage = () => {
       <body>
         <div className="flex flex-col">
           <div
-            className="flex justify-center items-center gap-2 text-[17px] font-bold my-2"
+            className="flex justify-center items-center text-[17px] font-bold py-2"
             onClick={onMainMove}
           >
             <Image
@@ -24,6 +25,7 @@ const PermissionErrorPage = () => {
               alt="logo"
             />
           </div>
+          <div className="w-full h-[1px] bg-[#F5F5F5]" />
           <div className="z-10 flex flex-col items-center w-full h-screen overflow-hidden bg-gray-200 ">
             <div className="flex flex-col items-center justify-center w-full h-full bg-white pb-[40%]">
               <Image

@@ -19,7 +19,6 @@ import { redirect, useParams } from 'next/navigation';
 import { RelationReportModalContext } from '../../page';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
-import PermissionErrorPage from '../../../permissionerror/page';
 
 const nodeTypes = {
   commonNode: CommonNode,
@@ -41,7 +40,7 @@ const RelationGraph = () => {
   );
   const toastRef = React.useRef<any>(null);
 
-  const { data, error } = useGetRelationReport({
+  const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
   React.useEffect(() => {
@@ -76,9 +75,6 @@ const RelationGraph = () => {
       }
     }
   }, [data]);
-  if (error) {
-    redirect('/relationreport/permissionerror');
-  }
 
   return (
     <>
