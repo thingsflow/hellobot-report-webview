@@ -18,12 +18,8 @@ const RelationReportShare = () => {
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const handleCopyLinkButtonClick = () => {
-    if (data?.shareScope === 'PRIVATE') {
-      setIsPreventSharePopupOpen(true);
-      return;
-    }
 
+  const handleCopyLinkButtonClick = () => {
     gaEvent.touchRelationLinkCopy();
 
     copyToClipboard(
@@ -72,33 +68,37 @@ const RelationReportShare = () => {
             />
           </div>
         )}
-        <p className="whitespace-pre-wrap text-[#7E8185] text-center mt-8">
-          {t('relationshipmap_screen_description_share')}
-        </p>
-        <div className="flex gap-3 mt-6">
-          <div
-            className="w-12 h-12 rounded-full bg-[#FFE812] flex items-center justify-center"
-            onClick={handleShareWithKakaoButtonClick}
-          >
-            <Image
-              src="/images/kakao.svg"
-              width={24}
-              height={24}
-              alt="Kakao Icon"
-            />
-          </div>
-          <div
-            className="w-12 h-12 rounded-full border border-solid border-[#E2E3E6] flex items-center justify-center cursor-pointer"
-            onClick={handleCopyLinkButtonClick}
-          >
-            <Image
-              src="/images/icons-08-button-icon-btn-more-light.svg"
-              width={24}
-              height={24}
-              alt="Copy Icon"
-            />
-          </div>
-        </div>
+        {data?.shareScope === 'PUBLIC' && (
+          <>
+            <p className="whitespace-pre-wrap text-[#7E8185] text-center mt-8">
+              {t('relationshipmap_screen_description_share')}
+            </p>
+            <div className="flex gap-3 mt-6">
+              <div
+                className="w-12 h-12 rounded-full bg-[#FFE812] flex items-center justify-center"
+                onClick={handleShareWithKakaoButtonClick}
+              >
+                <Image
+                  src="/images/kakao.svg"
+                  width={24}
+                  height={24}
+                  alt="Kakao Icon"
+                />
+              </div>
+              <div
+                className="w-12 h-12 rounded-full border border-solid border-[#E2E3E6] flex items-center justify-center cursor-pointer"
+                onClick={handleCopyLinkButtonClick}
+              >
+                <Image
+                  src="/images/icons-08-button-icon-btn-more-light.svg"
+                  width={24}
+                  height={24}
+                  alt="Copy Icon"
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -45,11 +45,6 @@ const RelationReportTitle = () => {
   const { setEditMoimPopupInfo } = React.useContext(RelationReportModalContext);
 
   const handleKakaoTalkButtonClick = () => {
-    if (data?.shareScope === 'PRIVATE') {
-      setIsPreventSharePopupOpen(true);
-      return;
-    }
-
     setInviteFriendsPopupOpen(true);
   };
 
@@ -88,20 +83,22 @@ const RelationReportTitle = () => {
         </div>
       </div>
       <div className="flex gap-[6px]">
-        <div
-          className="z-50 flex gap-1 px-4 py-2 text-[14px] text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
-          onClick={handleKakaoTalkButtonClick}
-        >
-          <Image
-            src="/images/icons-08-button-icon-btn-more.svg"
-            alt="Invite Icon"
-            width={16}
-            height={16}
-          />
-          <p className="pt-[1px]">
-            {t('relationshipmap_screen_button_invite')}
-          </p>
-        </div>
+        {data?.shareScope === 'PUBLIC' && (
+          <div
+            className="z-50 flex gap-1 px-4 py-2 text-[14px] text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
+            onClick={handleKakaoTalkButtonClick}
+          >
+            <Image
+              src="/images/icons-08-button-icon-btn-more.svg"
+              alt="Invite Icon"
+              width={16}
+              height={16}
+            />
+            <p className="pt-[1px]">
+              {t('relationshipmap_screen_button_invite')}
+            </p>
+          </div>
+        )}
         <div
           className="z-50 flex gap-1 px-4 py-2 text-[14px] text-gray-700 bg-white border border-gray-200 border-solid cursor-pointer text-normal rounded-3xl"
           onClick={createNewMoimButtonClick}
