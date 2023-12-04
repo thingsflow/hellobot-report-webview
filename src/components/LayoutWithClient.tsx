@@ -64,8 +64,22 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
     script.async = true;
     document.body.appendChild(script);
 
+    // 반응형 vh값 설정
+    const setVh = () => {
+      document.documentElement.style.setProperty(
+        '--vh',
+        `${window.innerHeight * 0.01}px`,
+      );
+    };
+
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+    window.addEventListener('resize', setVh);
+
     return () => {
       document.body.removeChild(script);
+      window.removeEventListener('resize', setVh);
     };
   }, []);
 
