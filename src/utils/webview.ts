@@ -5,7 +5,8 @@ type WebviewActionTypes =
   | 'goRelationReportListPage'
   | 'goChatRoomPage'
   | 'doReloadRelationReportList'
-  | 'logEvent';
+  | 'logEvent'
+  | 'doLoginWithRedirectUrl';
 
 interface DoShareType {
   shareTitle?: string;
@@ -25,6 +26,10 @@ interface logEventType {
   [key: string]: any;
 }
 
+interface doLoginWithRedirectUrlType {
+  redireactUrl: string;
+}
+
 interface logEventTypeWithJsonString {
   name: string;
   params?: string;
@@ -39,7 +44,8 @@ const sendEvent = ({
     | DoShareType
     | goSkillDetailPageType
     | goChatRoomPageType
-    | logEventTypeWithJsonString;
+    | logEventTypeWithJsonString
+    | doLoginWithRedirectUrlType;
 }) => {
   const platform = localStorage.getItem('platform');
   console.log('platform: ', platform);
@@ -123,6 +129,13 @@ const logEvent = (name: string, params?: logEventType) => {
   });
 };
 
+const doLoginWithRedirectUrl = (parameter: doLoginWithRedirectUrlType) => {
+  sendEvent({
+    action: 'doLoginWithRedirectUrl',
+    parameter,
+  });
+};
+
 export default {
   doShare,
   goBack,
@@ -131,4 +144,5 @@ export default {
   goChatRoomPage,
   logEvent,
   doReloadRelationReportList,
+  doLoginWithRedirectUrl,
 };
