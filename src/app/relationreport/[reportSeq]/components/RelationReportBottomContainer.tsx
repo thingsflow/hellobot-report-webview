@@ -22,7 +22,7 @@ const RelationReportBottomContainer = () => {
   const params = useParams();
   const searchParams = useSearchParams();
   const share = searchParams.get('isShare');
-  const { data } = useGetRelationReport({
+  const { data, loading } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
 
@@ -162,6 +162,7 @@ const RelationReportBottomContainer = () => {
             badgeTitle={data?.skill?.badge?.title}
             onTouchStart={handleSkillBannerClick}
             onClick={handleSkillBannerClick}
+            loading={loading}
           />
           {/* 바텀시트 컨텐츠 */}
           <RelationReportDetail />

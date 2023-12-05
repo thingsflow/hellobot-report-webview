@@ -1,7 +1,7 @@
 'use client';
 import useGetPlayData from '@/apis/useGetPlayData';
+import SkillBanner from '@/components/SkillBanner';
 import { t } from '@/utils/translate';
-import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import * as React from 'react';
 import Skeleton from 'react-loading-skeleton';
@@ -13,28 +13,19 @@ const CreateRelationReportTitle = () => {
   });
 
   return (
-    <div className="flex flex-col w-full px-4 py-8">
-      <h2 className="text-[22px] font-bold text-gray-900 whitespace-pre-wrap leading-7">
+    <div className="flex flex-col w-full  py-8">
+      <h2 className="text-[22px] font-bold text-gray-900 whitespace-pre-wrap leading-7 px-4">
         {t('relationshipmap_create_screen_description_main')}
       </h2>
       <div className="flex mt-4">
         {data?.skill ? (
           <>
-            <div className="w-[72px] h-[56px] flex-shrink-0">
-              <Image
-                className="flex-shrink-0 rounded-l-lg h-[56px] w-[72px] object-cover"
-                src={
-                  data?.skill?.newSkillBannerImageUrl ||
-                  '/images/new-skill-banner-default.png'
-                }
-                width={72}
-                height={56}
-                alt="Skill Image"
-              />
-            </div>
-            <div className="flex items-center w-full pl-4 font-medium bg-gray-100 rounded-r-lg h-[56px] ">
-              <h2 className="line-clamp-2">{data?.skill?.name}</h2>
-            </div>
+            <SkillBanner
+              name={data?.skill?.name}
+              image={data?.skill?.newSkillBannerImageUrl}
+              evalAvgScore={data?.skill?.evalAvgScore}
+              badgeTitle={data?.skill?.badge?.title}
+            />
           </>
         ) : (
           <div className="w-full">
