@@ -1,8 +1,5 @@
 import * as React from 'react';
-import useGetBridgeData from '@/apis/useGetBridgeData';
-import webview from '@/utils/webview';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
 import { t } from '@/utils/translate';
 
@@ -12,8 +9,8 @@ interface ISkillBanner {
   evalAvgScore?: number;
   badgeTitle?: string;
   loading?: boolean;
-  onClick: () => void;
-  onTouchStart: () => void;
+  onClick?: () => void;
+  onTouchStart?: () => void;
 }
 
 const SkillBanner = ({
