@@ -19,7 +19,7 @@ const CommonPopup = ({ title, onClose, children }: ICommonPopup) => {
 
   return (
     <Portal>
-      <div className="fixed top-0 left-0 w-full min-h-full bg-gray-900 opacity-60" />
+      <div className="fixed top-0 left-0 w-full min-h-[calc(var(--vh)*100)] bg-gray-900 opacity-60" />
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[343px] shadow-popup rounded-[20px]">
         <div className="relative px-5 pt-[88px] pb-8">
           <h1 className="w-4/5 absolute top-8 right-1/2 translate-x-1/2 text-gray-900 text-[22px] font-bold mb-[24px] flex items-center justify-center">
