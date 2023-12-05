@@ -27,7 +27,7 @@ const BridgeReportHeader = () => {
 
   const handleShareIconClick = async () => {
     gaEvent.touchRelationShare({
-      screenName: 'relationship_map',
+      screenName: 'bridge_relationship_map',
     });
 
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;

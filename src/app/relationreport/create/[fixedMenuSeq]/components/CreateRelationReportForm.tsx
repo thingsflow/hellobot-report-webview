@@ -38,17 +38,6 @@ const CreateRelationReportForm = () => {
   const [isPrivate, setIsPrivate] = React.useState(false);
   const [isSelectStartMemberPopupOpen, setIsSelectStartMemberPopupOpen] =
     React.useState(false);
-  const [isEventLogged, setIsEventLogged] = React.useState(false);
-
-  React.useEffect(() => {
-    if (data?.skill && !isEventLogged) {
-      setIsEventLogged(true);
-      gaEvent.viewRelationCreateNew({
-        menuSeq: data.skill?.seq,
-        menuName: data.skill?.name,
-      });
-    }
-  }, [data, isEventLogged]);
 
   const handleLoadMoreMemberButtonClick = () => {
     setIsSelectStartMemberPopupOpen(true);
