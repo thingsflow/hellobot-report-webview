@@ -15,9 +15,11 @@ const CreateRelationReportPage = () => {
   const { data } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
   });
+  const isEventLoggedRef = React.useRef(false);
 
   React.useEffect(() => {
-    if (data?.skill?.seq) {
+    if (data?.skill?.seq && isEventLoggedRef.current === false) {
+      isEventLoggedRef.current = true;
       gaEvent.viewRelationCreateNew({
         menuSeq: data.skill?.seq,
         menuName: data.skill?.name,
