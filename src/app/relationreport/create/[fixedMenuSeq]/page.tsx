@@ -5,9 +5,26 @@ import CreateRelationReportTitle from './components/CreateRelationReportTitle';
 import Divider from '@/components/Divider';
 import CreateRelationReportForm from './components/CreateRelationReportForm';
 import { ToastContainer, toast } from 'react-toastify';
+import { useParams } from 'next/navigation';
+import useGetPlayData from '@/apis/useGetPlayData';
+import * as gaEvent from '@/utils/gaEvent';
 
 // 새로운 모임 만들기 페이지
 const CreateRelationReportPage = () => {
+  const params = useParams();
+  const { data } = useGetPlayData({
+    fixedMenuSeq: params.fixedMenuSeq as string,
+  });
+
+  React.useEffect(() => {
+    if (data?.skill?.seq) {
+      gaEvent.viewRelationCreateNew({
+        menuSeq: data.skill?.seq,
+        menuName: data.skill?.name,
+      });
+    }
+  }, [data.skill?.seq]);
+
   return (
     <div className="bg-white h-[calc(var(--vh)*100)]">
       <CreateRelationReportHeader />
