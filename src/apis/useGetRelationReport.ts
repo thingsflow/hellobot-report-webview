@@ -28,9 +28,6 @@ const useGetRelationReport = ({
 
   if (data?.error || error) {
     if (data?.error?.code === ERROR_CODE.REPORT_PERMISSION_ERROR) {
-      // TODO: lokalise 수정
-
-      // throw Error(t('relationshipmap_alert_private', { value: '관계도' }));
       redirect('/relationreport/permissionerror');
     }
 

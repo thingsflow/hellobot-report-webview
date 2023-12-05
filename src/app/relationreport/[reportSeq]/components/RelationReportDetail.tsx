@@ -88,10 +88,7 @@ const RelationReportDetail = () => {
                 </div>
               </div>
               <p className="mt-20 text-gray-500">
-                {/* TODO: lokalise */}
-                {
-                  '친구를 추가하면 이 곳에 친구와 나의 관계성에 대한 한마디 정의와 상세풀이를 볼 수 있어요.'
-                }
+                {t('relationshipmap_screen_description_alone')}
               </p>
             </div>
           </>

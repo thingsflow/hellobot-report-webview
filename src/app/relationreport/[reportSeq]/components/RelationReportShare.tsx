@@ -50,9 +50,8 @@ const RelationReportShare = () => {
   return (
     <div>
       <div className="flex flex-col items-center py-10">
-        <h3 className="px-4 mb-8 font-bold text-[20px]  whitespace-pre-wrap">
-          {/* TODO: lokalise */}
-          가족이 모이면 이런 관계도가 보여요!
+        <h3 className="px-4 mb-8 font-bold text-[20px] whitespace-pre-wrap text-center">
+          {t('relationshipmap_screen_description_example_family')}
         </h3>
         {data?.sampleImageUrl && (
           <div className="relative w-full h-auto">
