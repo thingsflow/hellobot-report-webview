@@ -28,16 +28,33 @@ const SkillBanner = ({
       onClick={onClick}
       onTouchStart={onTouchStart}
     >
-      {loading ? (
-        <Skeleton
-          className="py-[13px] rounded-lg"
-          width={'100%'}
-          height={'99px'}
-          duration={0.9}
-        />
+      {loading && !name ? (
+        <div className="flex p-3 border border-gray-200 border-solid rounded-xl bg-gray-50">
+          <Image
+            className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px] shadow-inset"
+            src={'/images/new-skill-banner-default.png'}
+            alt="Banner Image"
+            width={98}
+            height={73}
+            placeholder="empty"
+          />
+          <div className="flex flex-col w-full">
+            <Skeleton
+              className="py-[13px] rounded-lg"
+              width={'100%'}
+              height={'20px'}
+              duration={0.9}
+            />
+            <Skeleton
+              className="py-[13px] rounded-lg"
+              width={'30%'}
+              height={'16px'}
+              duration={0.9}
+            />
+          </div>
+        </div>
       ) : (
         <div className="flex p-3 border border-gray-200 border-solid rounded-xl bg-gray-50">
-          {/* TODO: inset border 적용하기 */}
           <Image
             className="flex-shrink-0 object-cover mr-3 rounded-lg w-[98px] h-[73px] shadow-inset"
             src={image || '/images/new-skill-banner-default.png'}
