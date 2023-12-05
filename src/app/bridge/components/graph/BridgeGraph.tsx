@@ -25,10 +25,11 @@ const generaateNodes = () => {
   if (typeof window === 'undefined') return [];
 
   const PADDING_X = 114; // 그래프 양 옆 패딩의 합
-  const PADDING_TOP = 267; // 그래프 상단 패딩 높이
+  const PADDING_BOTTOM = 140; // 그래프 하단 패딩 높이
+  const NODE_HEIGHT = 90; // 노드의 높이
   const width = window.innerWidth >= 600 ? 600 : window.innerWidth;
   const x = width - PADDING_X;
-  const y = x + PADDING_TOP;
+  const y = window.innerHeight - PADDING_BOTTOM - NODE_HEIGHT;
 
   return [
     {
