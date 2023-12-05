@@ -42,8 +42,7 @@ const EditMoimPopup = () => {
 
   const handleConfirmButtonClick = async () => {
     if (title.length === 0) {
-      // TODO: lokalise
-      toast('모임을 수정하려면 모임 이름을 입력하세요');
+      toast(t('relationshipmap_create_screen_alert_edit_group_name'));
       return;
     }
 

@@ -34,16 +34,10 @@ const PermissionErrorPage = () => {
           />
 
           <p className="m-4 text-gray-900 text-[22px] font-bold text-center">
-            이 관계도는 방장에 의해
-            <br />
-            비공개처리되었습니다.
+            {t('relationshipmap_alert_private')}
           </p>
-          {/* {t('relationshipmap_alert_private', { value: '관계도' })} */}
-          {/* todo:// localise 필요 */}
-
           <p className="text-center text-gray-500 text-base mx-3">
-            방장은 프로필 - "내 관계도/결과 모아보기" 리스트를 통해 확인할 수
-            있습니다.”
+            {t('relationshipmap_alert_private_sub')}
           </p>
         </div>
       </div>
