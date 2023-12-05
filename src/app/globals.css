@@ -105,6 +105,7 @@
 
 :root {
   --vh: 100%;
+  --ivh: 100%;
 }
 
 /* ControlButton 요소 스타일 재정의 */

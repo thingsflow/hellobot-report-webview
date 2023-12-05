@@ -13,7 +13,7 @@ interface ISkillBanner {
   badgeTitle?: string;
   loading?: boolean;
   onClick: () => void;
-  onTouchStart: () => void;
+  onTouchStart?: () => void;
 }
 
 const SkillBanner = ({

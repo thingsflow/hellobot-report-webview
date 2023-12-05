@@ -74,6 +74,8 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
 
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    // 초기 vh값(=ivh) 설정.(초기 화면에서의 viewport height만 필요한 경우에 사용하기 위함.)
+    document.documentElement.style.setProperty('--ivh', `${vh}px`);
 
     window.addEventListener('resize', setVh);
 
