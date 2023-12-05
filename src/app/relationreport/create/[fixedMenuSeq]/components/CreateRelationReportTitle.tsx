@@ -22,8 +22,11 @@ const CreateRelationReportTitle = () => {
           <>
             <div className="w-[72px] h-[56px] flex-shrink-0">
               <Image
-                className="flex-shrink-0 object-contain rounded-l-lg h-[56px]"
-                src={data?.skill?.newSkillBannerImageUrl || ''}
+                className="flex-shrink-0 rounded-l-lg h-[56px] w-[72px] object-cover"
+                src={
+                  data?.skill?.newSkillBannerImageUrl ||
+                  '/images/new-skill-banner-default.png'
+                }
                 width={72}
                 height={56}
                 alt="Skill Image"

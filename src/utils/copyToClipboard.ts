@@ -15,12 +15,13 @@ export const copyToClipboard = (text: string) => {
   return new Promise<boolean>(async (resolve) => {
     const rootElement = document.body;
 
-    // if (isClipboardSupported()) {
-    //   await navigator.clipboard.writeText(text);
-    //   resolve(true);
-    //   return;
-    // }
+    if (isClipboardSupported()) {
+      await navigator.clipboard.writeText(text);
+      resolve(true);
+      return;
+    }
 
+    // 안드로이드 웹뷰에서 위 로직에 실패할 경우 아래 로직을 실행한다.
     if (isClipboardCommandSupported()) {
       const textarea = getDummyTextarea();
       textarea.value = text;
