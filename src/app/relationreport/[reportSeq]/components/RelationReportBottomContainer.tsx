@@ -61,6 +61,12 @@ const RelationReportBottomContainer = () => {
     setIsOpened(false);
   };
 
+  const handleBottomSheetHeaderTouchStart = () => {
+    if (isOpened === true) return;
+
+    setIsOpened((prev) => !prev);
+  };
+
   const handleBottomSheetHeaderClick = () => {
     setIsOpened((prev) => !prev);
   };
@@ -69,7 +75,7 @@ const RelationReportBottomContainer = () => {
     <>
       <motion.div
         animate={isOpened ? 'opened' : 'closed'}
-        className={`absolute top-0 left-0 w-full h-[100dvh] bg-black ${
+        className={`absolute top-0 left-0 w-full h-[100vh] bg-black ${
           isOpened ? 'z-50' : 'z-0'
         } opacity-0`}
         variants={{
@@ -88,22 +94,20 @@ const RelationReportBottomContainer = () => {
       ></motion.div>
       <motion.div
         className={`z-50 absolute top-0 w-full bg-white rounded-tl-2xl rounded-tr-2xl shadow-bottomSheet will-change-transform h-[calc(100svh-100px)] ${
-          isOpened ? 'overflow-scroll' : 'overflow-hidden'
+          isOpened
+            ? 'overflow-scroll top-[115px]'
+            : 'overflow-hidden top-[calc(var(--vh)*100-100px)]'
         }`}
         initial="closed"
         animate={isOpened ? 'opened' : 'closed'}
-        variants={{
-          opened: { top: '115px' },
-          closed: { top: 'calc(100dvh - 100px)' },
-        }}
-        transition={{ type: 'spring', bounce: 0.1, duration: 0.5 }}
+        transition={{ type: 'spring', bounce: 0.1, duration: 0.5 }} // transition tailwind로 적용하기
       >
         {/* 바텀시트 헤더 */}
         <div className="flex-grow cursor-grab select-none">
           <div
             className="flex px-5 py-4 justify-between sticky top-0 bg-white z-10 w-full"
+            onTouchStart={handleBottomSheetHeaderTouchStart}
             onClick={handleBottomSheetHeaderClick}
-            onTouchStart={handleBottomSheetHeaderClick}
           >
             <div className="flex">
               <Image
@@ -133,8 +137,8 @@ const RelationReportBottomContainer = () => {
             image={data?.skill?.newSkillBannerImageUrl}
             evalAvgScore={data?.skill?.evalAvgScore}
             badgeTitle={data?.skill?.badge?.title}
-            onClick={handleSkillBannerClick}
             onTouchStart={handleSkillBannerClick}
+            onClick={handleSkillBannerClick}
           />
           {/* 바텀시트 컨텐츠 */}
           <RelationReportDetail />

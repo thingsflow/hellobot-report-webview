@@ -25,11 +25,17 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
     RelationReportModalContext,
   );
 
-  const { data, loading, mutate } = useGetPlayData({
+  const {
+    data,
+    loading,
+    mutate: mutatePlayData,
+  } = useGetPlayData({
     fixedMenuSeq: String(relationReportData?.skill?.seq),
     reportSeq: params.reportSeq as string,
     options: {
-      revalidateOnFocus: true,
+      revalidateOnMount: false,
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
     },
   });
 
@@ -65,7 +71,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
       return;
     }
 
-    mutate({
+    mutatePlayData({
       data: {
         skill: data.skill,
         playDatas:

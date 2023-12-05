@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 // 새로운 모임 만들기 페이지
 const CreateRelationReportPage = () => {
   return (
-    <div className="bg-white h-[100dvh]">
+    <div className="bg-white h-[calc(var(--vh)*100)]">
       <CreateRelationReportHeader />
       <div className="pt-[44px]">
         <CreateRelationReportTitle />
