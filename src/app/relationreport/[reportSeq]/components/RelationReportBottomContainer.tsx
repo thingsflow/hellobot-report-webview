@@ -73,19 +73,23 @@ const RelationReportBottomContainer = () => {
   };
 
   const handleBottomSheetHeaderTouchStart = () => {
-    const platform = localStorage.getItem(STORAGE_KEY.PLATFORM);
-
-    // 현재 바텀시트가 열려있고, 웹이면 touchStart 이벤트로 닫지 못하게 막는다.
-    // => 웹 최상단에서 아래로 스크롤 이벤트가 발생했을 때 새로고침(브라우저 내장 기능)이 발생할 가능성이 있다.
-    if (isBottomSheetOpening === true && platform === 'web') return;
-
-    toggleBottomSheet();
+    // touchStart이벤트와 click이벤트가 동시에 일어나면서 state가 두 번 업데이트되어 열리거나 닫히지 않는 이슈가 있음
+    // isBottomSheetOpened에 따라 분기처리하여 한 시점에 하나의 액션만 일어나도록 함.
+    if (isBottomSheetOpened) {
+      toggleBottomSheet(false);
+    } else {
+      toggleBottomSheet(true);
+    }
   };
 
   const handleBottomSheetHeaderClick = () => {
-    if (isBottomSheetOpening === false) return;
-
-    toggleBottomSheet();
+    // touchStart이벤트와 click이벤트가 동시에 일어나면서 state가 두 번 업데이트되어 열리거나 닫히지 않는 이슈가 있음
+    // isBottomSheetOpened에 따라 분기처리하여 한 시점에 하나의 액션만 일어나도록 함.
+    if (isBottomSheetOpened) {
+      toggleBottomSheet(false);
+    } else {
+      toggleBottomSheet(true);
+    }
   };
 
   return (

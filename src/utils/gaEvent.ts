@@ -10,7 +10,6 @@ export const viewBridgeRelationshipMap = ({
   menuName?: string;
   menuSeq?: number;
 }) => {
-  console.log('view_bridge_relationship_map');
   webview.logEvent('view_bridge_relationship_map', {
     type,
     menu_name: menuName,
@@ -97,7 +96,7 @@ export const viewRelationshipMap = ({
   webview.logEvent('view_relationship_map', {
     relationship_map_name: relationshipMapName,
     is_joined_relationship_map: isJoinedRelationshipMap,
-    relationship_map_member_count: relationshipMapMemberCount ? 1 : 0,
+    relationship_map_member_count: relationshipMapMemberCount ?? 0,
     menu_name: menuName,
     menu_seq: String(menuSeq),
   });

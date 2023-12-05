@@ -33,6 +33,7 @@ const CustomControls = ({
       if (prevCount === 2 && nodes.length === 3) {
         fitView({
           duration: 500,
+          padding: 0.25,
         });
       }
       return nodes.length;
@@ -46,6 +47,7 @@ const CustomControls = ({
     setTimeout(() => {
       fitView({
         duration: 500,
+        padding: 0.25,
       });
     }, 0);
   };

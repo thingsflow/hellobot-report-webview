@@ -30,6 +30,7 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
+    overscroll-behavior: none; /* 모바일 브라우저 pull to refresh 이벤트 막기 */
   }
   /* HTML5 display-role reset for older browsers */
   article,
@@ -111,6 +112,10 @@
 .react-flow__controls {
   box-shadow: none !important;
 }
+
+/* .react-flow__edges {
+  z-index: 9999 !important;
+} */
 
 .react-flow__controls-button {
   background: transparent !important;
