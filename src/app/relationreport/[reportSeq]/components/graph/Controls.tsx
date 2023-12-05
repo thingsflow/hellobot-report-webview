@@ -6,16 +6,26 @@ import {
   useReactFlow,
   useViewport,
   useNodes,
+  Node,
 } from 'reactflow';
+import { RelationReportModalContext } from '../../page';
 
-const CustomControls = () => {
+const CustomControls = ({
+  setNodes,
+}: {
+  setNodes: React.Dispatch<
+    React.SetStateAction<Node<any, string | undefined>[]>
+  >;
+}) => {
+  const { fitView, setCenter } = useReactFlow();
+  const { zoom } = useViewport();
+  const nodes = useNodes();
+
+  const { initialNodes } = React.useContext(RelationReportModalContext);
+  const [currentNodeCount, setCurrentNodeCount] = React.useState(0);
   const [currentIcon, setCurrentIcon] = React.useState<'fitView' | 'zoomIn'>(
     'zoomIn',
   );
-  const { fitView, setCenter } = useReactFlow();
-  const { x, y, zoom } = useViewport();
-  const nodes = useNodes();
-  const [currentNodeCount, setCurrentNodeCount] = React.useState(0);
 
   React.useEffect(() => {
     // nodes가 2개에서 3개로 늘어나는 시점에 그래프의 ceneter 위치가 변경됨. 이때에만 fitView 다시 호출해주기
@@ -31,14 +41,21 @@ const CustomControls = () => {
 
   const onFitViewHandler = () => {
     setCurrentIcon('zoomIn');
-    fitView({
-      duration: 500,
-    });
+
+    setNodes(initialNodes);
+    setTimeout(() => {
+      fitView({
+        duration: 500,
+      });
+    }, 0);
   };
 
   const onZoomInHandler = () => {
     setCurrentIcon('fitView');
-    setCenter(x, y, { zoom: zoom + 0.5, duration: 500 });
+    setCenter(nodes[0].position.x, nodes[0].position.y, {
+      zoom: zoom + 0.5,
+      duration: 500,
+    });
   };
 
   return (

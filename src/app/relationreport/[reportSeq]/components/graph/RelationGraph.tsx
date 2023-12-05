@@ -15,7 +15,7 @@ import { generateEdges, generateNodes } from '@/utils/relationReportGraph';
 import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
 import useGetRelationReport from '@/apis/useGetRelationReport';
-import { redirect, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { RelationReportModalContext } from '../../page';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
@@ -34,15 +34,16 @@ const RelationGraph = () => {
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdge, onEdgesChange] = useEdgesState([]);
-  const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
-  const { setIsAllLoading, setIsOnlyEdge } = React.useContext(
+  const { setIsAllLoading, setIsOnlyEdge, setInitialNodes } = React.useContext(
     RelationReportModalContext,
   );
+  const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
   const toastRef = React.useRef<any>(null);
 
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
+
   React.useEffect(() => {
     const DEFAULT_NODE_COUNT = 1;
     if (!data) return;
@@ -53,6 +54,7 @@ const RelationGraph = () => {
     const edges = generateEdges(data, nodes);
 
     setNodes(nodes);
+    setInitialNodes(nodes);
     setEdge(edges);
     if (!data.edges) return;
     if (
@@ -101,7 +103,7 @@ const RelationGraph = () => {
         maxZoom={2}
         minZoom={0.1}
       >
-        <CustomControls />
+        <CustomControls setNodes={setNodes} />
       </ReactFlow>
     </>
   );

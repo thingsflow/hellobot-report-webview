@@ -6,6 +6,7 @@ import AddFriendsPopup from './components/popup/AddFriendsPopup';
 import EditMoimPopup from './components/popup/EditMoimPopup';
 import PreventSharePopup from './components/popup/PreventSharePopup';
 import { useParams, useSearchParams } from 'next/navigation';
+import { Node } from 'reactflow';
 
 interface IRelationReportModalContext {
   isInviteFriendsPopupOpen: boolean;
@@ -26,10 +27,14 @@ interface IRelationReportModalContext {
   setIsPreventSharePopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isAllLoading: boolean;
   setIsAllLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  isOnlyEdge: boolean;
+  isOnlyEdge: boolean; // 관계도에 엣지가 한 개 인가?
   setIsOnlyEdge: React.Dispatch<React.SetStateAction<boolean>>;
   playData?: any[];
   setPlayData: React.Dispatch<React.SetStateAction<any[]>>;
+  initialNodes: Node<any, string | undefined>[]; // 그래프의 초기 위치로 뒤돌리기위한 첫 노드 정보
+  setInitialNodes: (
+    value: React.SetStateAction<Node<any, string | undefined>[]>,
+  ) => void;
 }
 
 const initialState = {
@@ -48,6 +53,8 @@ const initialState = {
   setOnAddNodeClick: () => {},
   playData: [],
   setPlayData: () => {},
+  initialNodes: [],
+  setInitialNodes: () => {},
 };
 
 export const RelationReportModalContext =
@@ -66,8 +73,10 @@ const RelationReportPage = () => {
     isPrivate: boolean;
   } | null>(null);
   const [playData, setPlayData] = React.useState<any[]>([]);
-  // 관계도에 엣지가 한 개 인가?
   const [isOnlyEdge, setIsOnlyEdge] = React.useState(false);
+  const [initialNodes, setInitialNodes] = React.useState<
+    Node<any, string | undefined>[]
+  >([]);
 
   return (
     <RelationReportModalContext.Provider
@@ -86,6 +95,8 @@ const RelationReportPage = () => {
         setIsPreventSharePopupOpen,
         playData,
         setPlayData,
+        initialNodes,
+        setInitialNodes,
       }}
     >
       <RelationReportPageContainer />
@@ -102,7 +113,6 @@ const RelationReportPage = () => {
         autoClose={3000}
         enableMultiContainer={false}
       />
-
       <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
       <PreventSharePopup onClose={() => setIsPreventSharePopupOpen(false)} />
       {editMoimPopupInfo && <EditMoimPopup />}
