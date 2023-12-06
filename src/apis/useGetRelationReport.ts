@@ -1,4 +1,4 @@
-import { RelationReportModalContext } from '@/app/relationreport/[reportSeq]/page';
+import RelationReportContext from '@/app/relationreport/[reportSeq]/RelationReportContext';
 import { ERROR_CODE } from '@/consts/common';
 import { fetcher } from '@/lib/fetcher';
 import { GetPlayDataType, GetRelationReportType } from '@/types/relationreport';
@@ -17,7 +17,7 @@ const useGetRelationReport = ({
     PublicConfiguration<GetPlayDataType, any, BareFetcher<GetPlayDataType>>
   >;
 }) => {
-  const { isAllLoading } = React.useContext(RelationReportModalContext);
+  const { isAllLoading } = React.useContext(RelationReportContext);
 
   const { data, error, mutate, isLoading, isValidating } =
     useSWR<GetRelationReportType>(

@@ -8,12 +8,12 @@ import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import { environment } from '../../../../../environments/environment';
 import * as gaEvent from '@/utils/gaEvent';
-import { RelationReportModalContext } from '../page';
+import RelationReportContext from '../RelationReportContext';
 
 const RelationReportShare = () => {
   const params = useParams();
   const { setIsPreventSharePopupOpen } = React.useContext(
-    RelationReportModalContext,
+    RelationReportContext,
   );
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,

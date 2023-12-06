@@ -5,10 +5,10 @@ import {
   getStraightPath,
   EdgeLabelRenderer,
 } from 'reactflow';
-import { RelationReportModalContext } from '../../page';
 import Lottie from 'react-lottie-player';
 import lottieJson from '../../../../../../public/images/generate-loading.json';
 import { t } from '@/utils';
+import RelationReportContext from '../../RelationReportContext';
 
 const Edge: React.FC<EdgeProps> = ({
   id,
@@ -18,9 +18,7 @@ const Edge: React.FC<EdgeProps> = ({
   targetY,
   data,
 }) => {
-  const { isAllLoading, isOnlyEdge } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { isAllLoading, isOnlyEdge } = React.useContext(RelationReportContext);
   const [path, labelX, labelY] = getStraightPath({
     sourceX,
     sourceY,

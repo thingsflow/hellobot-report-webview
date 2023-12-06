@@ -1,6 +1,5 @@
 import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
-import { RelationReportModalContext } from '../../page';
 import Image from 'next/image';
 import webview from '@/utils/webview';
 import useGetPlayData from '@/apis/useGetPlayData';
@@ -11,6 +10,7 @@ import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
+import RelationReportContext from '../../RelationReportContext';
 
 interface IAddFriendsPopup {
   onClose: () => void;
@@ -21,9 +21,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
   const { data: relationReportData } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const { isAddFriendsPopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { isAddFriendsPopupOpen } = React.useContext(RelationReportContext);
 
   const {
     data,

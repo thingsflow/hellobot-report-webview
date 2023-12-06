@@ -8,7 +8,7 @@ import {
   useNodes,
   Node,
 } from 'reactflow';
-import { RelationReportModalContext } from '../../page';
+import RelationReportContext from '../../RelationReportContext';
 
 const CustomControls = ({
   setNodes,
@@ -21,7 +21,7 @@ const CustomControls = ({
   const { zoom } = useViewport();
   const nodes = useNodes();
 
-  const { initialNodes } = React.useContext(RelationReportModalContext);
+  const { initialNodes } = React.useContext(RelationReportContext);
   const [currentNodeCount, setCurrentNodeCount] = React.useState(0);
   const [currentIcon, setCurrentIcon] = React.useState<'fitView' | 'zoomIn'>(
     'zoomIn',

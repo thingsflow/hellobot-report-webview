@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import React, { memo, FC, CSSProperties } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
-import { RelationReportModalContext } from '../../page';
 import { t } from '@/utils';
 import * as gaEvent from '@/utils/gaEvent';
 import useGetRelationReport from '@/apis/useGetRelationReport';
@@ -10,6 +9,7 @@ import useGetPlayData from '@/apis/useGetPlayData';
 import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
 import { environment } from '../../../../../../environments/environment';
+import RelationReportContext from '../../RelationReportContext';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -27,9 +27,7 @@ const DefaultNode: FC<NodeProps> = () => {
   const searchParams = useSearchParams();
   const share = searchParams.get('isShare');
 
-  const { setIsAddFriendsPopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { setIsAddFriendsPopupOpen } = React.useContext(RelationReportContext);
   const { data: relationReportData } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
     options: {

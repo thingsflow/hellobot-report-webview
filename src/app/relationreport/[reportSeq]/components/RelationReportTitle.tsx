@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import * as React from 'react';
-import { RelationReportModalContext } from '../page';
 import { useParams, useRouter } from 'next/navigation';
 import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
 import useGetPlayData from '@/apis/useGetPlayData';
 import webview from '@/utils/webview';
+import RelationReportContext from '../RelationReportContext';
 
 const RelationReportTitle = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const RelationReportTitle = () => {
   });
 
   const { setInviteFriendsPopupOpen, setIsPreventSharePopupOpen } =
-    React.useContext(RelationReportModalContext);
+    React.useContext(RelationReportContext);
 
   const createNewMoimButtonClick = () => {
     gaEvent.touchRelationCreateNew({
@@ -42,7 +42,7 @@ const RelationReportTitle = () => {
     router.push('/relationreport/create/' + data?.skillSeq);
   };
 
-  const { setEditMoimPopupInfo } = React.useContext(RelationReportModalContext);
+  const { setEditMoimPopupInfo } = React.useContext(RelationReportContext);
 
   const handleKakaoTalkButtonClick = () => {
     setInviteFriendsPopupOpen(true);
