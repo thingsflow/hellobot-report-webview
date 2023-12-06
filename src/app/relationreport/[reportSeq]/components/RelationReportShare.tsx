@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
-import { environment } from '../../../../../environments/environment';
 import * as gaEvent from '@/utils/gaEvent';
 import RelationReportContext from '../RelationReportContext';
 
@@ -23,8 +22,7 @@ const RelationReportShare = () => {
     gaEvent.touchRelationLinkCopy();
 
     copyToClipboard(
-      environment.relationReportShareBaseUrl +
-        `?relationSeq=${data?.seq}&share=true`,
+      `${process.env.NEXT_PUBIC_SKILLSTORE_URL}/relation-reports/diagram?relationSeq=${params.reportSeq}&share=true`,
     );
     toast(t('relationshipmap_invite_popup_toast_copied'));
   };
@@ -41,9 +39,7 @@ const RelationReportShare = () => {
       title: data?.title,
       description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
       imageUrl: data?.imageUrl,
-      shareUrl:
-        environment.relationReportShareBaseUrl +
-        `?relationSeq=${data?.seq}&share=true`,
+      shareUrl: `${process.env.NEXT_PUBIC_SKILLSTORE_URL}/relation-reports/diagram?relationSeq=${params.reportSeq}&share=true`,
     });
   };
 

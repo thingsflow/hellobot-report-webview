@@ -13,8 +13,6 @@ import { useParams, useSearchParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
-import { environment } from '../../../../../environments/environment';
-import { STORAGE_KEY } from '@/consts/common';
 
 const RelationReportBottomContainer = () => {
   const [isBottomSheetOpening, setIsBottomSheetOpening] = React.useState(false); // 바텀시트를 열거나 닫는 영역을 터치했는지 여부
@@ -51,9 +49,7 @@ const RelationReportBottomContainer = () => {
         )
       ) {
         webview.doLoginWithRedirectUrl({
-          redireactUrl:
-            environment.relationReportShareBaseUrl +
-            `?relationSeq=${params.reportSeq}`,
+          redireactUrl: `${process.env.NEXT_PUBIC_SKILLSTORE_URL}/relation-reports/diagram?relationSeq=${params.reportSeq}`,
         });
       } else {
         localStorage.setItem('isKeepAnonymous', 'true');

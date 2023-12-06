@@ -8,7 +8,6 @@ import { useParams, useSearchParams } from 'next/navigation';
 import useGetPlayData from '@/apis/useGetPlayData';
 import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
-import { environment } from '../../../../../../environments/environment';
 import RelationReportContext from '../../RelationReportContext';
 
 const sourceHandleStyle: CSSProperties = {
@@ -64,11 +63,10 @@ const DefaultNode: FC<NodeProps> = () => {
         )
       ) {
         webview.doLoginWithRedirectUrl({
-          redireactUrl:
-            environment.relationReportShareBaseUrl +
-            `?relationSeq=${params.reportSeq}`,
+          redireactUrl: `${process.env.NEXT_PUBIC_SKILLSTORE_URL}/relation-reports/diagram?relationSeq=${params.reportSeq}`,
         });
       } else {
+        //TODO: localstorage
         localStorage.setItem('isKeepAnonymous', 'true');
       }
     }

@@ -25,8 +25,6 @@ const RelationReportPage = () => {
   const [initialNodes, setInitialNodes] = React.useState<
     Node<any, string | undefined>[]
   >([]);
-  console.log(process.env.NODE_ENV);
-  // yarn dev : development
 
   return (
     <RelationReportContext.Provider

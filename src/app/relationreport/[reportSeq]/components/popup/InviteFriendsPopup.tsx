@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
-import { environment } from '../../../../../../environments/environment';
 import * as gaEvent from '@/utils/gaEvent';
 import RelationReportContext from '../../RelationReportContext';
 
@@ -25,8 +24,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   const handleCopyLinkButtonClick = () => {
     gaEvent.touchRelationLinkCopy();
     copyToClipboard(
-      environment.relationReportShareBaseUrl +
-        `?relationSeq=${data?.seq}&share=true`,
+      `${process.env.NEXT_PUBIC_SKILLSTORE_URL}/relation-reports/diagram?relationSeq=${params.reportSeq}&share=true`,
     );
     toast(t('relationshipmap_invite_popup_toast_copied'));
   };
@@ -37,9 +35,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
       title: data?.title,
       description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
       imageUrl: data?.imageUrl,
-      shareUrl:
-        environment.relationReportShareBaseUrl +
-        `?relationSeq=${data?.seq}&share=true`,
+      shareUrl: `${process.env.NEXT_PUBIC_SKILLSTORE_URL}/relation-reports/diagram?relationSeq=${params.reportSeq}&share=true`,
     });
   };
 
@@ -59,8 +55,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
         <div>
           <div className="flex w-full mb-2">
             <div className="flex items-center h-12 p-2 overflow-hidden text-gray-600 rounded-l-lg bg-gray-50 basis-2/3 grow whitespace-nowrap">
-              {environment.relationReportShareBaseUrl +
-                `?relationSeq=${data?.seq}`}
+              {`${process.env.NEXT_PUBIC_SKILLSTORE_URL}/relation-reports/diagram?relationSeq=${params.reportSeq}&share=true`}
             </div>
             <div
               className="cursor-pointer bg-gray-200 font-semibold rounded-r-lg rounded-sm w-[91px] text-gray-900 h-12 flex items-center justify-center"
