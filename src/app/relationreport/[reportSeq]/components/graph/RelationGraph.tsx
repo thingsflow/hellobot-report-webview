@@ -102,6 +102,7 @@ const RelationGraph = () => {
         selectionMode={SelectionMode.Partial}
         maxZoom={2}
         minZoom={0.1}
+        zoomOnDoubleClick={false} // 그래프 내에서 더블클릭으로 zoom 실행시키는 동작 막기
       >
         <CustomControls setNodes={setNodes} />
       </ReactFlow>
