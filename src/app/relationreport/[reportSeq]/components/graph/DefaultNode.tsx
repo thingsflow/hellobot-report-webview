@@ -106,7 +106,7 @@ const DefaultNode: FC<NodeProps> = () => {
             height={24}
           />
         </div>
-        <div className="flex w-[70px] absolute bottom-[-23px] absolute-center ml-[3px] justify-center items-center">
+        <div className="flex w-16 absolute bottom-[-26px] absolute-center ml-[7px] justify-center items-center">
           <div className="inline-block text-gray-900 font-bold text-[13px] pt-[1px]">
             {t('relationshipmap_add_popup_title')}
           </div>

@@ -24,7 +24,7 @@ const CreateRelationReportForm = () => {
   const params = useParams();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const isKeyboardOpen = useDetectKeyboardOpen();
-  const { data, mutate } = useGetPlayData({
+  const { data } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
     options: {
       revalidateIfStale: false,
@@ -38,6 +38,16 @@ const CreateRelationReportForm = () => {
   const [isPrivate, setIsPrivate] = React.useState(false);
   const [isSelectStartMemberPopupOpen, setIsSelectStartMemberPopupOpen] =
     React.useState(false);
+  const [selectedUserSeq, setSelectedUserSeq] = React.useState<number>();
+
+  React.useEffect(() => {
+    if (!data) return;
+
+    // 플레이 데이터가 한 개이면 기본으로 선택됨.
+    if (data.playDatas?.length === 1) {
+      setSelectedUserSeq(data.playDatas[0].seq);
+    }
+  }, [data]);
 
   const handleLoadMoreMemberButtonClick = () => {
     setIsSelectStartMemberPopupOpen(true);
@@ -46,26 +56,11 @@ const CreateRelationReportForm = () => {
   const handleSelectButtonClick = (targetData: PlayData) => {
     if (data?.playDatas?.length === 1) return;
 
-    mutate(
-      {
-        data: {
-          skill: data.skill,
-          playDatas:
-            data?.playDatas?.map((data) => {
-              return {
-                ...data,
-                isAdded: targetData.seq === data.seq ? !data.isAdded : false,
-              };
-            }) || [],
-        },
-      },
-      { revalidate: false },
-    );
+    setSelectedUserSeq(targetData.seq);
   };
 
   const handleCreateNewMoimButtonClick = async () => {
-    const selectedUser = data?.playDatas?.find((item) => item.isAdded);
-    if (!selectedUser) {
+    if (!selectedUserSeq) {
       toast(t('relationshipmap_create_screen_alert_no_starting_member'));
       return;
     }
@@ -79,7 +74,7 @@ const CreateRelationReportForm = () => {
       title: title,
       shareScope: isPrivate ? 'PRIVATE' : 'PUBLIC',
       skillSeq: Number(params.fixedMenuSeq as string),
-      playDataSeq: selectedUser.seq!,
+      playDataSeq: selectedUserSeq!,
     };
     const response: CreateRelationReportType = await trigger(requestData);
 
@@ -140,7 +135,7 @@ const CreateRelationReportForm = () => {
                       {item.resultName}
                     </div>
                   </div>
-                  {item.isAdded ? (
+                  {item.seq === selectedUserSeq ? (
                     <div
                       className="cursor-pointer w-[74px] rounded-[20px] bg-gray-900 h-10 flex items-center justify-center text-white text-[14px] font-bold"
                       onClick={() => handleSelectButtonClick(item)}
@@ -251,6 +246,8 @@ const CreateRelationReportForm = () => {
       />
       {isSelectStartMemberPopupOpen && (
         <SelectStartMemberPopup
+          selectedSeq={selectedUserSeq}
+          onSelect={handleSelectButtonClick}
           onClose={() => setIsSelectStartMemberPopupOpen(false)}
         />
       )}

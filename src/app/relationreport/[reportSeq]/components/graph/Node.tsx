@@ -56,8 +56,8 @@ const CommonNode: FC<NodeProps> = ({ data }) => {
             {data.userName}
           </p>
         </div>
-        <div className="flex absolute xs:w-[110px] xs:top-[70px] w-[110px] top-[60px] absolute-center justify-center text-center">
-          <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+        <div className="flex absolute xs:w-[110px] xs:top-[70px] w-[110px] top-[66px] absolute-center justify-center text-center">
+          <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2 leading-4">
             {data.resultText}
           </div>
         </div>

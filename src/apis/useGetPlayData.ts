@@ -1,5 +1,6 @@
 import { fetcher } from '@/lib/fetcher';
 import { GetPlayDataType } from '@/types/relationreport';
+import React from 'react';
 import useSWR from 'swr';
 import { BareFetcher, PublicConfiguration } from 'swr/_internal';
 
@@ -24,23 +25,13 @@ export default function useGetPlayData({
     options,
   );
 
-  // data에 isAdded라는 클라이언트 state를 추가합니다.
-  const playDatasWithIsAdded = data?.data?.playDatas?.map((item, _, array) => {
-    if (item.isAdded !== undefined) return item;
-
-    return {
-      ...item,
-      isAdded: array.length === 1 ? true : false, // 플레이 데이터가 1개이면 디폴트로 선택
-    };
-  });
-
   if (data?.error || error) {
     throw Error(data?.error?.message || error.message);
   }
 
   return {
     loading: isLoading,
-    data: { playDatas: playDatasWithIsAdded, skill: data?.data?.skill },
+    data: { playDatas: data?.data?.playDatas, skill: data?.data?.skill },
     mutate,
     isLoading,
   };

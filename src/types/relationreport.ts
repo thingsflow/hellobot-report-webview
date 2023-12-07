@@ -16,7 +16,6 @@ export interface PlayData {
   name?: string;
   resultName?: string;
   isAlreadyAdded?: boolean; // 해당 관계도에 이미 추가된 사용자인가?
-  isAdded?: boolean; // client only (모임 생성 화면 내에서 해당 플레이데이터가 선택되었는가?)
 }
 
 export type UserType =
