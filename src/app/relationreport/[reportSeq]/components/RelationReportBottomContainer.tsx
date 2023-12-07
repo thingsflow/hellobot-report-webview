@@ -26,6 +26,13 @@ const RelationReportBottomContainer = () => {
     reportSeq: params.reportSeq as string,
   });
 
+  const [touchPosition, setTouchPosition] = React.useState({
+    start: 0,
+    end: 0,
+  });
+
+  const bottomSheetRef = React.useRef<HTMLDivElement | null>(null);
+
   const { data: userData } = useGetUser({});
 
   const toggleBottomSheet = (isOpen?: boolean) => {
@@ -93,6 +100,32 @@ const RelationReportBottomContainer = () => {
     }
   };
 
+  const goToOpen = () => {
+    // 현재는 필요없는 코드이기는함.
+    toggleBottomSheet(true);
+  };
+
+  const goToClose = () => {
+    if (bottomSheetRef.current?.scrollTop === 0) toggleBottomSheet(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchPosition({ ...touchPosition, start: e.touches[0].clientY });
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchPosition({ ...touchPosition, end: e.touches[0].clientY });
+  };
+
+  const handleTouchEnd = () => {
+    const { start, end } = touchPosition;
+    if (start - end > 100) {
+      // goToOpen();
+    } else if (start - end < -100) {
+      goToClose();
+    }
+  };
+
   return (
     <>
       <motion.div
@@ -115,6 +148,7 @@ const RelationReportBottomContainer = () => {
         onClick={handleBackgroundOverlayClick}
       ></motion.div>
       <motion.div
+        ref={bottomSheetRef}
         className={`transition-all duration-500 z-50 absolute top-0 w-full bg-white rounded-tl-2xl rounded-tr-2xl shadow-bottomSheet will-change-transform h-[calc(100svh-100px)] scrollbar-hide ${
           isBottomSheetOpening
             ? 'top-[115px]'
@@ -123,6 +157,9 @@ const RelationReportBottomContainer = () => {
         initial="closed"
         animate={isBottomSheetOpening ? 'opened' : 'closed'}
         transition={{ type: 'spring', bounce: 0.1, duration: 0.5 }} // transition tailwind로 적용하기
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {/* 바텀시트 헤더 */}
         <div className="flex-grow cursor-grab select-none">
