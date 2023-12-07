@@ -7,10 +7,16 @@ import { PlayData } from '@/types/relationreport';
 
 interface ISelectStartMemberPopup {
   onClose: () => void;
+  onSelect: (targetData: PlayData) => void;
+  selectedSeq?: number;
 }
 
 // 시작멤버 선택화면에서 선택한 프로필을 리스트 맨 앞으로 옮기기
-const SelectStartMemberPopup = ({ onClose }: ISelectStartMemberPopup) => {
+const SelectStartMemberPopup = ({
+  onClose,
+  onSelect,
+  selectedSeq,
+}: ISelectStartMemberPopup) => {
   const params = useParams();
   const { data, mutate } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
@@ -20,6 +26,9 @@ const SelectStartMemberPopup = ({ onClose }: ISelectStartMemberPopup) => {
   });
 
   const handleSelectButtonClick = (targetData: PlayData) => {
+    onSelect(targetData);
+
+    // 선택한 플레이데이터를 맨 앞으로 보내기
     const newPlayDatas = [...(data.playDatas || [])];
     const targetDataIndex = newPlayDatas?.findIndex(
       (data) => data.seq === targetData.seq,
@@ -31,17 +40,12 @@ const SelectStartMemberPopup = ({ onClose }: ISelectStartMemberPopup) => {
       {
         data: {
           skill: data.skill,
-          playDatas:
-            newPlayDatas?.map((data) => {
-              return {
-                ...data,
-                isAdded: targetData.seq === data.seq ? !data.isAdded : false,
-              };
-            }) || [],
+          playDatas: newPlayDatas,
         },
       },
       { revalidate: false },
     );
+
     onClose();
   };
 
@@ -66,7 +70,7 @@ const SelectStartMemberPopup = ({ onClose }: ISelectStartMemberPopup) => {
                   {item.resultName}
                 </div>
               </div>
-              {item.isAdded ? (
+              {item.seq === selectedSeq ? (
                 <div
                   className="cursor-pointer w-[74px] rounded-[20px] bg-gray-900 h-10 flex items-center justify-center text-white text-[14px] font-bold"
                   onClick={() => handleSelectButtonClick(item)}

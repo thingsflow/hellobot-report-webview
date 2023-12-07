@@ -14,6 +14,11 @@ const CreateRelationReportPage = () => {
   const params = useParams();
   const { data } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
+    options: {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnMount: false,
+    },
   });
   const isEventLoggedRef = React.useRef(false);
 
