@@ -113,12 +113,12 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
                       </div>
                     </div>
                     {item.isAlreadyAdded ? (
-                      <div className="w-[74px] rounded-[20px] bg-gray-400 h-10 flex items-center justify-center text-gray-200 text-[14px] font-bold">
+                      <div className="w-[74px] rounded-[20px] bg-gray-400 h-10 flex items-center justify-center text-gray-200 text-[14px] font-bold shrink-0">
                         {t('relationshipmap_add_popup_button_added')}
                       </div>
                     ) : (
                       <div
-                        className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold"
+                        className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold shrink-0"
                         onClick={() => handlePlayDataItemClick(item)}
                       >
                         {t('relationshipmap_add_popup_button_add')}

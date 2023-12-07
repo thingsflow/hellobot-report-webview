@@ -46,48 +46,50 @@ const RelationReportDetail = () => {
 
   return (
     <div className="flex flex-col px-6 ">
-      {data &&
+      {data?.playDatas &&
         // 최초 생성자 한 명만 들어있는경우 디폴트 설명 노출
-        (data.playDatas?.length === 1 ? (
+        (data.edges?.length === 0 ? (
           <>
             <div
               className="pt-[52px] pb-10 border-b border-solid border-gray-200"
-              key={`${data.playDatas[0].seq}`}
+              key={`${data?.playDatas[0]?.seq}`}
             >
               <div className="flex justify-center">
-                <div className="relative">
+                <div className="flex flex-col items-center">
                   <div
                     className={`${RELATION_REPORT_NODE_COLORS[0]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                   >
                     {data.playDatas[0]?.name}
                   </div>
-                  <div className="flex absolute w-[110px] top-[76px] absolute-center justify-center text-center ">
-                    <div className="text-gray-600 text-[13px] line-clamp-2">
+                  <div className="flex w-[110px] justify-center text-center">
+                    <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2">
                       {data.playDatas[0]?.resultName}
                     </div>
                   </div>
                 </div>
-                <Image
-                  className="px-2"
-                  src="/images/double-arrow.svg"
-                  width={74}
-                  height={74}
-                  alt="double arrow"
-                />
-                <div className="relative">
+                <div className="relative w-[74px]">
+                  <Image
+                    className="absolute"
+                    src="/images/double-arrow.svg"
+                    width={74}
+                    height={74}
+                    alt="double arrow"
+                  />
+                </div>
+                <div className="flex flex-col items-center">
                   <div
                     className={`bg-gray-900 flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                   >
                     ?
                   </div>
-                  <div className="flex absolute w-[70px] top-[76px] absolute-center justify-center">
-                    <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+                  <div className="flex w-[110px] justify-center text-center">
+                    <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2">
                       -
                     </div>
                   </div>
                 </div>
               </div>
-              <p className="mt-20 text-gray-500">
+              <p className="mt-4 text-gray-500 whitespace-pre-line">
                 {t('relationshipmap_screen_description_alone')}
               </p>
             </div>
@@ -112,39 +114,41 @@ const RelationReportDetail = () => {
                   key={`${item.detail}${item.source}${index}`}
                 >
                   <div className="flex justify-center">
-                    <div className="relative">
+                    <div className="flex flex-col items-center">
                       <div
                         className={`${RELATION_REPORT_NODE_COLORS[sourceIndex]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                       >
                         {sourceItem?.name}
                       </div>
-                      <div className="flex absolute w-[110px] top-[76px] absolute-center justify-center text-center">
-                        <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+                      <div className="flex w-[110px] justify-center text-center">
+                        <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2">
                           {sourceItem?.resultName}
                         </div>
                       </div>
                     </div>
-                    <Image
-                      className="px-2"
-                      src="/images/double-arrow.svg"
-                      width={74}
-                      height={74}
-                      alt="double arrow"
-                    />
-                    <div className="relative">
+                    <div className="relative w-[74px]">
+                      <Image
+                        className="absolute"
+                        src="/images/double-arrow.svg"
+                        width={74}
+                        height={74}
+                        alt="double arrow"
+                      />
+                    </div>
+                    <div className="flex flex-col items-center">
                       <div
                         className={`${RELATION_REPORT_NODE_COLORS[targetIndex]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                       >
                         {targetItem?.name}
                       </div>
-                      <div className="flex absolute w-[110px] top-[76px] absolute-center justify-center text-center">
-                        <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+                      <div className="flex w-[110px] justify-center text-center">
+                        <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2">
                           {targetItem?.resultName}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <h5 className="mt-[64px] text-lg font-bold text-gray-900 text-center">
+                  <h5 className="mt-[25px] text-lg font-bold text-gray-900 text-center">
                     {item.label}
                   </h5>
                   <p className="mt-4 text-gray-900 whitespace-pre-line">

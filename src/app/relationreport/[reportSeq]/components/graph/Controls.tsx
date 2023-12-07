@@ -76,7 +76,7 @@ const CustomControls = ({
           aria-label="fit view"
         >
           <Image
-            src="/images/fitview.svg"
+            src="/images/zoom-fullscreen.svg"
             alt="FitView Icon"
             width={40}
             height={40}

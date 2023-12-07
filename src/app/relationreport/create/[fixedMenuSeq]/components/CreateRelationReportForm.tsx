@@ -22,7 +22,7 @@ import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const titleInput = React.useRef<HTMLInputElement>(null);
   const isKeyboardOpen = useDetectKeyboardOpen();
   const { data } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
@@ -66,7 +66,9 @@ const CreateRelationReportForm = () => {
     }
 
     if (title.length === 0) {
+      titleInput?.current?.focus();
       toast(t('relationshipmap_create_screen_alert_no_group_name'));
+
       return;
     }
 
@@ -107,14 +109,14 @@ const CreateRelationReportForm = () => {
     e.preventDefault();
     setTitle('');
     if (isKeyboardOpen) {
-      inputRef?.current?.focus();
+      titleInput?.current?.focus();
     }
   };
 
   return (
     <>
       <div className="pt-8 px-4 pb-[96px] border-1 border-solid">
-        <h5 className="mb-1 font-bold text-gray-900">
+        <h5 className="mb-1 font-bold text-gray-900 text-[18px]">
           {t('select_member_screen_title')}{' '}
           <span className="text-[#F23658]">*</span>
         </h5>
@@ -190,13 +192,13 @@ const CreateRelationReportForm = () => {
           )}
         </div>
         <div className="pt-8">
-          <h5 className="mb-1 font-bold text-gray-900">
+          <h5 className="mb-1 font-bold text-gray-900 text-[18px]">
             {t('relationshipmap_edit_popup_label_group_name')}{' '}
             <span className="text-[#F23658]">*</span>
           </h5>
           <div className="relative mb-4">
             <input
-              ref={inputRef}
+              ref={titleInput}
               type="text"
               className="w-full h-12 bg-[#f5f5f5] rounded-lg text=[#242526] px-4 py-3 pr-11"
               value={title}
@@ -216,7 +218,7 @@ const CreateRelationReportForm = () => {
             />
           </div>
           <div className="flex flex-col pt-8 pb-4">
-            <h5 className="mb-1 font-bold text-gray-900">
+            <h5 className="mb-1 font-bold text-gray-900 text-[18px]">
               {t('relationshipmap_edit_popup_label_status')}{' '}
               <span className="text-[#F23658]">*</span>
             </h5>

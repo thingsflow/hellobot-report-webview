@@ -60,6 +60,7 @@ const DefaultNode: FC<NodeProps> = () => {
       isKeepAnonymous !== 'true' &&
       share === 'true'
     ) {
+      // TODO: lokalise
       if (
         confirm(
           '로그인 하시겠습니까? 로그인을 하지 않고 진행하게 될 시, 관계도 및 결과가 저장되지 않습니다.',
@@ -106,8 +107,8 @@ const DefaultNode: FC<NodeProps> = () => {
             height={24}
           />
         </div>
-        <div className="flex w-16 absolute bottom-[-26px] absolute-center ml-[7px] justify-center items-center">
-          <div className="inline-block text-gray-900 font-bold text-[13px] pt-[1px]">
+        <div className="flex w-[100px] absolute bottom-[-27px] absolute-center ml-[7px] justify-center items-center">
+          <div className="inline-block text-gray-900 font-bold text-[14px] pt-[1px]">
             {t('relationshipmap_add_popup_title')}
           </div>
           <Image
