@@ -114,7 +114,7 @@ const CreateRelationReportForm = () => {
   return (
     <>
       <div className="pt-8 px-4 pb-[96px] border-1 border-solid">
-        <h5 className="mb-1 font-bold text-gray-900">
+        <h5 className="mb-1 font-bold text-gray-900 text-[18px]">
           {t('select_member_screen_title')}{' '}
           <span className="text-[#F23658]">*</span>
         </h5>
@@ -190,7 +190,7 @@ const CreateRelationReportForm = () => {
           )}
         </div>
         <div className="pt-8">
-          <h5 className="mb-1 font-bold text-gray-900">
+          <h5 className="mb-1 font-bold text-gray-900 text-[18px]">
             {t('relationshipmap_edit_popup_label_group_name')}{' '}
             <span className="text-[#F23658]">*</span>
           </h5>
@@ -216,7 +216,7 @@ const CreateRelationReportForm = () => {
             />
           </div>
           <div className="flex flex-col pt-8 pb-4">
-            <h5 className="mb-1 font-bold text-gray-900">
+            <h5 className="mb-1 font-bold text-gray-900 text-[18px]">
               {t('relationshipmap_edit_popup_label_status')}{' '}
               <span className="text-[#F23658]">*</span>
             </h5>
