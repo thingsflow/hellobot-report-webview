@@ -46,13 +46,13 @@ const RelationReportDetail = () => {
 
   return (
     <div className="flex flex-col px-6 ">
-      {data &&
+      {data?.playDatas &&
         // 최초 생성자 한 명만 들어있는경우 디폴트 설명 노출
-        (data.playDatas?.length === 1 ? (
+        (data.edges?.length === 0 ? (
           <>
             <div
               className="pt-[52px] pb-10 border-b border-solid border-gray-200"
-              key={`${data.playDatas[0].seq}`}
+              key={`${data?.playDatas[0]?.seq}`}
             >
               <div className="flex justify-center">
                 <div className="flex flex-col items-center">
@@ -62,32 +62,34 @@ const RelationReportDetail = () => {
                     {data.playDatas[0]?.name}
                   </div>
                   <div className="flex w-[110px] justify-center text-center">
-                    <div className="text-gray-600 text-[13px] line-clamp-2">
+                    <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2">
                       {data.playDatas[0]?.resultName}
                     </div>
                   </div>
                 </div>
-                <Image
-                  className="px-2"
-                  src="/images/double-arrow.svg"
-                  width={74}
-                  height={74}
-                  alt="double arrow"
-                />
+                <div className="relative w-[74px]">
+                  <Image
+                    className="absolute"
+                    src="/images/double-arrow.svg"
+                    width={74}
+                    height={74}
+                    alt="double arrow"
+                  />
+                </div>
                 <div className="flex flex-col items-center">
                   <div
                     className={`bg-gray-900 flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                   >
                     ?
                   </div>
-                  <div className="flex absolute-center justify-center">
-                    <div className="text-gray-600 text-[13px] pt-[1px] line-clamp-2">
+                  <div className="flex w-[110px] justify-center text-center">
+                    <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2">
                       -
                     </div>
                   </div>
                 </div>
               </div>
-              <p className="mt-20 text-gray-500">
+              <p className="mt-4 text-gray-500 whitespace-pre-line">
                 {t('relationshipmap_screen_description_alone')}
               </p>
             </div>
@@ -126,7 +128,7 @@ const RelationReportDetail = () => {
                     </div>
                     <div className="relative w-[74px]">
                       <Image
-                        className="absolute top-[px]"
+                        className="absolute"
                         src="/images/double-arrow.svg"
                         width={74}
                         height={74}

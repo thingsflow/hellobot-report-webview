@@ -45,6 +45,7 @@ const RelationReportBottomContainer = () => {
       isKeepAnonymous !== 'true' &&
       share === 'true'
     ) {
+      // TODO: lokalise
       if (
         confirm(
           '로그인 하시겠습니까? 로그인을 하지 않고 진행하게 될 시, 관계도 및 결과가 저장되지 않습니다.',
