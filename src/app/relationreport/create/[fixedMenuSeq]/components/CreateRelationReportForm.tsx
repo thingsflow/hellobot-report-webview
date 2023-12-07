@@ -22,7 +22,7 @@ import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
 
 const CreateRelationReportForm = () => {
   const params = useParams();
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const titleInput = React.useRef<HTMLInputElement>(null);
   const isKeyboardOpen = useDetectKeyboardOpen();
   const { data } = useGetPlayData({
     fixedMenuSeq: params.fixedMenuSeq as string,
@@ -66,7 +66,9 @@ const CreateRelationReportForm = () => {
     }
 
     if (title.length === 0) {
+      titleInput?.current?.focus();
       toast(t('relationshipmap_create_screen_alert_no_group_name'));
+
       return;
     }
 
@@ -107,7 +109,7 @@ const CreateRelationReportForm = () => {
     e.preventDefault();
     setTitle('');
     if (isKeyboardOpen) {
-      inputRef?.current?.focus();
+      titleInput?.current?.focus();
     }
   };
 
@@ -196,7 +198,7 @@ const CreateRelationReportForm = () => {
           </h5>
           <div className="relative mb-4">
             <input
-              ref={inputRef}
+              ref={titleInput}
               type="text"
               className="w-full h-12 bg-[#f5f5f5] rounded-lg text=[#242526] px-4 py-3 pr-11"
               value={title}
