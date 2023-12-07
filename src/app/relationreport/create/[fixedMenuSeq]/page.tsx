@@ -9,6 +9,10 @@ import { useParams } from 'next/navigation';
 import useGetPlayData from '@/apis/useGetPlayData';
 import * as gaEvent from '@/utils/gaEvent';
 
+const TopPartition = () => {
+  return <div className="fixed top-[-50PX] w-full bg-white h-24 z-[9]"></div>;
+};
+
 // 새로운 모임 만들기 페이지
 const CreateRelationReportPage = () => {
   const params = useParams();
@@ -33,27 +37,32 @@ const CreateRelationReportPage = () => {
   }, [data.skill?.seq]);
 
   return (
-    <div className="bg-white h-[calc(var(--vh)*100)]">
-      <CreateRelationReportHeader />
-      <div className="pt-[44px]">
-        <CreateRelationReportTitle />
-        <Divider color="gray" />
-        <CreateRelationReportForm />
+    <div className=" relative">
+      <div className="bg-white h-[calc(var(--vh)*100)] ">
+        <CreateRelationReportHeader />
+
+        <div className="pt-[44px] overflow-scroll">
+          <CreateRelationReportTitle />
+          <Divider color="gray" />
+          <CreateRelationReportForm />
+        </div>
+
+        {
+          <ToastContainer
+            position={toast.POSITION.BOTTOM_CENTER}
+            icon={false}
+            hideProgressBar={true}
+            pauseOnHover={false}
+            draggable={false}
+            closeButton={false}
+            className="toast-black"
+            limit={1}
+            autoClose={3000}
+            enableMultiContainer={false}
+          />
+        }
       </div>
-      {
-        <ToastContainer
-          position={toast.POSITION.BOTTOM_CENTER}
-          icon={false}
-          hideProgressBar={true}
-          pauseOnHover={false}
-          draggable={false}
-          closeButton={false}
-          className="toast-black"
-          limit={1}
-          autoClose={3000}
-          enableMultiContainer={false}
-        />
-      }
+      <TopPartition />
     </div>
   );
 };
