@@ -68,7 +68,7 @@ const RelationReportBottomContainer = () => {
       }
     }
 
-    if (isBottomSheetOpening) {
+    if (isBottomSheetOpened) {
       webview.goSkillDetailPage({ skillSeq: data?.skill?.seq });
       return;
     }
