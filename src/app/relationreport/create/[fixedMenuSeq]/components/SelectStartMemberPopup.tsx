@@ -72,14 +72,14 @@ const SelectStartMemberPopup = ({
               </div>
               {item.seq === selectedSeq ? (
                 <div
-                  className="cursor-pointer w-[74px] rounded-[20px] bg-gray-900 h-10 flex items-center justify-center text-white text-[14px] font-bold"
+                  className="cursor-pointer w-[74px] rounded-[20px] bg-gray-900 h-10 flex items-center justify-center text-white text-[14px] font-bold shrink-0"
                   onClick={() => handleSelectButtonClick(item)}
                 >
                   {t('relationshipmap_create_screen_button_selected')}
                 </div>
               ) : (
                 <div
-                  className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold"
+                  className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold shrink-0"
                   onClick={() => handleSelectButtonClick(item)}
                 >
                   {t('relationshipmap_create_screen_button_select')}

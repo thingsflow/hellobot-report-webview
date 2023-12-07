@@ -137,14 +137,14 @@ const CreateRelationReportForm = () => {
                   </div>
                   {item.seq === selectedUserSeq ? (
                     <div
-                      className="cursor-pointer w-[74px] rounded-[20px] bg-gray-900 h-10 flex items-center justify-center text-white text-[14px] font-bold"
+                      className="cursor-pointer w-[74px] rounded-[20px] bg-gray-900 h-10 flex items-center justify-center text-white text-[14px] font-bold shrink-0"
                       onClick={() => handleSelectButtonClick(item)}
                     >
                       {t('relationshipmap_create_screen_button_selected')}
                     </div>
                   ) : (
                     <div
-                      className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold"
+                      className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold shrink-0"
                       onClick={() => handleSelectButtonClick(item)}
                     >
                       {t('relationshipmap_create_screen_button_select')}
@@ -194,7 +194,7 @@ const CreateRelationReportForm = () => {
             {t('relationshipmap_edit_popup_label_group_name')}{' '}
             <span className="text-[#F23658]">*</span>
           </h5>
-          <div className="relative">
+          <div className="relative mb-4">
             <input
               ref={inputRef}
               type="text"
@@ -215,7 +215,7 @@ const CreateRelationReportForm = () => {
               onTouchStart={handleDeleteButtonClick}
             />
           </div>
-          <div className="flex flex-col pt-8">
+          <div className="flex flex-col pt-8 pb-4">
             <h5 className="mb-1 font-bold text-gray-900">
               {t('relationshipmap_edit_popup_label_status')}{' '}
               <span className="text-[#F23658]">*</span>
@@ -240,10 +240,13 @@ const CreateRelationReportForm = () => {
           </div>
         </div>
       </div>
-      <Button
-        title={t('relationshipmap_screen_button_create')}
-        onClick={handleCreateNewMoimButtonClick}
-      />
+      {/* IOS에서 safe area로 인해 빈 공간 생김. 흰색 배경으로 채우기 */}
+      <div className="fixed -bottom-[50px] w-full h-[130px] bg-white overflow-hidden">
+        <Button
+          title={t('relationshipmap_screen_button_create')}
+          onClick={handleCreateNewMoimButtonClick}
+        />
+      </div>
       {isSelectStartMemberPopupOpen && (
         <SelectStartMemberPopup
           selectedSeq={selectedUserSeq}
