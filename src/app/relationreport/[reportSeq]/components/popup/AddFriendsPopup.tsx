@@ -25,18 +25,9 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
     RelationReportModalContext,
   );
 
-  const {
-    data,
-    loading,
-    mutate: mutatePlayData,
-  } = useGetPlayData({
+  const { data, mutate: mutatePlayData } = useGetPlayData({
     fixedMenuSeq: String(relationReportData?.skill?.seq),
     reportSeq: params.reportSeq as string,
-    options: {
-      revalidateOnMount: false,
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-    },
   });
 
   const { trigger } = useUpdateRelationReport({
@@ -71,6 +62,10 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
       return;
     }
 
+    await trigger({
+      playDataSeqs: [targetData.seq],
+    });
+
     mutatePlayData({
       data: {
         skill: data.skill,
@@ -85,10 +80,6 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
             return data;
           }) || [],
       },
-    });
-
-    await trigger({
-      playDataSeqs: [targetData.seq],
     });
 
     onClose();
@@ -164,7 +155,6 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
           {t('relationshipmap_add_popup_button_other_map')}
         </div>
       </CommonPopup>
-      {loading && <Loading />}
     </>
   );
 };
