@@ -15,6 +15,7 @@ import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
 import { environment } from '../../../../../environments/environment';
 import { STORAGE_KEY } from '@/consts/common';
+import { t } from '@/utils';
 
 const RelationReportBottomContainer = () => {
   const [isBottomSheetOpening, setIsBottomSheetOpening] = React.useState(false); // 바텀시트를 열거나 닫는 영역을 터치했는지 여부
@@ -176,7 +177,9 @@ const RelationReportBottomContainer = () => {
                 height={16}
                 alt="Alert Icon"
               />
-              <p className="text-gray-900 font-bold">상세보기</p>
+              <p className="text-gray-900 font-bold">
+                {t('relationshipmap_screen_description_detail')}
+              </p>
             </div>
             <div>
               <Image

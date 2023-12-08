@@ -27,9 +27,8 @@ const DefaultNode: FC<NodeProps> = () => {
   const searchParams = useSearchParams();
   const share = searchParams.get('isShare');
 
-  const { setIsAddFriendsPopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { setIsAddFriendsPopupOpen, setIsNoResultsToAddPopupOpen } =
+    React.useContext(RelationReportModalContext);
   const { data: relationReportData } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
     options: {
@@ -54,7 +53,6 @@ const DefaultNode: FC<NodeProps> = () => {
     gaEvent.touchRelationAdd();
 
     const isKeepAnonymous = localStorage.getItem('isKeepAnonymous');
-
     if (
       userData?.type === 'anonymous' &&
       isKeepAnonymous !== 'true' &&
@@ -81,9 +79,10 @@ const DefaultNode: FC<NodeProps> = () => {
       return;
     }
 
-    webview.goSkillDetailPage({
-      skillSeq: relationReportData?.skillSeq,
-    });
+    setIsNoResultsToAddPopupOpen(true);
+    // webview.goSkillDetailPage({
+    //   skillSeq: relationReportData?.skillSeq,
+    // });
   };
 
   return (

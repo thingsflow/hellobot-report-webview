@@ -7,6 +7,7 @@ import EditMoimPopup from './components/popup/EditMoimPopup';
 import PreventSharePopup from './components/popup/PreventSharePopup';
 import { useParams, useSearchParams } from 'next/navigation';
 import { Node } from 'reactflow';
+import NoResultsToAddPopup from './components/popup/NoResultsToAddPopup';
 
 interface IRelationReportModalContext {
   isInviteFriendsPopupOpen: boolean;
@@ -25,6 +26,8 @@ interface IRelationReportModalContext {
   >;
   isPreventSharePopupOpen: boolean;
   setIsPreventSharePopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isNoResultsToAddPopupOpen: boolean;
+  setIsNoResultsToAddPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isAllLoading: boolean;
   setIsAllLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isOnlyEdge: boolean; // 관계도에 엣지가 한 개 인가?
@@ -44,6 +47,8 @@ const initialState = {
   setIsAddFriendsPopupOpen: () => {},
   isPreventSharePopupOpen: false,
   setIsPreventSharePopupOpen: () => {},
+  isNoResultsToAddPopupOpen: false,
+  setIsNoResultsToAddPopupOpen: () => {},
   editMoimPopupInfo: null,
   setEditMoimPopupInfo: () => {},
   isAllLoading: false,
@@ -67,6 +72,9 @@ const RelationReportPage = () => {
     React.useState(false);
   const [isPreventSharePopupOpen, setIsPreventSharePopupOpen] =
     React.useState(false);
+  const [isNoResultsToAddPopupOpen, setIsNoResultsToAddPopupOpen] =
+    React.useState(false);
+
   const [isAllLoading, setIsAllLoading] = React.useState(false);
   const [editMoimPopupInfo, setEditMoimPopupInfo] = React.useState<{
     title: string;
@@ -93,6 +101,8 @@ const RelationReportPage = () => {
         setIsOnlyEdge,
         isPreventSharePopupOpen,
         setIsPreventSharePopupOpen,
+        isNoResultsToAddPopupOpen,
+        setIsNoResultsToAddPopupOpen,
         playData,
         setPlayData,
         initialNodes,
@@ -115,6 +125,9 @@ const RelationReportPage = () => {
       />
       <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
       <PreventSharePopup onClose={() => setIsPreventSharePopupOpen(false)} />
+      <NoResultsToAddPopup
+        onClose={() => setIsNoResultsToAddPopupOpen(false)}
+      />
       {editMoimPopupInfo && <EditMoimPopup />}
     </RelationReportModalContext.Provider>
   );
