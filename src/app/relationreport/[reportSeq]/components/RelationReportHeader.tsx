@@ -25,7 +25,7 @@ const RelationReportHeader = () => {
       gaEvent.viewRelationshipMap({
         relationshipMapName: data?.title,
         isJoinedRelationshipMap: !!data.hasPlayDataAdded,
-        relationshipMapMemberCount: data.extraUsersCount || 0 + 1,
+        relationshipMapMemberCount: (data.extraUsersCount || 0) + 1,
         menuName: data.skill?.name,
         menuSeq: data.skillSeq,
       });

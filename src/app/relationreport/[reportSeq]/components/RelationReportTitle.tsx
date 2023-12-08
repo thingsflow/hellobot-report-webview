@@ -61,24 +61,28 @@ const RelationReportTitle = () => {
         )}
         <div>
           <div className="flex items-center ">
-            <h1 className="text-[22px] font-bold mr-1 leading-7">
-              {data?.title}
-            </h1>
-            {data?.isViewerOwner && (
-              <Image
-                className="z-50 cursor-pointer"
-                onClick={() =>
-                  setEditMoimPopupInfo({
-                    title: data?.title || '',
-                    isPrivate: data?.shareScope === 'PRIVATE' ? true : false,
-                  })
-                }
-                src="/images/icon-modify-small.svg"
-                alt="Modify Icon"
-                width={20}
-                height={20}
-              />
-            )}
+            <div className=" inline-flex ">
+              <span className="text-[22px] font-bold mr-1 leading-7">
+                {data?.title}
+                {data?.isViewerOwner && (
+                  <Image
+                    className="z-50 cursor-pointer inline  "
+                    style={{ transform: 'translateY(2px)' }}
+                    onClick={() =>
+                      setEditMoimPopupInfo({
+                        title: data?.title || '',
+                        isPrivate:
+                          data?.shareScope === 'PRIVATE' ? true : false,
+                      })
+                    }
+                    src="/images/icon-modify-small.svg"
+                    alt="Modify Icon"
+                    width={20}
+                    height={20}
+                  />
+                )}
+              </span>
+            </div>
           </div>
         </div>
       </div>
