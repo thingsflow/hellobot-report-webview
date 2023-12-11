@@ -19,9 +19,11 @@ const RelationReportHeader = () => {
   const { setIsPreventSharePopupOpen } = React.useContext(
     RelationReportModalContext,
   );
+  const isEventLoggedRef = React.useRef(false);
 
   React.useEffect(() => {
-    if (data?.title) {
+    if (data?.title && isEventLoggedRef.current === false) {
+      isEventLoggedRef.current = true;
       gaEvent.viewRelationshipMap({
         relationshipMapName: data?.title,
         isJoinedRelationshipMap: !!data.hasPlayDataAdded,
