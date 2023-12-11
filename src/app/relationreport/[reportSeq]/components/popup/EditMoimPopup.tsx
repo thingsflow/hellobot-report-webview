@@ -87,6 +87,7 @@ const EditMoimPopup = () => {
                 className="w-full h-12 bg-[#f5f5f5] rounded-lg text=[#242526] px-4 py-3 pr-11"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                maxLength={30}
               />
               <Image
                 className="cursor-pointer absolute top-1/2 -translate-y-1/2 right-4 bg-[#f5f5f5]"

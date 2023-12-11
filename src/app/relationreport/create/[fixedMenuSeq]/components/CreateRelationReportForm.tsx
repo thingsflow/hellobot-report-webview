@@ -206,6 +206,7 @@ const CreateRelationReportForm = () => {
               placeholder={t(
                 'relationshipmap_create_screen_input_group_name_placeholder',
               )}
+              maxLength={30}
             />
             <Image
               className="cursor-pointer absolute top-1/2 -translate-y-1/2 right-4 bg-[#f5f5f5]"
