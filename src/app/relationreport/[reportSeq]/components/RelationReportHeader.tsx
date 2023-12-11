@@ -9,16 +9,14 @@ import { toast } from 'react-toastify';
 import { environment } from '../../../../../environments/environment';
 import { t } from '@/utils/translate';
 import * as gaEvent from '@/utils/gaEvent';
-import { RelationReportModalContext } from '../page';
+import { useRelationReportContext } from '../context';
 
 const RelationReportHeader = () => {
   const params = useParams();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const { setIsPreventSharePopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { setIsPreventSharePopupOpen } = useRelationReportContext();
 
   React.useEffect(() => {
     if (data?.title) {

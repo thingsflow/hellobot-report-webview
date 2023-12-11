@@ -1,16 +1,11 @@
 import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
-import { RelationReportModalContext } from '../../page';
 import Image from 'next/image';
 import webview from '@/utils/webview';
-import useGetPlayData from '@/apis/useGetPlayData';
-import Loading from '@/components/Loading';
-import { PlayData } from '@/types/relationreport';
 import { useParams } from 'next/navigation';
-import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
-import * as gaEvent from '@/utils/gaEvent';
+import { useRelationReportContext } from '../../context';
 
 interface INoResultsToAddPopup {
   onClose: () => void;
@@ -21,9 +16,7 @@ const NoResultsToAddPopup = ({ onClose }: INoResultsToAddPopup) => {
   const { data: relationReportData } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const { isNoResultsToAddPopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { isNoResultsToAddPopupOpen } = useRelationReportContext();
 
   if (!isNoResultsToAddPopupOpen) {
     return null;
@@ -64,7 +57,8 @@ const NoResultsToAddPopup = ({ onClose }: INoResultsToAddPopup) => {
           className="cursor-pointer absolute text-white text-[14px] -bottom-8 right-1/2 translate-x-1/2"
           onClick={onClose}
         >
-          {t('register_screen_button_skip')}
+          {/* TODO: 로컬라이즈 파일에 key 없음 */}
+          {/* {t('register_screen_button_skip')} */}
         </div>
       </CommonPopup>
     </div>
