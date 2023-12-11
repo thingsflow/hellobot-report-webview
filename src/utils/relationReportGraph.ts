@@ -22,7 +22,7 @@ const getRadiusOffset = (nodeCount: number) => {
     case nodeCount <= 9:
       return 2;
     case nodeCount <= 10:
-      return 1.2;
+      return 2.2;
     case nodeCount <= 12:
       return 2.4;
     case nodeCount <= 14:
