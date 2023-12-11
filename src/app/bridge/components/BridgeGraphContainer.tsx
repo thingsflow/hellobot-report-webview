@@ -16,7 +16,7 @@ const BridgeGraphContainer = () => {
 
   return (
     <div className="w-full h-[calc(var(--ivh)*100-100px)]">
-      <div className="absolute top-0 w-full h-[calc(var(--ivh)*100-100px)]">
+      <div className="absolute top-2 w-full h-[calc(var(--ivh)*100-100px)]">
         <BridgeGraph />
       </div>
       <BridgeReportHeader />

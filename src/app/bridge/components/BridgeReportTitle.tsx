@@ -29,11 +29,11 @@ const BridgeReportTitle = () => {
             duration={0.9}
           />
         ) : (
-          <h1 className="text-[22px] font-bold mr-1 line-clamp-2">
+          <h1 className="text-[22px] font-bold mr-1 line-clamp-2 leading-[26px]">
             {data.title}
           </h1>
         )}
-        <p className="text-gray-600 text-[13px] line-clamp-1">
+        <p className="text-gray-600 text-[13px] line-clamp-1 mt-px">
           {data?.subTitle || t('bridge_relationshipmap_screen_description')}
         </p>
       </div>
