@@ -10,7 +10,7 @@ import useGetPlayData from '@/apis/useGetPlayData';
 import * as gaEvent from '@/utils/gaEvent';
 
 const TopPartition = () => {
-  return <div className="fixed top-[-50PX] w-full bg-white h-24 z-[9]"></div>;
+  return <div className="fixed top-[-90PX] w-full bg-white h-24 z-[9]"></div>;
 };
 
 // 새로운 모임 만들기 페이지
