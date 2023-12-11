@@ -36,16 +36,15 @@ const BridgePageContainer = () => {
     <div className="relative bg-white ">
       <BridgeGraphContainer />
       {data?.previewImageUrl && (
-        <div className="relative w-full h-auto">
+        // 443: 276에 대한 1221의 비율값
+        <div className="relative w-full pb-[443%]">
           <Image
             src={data.previewImageUrl || ''}
             alt="Preview Image"
-            width={200}
-            height={500}
-            style={{
-              width: '100%',
-              height: 'auto',
-            }}
+            placeholder="blur"
+            blurDataURL={data.previewImageUrl}
+            fill={true}
+            layout="fill"
           />
         </div>
       )}

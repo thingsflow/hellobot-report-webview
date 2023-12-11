@@ -54,16 +54,13 @@ const RelationReportShare = () => {
           {t('relationshipmap_screen_description_example_family')}
         </h3>
         {data?.sampleImageUrl && (
-          <div className="relative w-full h-auto">
+          // 443: 370에 대한 391의 비율값
+          <div className="relative w-full pb-[105.68%]">
             <Image
               src={data.sampleImageUrl || ''}
               alt="Sample Image"
-              width={200}
-              height={500}
-              style={{
-                width: '100%',
-                height: 'auto',
-              }}
+              fill={true}
+              layout="fill"
             />
           </div>
         )}
