@@ -1,4 +1,3 @@
-import { environment } from '../../environments/environment';
 import { t } from './translate';
 
 const shareWithKakao = ({
@@ -15,7 +14,7 @@ const shareWithKakao = ({
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
-      kakao.init(environment.kakaoAppJsKey);
+      kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY);
     }
 
     kakao.Link.sendDefault({

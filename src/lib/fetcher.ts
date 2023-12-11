@@ -1,5 +1,4 @@
 import { ERROR_CODE, STORAGE_KEY } from '@/consts/common';
-import { environment } from '../../environments/environment';
 import { Arguments } from 'swr';
 
 interface Arg {
@@ -24,7 +23,7 @@ export const fetcher = {
       const token = localStorage.getItem(STORAGE_KEY.TOKEN);
       const platform = localStorage.getItem(STORAGE_KEY.PLATFORM);
 
-      return fetch(`${environment.apiBaseUrl}${url}`, {
+      return fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, {
         method: 'GET',
         headers: {
           Authorization: `user ${token}`,
@@ -35,14 +34,17 @@ export const fetcher = {
         .then((res) => {
           if (res?.error?.code === ERROR_CODE.TOKEN_EXPIRED) {
             // 토큰 만료 시 새로운 토큰으로 업데이트한 뒤 이전 요청 재시도한다.
-            return fetch(`${environment.apiBaseUrl}/api/users/token`, {
-              method: 'POST',
-              mode: 'cors',
-              headers: {
-                Authorization: `user ${token}`,
-                'Content-Type': 'application/json',
+            return fetch(
+              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users/token`,
+              {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                  Authorization: `user ${token}`,
+                  'Content-Type': 'application/json',
+                },
               },
-            })
+            )
               .then((res) => res.json())
               .then((tokenRes) => {
                 localStorage.setItem(STORAGE_KEY.TOKEN, tokenRes.data.token);
@@ -64,7 +66,7 @@ export const fetcher = {
     ) => {
       const token = localStorage.getItem(STORAGE_KEY.TOKEN);
 
-      return fetch(`${environment.apiBaseUrl}${url}`, {
+      return fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, {
         method: 'POST',
         body: JSON.stringify(arg),
         headers: {
@@ -76,14 +78,17 @@ export const fetcher = {
         .then((res) => {
           if (res?.error?.code === ERROR_CODE.TOKEN_EXPIRED) {
             // 토큰 만료 시 새로운 토큰으로 업데이트한 뒤 이전 요청 재시도한다.
-            return fetch(`${environment.apiBaseUrl}/api/users/token`, {
-              method: 'POST',
-              mode: 'cors',
-              headers: {
-                Authorization: `user ${token}`,
-                'Content-Type': 'application/json',
+            return fetch(
+              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users/token`,
+              {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                  Authorization: `user ${token}`,
+                  'Content-Type': 'application/json',
+                },
               },
-            })
+            )
               .then((res) => res.json())
               .then((tokenRes) => {
                 localStorage.setItem(STORAGE_KEY.TOKEN, tokenRes.data.token);
@@ -105,7 +110,7 @@ export const fetcher = {
     ) => {
       const token = localStorage.getItem(STORAGE_KEY.TOKEN);
 
-      return fetch(`${environment.apiBaseUrl}${url}`, {
+      return fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, {
         method: 'PATCH',
         body: JSON.stringify(arg),
         headers: {
@@ -117,14 +122,17 @@ export const fetcher = {
         .then((res) => {
           if (res?.error?.code === ERROR_CODE.TOKEN_EXPIRED) {
             // 토큰 만료 시 새로운 토큰으로 업데이트한 뒤 이전 요청 재시도한다.
-            return fetch(`${environment.apiBaseUrl}/api/users/token`, {
-              method: 'POST',
-              mode: 'cors',
-              headers: {
-                Authorization: `user ${token}`,
-                'Content-Type': 'application/json',
+            return fetch(
+              `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users/token`,
+              {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                  Authorization: `user ${token}`,
+                  'Content-Type': 'application/json',
+                },
               },
-            })
+            )
               .then((res) => res.json())
               .then((tokenRes) => {
                 localStorage.setItem(STORAGE_KEY.TOKEN, tokenRes.data.token);

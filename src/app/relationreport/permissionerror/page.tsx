@@ -2,11 +2,11 @@
 import { t } from '@/utils/translate';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { environment } from '../../../../environments/environment';
+
 const PermissionErrorPage = () => {
   const route = useRouter();
   const onMainMove = () => {
-    route.push(environment.url);
+    route.push(process.env.NEXT_PUBLIC_SKILLSTORE_URL || '/');
   };
 
   return (

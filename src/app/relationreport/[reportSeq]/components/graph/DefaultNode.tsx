@@ -9,7 +9,6 @@ import { useParams, useSearchParams } from 'next/navigation';
 import useGetPlayData from '@/apis/useGetPlayData';
 import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
-import { environment } from '../../../../../../environments/environment';
 
 const sourceHandleStyle: CSSProperties = {
   background: 'transparent',
@@ -66,8 +65,8 @@ const DefaultNode: FC<NodeProps> = () => {
       ) {
         webview.doLoginWithRedirectUrl({
           redireactUrl:
-            environment.relationReportShareBaseUrl +
-            `?relationSeq=${params.reportSeq}`,
+            process.env.NEXT_PUBLIC_SKILLSTORE_URL +
+            `/relation-reports/diagram?relationSeq=${params.reportSeq}`,
         });
       } else {
         localStorage.setItem('isKeepAnonymous', 'true');

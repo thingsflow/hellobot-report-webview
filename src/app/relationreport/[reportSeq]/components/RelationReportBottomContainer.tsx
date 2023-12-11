@@ -13,8 +13,6 @@ import { useParams, useSearchParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
-import { environment } from '../../../../../environments/environment';
-import { STORAGE_KEY } from '@/consts/common';
 import { t } from '@/utils';
 
 const RelationReportBottomContainer = () => {
@@ -61,8 +59,8 @@ const RelationReportBottomContainer = () => {
       ) {
         webview.doLoginWithRedirectUrl({
           redireactUrl:
-            environment.relationReportShareBaseUrl +
-            `?relationSeq=${params.reportSeq}`,
+            process.env.NEXT_PUBLIC_SKILLSTORE_URL +
+            `/relation-reports/diagram?relationSeq=${params.reportSeq}`,
         });
       } else {
         localStorage.setItem('isKeepAnonymous', 'true');
