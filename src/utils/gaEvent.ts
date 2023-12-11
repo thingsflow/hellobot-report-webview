@@ -95,7 +95,7 @@ export const viewRelationshipMap = ({
 }) => {
   webview.logEvent('view_relationship_map', {
     relationship_map_name: relationshipMapName,
-    is_joined_relationship_map: isJoinedRelationshipMap,
+    is_joined_relationship_map: isJoinedRelationshipMap ? 1 : 0,
     relationship_map_member_count: relationshipMapMemberCount ?? 0,
     menu_name: menuName,
     menu_seq: String(menuSeq),
