@@ -16,9 +16,9 @@ import CustomControls from './Controls';
 import DefaultEdge from './DefaultEdge';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import { useParams } from 'next/navigation';
-import { RelationReportModalContext } from '../../page';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
+import { useRelationReportContext } from '../../context';
 
 const nodeTypes = {
   commonNode: CommonNode,
@@ -34,9 +34,8 @@ const RelationGraph = () => {
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdge, onEdgesChange] = useEdgesState([]);
-  const { setIsAllLoading, setIsOnlyEdge, setInitialNodes } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { setIsAllLoading, setIsOnlyEdge, setInitialNodes } =
+    useRelationReportContext();
   const reactFlowRef = React.useRef<ReactFlowRefType | null>(null);
   const toastRef = React.useRef<any>(null);
 

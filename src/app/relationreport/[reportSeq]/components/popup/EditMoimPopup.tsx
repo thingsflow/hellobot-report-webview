@@ -1,6 +1,5 @@
 import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
-import { RelationReportModalContext } from '../../page';
 import Image from 'next/image';
 import Toggle from '@/components/Toggle';
 import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
@@ -9,13 +8,13 @@ import { useParams } from 'next/navigation';
 import { t } from '@/utils/translate';
 import { toast } from 'react-toastify';
 import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
+import { useRelationReportContext } from '../../context';
 
 const EditMoimPopup = () => {
   const params = useParams();
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const { editMoimPopupInfo, setEditMoimPopupInfo } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { editMoimPopupInfo, setEditMoimPopupInfo } =
+    useRelationReportContext();
   const isKeyboardOpen = useDetectKeyboardOpen();
 
   const { trigger, loading } = useUpdateRelationReport({

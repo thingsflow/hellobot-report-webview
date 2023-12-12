@@ -1,7 +1,7 @@
 import React from 'react';
 import CommonPopup from '@/components/CommonPopup';
-import { RelationReportModalContext } from '../../page';
 import { t } from '@/utils/translate';
+import { useRelationReportContext } from '../../context';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -9,7 +9,7 @@ interface IInviteFriendsPopup {
 
 const PreventSharePopup = ({ onClose }: IInviteFriendsPopup) => {
   const { isPreventSharePopupOpen, setIsPreventSharePopupOpen } =
-    React.useContext(RelationReportModalContext);
+    useRelationReportContext();
 
   if (!isPreventSharePopupOpen) {
     return null;
