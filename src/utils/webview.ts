@@ -48,7 +48,6 @@ const sendEvent = ({
     | doLoginWithRedirectUrlType;
 }) => {
   const platform = localStorage.getItem('platform');
-  console.log('platform: ', platform);
 
   if (platform === 'ios') {
     if (window?.webkit?.messageHandlers?.hbReport?.postMessage) {
@@ -56,9 +55,6 @@ const sendEvent = ({
         action,
         ...(parameter && { parameter }),
       });
-      console.log('ios로 이벤트 전송');
-      console.log('action: ', action);
-      console.log('parameter: ', parameter);
       return;
     }
   }
@@ -71,9 +67,6 @@ const sendEvent = ({
           ...(parameter && { parameter }),
         }),
       );
-      console.log('android로 이벤트 전송');
-      console.log('action: ', action);
-      console.log('parameter: ', parameter);
       return;
     }
   }
@@ -87,9 +80,6 @@ const sendEvent = ({
         },
         '*',
       );
-      console.log('web으로 이벤트 전송');
-      console.log('action: ', action);
-      console.log('parameter: ', parameter);
     }
   }
   return;
