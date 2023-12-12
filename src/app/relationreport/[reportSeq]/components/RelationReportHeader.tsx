@@ -8,19 +8,19 @@ import * as React from 'react';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
 import * as gaEvent from '@/utils/gaEvent';
-import { RelationReportModalContext } from '../page';
+import { useRelationReportContext } from '../context';
 
 const RelationReportHeader = () => {
   const params = useParams();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const { setIsPreventSharePopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { setIsPreventSharePopupOpen } = useRelationReportContext();
+  const isEventLoggedRef = React.useRef(false);
 
   React.useEffect(() => {
-    if (data?.title) {
+    if (data?.title && isEventLoggedRef.current === false) {
+      isEventLoggedRef.current = true;
       gaEvent.viewRelationshipMap({
         relationshipMapName: data?.title,
         isJoinedRelationshipMap: !!data.hasPlayDataAdded,

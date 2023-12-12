@@ -6,8 +6,13 @@ import * as gaEvent from '@/utils/gaEvent';
 
 // 시작 멤버 선택 페이지
 const StartRelationReportPage = () => {
+  const isEventLoggedRef = React.useRef(false);
+
   React.useEffect(() => {
-    gaEvent.viewListRelationStartingMember();
+    if (isEventLoggedRef.current === false) {
+      isEventLoggedRef.current = true;
+      gaEvent.viewListRelationStartingMember();
+    }
   }, []);
 
   return (

@@ -2,13 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import CommonPopup from '@/components/CommonPopup';
 import shareWithKakao from '@/utils/shareWithKakao';
-import { RelationReportModalContext } from '../../page';
 import { copyToClipboard } from '@/utils';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
+import { useRelationReportContext } from '../../context';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -19,9 +19,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const { isInviteFriendsPopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { isInviteFriendsPopupOpen } = useRelationReportContext();
 
   const handleCopyLinkButtonClick = () => {
     gaEvent.touchRelationLinkCopy();

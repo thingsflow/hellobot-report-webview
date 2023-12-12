@@ -7,13 +7,11 @@ import { t } from '@/utils/translate';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
-import { RelationReportModalContext } from '../page';
+import { useRelationReportContext } from '../context';
 
 const RelationReportShare = () => {
   const params = useParams();
-  const { setIsPreventSharePopupOpen } = React.useContext(
-    RelationReportModalContext,
-  );
+  const { setIsPreventSharePopupOpen } = useRelationReportContext();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
