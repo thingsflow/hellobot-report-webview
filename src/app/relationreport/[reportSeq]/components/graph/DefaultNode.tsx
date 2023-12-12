@@ -8,7 +8,6 @@ import { useParams, useSearchParams } from 'next/navigation';
 import useGetPlayData from '@/apis/useGetPlayData';
 import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
-import { environment } from '../../../../../../environments/environment';
 import { useRelationReportContext } from '../../context';
 
 const sourceHandleStyle: CSSProperties = {
@@ -58,16 +57,11 @@ const DefaultNode: FC<NodeProps> = () => {
       isKeepAnonymous !== 'true' &&
       share === 'true'
     ) {
-      // TODO: lokalise
-      if (
-        confirm(
-          '로그인 하시겠습니까? 로그인을 하지 않고 진행하게 될 시, 관계도 및 결과가 저장되지 않습니다.',
-        )
-      ) {
+      if (confirm(t('relationshipmap_popup_login_prompt'))) {
         webview.doLoginWithRedirectUrl({
           redireactUrl:
-            environment.relationReportShareBaseUrl +
-            `?relationSeq=${params.reportSeq}`,
+            process.env.NEXT_PUBLIC_SKILLSTORE_URL +
+            `/relation-reports/diagram?relationSeq=${params.reportSeq}`,
         });
       } else {
         localStorage.setItem('isKeepAnonymous', 'true');

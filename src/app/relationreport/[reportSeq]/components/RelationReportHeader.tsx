@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import * as React from 'react';
 import { toast } from 'react-toastify';
-import { environment } from '../../../../../environments/environment';
 import { t } from '@/utils/translate';
 import * as gaEvent from '@/utils/gaEvent';
 import { useRelationReportContext } from '../context';
@@ -39,8 +38,8 @@ const RelationReportHeader = () => {
   const dataToShare: ShareData = {
     title: data?.title,
     url:
-      environment.relationReportShareBaseUrl +
-      `?relationSeq=${data?.seq}&share=true`,
+      process.env.NEXT_PUBLIC_SKILLSTORE_URL +
+      `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
   };
 
   const handleShareIconClick = async () => {
@@ -58,8 +57,8 @@ const RelationReportHeader = () => {
       Webview.doShare({
         shareTitle: data?.title,
         shareLink:
-          environment.relationReportShareBaseUrl +
-          `?relationSeq=${data?.seq}&share=true`,
+          process.env.NEXT_PUBLIC_SKILLSTORE_URL +
+          `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
       });
     } else {
       const result = await share(dataToShare);
