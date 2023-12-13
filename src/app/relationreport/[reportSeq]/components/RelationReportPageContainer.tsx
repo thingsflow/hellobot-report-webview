@@ -38,9 +38,9 @@ const RelationReportPageContainer = () => {
       />
       <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
       <PreventSharePopup onClose={() => setIsPreventSharePopupOpen(false)} />
-      <NoResultsToAddPopup
+      {/* <NoResultsToAddPopup
         onClose={() => setIsNoResultsToAddPopupOpen(false)}
-      />
+      /> */}
       {editMoimPopupInfo && <EditMoimPopup />}
     </div>
   );

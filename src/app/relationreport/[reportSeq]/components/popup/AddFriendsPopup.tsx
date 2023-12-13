@@ -10,7 +10,7 @@ import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
 import { useRelationReportContext } from '../../context';
-
+import parse from 'html-react-parser';
 interface IAddFriendsPopup {
   onClose: () => void;
 }
@@ -90,66 +90,97 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
     <>
       <CommonPopup
         title={t('relationshipmap_add_popup_title')}
+        isPadding={false}
         onClose={onClose}
       >
-        <div className="relative flex flex-col gap-4">
-          {data.playDatas ? (
-            <div className="flex flex-col h-[350px] w-full overflow-scroll scrollbar-hide">
-              {data.playDatas?.map((item) => {
-                return (
-                  <div
-                    className="flex justify-between items-center py-3 border-b border-[#f5f5f5] border-solid"
-                    key={item.seq}
-                  >
-                    <div className="flex flex-col">
-                      <div className="font-medium text-gray-900">
-                        {item.name}
-                      </div>
-                      <div className="text-gray-600 text-[13px] line-clamp-1">
-                        {item.resultName}
-                      </div>
-                    </div>
-                    {item.isAlreadyAdded ? (
-                      <div className="w-[74px] rounded-[20px] bg-gray-400 h-10 flex items-center justify-center text-gray-200 text-[14px] font-bold shrink-0">
-                        {t('relationshipmap_add_popup_button_added')}
-                      </div>
-                    ) : (
-                      <div
-                        className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold shrink-0"
-                        onClick={() => handlePlayDataItemClick(item)}
-                      >
-                        {t('relationshipmap_add_popup_button_add')}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+        <div className="relative flex flex-col ">
+          <div className="bg-gray-100 px-5 flex items-start py-3">
+            <Image
+              className="mr-2"
+              src="/images/question_icon.svg"
+              alt="question Icon"
+              width={16}
+              height={16}
+            />
+            <div className="inline-flex">
+              <span className=" text-sm text-gray-700 font-bold mr-1 leading-[20px]">
+                <span className="text-gray-600 font-normal">
+                  {parse(
+                    t('relationshipmap_add_popup_description_notice', {
+                      value: data.skill?.name,
+                    }),
+                  )}
+                </span>
+              </span>
             </div>
-          ) : (
-            <div className="flex flex-col justify-start items-center h-[390px] w-full pt-16">
-              <Image
-                src="/images/ic-information.svg"
-                width={50}
-                height={50}
-                alt="Warning Icon"
-              />
-              <p className="mt-8 text-gray-500">
-                {t('relationshipmap_add_popup_description_empty')}
-              </p>
-            </div>
-          )}
-          <div
-            className="flex items-center justify-center w-full h-12 font-bold text-white bg-gray-900 cursor-pointer rounded-3xl"
-            onClick={handleOtherResultButtonClick}
-          >
-            {t('relationshipmap_add_popup_button_new_result')}
           </div>
-        </div>
-        <div
-          className="cursor-pointer absolute text-white text-[14px] -bottom-8 right-1/2 translate-x-1/2"
-          onClick={handleOtherRelationReportButtonClick}
-        >
-          {t('relationshipmap_add_popup_button_other_map')}
+
+          <div className="px-5">
+            {data.playDatas && data.playDatas.length > 0 ? (
+              <div className="flex flex-col h-[350px] w-full overflow-scroll scrollbar-hide">
+                {data.playDatas?.map((item) => {
+                  return (
+                    <div
+                      className="flex justify-between items-center py-3 border-b border-[#f5f5f5] border-solid"
+                      key={item.seq}
+                    >
+                      <div className="flex flex-col">
+                        <div className="font-medium text-gray-900">
+                          {item.name}
+                        </div>
+                        <div className="text-gray-600 text-[13px] line-clamp-1">
+                          {item.resultName}
+                        </div>
+                      </div>
+                      {item.isAlreadyAdded ? (
+                        <div className="w-[74px] rounded-[20px] bg-gray-400 h-10 flex items-center justify-center text-gray-200 text-[14px] font-bold shrink-0">
+                          {t('relationshipmap_add_popup_button_added')}
+                        </div>
+                      ) : (
+                        <div
+                          className="cursor-pointer w-[74px] rounded-[20px] bg-yellow-400 h-10 flex items-center justify-center text-gray-900 text-[14px] font-bold shrink-0"
+                          onClick={() => handlePlayDataItemClick(item)}
+                        >
+                          {t('relationshipmap_add_popup_button_add')}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="flex flex-col justify-start items-center h-[390px] w-full pt-16">
+                <Image
+                  src="/images/panming_sad.svg"
+                  width={150}
+                  height={150}
+                  className=" mt-5"
+                  alt="panming_sad Image"
+                />
+                <p className="mt-8 text-gray-500">
+                  {t('relationshipmap_add_popup_description_empty')}
+                </p>
+              </div>
+            )}
+
+            <div className="w-full mb-3 px-5 flex-col justify-center items-center mt-1">
+              <div className="text-center text-gray-600 text-xs whitespace-pre-wrap">
+                {t('relationshipmap_add_popup_description_button')}
+              </div>
+            </div>
+            <div
+              className="flex items-center justify-center w-full h-12 font-bold text-white bg-gray-900 cursor-pointer rounded-3xl"
+              onClick={handleOtherResultButtonClick}
+            >
+              {t('relationshipmap_add_popup_button_new_result')}
+            </div>
+          </div>
+          <div
+            className="cursor-pointer absolute text-white text-[14px] -bottom-8 right-1/2 translate-x-1/2"
+            onClick={handleOtherRelationReportButtonClick}
+          >
+            {t('relationshipmap_add_popup_button_other_map')}
+          </div>
         </div>
       </CommonPopup>
     </>

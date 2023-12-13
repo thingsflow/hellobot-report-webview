@@ -68,15 +68,7 @@ const DefaultNode: FC<NodeProps> = () => {
       }
     }
 
-    if (data.playDatas?.length) {
-      setIsAddFriendsPopupOpen(true);
-      return;
-    }
-
-    setIsNoResultsToAddPopupOpen(true);
-    // webview.goSkillDetailPage({
-    //   skillSeq: relationReportData?.skillSeq,
-    // });
+    setIsAddFriendsPopupOpen(true);
   };
 
   return (
@@ -102,7 +94,7 @@ const DefaultNode: FC<NodeProps> = () => {
         </div>
         <div className="flex w-[100px] absolute bottom-[-27px] absolute-center ml-[7px] justify-center items-center">
           <div className="inline-block text-gray-900 font-bold text-[14px] pt-[1px]">
-            {t('relationshipmap_add_popup_title')}
+            {t('relationshipmap_screen_button_add')}
           </div>
           <Image
             className="inline-block w-4 h-4 "
