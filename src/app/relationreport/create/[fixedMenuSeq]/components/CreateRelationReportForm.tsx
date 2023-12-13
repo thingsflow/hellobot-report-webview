@@ -19,7 +19,7 @@ import { toast } from 'react-toastify';
 import * as gaEvent from '@/utils/gaEvent';
 import webview from '@/utils/webview';
 import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
-
+import parser from 'html-react-parser';
 const CreateRelationReportForm = () => {
   const params = useParams();
   const titleInput = React.useRef<HTMLInputElement>(null);
@@ -160,12 +160,9 @@ const CreateRelationReportForm = () => {
                   onClick={handleLoadMoreMemberButtonClick}
                 >
                   <p className="text-[#555759] text-[14px] flex items-center border border-solid px-6 py-[7px] rounded-full border-gray-300">
-                    <span
-                      className="font-bold pt-[1px]"
-                      dangerouslySetInnerHTML={{
-                        __html: t('relationshipmap_create_screen_button_more'),
-                      }}
-                    />
+                    <span className="pt-[1px]">
+                      {parser(t('relationshipmap_create_screen_button_more'))}
+                    </span>
                     <Image
                       className="inline-block"
                       src="/images/arrow-right.svg"

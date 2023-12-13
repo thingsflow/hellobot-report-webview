@@ -8,6 +8,7 @@ interface ICommonPopup {
   onClose?: () => void;
   children: JSX.Element[] | JSX.Element;
   width?: number;
+  hasPadding?: boolean;
 }
 
 const CommonPopup = ({
@@ -15,6 +16,7 @@ const CommonPopup = ({
   onClose,
   children,
   width = 343,
+  hasPadding = true,
 }: ICommonPopup) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -23,6 +25,10 @@ const CommonPopup = ({
     };
   }, []);
 
+  const contentClassName = hasPadding
+    ? 'relative px-5 pt-[88px] pb-8'
+    : 'relative pt-[88px] pb-8';
+
   return (
     <Portal>
       <div className="fixed top-0 left-0 w-full min-h-[calc(var(--vh)*100)] bg-gray-900 opacity-60" />
@@ -30,7 +36,7 @@ const CommonPopup = ({
         className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow-popup rounded-[20px]"
         style={{ width }}
       >
-        <div className="relative px-5 pt-[88px] pb-8">
+        <div className={contentClassName}>
           <h1 className="w-4/5 absolute top-8 right-1/2 translate-x-1/2 text-gray-900 text-[22px] font-bold mb-[24px] flex items-center justify-center whitespace-pre-wrap text-center">
             {title}
           </h1>
