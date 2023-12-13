@@ -90,7 +90,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
     <>
       <CommonPopup
         title={t('relationshipmap_add_popup_title')}
-        isPadding={false}
+        hasPadding={false}
         onClose={onClose}
       >
         <div className="relative flex flex-col ">

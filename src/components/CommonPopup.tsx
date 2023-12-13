@@ -8,7 +8,7 @@ interface ICommonPopup {
   onClose?: () => void;
   children: JSX.Element[] | JSX.Element;
   width?: number;
-  isPadding?: boolean;
+  hasPadding?: boolean;
 }
 
 const CommonPopup = ({
@@ -16,7 +16,7 @@ const CommonPopup = ({
   onClose,
   children,
   width = 343,
-  isPadding = true,
+  hasPadding = true,
 }: ICommonPopup) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -25,7 +25,7 @@ const CommonPopup = ({
     };
   }, []);
 
-  const contentClassName = isPadding
+  const contentClassName = hasPadding
     ? 'relative px-5 pt-[88px] pb-8'
     : 'relative pt-[88px] pb-8';
 
