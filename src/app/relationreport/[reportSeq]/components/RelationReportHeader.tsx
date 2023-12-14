@@ -9,13 +9,15 @@ import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
 import * as gaEvent from '@/utils/gaEvent';
 import { useRelationReportContext } from '../context';
+import addShareParamsForRelationReport from '@/utils/addShareParamsForRelationReport';
 
 const RelationReportHeader = () => {
   const params = useParams();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const { setIsPreventSharePopupOpen } = useRelationReportContext();
+  const { setIsPreventSharePopupOpen, setShareData, shareData } =
+    useRelationReportContext();
   const isEventLoggedRef = React.useRef(false);
 
   React.useEffect(() => {
@@ -29,17 +31,20 @@ const RelationReportHeader = () => {
         menuSeq: data.skillSeq,
       });
     }
+
+    if (data) {
+      setShareData({
+        url:
+          process.env.NEXT_PUBLIC_SKILLSTORE_URL + `/relation-reports/diagram`,
+        title: data?.title,
+        skillSeq: data.skillSeq,
+        reportSeq: data.seq,
+      });
+    }
   }, [data]);
 
   const handleCloseButtonClick = () => {
     Webview.goBack();
-  };
-
-  const dataToShare: ShareData = {
-    title: data?.title,
-    url:
-      process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-      `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
   };
 
   const handleShareIconClick = async () => {
@@ -55,13 +60,20 @@ const RelationReportHeader = () => {
     const isAndroidWebView = window.androidHellobotWebViewApi?.hbReport;
     if (isAndroidWebView) {
       Webview.doShare({
-        shareTitle: data?.title,
-        shareLink:
-          process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-          `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
+        shareTitle: shareData?.title,
+        shareLink: addShareParamsForRelationReport({
+          shareType: 'native',
+          ...shareData,
+        }),
       });
     } else {
-      const result = await share(dataToShare);
+      const result = await share({
+        url: addShareParamsForRelationReport({
+          shareType: 'native',
+          ...shareData,
+        }),
+        title: shareData?.title,
+      });
 
       if (result === 'copiedToClipboard') {
         toast(t('relationshipmap_invite_popup_toast_copied'));

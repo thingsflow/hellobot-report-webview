@@ -21,7 +21,9 @@ const BridgeReportHeader = () => {
 
   const dataToShare: ShareData = {
     title: data?.skill?.name,
-    url: `https://dev.hellobot.co/relation-report-bridge/${data?.seq}`,
+    url:
+      process.env.NEXT_PUBLIC_SKILLSTORE_URL +
+      `/relation-report-bridge/${data?.seq}?title=${data?.title}`,
   };
 
   const handleShareIconClick = async () => {
@@ -33,8 +35,8 @@ const BridgeReportHeader = () => {
 
     if (isAndroidWebView) {
       Webview.doShare({
-        shareTitle: data?.skill?.name,
-        shareLink: `https://dev.hellobot.co/relation-report-bridge/${data?.seq}`,
+        shareTitle: dataToShare.title,
+        shareLink: dataToShare.url,
       });
     } else {
       const result = await share(dataToShare);

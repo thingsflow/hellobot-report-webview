@@ -8,10 +8,11 @@ import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
 import { useRelationReportContext } from '../context';
+import addShareParamsForRelationReport from '@/utils/addShareParamsForRelationReport';
 
 const RelationReportShare = () => {
   const params = useParams();
-  const { setIsPreventSharePopupOpen } = useRelationReportContext();
+  const { setIsPreventSharePopupOpen, shareData } = useRelationReportContext();
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
@@ -20,8 +21,10 @@ const RelationReportShare = () => {
     gaEvent.touchRelationLinkCopy();
 
     copyToClipboard(
-      process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-        `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
+      addShareParamsForRelationReport({
+        shareType: 'copy',
+        ...shareData,
+      }),
     );
     toast(t('relationshipmap_invite_popup_toast_copied'));
   };
@@ -38,9 +41,10 @@ const RelationReportShare = () => {
       title: data?.title,
       description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
       imageUrl: data?.imageUrl,
-      shareUrl:
-        process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-        `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
+      shareUrl: addShareParamsForRelationReport({
+        shareType: 'kakaotalk',
+        ...shareData,
+      }),
     });
   };
 
