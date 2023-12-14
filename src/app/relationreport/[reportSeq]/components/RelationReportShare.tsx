@@ -52,13 +52,15 @@ const RelationReportShare = () => {
         </h3>
         {data?.sampleImageUrl && (
           // 443: 370에 대한 391의 비율값
-          <div className="relative w-full pb-[105.68%]">
-            <Image
-              src={data.sampleImageUrl || ''}
-              alt="Sample Image"
-              fill={true}
-              layout="fill"
-            />
+          <div className="px-[26px] w-full">
+            <div className="relative w-full pb-[105.68%]">
+              <Image
+                src={data.sampleImageUrl || ''}
+                alt="Sample Image"
+                fill={true}
+                layout="fill"
+              />
+            </div>
           </div>
         )}
         {data?.shareScope === 'PUBLIC' && (
