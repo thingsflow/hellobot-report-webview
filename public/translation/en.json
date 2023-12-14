@@ -819,6 +819,7 @@
   "relationshipmap_invite_popup_description": "Share the link and invite friends! \nYou can add the results of invited friends.",
   "relationshipmap_invite_popup_title": "Refer a friend",
   "relationshipmap_invite_popup_toast_copied": "The link has been copied to clipboard.",
+  "relationshipmap_og_description": "If you're curious about our relationship, let's check it out now!",
   "relationshipmap_popup_login_prompt": "Would you like to log in? \nIf you proceed without logging in, your relationship map and results will not be saved.",
   "relationshipmap_popup_noresult_description": "Would you like to add the results\nby checking the skill?",
   "relationshipmap_popup_noresult_description_sub": "You can add your results or the results of others\nto the relationship map after checking.",
