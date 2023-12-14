@@ -96,21 +96,19 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
         <div className="relative flex flex-col ">
           <div className="bg-gray-100 px-5 flex items-start py-3">
             <Image
-              className="mr-2"
+              className="mr-2 mt-[1.5px]"
               src="/images/question_icon.svg"
               alt="question Icon"
               width={16}
               height={16}
             />
             <div className="inline-flex">
-              <span className=" text-sm text-gray-700 font-bold mr-1 leading-[20px]">
-                <span className="text-gray-600 font-normal">
-                  {parse(
-                    t('relationshipmap_add_popup_description_notice', {
-                      value: data.skill?.name,
-                    }),
-                  )}
-                </span>
+              <span className=" text-xs text-gray-600 mr-1 leading-[20px]">
+                {parse(
+                  t('relationshipmap_add_popup_description_notice', {
+                    value: data.skill?.name,
+                  }),
+                )}
               </span>
             </div>
           </div>
@@ -149,7 +147,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
                 })}
               </div>
             ) : (
-              <div className="flex flex-col justify-start items-center h-[390px] w-full pt-16">
+              <div className="flex flex-col justify-start items-center h-[390px] w-full pt-16 ">
                 <Image
                   src="/images/panming_sad.svg"
                   width={150}
@@ -162,19 +160,21 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
                 </p>
               </div>
             )}
-
-            <div className="w-full mb-3 px-5 flex-col justify-center items-center mt-1">
-              <div className="text-center text-gray-600 text-xs whitespace-pre-wrap">
-                {t('relationshipmap_add_popup_description_button')}
-              </div>
+          </div>
+          <div className="w-full mb-3  flex-col justify-center items-center pt-3 border-t border-solid border-gray-200">
+            <div className="text-center text-gray-600 text-xs whitespace-pre-wrap">
+              {t('relationshipmap_add_popup_description_button')}
             </div>
+          </div>
+          <div className="px-5">
             <div
-              className="flex items-center justify-center w-full h-12 font-bold text-white bg-gray-900 cursor-pointer rounded-3xl"
+              className="flex items-center justify-center w-full h-12 font-bold text-white bg-gray-900 cursor-pointer rounded-3xl "
               onClick={handleOtherResultButtonClick}
             >
               {t('relationshipmap_add_popup_button_new_result')}
             </div>
           </div>
+
           <div
             className="cursor-pointer absolute text-white text-[14px] -bottom-8 right-1/2 translate-x-1/2"
             onClick={handleOtherRelationReportButtonClick}
