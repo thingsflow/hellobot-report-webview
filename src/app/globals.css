@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* reset css */
+/* prettier-ignore */
+@layer base {
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+    overscroll-behavior: none; /* 모바일 브라우저 pull to refresh 이벤트 막기 */
+  }
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section {
+    display: block;
+  }
+  button {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+  ol,
+  ul {
+    list-style: none;
+  }
+  blockquote,
+  q {
+    quotes: none;
+  }
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  a {
+    color: unset;
+    text-decoration: none;
+  }
+  input {
+    outline: none;
+    caret-color: blue;
+    -webkit-user-select: text;
+  }
+}
+
+@layer {
+  * {
+    font-family: 'Apple SD Gothic Neo';
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+.absolute-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#portal {
+  @apply fixed max-w-xl w-full z-[100];
+}
+
+:root {
+  --vh: 100%;
+  --ivh: 100%;
+}
+
+/* ControlButton 요소 스타일 재정의 */
+
+.react-flow__controls {
+  box-shadow: none !important;
+}
+
+/* .react-flow__edges {
+  z-index: 9999 !important;
+} */
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none;
+  width: 40px !important;
+  height: 40px !important;
+  border-bottom: none !important;
+}
+
+.Toastify__toast-container {
+  display: flex;
+  justify-content: center;
+}
+
+.Toastify__toast-container .Toastify__toast {
+  bottom: 100px;
+  border-radius: 8px;
+  background: rgba(36, 37, 38, 0.8);
+  color: var(--gray-scale-white, #fff);
+  min-height: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  /* Body/Body 2 [14px R] */
+  font-family: Apple SD Gothic Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 150% */
+  letter-spacing: -0.3px;
+}
+
+.Toastify__toast-container .Toastify__toast-body {
+  padding: 0;
+  margin: 0;
+}
+
+.Toastify__toast-container--bottom-center {
+  bottom: 1rem !important;
+}

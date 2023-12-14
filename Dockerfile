@@ -13,7 +13,7 @@ RUN yarn
 # Build the Next.js application
 
 # Expose the listening port
-EXPOSE 3003
+EXPOSE 4400
 
 # Run the application
 CMD [ "yarn", "run", "dev" ]

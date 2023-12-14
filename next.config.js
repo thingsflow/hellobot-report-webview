@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: [
+      'media.dev.hellobot.co',
+      'media.hellobot.co',
+      'picsum.photos',
+      'app.lottiefiles.com',
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
