@@ -63,6 +63,37 @@ export const generateNodes = (
     // 관계도에 한 명만 추가되어있는 경우
     const PADDING_X = 110; // 그래프 양 옆 패딩의 합
     const PADDING_TOP = deviceWidth < 400 ? 10 : 50; // 그래프 상단 패딩 높이
+    const nodeCount = 2;
+    const radiusOffset = getRadiusOffset(playData.length);
+    const radius = (deviceWidth / 2) * radiusOffset;
+
+    const centerX = deviceWidth / 2;
+    const centerY = deviceHeight / 2;
+
+    const angleIncrement = (2 * Math.PI) / nodeCount;
+    const angleRadians = (270 * Math.PI) / 120; // 두 노드를 대각선 모양으로 위치시키기위해 그래프를 120도 회전시킨다.
+
+    // 첫 번째 노드 위치 계산
+    const firstAngle = 0 * angleIncrement;
+
+    const firstX = centerX + radius * Math.cos(firstAngle);
+    const firstY = centerY + radius * Math.sin(firstAngle);
+
+    const firstRotatedX =
+      firstX * Math.cos(angleRadians) - firstY * Math.sin(angleRadians);
+    const firstRotatedY =
+      firstX * Math.sin(angleRadians) + firstY * Math.cos(angleRadians);
+
+    // 두 번째 노드 위치 계산
+    const secondAngle = 1 * angleIncrement;
+
+    const secondX = centerX + radius * Math.cos(secondAngle);
+    const secondY = centerY + radius * Math.sin(secondAngle);
+
+    const secondRotatedX =
+      secondX * Math.cos(angleRadians) - secondY * Math.sin(angleRadians);
+    const secontRotatedY =
+      secondX * Math.sin(angleRadians) + secondY * Math.cos(angleRadians);
 
     return [
       {
@@ -75,8 +106,8 @@ export const generateNodes = (
           seq: playData[0]?.seq,
         },
         position: {
-          x: PADDING_X / 2,
-          y: PADDING_TOP,
+          x: firstRotatedX,
+          y: firstRotatedY,
         },
         type: 'commonNode',
       },
@@ -84,8 +115,8 @@ export const generateNodes = (
         id: 'add_node',
         data: { index: 1, isDefaultNode: true },
         position: {
-          x: deviceWidth - PADDING_X,
-          y: deviceWidth - PADDING_X + PADDING_TOP,
+          x: secondRotatedX,
+          y: secontRotatedY,
         },
         type: 'defaultNode',
       },

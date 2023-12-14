@@ -87,7 +87,7 @@ const RelationGraph = () => {
         onEdgesChange={onEdgesChange}
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
-        fitView={data?.playDatas?.length === 1 ? false : true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기(1명이면 false)
+        fitView={true} // 초기 렌더링 시 그래프 사이즈를 화면 사이즈에 맞추기
         fitViewOptions={{
           padding: 0.25,
         }}
