@@ -1,11 +1,24 @@
-import { Inter } from 'next/font/google';
+import React from 'react';
+import './globals.css';
+import 'reactflow/dist/style.css';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
-const inter = Inter({ subsets: ['latin'] });
+import LayoutWithClient from '@/components/LayoutWithClient';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html>
-      <body className={inter.className}>{children}</body>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
+      </head>
+      <body>
+        <LayoutWithClient>{children}</LayoutWithClient>
+        <div id="portal"></div>
+      </body>
     </html>
   );
 };

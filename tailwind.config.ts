@@ -21,67 +21,51 @@ const config: Config = {
         'gray-800': '#3f4142',
         'gray-900': '#242526',
         black: '#000',
-
         'indigo-500': '#7e84bb',
         'indigo-800': '#424a81',
-
         'bluegray-100': '#dee4e9',
         'bluegray-300': '#96a7b5',
         'bluegray-700': '#415362',
         'bluegray-800': '#2d3b45',
         'bluegray-900': '#283036',
-
         'violet-100': '#efeeff',
         'violet-200': '#e2d9fc',
         'violet-500': '#8710ff',
         'violet-blue-500': '#6e6efb',
-
         'purple-500': '#ab5ccf',
-
         'deeppurple-200': '#e4cbff',
         'deeppurple-400': '#9978b0',
         'deeppurple-600': '#644973',
-
         'wine-400': '#ac78a4',
         'wine-900': '#6f4068',
-
         'pink-200': '#ffeef6',
         'pink-300': '#ffebf6',
         'pink-400': '#fbe2ee',
         'pink-500': '#ff5fc7',
         'pink-800': '#a00372',
-
         'red-200': '#ffdce2',
         'red-500': '#ff5d7a',
         'red-900': '#9b2727',
-
         'gold-200': '#f6dea2',
         'gold-400': '#d1b46d',
         'gold-600': '#9a8654',
         'gold-700': '#857140',
-
         'yellow-200': '#fff8d3',
         'yellow-400': '#ffe967',
         'yellow-500': '#ffd31a',
         'yellow-600': '#ffdc1c',
-
         'amber-100': '#ffedbc',
         'amber-500': '#f3a528',
         'amber-800': '#805626',
-
         'darkteal-100': '#dcf0ec',
         'darkteal-200': '#cbf1e8',
         'darkteal-500': '#7e97bb',
         'darkteal-700': '#4f6682',
-
         'skyblue-100': '#dff3ff',
         'skyblue-500': '#3fa9d9',
-
         'lightgreen-700': '#476c16',
-
         'mediumblue-500': '#3d41cd',
         'green-500': '#4fcc9c',
-
         blue: '#007bff',
         indigo: '#6610f2',
         purple: '#6f42c1',
@@ -98,8 +82,23 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      maxWidth: {
+        xl: '600px',
+      },
+      boxShadow: {
+        popup: '0px 8px 24px 0px rgba(0, 0, 0, 0.24)',
+        bottomSheet: '0px 0px 24px 0px rgba(0, 0, 0, 0.16)',
+        inset: 'inset 0 0 0 2px #faba10',
+      },
+      screens: {
+        xs: '375px',
+        sm: '600px',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('tailwind-scrollbar-hide'),
+  ],
 };
 export default config;
