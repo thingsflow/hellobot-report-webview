@@ -59,8 +59,8 @@ const RelationReportDetail = () => {
                   <div
                     className={`${RELATION_REPORT_NODE_COLORS[0]} flex items-center justify-center min-w-[70px] h-[70px] px-2 rounded-full text-white text-lg font-bold`}
                   >
-                    {data.playDatas[0]?.name?.slice(0, 7)}
-                    {(data.playDatas[0]?.name?.length ?? 0) > 7 && '...'}
+                    {data.playDatas[0]?.name?.slice(0, 6)}
+                    {(data.playDatas[0]?.name?.length ?? 0) > 6 && '...'}
                   </div>
                   <div className="flex w-[110px] justify-center text-center">
                     <div className="text-gray-600 text-[13px] pt-[10px] line-clamp-2">
@@ -108,12 +108,12 @@ const RelationReportDetail = () => {
                   (playData) => playData.seq === item.target,
                 ) || 0;
               const targetItem = data.playDatas && data.playDatas[targetIndex];
-              const sourceName = sourceItem?.name?.slice(0, 7);
+              const sourceName = sourceItem?.name?.slice(0, 6);
               const sourceNamePostFix =
-                (sourceItem?.name?.length ?? 0) > 7 && '...';
-              const targetItemName = targetItem?.name?.slice(0, 7);
+                (sourceItem?.name?.length ?? 0) > 6 && '...';
+              const targetItemName = targetItem?.name?.slice(0, 6);
               const targetItemNamePostFix =
-                (targetItem?.name?.length ?? 0) > 7 && '...';
+                (targetItem?.name?.length ?? 0) > 6 && '...';
               return (
                 <div
                   className="pt-[52px] pb-10 border-b border-solid border-gray-200"
