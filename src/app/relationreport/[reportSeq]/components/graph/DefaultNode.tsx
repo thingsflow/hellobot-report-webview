@@ -61,7 +61,7 @@ const DefaultNode: FC<NodeProps> = () => {
         webview.doLoginWithRedirectUrl({
           redireactUrl:
             process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-            `/relation-reports/diagram?relationSeq=${params.reportSeq}`,
+            `/relation-reports/diagram?reportSeq=${params.reportSeq}`,
         });
       } else {
         localStorage.setItem('isKeepAnonymous', 'true');
