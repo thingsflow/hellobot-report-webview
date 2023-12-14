@@ -9,6 +9,7 @@ import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
 import { useRelationReportContext } from '../../context';
+import addShareParamsForRelationReport from '@/utils/addShareParamsForRelationReport';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -19,13 +20,15 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
   const { data } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
   });
-  const { isInviteFriendsPopupOpen } = useRelationReportContext();
+  const { isInviteFriendsPopupOpen, shareData } = useRelationReportContext();
 
   const handleCopyLinkButtonClick = () => {
     gaEvent.touchRelationLinkCopy();
     copyToClipboard(
-      process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-        `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
+      addShareParamsForRelationReport({
+        shareType: 'copy',
+        ...shareData,
+      }),
     );
     toast(t('relationshipmap_invite_popup_toast_copied'));
   };
@@ -36,9 +39,10 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
       title: data?.title,
       description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
       imageUrl: data?.imageUrl,
-      shareUrl:
-        process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-        `/relation-reports/diagram?relationSeq=${data?.seq}&share=true`,
+      shareUrl: addShareParamsForRelationReport({
+        shareType: 'kakaotalk',
+        ...shareData,
+      }),
     });
   };
 
@@ -59,7 +63,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
           <div className="flex w-full mb-2">
             <div className="flex items-center h-12 p-2 overflow-hidden text-gray-600 rounded-l-lg bg-gray-50 basis-2/3 grow whitespace-nowrap">
               {process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-                `/relation-reports/diagram?relationSeq=${data?.seq}`}
+                `/relation-reports/diagram?reportSeq=${data?.seq}`}
             </div>
             <div
               className="cursor-pointer bg-gray-200 font-semibold rounded-r-lg rounded-sm w-[91px] text-gray-900 h-12 flex items-center justify-center"

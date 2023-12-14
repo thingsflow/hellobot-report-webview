@@ -33,6 +33,20 @@ interface IRelationReportContext {
   setInitialNodes: (
     value: React.SetStateAction<Node<any, string | undefined>[]>,
   ) => void;
+  shareData: {
+    title?: string;
+    url?: string;
+    skillSeq?: number;
+    reportSeq?: number;
+  } | null;
+  setShareData: React.Dispatch<
+    React.SetStateAction<{
+      title?: string;
+      url?: string;
+      skillSeq?: number;
+      reportSeq?: number;
+    } | null>
+  >;
 }
 
 const initialState = {
@@ -55,6 +69,8 @@ const initialState = {
   setPlayData: () => {},
   initialNodes: [],
   setInitialNodes: () => {},
+  shareData: null,
+  setShareData: () => {},
 };
 
 const RelationReportContext =
@@ -84,6 +100,12 @@ export const RelationReportProvider = ({
   const [initialNodes, setInitialNodes] = React.useState<
     Node<any, string | undefined>[]
   >([]);
+  const [shareData, setShareData] = React.useState<{
+    title?: string;
+    url?: string;
+    skillSeq?: number;
+    reportSeq?: number;
+  } | null>(null);
 
   return (
     <RelationReportContext.Provider
@@ -106,6 +128,8 @@ export const RelationReportProvider = ({
         setPlayData,
         initialNodes,
         setInitialNodes,
+        shareData,
+        setShareData,
       }}
     >
       {children}
