@@ -39,7 +39,7 @@ const RelationReportShare = () => {
 
     shareWithKakao({
       title: data?.title,
-      description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
+      description: t('relationshipmap_og_description'),
       imageUrl: data?.imageUrl,
       shareUrl: addShareParamsForRelationReport({
         shareType: 'kakaotalk',
@@ -56,13 +56,15 @@ const RelationReportShare = () => {
         </h3>
         {data?.sampleImageUrl && (
           // 443: 370에 대한 391의 비율값
-          <div className="relative w-full pb-[105.68%]">
-            <Image
-              src={data.sampleImageUrl || ''}
-              alt="Sample Image"
-              fill={true}
-              layout="fill"
-            />
+          <div className="px-[26px] w-full">
+            <div className="relative w-full pb-[105.68%]">
+              <Image
+                src={data.sampleImageUrl || ''}
+                alt="Sample Image"
+                fill={true}
+                layout="fill"
+              />
+            </div>
           </div>
         )}
         {data?.shareScope === 'PUBLIC' && (
