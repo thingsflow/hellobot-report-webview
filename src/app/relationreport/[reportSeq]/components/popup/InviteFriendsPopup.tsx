@@ -35,6 +35,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
 
   const handleShareWithKakaoButtonClick = () => {
     gaEvent.touchRelationKakaoShare();
+    // TODO: lokalise
     shareWithKakao({
       title: data?.title,
       description: '우리 사이의 관계가 궁금하다면 지금 확인해보세요!',
