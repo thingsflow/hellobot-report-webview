@@ -190,7 +190,7 @@ const CreateRelationReportForm = () => {
         </div>
         <div className="pt-8">
           <h5 className="mb-1 font-bold text-gray-900 text-[18px]">
-            {t('relationshipmap_edit_popup_label_group_name')}{' '}
+            {t('relationshipmap_create_screen_label_group_name')}{' '}
             <span className="text-[#F23658]">*</span>
           </h5>
           <div className="relative mb-4">

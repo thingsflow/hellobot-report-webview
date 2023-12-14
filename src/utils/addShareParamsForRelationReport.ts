@@ -13,10 +13,12 @@ const addShareParamsForRelationReport = ({
   skillSeq?: number;
   title?: string;
 }) => {
+  const encodedTitle = encodeURIComponent(title || '');
+
   return `${url}?reportSeq=${reportSeq}&share=true&utm_source=${shareType}${
     reportSeq ? `&utm_term=${reportSeq}` : ''
   }${skillSeq ? `&utm_content=${skillSeq}` : ''}${
-    title ? `&title=${title}` : ''
+    title ? `&title=${encodedTitle}` : ''
   }`;
 };
 
