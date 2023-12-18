@@ -115,7 +115,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
 
           <div className="px-5">
             {data.playDatas && data.playDatas.length > 0 ? (
-              <div className="flex flex-col h-[328px] w-full overflow-scroll scrollbar-hide">
+              <div className="flex flex-col h-[310px] w-full overflow-scroll scrollbar-hide">
                 {data.playDatas?.map((item) => {
                   return (
                     <div
