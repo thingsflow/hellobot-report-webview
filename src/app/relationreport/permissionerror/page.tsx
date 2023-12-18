@@ -27,7 +27,7 @@ const PermissionErrorPage = () => {
       <div className="z-10 flex flex-col items-center w-full h-screen overflow-hidden bg-gray-200 ">
         <div className="flex flex-col items-center justify-center w-full h-full bg-white pb-[40%]">
           <Image
-            src="/images/panming_sad.svg"
+            src="/images/panming_sad.png"
             width={200}
             height={200}
             alt="Notfound Image"
