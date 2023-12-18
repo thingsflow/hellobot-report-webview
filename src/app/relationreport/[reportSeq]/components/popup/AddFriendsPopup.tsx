@@ -115,7 +115,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
 
           <div className="px-5">
             {data.playDatas && data.playDatas.length > 0 ? (
-              <div className="flex flex-col h-[350px] w-full overflow-scroll scrollbar-hide">
+              <div className="flex flex-col h-[328px] w-full overflow-scroll scrollbar-hide">
                 {data.playDatas?.map((item) => {
                   return (
                     <div
@@ -149,7 +149,7 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
             ) : (
               <div className="flex flex-col justify-start items-center h-[390px] w-full pt-16 ">
                 <Image
-                  src="/images/panming_sad.svg"
+                  src="/images/panming_sad.png"
                   width={150}
                   height={150}
                   className=" mt-5"
