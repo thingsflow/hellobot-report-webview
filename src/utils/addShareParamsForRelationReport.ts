@@ -5,21 +5,15 @@ const addShareParamsForRelationReport = ({
   shareType,
   reportSeq,
   skillSeq,
-  title,
 }: {
   url?: string;
   shareType: 'kakaotalk' | 'copy' | 'native';
   reportSeq?: number;
   skillSeq?: number;
-  title?: string;
 }) => {
-  const encodedTitle = encodeURIComponent(title || '');
-
   return `${url}?reportSeq=${reportSeq}&share=true&utm_source=${shareType}${
     reportSeq ? `&utm_term=${reportSeq}` : ''
-  }${skillSeq ? `&utm_content=${skillSeq}` : ''}${
-    title ? `&title=${encodedTitle}` : ''
-  }`;
+  }${skillSeq ? `&utm_content=${skillSeq}` : ''}`;
 };
 
 export default addShareParamsForRelationReport;
