@@ -23,7 +23,7 @@ const BridgeReportHeader = () => {
     title: data?.skill?.name,
     url:
       process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-      `/relation-report-bridge/${data?.seq}?title=${data?.title}`,
+      `/relation-report-bridge/${data?.seq}`,
   };
 
   const handleShareIconClick = async () => {
