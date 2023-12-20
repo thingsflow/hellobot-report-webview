@@ -30,7 +30,7 @@ const NoResultsToAddPopup = ({ onClose }: INoResultsToAddPopup) => {
       >
         <div className="relative flex flex-col gap-4 items-center">
           <Image
-            src="/images/panming_sad.svg"
+            src="/images/panming_sad.png"
             width={138}
             height={138}
             className=" mt-5"
