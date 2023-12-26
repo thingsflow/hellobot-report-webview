@@ -35,7 +35,8 @@ const RelationReportHeader = () => {
     if (data) {
       setShareData({
         url:
-          process.env.NEXT_PUBLIC_SKILLSTORE_URL + `/relation-reports/diagram`,
+          process.env.NEXT_PUBLIC_SKILLSTORE_URL +
+          `/relation-reports/share/${data.seq}`,
         title: data?.title,
         skillSeq: data.skillSeq,
         reportSeq: data.seq,
