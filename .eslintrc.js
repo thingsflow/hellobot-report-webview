@@ -4,11 +4,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
+  extends: ['airbnb-base', 'plugin:@next/next/recommended', 'prettier'],
   overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -26,6 +22,20 @@ module.exports = {
     'react/no-unknown-property': ['warn', { ignore: ['css'] }],
     '@typescript-eslint/no-inferrable-types': 'warn',
     'no-useless-escape': 'warn',
-    allowEmptyCase: true,
+    'arrow-body-style': 'off',
+    'import/extensions': 'off',
+    'no-extra-boolean-cast': 'off',
+    'no-empty': 'warn',
+    'no-restricted-globals': 'off',
+    'no-alert': 'off',
+    'no-unneeded-ternary': 'off',
+    'consistent-return': 'off',
+    'no-plusplus': 'off',
+    'no-nested-ternary': 'warn',
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
   },
 };

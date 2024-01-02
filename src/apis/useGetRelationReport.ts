@@ -1,10 +1,8 @@
 import { useRelationReportContext } from '@/app/relationreport/[reportSeq]/context';
 import { ERROR_CODE } from '@/consts/common';
-import { fetcher } from '@/lib/fetcher';
+import fetcher from '@/lib/fetcher';
 import { GetPlayDataType, GetRelationReportType } from '@/types/relationreport';
-import { t } from '@/utils';
 import { redirect } from 'next/navigation';
-import React from 'react';
 import useSWR from 'swr';
 import { BareFetcher, PublicConfiguration } from 'swr/_internal';
 

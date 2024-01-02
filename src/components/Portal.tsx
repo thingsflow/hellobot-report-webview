@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 interface IPopUpModal {
-  children: JSX.Element | JSX.Element[];
+  children: React.JSX.Element | React.JSX.Element[];
   selector?: string;
 }
 

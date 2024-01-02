@@ -26,8 +26,7 @@ const DefaultNode: FC<NodeProps> = () => {
   const searchParams = useSearchParams();
   const share = searchParams.get('isShare');
 
-  const { setIsAddFriendsPopupOpen, setIsNoResultsToAddPopupOpen } =
-    useRelationReportContext();
+  const { setIsAddFriendsPopupOpen } = useRelationReportContext();
   const { data: relationReportData } = useGetRelationReport({
     reportSeq: params.reportSeq as string,
     options: {
@@ -40,7 +39,7 @@ const DefaultNode: FC<NodeProps> = () => {
     },
   });
 
-  const { data } = useGetPlayData({
+  useGetPlayData({
     fixedMenuSeq: String(relationReportData?.skill?.seq),
     reportSeq: params.reportSeq as string,
     options: {
@@ -59,9 +58,7 @@ const DefaultNode: FC<NodeProps> = () => {
     ) {
       if (confirm(t('relationshipmap_popup_login_prompt'))) {
         webview.doLoginWithRedirectUrl({
-          redireactUrl:
-            process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-            `/relation-reports/diagram?reportSeq=${params.reportSeq}`,
+          redireactUrl: `${process.env.NEXT_PUBLIC_SKILLSTORE_URL}/relation-reports/diagram?reportSeq=${params.reportSeq}`,
         });
       } else {
         localStorage.setItem('isKeepAnonymous', 'true');

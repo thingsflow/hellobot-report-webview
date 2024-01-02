@@ -1,4 +1,3 @@
-import BridgeGraphContainer from './BridgeGraphContainer';
 import Button from '@/components/Button';
 import webview from '@/utils/webview';
 import Image from 'next/image';
@@ -9,6 +8,7 @@ import { t } from '@/utils/translate';
 import { ToastContainer, toast } from 'react-toastify';
 import React from 'react';
 import * as gaEvent from '@/utils/gaEvent';
+import BridgeGraphContainer from './BridgeGraphContainer';
 
 const BridgePageContainer = () => {
   const params = useParams();

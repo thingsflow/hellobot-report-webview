@@ -1,6 +1,5 @@
-import { fetcher } from '@/lib/fetcher';
+import fetcher from '@/lib/fetcher';
 import { GetPlayDataType } from '@/types/relationreport';
-import React from 'react';
 import useSWR from 'swr';
 import { BareFetcher, PublicConfiguration } from 'swr/_internal';
 

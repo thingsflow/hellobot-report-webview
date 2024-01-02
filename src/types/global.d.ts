@@ -1,5 +1,3 @@
-import { InitContent, SetViewerStyle } from './webview';
-
 declare global {
   interface Window {
     Kakao: any;

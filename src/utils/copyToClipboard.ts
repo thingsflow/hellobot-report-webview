@@ -12,6 +12,7 @@ export const isClipboardCommandSupported = () =>
   document.queryCommandSupported?.('copy') ?? false;
 
 export const copyToClipboard = (text: string) => {
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise<boolean>(async (resolve) => {
     const rootElement = document.body;
 
@@ -38,7 +39,6 @@ export const copyToClipboard = (text: string) => {
     }
 
     resolve(false);
-    return;
   });
 };
 

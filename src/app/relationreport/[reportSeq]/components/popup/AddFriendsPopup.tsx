@@ -9,8 +9,9 @@ import useUpdateRelationReport from '@/apis/useUpdateRelationReport';
 import { t } from '@/utils/translate';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
-import { useRelationReportContext } from '../../context';
 import parse from 'html-react-parser';
+import { useRelationReportContext } from '../../context';
+
 interface IAddFriendsPopup {
   onClose: () => void;
 }
@@ -67,14 +68,14 @@ const AddFriendsPopup = ({ onClose }: IAddFriendsPopup) => {
       data: {
         skill: data.skill,
         playDatas:
-          data?.playDatas?.map((data) => {
-            if (targetData.seq === data.seq) {
+          data?.playDatas?.map((playData) => {
+            if (targetData.seq === playData.seq) {
               return {
-                ...data,
+                ...playData,
                 isAlreadyAdded: true,
               };
             }
-            return data;
+            return playData;
           }) || [],
       },
     });

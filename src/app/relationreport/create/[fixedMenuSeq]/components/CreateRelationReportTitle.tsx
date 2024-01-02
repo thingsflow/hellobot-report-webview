@@ -1,4 +1,5 @@
 'use client';
+
 import useGetPlayData from '@/apis/useGetPlayData';
 import SkillBanner from '@/components/SkillBanner';
 import { t } from '@/utils/translate';

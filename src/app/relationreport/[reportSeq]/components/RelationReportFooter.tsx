@@ -33,7 +33,7 @@ const RelationReportFooter = () => {
       return;
     }
 
-    router.push('/relationreport/create/' + data?.skillSeq);
+    router.push(`/relationreport/create/${data?.skillSeq}`);
   };
 
   return (

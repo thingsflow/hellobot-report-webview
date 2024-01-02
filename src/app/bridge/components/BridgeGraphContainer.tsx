@@ -1,12 +1,13 @@
 'use client';
-import BridgeGraph from './graph/BridgeGraph';
-import BridgeReportTitle from './BridgeReportTitle';
-import BridgeReportHeader from './BridgeReportHeader';
+
 import useGetBridgeData from '@/apis/useGetBridgeData';
 import Loading from '@/components/Loading';
 import { useParams } from 'next/navigation';
 import SkillBanner from '@/components/SkillBanner';
 import webview from '@/utils/webview';
+import BridgeReportHeader from './BridgeReportHeader';
+import BridgeReportTitle from './BridgeReportTitle';
+import BridgeGraph from './graph/BridgeGraph';
 
 const BridgeGraphContainer = () => {
   const params = useParams();

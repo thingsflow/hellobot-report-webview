@@ -7,8 +7,8 @@ import { t } from '@/utils/translate';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
-import { useRelationReportContext } from '../context';
 import addShareParamsForRelationReport from '@/utils/addShareParamsForRelationReport';
+import { useRelationReportContext } from '../context';
 
 const RelationReportShare = () => {
   const params = useParams();

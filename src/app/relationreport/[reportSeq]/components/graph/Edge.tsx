@@ -6,8 +6,8 @@ import {
   EdgeLabelRenderer,
 } from 'reactflow';
 import Lottie from 'react-lottie-player';
-import lottieJson from '../../../../../../public/images/generate-loading.json';
 import { t } from '@/utils';
+import lottieJson from '../../../../../../public/images/generate-loading.json';
 import { useRelationReportContext } from '../../context';
 
 const Edge: React.FC<EdgeProps> = ({

@@ -1,9 +1,9 @@
 'use client';
+
 import Button from '@/components/Button';
 import Toggle from '@/components/Toggle';
 import Image from 'next/image';
 import React from 'react';
-import SelectStartMemberPopup from './SelectStartMemberPopup';
 import useGetPlayData from '@/apis/useGetPlayData';
 import Skeleton from 'react-loading-skeleton';
 import {
@@ -20,6 +20,8 @@ import * as gaEvent from '@/utils/gaEvent';
 import webview from '@/utils/webview';
 import useDetectKeyboardOpen from '@/hooks/useDetectKeyboardOpen';
 import parser from 'html-react-parser';
+import SelectStartMemberPopup from './SelectStartMemberPopup';
+
 const CreateRelationReportForm = () => {
   const params = useParams();
   const titleInput = React.useRef<HTMLInputElement>(null);
@@ -73,7 +75,7 @@ const CreateRelationReportForm = () => {
     }
 
     const requestData: CreateRealtionReportInputType = {
-      title: title,
+      title,
       shareScope: isPrivate ? 'PRIVATE' : 'PUBLIC',
       skillSeq: Number(params.fixedMenuSeq as string),
       playDataSeq: selectedUserSeq!,
@@ -87,7 +89,9 @@ const CreateRelationReportForm = () => {
       menuName: data.skill?.name,
     });
 
-    response?.data.reportLink && router.push(response?.data.reportLink);
+    if (response?.data.reportLink) {
+      router.push(response?.data.reportLink);
+    }
   };
 
   const handleToggleButton = (isPrivateFrom: boolean) => {
