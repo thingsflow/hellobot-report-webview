@@ -82,7 +82,6 @@ const sendEvent = ({
       );
     }
   }
-  return;
 };
 
 const doShare = (parameter: DoShareType) => {

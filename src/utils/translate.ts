@@ -2,7 +2,7 @@ import { STORAGE_KEY } from '@/consts/common';
 import { LANGUAGE_TYPE } from '@/types/common';
 
 import Ko from '../../public/translation/ko.json';
-import Ja from '../../public/translation/ko.json';
+import Ja from '../../public/translation/ja.json';
 import En from '../../public/translation/en.json';
 
 // json파일 내에 있는 키값으로 타입 생성.
@@ -36,4 +36,5 @@ const translate = (key: keyType, arg?: { value?: any; value1?: any }) => {
     : languageTextFile[key];
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export { translate as t };

@@ -61,8 +61,6 @@ export const generateNodes = (
 
   if (playData.length < 2) {
     // 관계도에 한 명만 추가되어있는 경우
-    const PADDING_X = 110; // 그래프 양 옆 패딩의 합
-    const PADDING_TOP = deviceWidth < 400 ? 10 : 50; // 그래프 상단 패딩 높이
     const nodeCount = 2;
     const radiusOffset = getRadiusOffset(playData.length);
     const radius = (deviceWidth / 2) * radiusOffset;
@@ -165,8 +163,8 @@ export const generateNodes = (
       type: isPlayDataOver20
         ? 'commonNode'
         : isLastIndex
-        ? 'defaultNode'
-        : 'commonNode',
+          ? 'defaultNode'
+          : 'commonNode',
     });
   }
 
@@ -209,14 +207,12 @@ export const generateEdges = (
     for (let j = 0; j < nodes.length; j++) {
       if (i === j) break;
       const edgeData = data.edges?.find((item) => {
-        if (
+        return (
           (nodes[i].data.seq === item.source &&
             nodes[j].data.seq === item.target) ||
           (nodes[i].data.seq === item.target &&
             nodes[j].data.seq === item.source)
-        ) {
-          return item;
-        }
+        );
       });
       const isDefaultEdge =
         nodes[i].data.isDefaultNode || nodes[j].data.isDefaultNode;

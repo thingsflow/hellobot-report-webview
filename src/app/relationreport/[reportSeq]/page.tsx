@@ -1,4 +1,5 @@
 'use client';
+
 import * as React from 'react';
 import { RelationReportPageContainer } from './components';
 import { RelationReportProvider } from './context';

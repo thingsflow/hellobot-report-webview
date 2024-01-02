@@ -1,10 +1,6 @@
 'use client';
+
 import * as React from 'react';
-import {
-  RelationReportDetail,
-  RelationReportFooter,
-  RelationReportShare,
-} from '.';
 import Divider from '@/components/Divider';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -14,6 +10,11 @@ import useGetRelationReport from '@/apis/useGetRelationReport';
 import webview from '@/utils/webview';
 import useGetUser from '@/apis/useGetUser';
 import { t } from '@/utils';
+import {
+  RelationReportDetail,
+  RelationReportFooter,
+  RelationReportShare,
+} from '.';
 
 const RelationReportBottomContainer = () => {
   const [isBottomSheetOpening, setIsBottomSheetOpening] = React.useState(false); // 바텀시트를 열거나 닫는 영역을 터치했는지 여부
@@ -53,9 +54,7 @@ const RelationReportBottomContainer = () => {
     ) {
       if (confirm(t('relationshipmap_popup_login_prompt'))) {
         webview.doLoginWithRedirectUrl({
-          redireactUrl:
-            process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-            `/relation-reports/diagram?reportSeq=${params.reportSeq}`,
+          redireactUrl: `${process.env.NEXT_PUBLIC_SKILLSTORE_URL}/relation-reports/diagram?reportSeq=${params.reportSeq}`,
         });
       } else {
         localStorage.setItem('isKeepAnonymous', 'true');
@@ -94,10 +93,10 @@ const RelationReportBottomContainer = () => {
     }
   };
 
-  const goToOpen = () => {
-    // 현재는 필요없는 코드이기는함.
-    toggleBottomSheet(true);
-  };
+  // const goToOpen = () => {
+  //   // 현재는 필요없는 코드이기는함.
+  //   toggleBottomSheet(true);
+  // };
 
   const goToClose = () => {
     if (bottomSheetRef.current?.scrollTop === 0) toggleBottomSheet(false);

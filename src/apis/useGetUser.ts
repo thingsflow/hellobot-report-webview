@@ -1,4 +1,4 @@
-import { fetcher } from '@/lib/fetcher';
+import fetcher from '@/lib/fetcher';
 import { GetUserType } from '@/types/relationreport';
 import useSWR from 'swr';
 import { BareFetcher, PublicConfiguration } from 'swr/_internal';

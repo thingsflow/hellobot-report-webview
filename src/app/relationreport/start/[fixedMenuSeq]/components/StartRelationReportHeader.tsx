@@ -1,4 +1,5 @@
 'use client';
+
 import { t } from '@/utils/translate';
 import Webview from '@/utils/webview';
 import Image from 'next/image';

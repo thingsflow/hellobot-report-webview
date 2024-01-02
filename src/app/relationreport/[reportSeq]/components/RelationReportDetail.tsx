@@ -160,8 +160,8 @@ const RelationReportDetail = () => {
                     {item.label}
                   </h5>
                   <p className="mt-4 text-gray-900 whitespace-pre-line">
-                    {item.detail?.split('\\n').map((line, index) => (
-                      <React.Fragment key={index}>
+                    {item.detail?.split('\\n').map((line, i) => (
+                      <React.Fragment key={i}>
                         {line}
                         <br />
                       </React.Fragment>

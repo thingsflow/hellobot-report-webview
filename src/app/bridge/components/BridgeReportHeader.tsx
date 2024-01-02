@@ -1,4 +1,5 @@
 'use client';
+
 import useGetBridgeData from '@/apis/useGetBridgeData';
 import { share } from '@/utils';
 import Webview from '@/utils/webview';
@@ -19,11 +20,10 @@ const BridgeReportHeader = () => {
     Webview.goBack();
   };
 
+  /* global ShareData */
   const dataToShare: ShareData = {
     title: data?.skill?.name,
-    url:
-      process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-      `/relation-report-bridge/${data?.seq}`,
+    url: `${process.env.NEXT_PUBLIC_SKILLSTORE_URL}/relation-report-bridge/${data?.seq}`,
   };
 
   const handleShareIconClick = async () => {
