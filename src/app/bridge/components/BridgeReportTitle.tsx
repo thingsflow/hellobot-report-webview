@@ -1,16 +1,8 @@
 import * as React from 'react';
 import useGetBridgeData from '@/apis/useGetBridgeData';
-import { RelationType } from '@/types/relationreport';
 import { useParams } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
 import { t } from '@/utils/translate';
-
-const RELATION_REPORT_TYPE_TEXT: { [key in RelationType]: string } = {
-  Friend: t('bridge_relationshipmap_screen_title_friends'),
-  Companion: t('bridge_relationshipmap_screen_title_colleague'),
-  Family: t('bridge_relationshipmap_screen_title_family'),
-  Partner: t('bridge_relationshipmap_screen_title_lover'),
-};
 
 const BridgeReportTitle = () => {
   const params = useParams();

@@ -79,7 +79,7 @@ const RelationReportContext =
 export const RelationReportProvider = ({
   children,
 }: {
-  children: JSX.Element[] | JSX.Element;
+  children: React.JSX.Element[] | React.JSX.Element;
 }) => {
   const [isInviteFriendsPopupOpen, setInviteFriendsPopupOpen] =
     React.useState(false);

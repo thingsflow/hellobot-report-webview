@@ -1,4 +1,5 @@
 'use client';
+
 import useCreateRelationReport from '@/apis/useCreateRelationReport';
 import useGetPlayData from '@/apis/useGetPlayData';
 import Loading from '@/components/Loading';
@@ -30,7 +31,9 @@ const CreateRelationReportMemberList = () => {
 
     webview.doReloadRelationReportList();
 
-    response?.data.reportLink && router.push(response?.data.reportLink);
+    if (response?.data.reportLink) {
+      router.push(response?.data.reportLink);
+    }
   };
 
   return (

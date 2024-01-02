@@ -39,7 +39,7 @@ const RelationReportTitle = () => {
       return;
     }
 
-    router.push('/relationreport/create/' + data?.skillSeq);
+    router.push(`/relationreport/create/${data?.skillSeq}`);
   };
 
   const handleKakaoTalkButtonClick = () => {

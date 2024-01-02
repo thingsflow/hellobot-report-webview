@@ -1,4 +1,4 @@
-import { fetcher } from '@/lib/fetcher';
+import fetcher from '@/lib/fetcher';
 import useSWRMutation from 'swr/mutation';
 
 export default function useCreateRelationReport() {

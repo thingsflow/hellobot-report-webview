@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 const COLOR_VARIANT = {
   gray: 'bg-gray-200',
   lightGray: 'bg-[#f5f5f5]',
@@ -6,8 +8,8 @@ const COLOR_VARIANT = {
 interface IDivider {
   color?: keyof typeof COLOR_VARIANT;
 }
-const Divider = ({ color = 'lightGray' }: IDivider) => {
-  return <div className={`w-full h-2 ${COLOR_VARIANT[color]}`} />;
-};
+const Divider = ({ color = 'lightGray' }: IDivider) => (
+  <div className={`w-full h-2 ${COLOR_VARIANT[color]}`} />
+);
 
 export default Divider;

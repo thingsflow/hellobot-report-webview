@@ -8,8 +8,8 @@ import { t } from '@/utils/translate';
 import { useParams } from 'next/navigation';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import * as gaEvent from '@/utils/gaEvent';
-import { useRelationReportContext } from '../../context';
 import addShareParamsForRelationReport from '@/utils/addShareParamsForRelationReport';
+import { useRelationReportContext } from '../../context';
 
 interface IInviteFriendsPopup {
   onClose: () => void;
@@ -63,8 +63,7 @@ const InviteFriendsPopup = ({ onClose }: IInviteFriendsPopup) => {
         <div>
           <div className="flex w-full mb-2">
             <div className="flex items-center h-12 p-2 overflow-hidden text-gray-600 rounded-l-lg bg-gray-50 basis-2/3 grow whitespace-nowrap">
-              {process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-                `/relation-reports/diagram?reportSeq=${data?.seq}`}
+              {`${process.env.NEXT_PUBLIC_SKILLSTORE_URL}/relation-reports/diagram?reportSeq=${data?.seq}`}
             </div>
             <div
               className="cursor-pointer bg-gray-200 font-semibold rounded-r-lg rounded-sm w-[91px] text-gray-900 h-12 flex items-center justify-center"

@@ -25,8 +25,10 @@ export const isShareSupported = () => navigator.share ?? false;
  * ```
  */
 
+/* global ShareData */
 export const share = (data: ShareData) => {
   return new Promise<'shared' | 'copiedToClipboard' | 'failed'>(
+    // eslint-disable-next-line no-async-promise-executor
     async (resolve) => {
       try {
         if (!!window.navigator.share) {

@@ -1,12 +1,13 @@
 'use client';
+
 import React, { useEffect } from 'react';
-import Portal from './Portal';
 import Image from 'next/image';
+import Portal from './Portal';
 
 interface ICommonPopup {
   title?: string;
   onClose?: () => void;
-  children: JSX.Element[] | JSX.Element;
+  children: React.JSX.Element[] | React.JSX.Element;
   width?: number;
   hasPadding?: boolean;
 }

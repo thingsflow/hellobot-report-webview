@@ -31,7 +31,7 @@ const SelectStartMemberPopup = ({
     // 선택한 플레이데이터를 맨 앞으로 보내기
     const newPlayDatas = [...(data.playDatas || [])];
     const targetDataIndex = newPlayDatas?.findIndex(
-      (data) => data.seq === targetData.seq,
+      (playData) => playData.seq === targetData.seq,
     );
 
     newPlayDatas.unshift(newPlayDatas.splice(targetDataIndex!, 1)[0]);

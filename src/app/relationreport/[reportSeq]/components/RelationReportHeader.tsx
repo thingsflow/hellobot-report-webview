@@ -1,15 +1,16 @@
 'use client';
+
+import * as React from 'react';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import { share } from '@/utils';
 import Webview from '@/utils/webview';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import * as React from 'react';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
 import * as gaEvent from '@/utils/gaEvent';
-import { useRelationReportContext } from '../context';
 import addShareParamsForRelationReport from '@/utils/addShareParamsForRelationReport';
+import { useRelationReportContext } from '../context';
 
 const RelationReportHeader = () => {
   const params = useParams();
@@ -34,15 +35,13 @@ const RelationReportHeader = () => {
 
     if (data) {
       setShareData({
-        url:
-          process.env.NEXT_PUBLIC_SKILLSTORE_URL +
-          `/relation-reports/share/${data.seq}`,
+        url: `${process.env.NEXT_PUBLIC_SKILLSTORE_URL}/relation-reports/share/${data.seq}`,
         title: data?.title,
         skillSeq: data.skillSeq,
         reportSeq: data.seq,
       });
     }
-  }, [data]);
+  }, [data, setShareData]);
 
   const handleCloseButtonClick = () => {
     Webview.goBack();

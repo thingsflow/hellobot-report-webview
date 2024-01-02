@@ -1,4 +1,4 @@
-import { fetcher } from '@/lib/fetcher';
+import fetcher from '@/lib/fetcher';
 import { GetBridgeDataType } from '@/types/relationreport';
 import useSWR from 'swr';
 

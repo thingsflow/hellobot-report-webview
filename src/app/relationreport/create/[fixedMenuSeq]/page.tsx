@@ -1,13 +1,14 @@
 'use client';
+
 import * as React from 'react';
-import CreateRelationReportHeader from './components/CreateRelationReportHeader';
-import CreateRelationReportTitle from './components/CreateRelationReportTitle';
 import Divider from '@/components/Divider';
-import CreateRelationReportForm from './components/CreateRelationReportForm';
 import { ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'next/navigation';
 import useGetPlayData from '@/apis/useGetPlayData';
 import * as gaEvent from '@/utils/gaEvent';
+import CreateRelationReportForm from './components/CreateRelationReportForm';
+import CreateRelationReportTitle from './components/CreateRelationReportTitle';
+import CreateRelationReportHeader from './components/CreateRelationReportHeader';
 
 const TopPartition = () => {
   return <div className="fixed top-[-90PX] w-full bg-white h-24 z-[9]"></div>;

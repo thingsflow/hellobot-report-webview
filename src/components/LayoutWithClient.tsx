@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { STORAGE_KEY } from '@/consts/common';
@@ -25,35 +26,29 @@ const LayoutWithClient = ({ children }: { children: React.ReactNode }) => {
     if (tokenInParam) {
       setCurrentToken(tokenInParam);
       localStorage.setItem(STORAGE_KEY.TOKEN, tokenInParam);
-    } else {
-      if (!tokenInStorage) {
-        console.error(
-          '[Webview Error] token 정보가 유효하지 않습니다. token: ',
-          tokenInParam,
-        );
-      }
+    } else if (!tokenInStorage) {
+      console.error(
+        '[Webview Error] token 정보가 유효하지 않습니다. token: ',
+        tokenInParam,
+      );
     }
 
     if (platformInParam) {
       localStorage.setItem(STORAGE_KEY.PLATFORM, platformInParam);
-    } else {
-      if (!platformInStorage) {
-        console.error(
-          '[Webview Error] platform 정보가 유효하지 않습니다. platform: ',
-          platformInParam,
-        );
-      }
+    } else if (!platformInStorage) {
+      console.error(
+        '[Webview Error] platform 정보가 유효하지 않습니다. platform: ',
+        platformInParam,
+      );
     }
 
     if (langInParam) {
       localStorage.setItem(STORAGE_KEY.LANG, langInParam);
-    } else {
-      if (!langInStorage) {
-        console.error(
-          '[Webview Error] lang 정보가 유효하지 않습니다. lang: ',
-          langInParam,
-        );
-      }
+    } else if (!langInStorage) {
+      console.error(
+        '[Webview Error] lang 정보가 유효하지 않습니다. lang: ',
+        langInParam,
+      );
     }
   }, [langInParam, platformInParam, tokenInParam, currentToken]);
 

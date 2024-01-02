@@ -7,17 +7,17 @@ import ReactFlow, {
   ReactFlowRefType,
 } from 'reactflow';
 
-import CommonEdge from './Edge';
-import CommonNode from './Node';
-import DefaultNode from './DefaultNode';
-
 import { generateEdges, generateNodes } from '@/utils/relationReportGraph';
-import CustomControls from './Controls';
-import DefaultEdge from './DefaultEdge';
 import useGetRelationReport from '@/apis/useGetRelationReport';
 import { useParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { t } from '@/utils/translate';
+import CommonEdge from './Edge';
+import CommonNode from './Node';
+import DefaultNode from './DefaultNode';
+
+import CustomControls from './Controls';
+import DefaultEdge from './DefaultEdge';
 import { useRelationReportContext } from '../../context';
 
 const nodeTypes = {
@@ -47,18 +47,20 @@ const RelationGraph = () => {
     const DEFAULT_NODE_COUNT = 1;
     if (!data) return;
 
-    !data.edges?.length && setIsOnlyEdge(true);
+    if (!data.edges?.length) {
+      setIsOnlyEdge(true);
+    }
 
-    const nodes = generateNodes(data?.playDatas);
-    const edges = generateEdges(data, nodes);
+    const newNodes = generateNodes(data?.playDatas);
+    const newEdges = generateEdges(data, newNodes);
 
-    setNodes(nodes);
-    setInitialNodes(nodes);
-    setEdge(edges);
+    setNodes(newNodes);
+    setInitialNodes(newNodes);
+    setEdge(newEdges);
     if (!data.edges) return;
     if (
       data.edges?.length >=
-      edges.length - nodes.length + DEFAULT_NODE_COUNT
+      newEdges.length - newNodes.length + DEFAULT_NODE_COUNT
     ) {
       setIsAllLoading(false);
       if (toastRef.current) {

@@ -1,12 +1,11 @@
 'use client';
 
 import * as React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { InviteFriendsPopup, RelationGraphContainer } from '.';
 import RelationReportBottomContainer from './RelationReportBottomContainer';
-import { ToastContainer, toast } from 'react-toastify';
 import AddFriendsPopup from './popup/AddFriendsPopup';
 import PreventSharePopup from './popup/PreventSharePopup';
-import NoResultsToAddPopup from './popup/NoResultsToAddPopup';
 import EditMoimPopup from './popup/EditMoimPopup';
 import { useRelationReportContext } from '../context';
 
@@ -15,7 +14,6 @@ const RelationReportPageContainer = () => {
     setInviteFriendsPopupOpen,
     setIsAddFriendsPopupOpen,
     setIsPreventSharePopupOpen,
-    setIsNoResultsToAddPopupOpen,
     editMoimPopupInfo,
   } = useRelationReportContext();
 
@@ -38,9 +36,6 @@ const RelationReportPageContainer = () => {
       />
       <AddFriendsPopup onClose={() => setIsAddFriendsPopupOpen(false)} />
       <PreventSharePopup onClose={() => setIsPreventSharePopupOpen(false)} />
-      {/* <NoResultsToAddPopup
-        onClose={() => setIsNoResultsToAddPopupOpen(false)}
-      /> */}
       {editMoimPopupInfo && <EditMoimPopup />}
     </div>
   );
