@@ -7,7 +7,7 @@
   "birthday_list_screen_date_format": "yyyy-MM-dd HH:mm",
   "birthday_list_screen_deleted_toast": "誕生日情報は削除されました。",
   "birthday_list_screen_empty": "保存された誕生日情報はありません。",
-  "birthday_list_screen_icon_delete_alert": "%s の誕生日情報を削除してもよろしいですか？",
+  "birthday_list_screen_icon_delete_alert": "{{value}} の誕生日情報を削除してもよろしいですか？",
   "birthday_list_screen_title": "誕生日リスト",
   "birthday_popup_label_dateofbirth": "生年月日",
   "birthday_popup_label_dateofbirth_date_format": "yyyy.MM.dd",
