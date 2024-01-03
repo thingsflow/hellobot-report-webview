@@ -9,7 +9,7 @@ export interface NodeData {
 }
 
 // 노드 개수에 따라 그래프의 반지름이 달라져야함. 노드 개수에 따른 반지름을 반환하는 함수.
-const getRadiusOffset = (nodeCount: number) => {
+export const getRadiusOffset = (nodeCount: number) => {
   switch (true) {
     case nodeCount <= 3:
       return 1;
